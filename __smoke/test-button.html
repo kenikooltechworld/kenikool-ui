@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kenikool UI — Button Smoke Test</title>
+  <!-- Real user pattern: import styles from installed package -->
+  <link rel="stylesheet" href="/node_modules/kenikool-ui/dist/styles/base.css">
+  <style>
+    body {
+      font-family: var(--k-font-sans);
+      padding: 24px;
+      background: var(--k-bg-primary);
+      color: var(--k-text-primary);
+    }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; margin: 8px 0; align-items: center; }
+    label { font-size: var(--k-text-sm); color: var(--k-text-secondary); min-width: 160px; }
+    k-button { margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Kenikool UI — T5 Button Smoke Test</h2>
+
+  <div class="row">
+    <label>Variant demo</label>
+    <k-button v="filled">Filled</k-button>
+    <k-button v="outlined">Outlined</k-button>
+    <k-button v="ghost">Ghost</k-button>
+    <k-button v="subtle">Subtle</k-button>
+    <k-button v="soft">Soft</k-button>
+    <k-button v="gradient">Gradient</k-button>
+    <k-button v="glow">Glow</k-button>
+    <k-button v="minimal">Minimal</k-button>
+    <k-button v="elevated">Elevated</k-button>
+    <k-button v="destructive">Destructive</k-button>
+  </div>
+
+  <div class="row">
+    <label>Size demo</label>
+    <k-button v="xs">XS</k-button>
+    <k-button v="sm">SM</k-button>
+    <k-button v="md">MD</k-button>
+    <k-button v="lg">LG</k-button>
+    <k-button v="xl">XL</k-button>
+  </div>
+
+  <div class="row">
+    <label>Color demo</label>
+    <k-button v="filled primary">Primary</k-button>
+    <k-button v="filled success">Success</k-button>
+    <k-button v="filled warning">Warning</k-button>
+    <k-button v="filled error">Error</k-button>
+    <k-button v="filled info">Info</k-button>
+    <k-button v="filled default">Default</k-button>
+  </div>
+
+  <div class="row">
+    <label>Radius demo</label>
+    <k-button v="filled r-none">No radius</k-button>
+    <k-button v="filled r-sm">Small</k-button>
+    <k-button v="filled r-md">Medium</k-button>
+    <k-button v="filled r-lg">Large</k-button>
+    <k-button v="filled r-full">Full</k-button>
+  </div>
+
+  <div class="row">
+    <label>States demo</label>
+    <k-button v="filled loading">Loading</k-button>
+    <k-button v="filled disabled">Disabled</k-button>
+    <k-button v="filled full" style="max-width:260px">Full width</k-button>
+  </div>
+
+  <div class="row">
+    <label>Theme</label>
+    Switch <code>data-theme</code> on <code>&lt;html&gt;</code> in DevTools between
+    <code>light</code>, <code>dark</code>, and <code>dracula</code>.
+  </div>
+
+  <!-- Real user pattern: import the library by package subpath -->
+  <script type="importmap">
+  {
+    "imports": {
+      "kenikool-ui/vanilla": "/node_modules/kenikool-ui/dist/vanilla/index.mjs"
+    }
+  }
+  </script>
+  <script type="module">
+    import 'kenikool-ui/vanilla';
+  </script>
+</body>
+</html>

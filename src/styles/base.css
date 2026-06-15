@@ -1,0 +1,49 @@
+/**
+ * base.css — Single import entry point for all kenikool-ui styles.
+ *
+ * Users import this file ONCE in their app entry:
+ *   import 'kenikool-ui/styles';
+ *   OR
+ *   <link rel="stylesheet" href="https://unpkg.com/kenikool-ui/dist/styles/base.css" />
+ *
+ * Import order is critical:
+ * 1. reset        — scoped resets for k-* elements
+ * 2. shared       — theme-agnostic tokens (spacing, typography, radius, z-index)
+ * 3. light        — default (light) theme color tokens on :root
+ * 4. dark         — [data-theme="dark"] color tokens
+ * 5. dracula      — [data-theme="dracula"] color tokens
+ * 6. animations   — all @keyframes definitions
+ * 7. components   — each component's structural + variant CSS
+ *
+ * Component CSS files are added here as each task (T5–T15) is implemented.
+ */
+
+/* 1. Scoped resets */
+@import './reset.css';
+
+/* 2. Theme-agnostic structural tokens */
+@import './tokens/shared.css';
+
+/* 3–5. Color tokens per theme */
+@import './tokens/light.css';
+@import './tokens/dark.css';
+@import './tokens/dracula.css';
+
+/* 6. Keyframe animations */
+@import './animations.css';
+
+/* 7. Component styles — uncomment as each task is completed */
+@import './components/button.css'; /* T5  */
+@import './components/layout.css'; /* Layout: k-grid, k-row, k-col, k-stack, k-box, k-text, k-divider */
+@import './components/theme-switcher.css'; /* T7  */
+@import './components/badge.css'; /* T7  */
+@import './components/input.css';     /* T6  */
+/* @import './components/badge.css'; */     /* T7  */
+/* @import './components/card.css'; */      /* T8  */
+/* @import './components/modal.css'; */     /* T9  */
+/* @import './components/select.css'; */    /* T10 */
+/* @import './components/checkbox.css'; */  /* T11 */
+/* @import './components/toast.css'; */     /* T12 */
+/* @import './components/tooltip.css'; */   /* T13 */
+/* @import './components/avatar.css'; */    /* T14 */
+@import './components/loader.css';    /* T15 */

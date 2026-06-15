@@ -1,0 +1,81 @@
+/**
+ * light.css — Light theme color tokens.
+ *
+ * Defined on :root (makes light the default — no data-theme attribute needed)
+ * AND on [data-theme="light"] so it explicitly wins when set.
+ *
+ * ALL 27 semantic color tokens must be defined here.
+ * Component CSS references ONLY these semantic tokens — never primitives.
+ *
+ * Primitive values are inlined here as comments for traceability.
+ */
+
+:root,
+[data-theme="light"] {
+
+  /* ─── Backgrounds ───────────────────────────────────────────────────────── */
+  /* Page background — pure white */
+  --k-bg-base:     #ffffff;
+  /* Component surface — off-white for cards, inputs, dropdowns */
+  --k-bg-surface:  #f8fafc;
+  /* Elevated surface — for hover states, popovers, elevated cards */
+  --k-bg-elevated: #f1f5f9;
+  /* Overlay — semi-transparent modal backdrop */
+  --k-bg-overlay:  rgba(15, 23, 42, 0.5);
+
+  /* ─── Text ──────────────────────────────────────────────────────────────── */
+  /* Primary readable text */
+  --k-text-primary:   #0f172a;
+  /* Strong text — highest contrast for bold/semibold */
+  --k-text-strong:    #000000;
+  /* Secondary text — slightly softer */
+  --k-text-secondary: #334155;
+  /* Muted text — placeholders, captions, helper text */
+  --k-text-muted:     #1e293b;
+  /* Disabled text */
+  --k-text-disabled:  #94a3b8;
+  /* Inverse text — used on dark/accent backgrounds */
+  --k-text-inverse:   #ffffff;
+
+  /* ─── Accent (primary brand color) ─────────────────────────────────────── */
+  /* Indigo-500 */
+  --k-accent:        #6366f1;
+  /* Indigo-600 — hover state */
+  --k-accent-hover:  #4f46e5;
+  /* Indigo-700 — active/pressed state */
+  --k-accent-active: #4338ca;
+  /* Indigo-500 at 10% opacity — subtle tints */
+  --k-accent-subtle: rgba(99, 102, 241, 0.10);
+
+  /* ─── Semantic status colors ────────────────────────────────────────────── */
+  /* Success — Green-600 */
+  --k-success:        #16a34a;
+  --k-success-subtle: rgba(22, 163, 74, 0.10);
+  /* Warning — Amber-600 */
+  --k-warning:        #d97706;
+  --k-warning-subtle: rgba(217, 119, 6, 0.10);
+  /* Error / Danger — Red-600 */
+  --k-error:          #dc2626;
+  --k-error-subtle:   rgba(220, 38, 38, 0.10);
+  /* Info — Sky-600 */
+  --k-info:           #0284c7;
+  --k-info-subtle:    rgba(2, 132, 199, 0.10);
+
+  /* ─── Borders ───────────────────────────────────────────────────────────── */
+  /* Default border — Slate-200 */
+  --k-border:        #e2e8f0;
+  /* Subtle border — barely visible dividers */
+  --k-border-subtle: #f1f5f9;
+  /* Strong border — Slate-300, for focus rings and emphasized borders */
+  --k-border-strong: #cbd5e1;
+
+  /* ─── Interactive ───────────────────────────────────────────────────────── */
+  /* Focus ring — Indigo-500 at 40% opacity */
+  --k-focus-ring: rgba(99, 102, 241, 0.40);
+
+  /* ─── Shadows ───────────────────────────────────────────────────────────── */
+  --k-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --k-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.10), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --k-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --k-shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.10);
+}

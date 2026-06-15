@@ -1,0 +1,254 @@
+/**
+ * loader.css — <k-loader> component styles.
+ *
+ * All animations reference keyframes in animations.css.
+ */
+
+k-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ─── Sizing ────────────────────────────────────────────────────────────────── */
+
+k-loader[data-size="xs"] { width: 12px; height: 12px; }
+k-loader[data-size="sm"] { width: 16px; height: 16px; }
+k-loader[data-size="md"] { width: 24px; height: 24px; }
+k-loader[data-size="lg"] { width: 32px; height: 32px; }
+k-loader[data-size="xl"] { width: 48px; height: 48px; }
+
+/* Default to md if not specified */
+k-loader:not([data-size]) { width: 24px; height: 24px; }
+
+/* ─── Color ────────────────────────────────────────────────────────────────── */
+
+.k-loader__element {
+  color: var(--k-accent);
+  border-color: var(--k-accent);
+  background-color: var(--k-accent);
+}
+
+k-loader[data-color="success"] .k-loader__element { color: var(--k-success); border-color: var(--k-success); background-color: var(--k-success); }
+k-loader[data-color="warning"] .k-loader__element { color: var(--k-warning); border-color: var(--k-warning); background-color: var(--k-warning); }
+k-loader[data-color="error"]   .k-loader__element { color: var(--k-error);   border-color: var(--k-error);   background-color: var(--k-error);   }
+k-loader[data-color="info"]    .k-loader__element { color: var(--k-info);    border-color: var(--k-info);    background-color: var(--k-info);    }
+k-loader[data-color="default"] .k-loader__element { color: var(--k-text-secondary); border-color: var(--k-text-secondary); background-color: var(--k-text-secondary); }
+
+/* ─── Variant Implementations ────────────────────────────────────────────────── */
+
+/* 1. Spinner */
+k-loader[data-variant="spinner"] .k-loader__element {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--k-border);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: k-spin 0.7s linear infinite;
+}
+
+/* 2. Dots */
+k-loader[data-variant="dots"] {
+  width: auto;
+  gap: 4px;
+}
+k-loader[data-variant="dots"] .k-loader__element {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: k-dots-bounce 1.4s ease-in-out infinite;
+}
+k-loader[data-variant="dots"] .k-loader__element:nth-child(2) { animation-delay: 0.15s; }
+k-loader[data-variant="dots"] .k-loader__element:nth-child(3) { animation-delay: 0.3s; }
+
+/* 3. Pulse */
+k-loader[data-variant="pulse"] .k-loader__element {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.6;
+  animation: k-pulse 1.2s ease-in-out infinite;
+}
+
+/* 4. Bars */
+k-loader[data-variant="bars"] {
+  width: auto;
+  gap: 3px;
+}
+k-loader[data-variant="bars"] .k-loader__element {
+  width: 3px;
+  height: 100%;
+  background-color: currentColor;
+  animation: k-bars 0.8s ease-in-out infinite;
+}
+k-loader[data-variant="bars"] .k-loader__element:nth-child(2) { animation-delay: 0.1s; }
+k-loader[data-variant="bars"] .k-loader__element:nth-child(3) { animation-delay: 0.2s; }
+k-loader[data-variant="bars"] .k-loader__element:nth-child(4) { animation-delay: 0.3s; }
+k-loader[data-variant="bars"] .k-loader__element:nth-child(5) { animation-delay: 0.4s; }
+
+/* 5. Ring */
+k-loader[data-variant="ring"] .k-loader__element {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 3px solid transparent;
+  border-radius: 50%;
+}
+k-loader[data-variant="ring"] .k-loader__element.outer {
+  border-top-color: currentColor;
+  animation: k-ring-cw 1s linear infinite;
+}
+k-loader[data-variant="ring"] .k-loader__element.inner {
+  top: 3px; left: 3px; right: 3px; bottom: 3px;
+  border-bottom-color: currentColor;
+  animation: k-ring-ccw 1s linear infinite;
+}
+
+/* 6. Ripple */
+k-loader[data-variant="ripple"] .k-loader__element {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  background-color: currentColor;
+  opacity: 0.6;
+  animation: k-ripple 1.5s ease-out infinite;
+}
+k-loader[data-variant="ripple"] .k-loader__element:nth-child(2) { animation-delay: 0.5s; }
+
+/* 7. Bounce */
+k-loader[data-variant="bounce"] .k-loader__element {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: k-bounce 0.6s infinite;
+}
+
+/* 8. Wave */
+k-loader[data-variant="wave"] {
+  width: auto;
+  gap: 4px;
+}
+k-loader[data-variant="wave"] .k-loader__element {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: k-wave 1s ease-in-out infinite;
+}
+k-loader[data-variant="wave"] .k-loader__element:nth-child(2) { animation-delay: 0.1s; }
+k-loader[data-variant="wave"] .k-loader__element:nth-child(3) { animation-delay: 0.2s; }
+k-loader[data-variant="wave"] .k-loader__element:nth-child(4) { animation-delay: 0.3s; }
+k-loader[data-variant="wave"] .k-loader__element:nth-child(5) { animation-delay: 0.4s; }
+
+/* 9. Skeleton (Shimmer) */
+k-loader[data-variant="skeleton"],
+k-loader[data-variant="shimmer"] {
+  background: linear-gradient(90deg,
+    var(--k-bg-surface) 25%,
+    var(--k-bg-elevated) 50%,
+    var(--k-bg-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: k-shimmer 1.5s infinite linear;
+}
+k-loader[data-variant="skeleton"] .k-loader__element,
+k-loader[data-variant="shimmer"] .k-loader__element {
+  display: none;
+}
+
+/* 10. Progress */
+k-loader[data-variant="progress"] {
+  width: 100%;
+  height: 4px;
+  background-color: var(--k-border);
+  border-radius: var(--k-radius-full);
+  overflow: hidden;
+  position: relative;
+}
+k-loader[data-variant="progress"] .k-loader__element {
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  background-color: currentColor;
+  transition: width var(--k-transition-slow) ease;
+}
+k-loader[data-variant="progress"][data-indeterminate="true"] .k-loader__element {
+  width: 30%;
+  animation: k-progress-slide 1.5s infinite linear;
+}
+k-loader[data-variant="progress"][data-indeterminate="false"] .k-loader__element {
+  width: var(--k-loader-progress-value, 0%);
+}
+
+/* 11. Flip */
+k-loader[data-variant="flip"] .k-loader__element {
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  animation: k-flip 1.2s infinite ease-in-out;
+}
+
+/* 12. Orbit */
+k-loader[data-variant="orbit"] .k-loader__element.orbit-container {
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--k-border);
+  border-radius: 50%;
+  animation: k-orbit 1s linear infinite;
+}
+k-loader[data-variant="orbit"] .k-loader__element.orbit-dot {
+  position: absolute;
+  top: 0; left: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+/* 13. Squeeze */
+k-loader[data-variant="squeeze"] .k-loader__element {
+  width: 60%;
+  height: 60%;
+  background-color: currentColor;
+  border-radius: var(--k-radius-full);
+  margin: auto;
+  animation: k-squeeze 1s ease-in-out infinite;
+}
+
+/* 14. Beat */
+k-loader[data-variant="beat"] .k-loader__element {
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  border-radius: 50%;
+  animation: k-beat 0.8s infinite ease-in-out;
+}
+
+/* 15. Crescent */
+k-loader[data-variant="crescent"] .k-loader__element {
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: k-crescent 1.5s linear infinite;
+}
+
+/* ─── Reduced Motion ────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  k-loader * {
+    animation: none !important;
+    transition: none !important;
+  }
+  k-loader[data-variant="skeleton"] {
+    background: var(--k-bg-elevated);
+  }
+}

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>kenikool-ui — Smoke Test</title>
+
+  <!-- REAL USER PATTERN: import the library's CSS bundle -->
+  <link rel="stylesheet" href="/node_modules/kenikool-ui/dist/styles/base.css" />
+
+  <!-- REAL USER PATTERN: import the library's vanilla JS (auto-registration) -->
+  <script type="module" src="/node_modules/kenikool-ui/dist/vanilla/index.mjs"></script>
+</head>
+
+<body>
+  <!-- ═══ HEADER ═══════════════════════════════════════════════════════════ -->
+  <header>
+    <k-box v="elevated p-4">
+      <k-row v="justify-between align-center gap-4">
+        <k-stack v="horizontal align-center gap-3">
+          <k-text v="h1 text-2xl semibold">kenikool-ui smoke test</k-text>
+          <k-badge v="primary">v0.1.0</k-badge>
+        </k-stack>
+        <k-theme-switcher v="horizontal gap-2"></k-theme-switcher>
+      </k-row>
+    </k-box>
+  </header>
+
+  <main>
+    <k-stack v="gap-10 p-8 max-w-5xl mx-auto">
+
+      <!-- ═══ SECTION 1: CSS TOKEN SYSTEM ═══════════════════════════════ -->
+      <k-stack v="gap-5">
+        <k-stack v="gap-2">
+          <k-text v="h2 text-2xl semibold">§1 — CSS Token System</k-text>
+          <k-text v="text-sm muted">All swatches update when you switch themes above. Values from <code>kenikool-ui/styles</code>.</k-text>
+        </k-stack>
+
+        <!-- Backgrounds -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Backgrounds</k-text>
+          <k-grid v="gap-3">
+            <k-box v="surface p-3 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs muted font-mono">--k-bg-base</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs muted font-mono">--k-bg-surface</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs muted font-mono">--k-bg-elevated</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs muted font-mono">--k-bg-overlay</k-text>
+              </k-stack>
+            </k-box>
+          </k-grid>
+        </k-stack>
+
+        <!-- Accent -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Accent</k-text>
+          <k-grid v="gap-3">
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-accent</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-accent-hover</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-accent-active</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-accent-subtle</k-text>
+            </k-box>
+          </k-grid>
+        </k-stack>
+
+        <!-- Semantic Status -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Semantic Status</k-text>
+          <k-grid v="gap-3">
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-success</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-warning</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-error</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-info</k-text>
+            </k-box>
+          </k-grid>
+        </k-stack>
+
+        <!-- Text -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Text</k-text>
+          <k-grid v="gap-3">
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-text-primary</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-text-secondary</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-text-muted</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-text-disabled</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-text-inverse</k-text>
+            </k-box>
+          </k-grid>
+        </k-stack>
+
+        <!-- Borders & Focus -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Borders & Focus</k-text>
+          <k-grid v="gap-3">
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-border</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-border-subtle</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-border-strong</k-text>
+            </k-box>
+            <k-box v="surface p-3 r-md">
+              <k-text v="text-xs muted font-mono">--k-focus-ring</k-text>
+            </k-box>
+          </k-grid>
+        </k-stack>
+      </k-stack>
+
+      <!-- ═══ SECTION 2: BUTTON (k-button) ════════════════════════════════ -->
+      <k-stack v="gap-5">
+        <k-stack v="gap-2">
+          <k-text v="h2 text-2xl semibold">§2 — &lt;k-button&gt;</k-text>
+          <k-text v="text-sm muted">Registered via <code>import 'kenikool-ui/vanilla'</code>. Buttons emit <code>k:click</code> events automatically.</k-text>
+        </k-stack>
+
+        <!-- Variants -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Variants</k-text>
+          <k-row v="gap-2 wrap">
+            <k-button v="filled">Filled</k-button>
+            <k-button v="outlined">Outlined</k-button>
+            <k-button v="ghost">Ghost</k-button>
+            <k-button v="subtle">Subtle</k-button>
+            <k-button v="soft">Soft</k-button>
+            <k-button v="gradient">Gradient</k-button>
+            <k-button v="glow">Glow</k-button>
+            <k-button v="minimal">Minimal</k-button>
+            <k-button v="elevated">Elevated</k-button>
+            <k-button v="destructive">Destructive</k-button>
+          </k-row>
+        </k-stack>
+
+        <!-- Sizes -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Sizes</k-text>
+          <k-row v="gap-2 wrap align-center">
+            <k-button v="filled xs">XS</k-button>
+            <k-button v="filled sm">SM</k-button>
+            <k-button v="filled md">MD</k-button>
+            <k-button v="filled lg">LG</k-button>
+            <k-button v="filled xl">XL</k-button>
+          </k-row>
+        </k-stack>
+
+        <!-- Colors -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Colors</k-text>
+          <k-row v="gap-2 wrap">
+            <k-button v="filled primary">Primary</k-button>
+            <k-button v="filled success">Success</k-button>
+            <k-button v="filled warning">Warning</k-button>
+            <k-button v="filled error">Error</k-button>
+            <k-button v="filled info">Info</k-button>
+            <k-button v="filled default">Default</k-button>
+          </k-row>
+        </k-stack>
+
+        <!-- Radius -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Radius</k-text>
+          <k-row v="gap-2 wrap">
+            <k-button v="filled r-none">r-none</k-button>
+            <k-button v="filled r-sm">r-sm</k-button>
+            <k-button v="filled r-md">r-md</k-button>
+            <k-button v="filled r-lg">r-lg</k-button>
+            <k-button v="filled r-full">r-full</k-button>
+          </k-row>
+        </k-stack>
+
+        <!-- States -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">States</k-text>
+          <k-row v="gap-2 wrap">
+            <k-button v="filled loading">Loading</k-button>
+            <k-button v="filled disabled">Disabled</k-button>
+            <k-button v="filled pulse">Pulse</k-button>
+            <k-button v="filled pulse pulse-1">Pulse 1</k-button>
+            <k-button v="filled pulse pulse-2">Pulse 2</k-button>
+            <k-button v="filled pulse pulse-3">Pulse 3</k-button>
+          </k-row>
+        </k-stack>
+
+        <!-- Full Width -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Full Width</k-text>
+          <k-stack v="gap-2">
+            <k-button v="filled full">Full Width Button</k-button>
+            <k-button v="outlined full">Full Width Outlined</k-button>
+          </k-stack>
+        </k-stack>
+
+        <!-- Outlined × Colors -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Outlined × Colors</k-text>
+          <k-row v="gap-2 wrap">
+            <k-button v="outlined primary">Primary</k-button>
+            <k-button v="outlined success">Success</k-button>
+            <k-button v="outlined warning">Warning</k-button>
+            <k-button v="outlined error">Error</k-button>
+            <k-button v="outlined info">Info</k-button>
+          </k-row>
+        </k-stack>
+      </k-stack>
+
+      <!-- ═══ SECTION 3: LAYOUT COMPONENTS ═════════════════════════════ -->
+      <k-stack v="gap-5">
+        <k-stack v="gap-2">
+          <k-text v="h2 text-2xl semibold">§3 — Layout Components</k-text>
+          <k-text v="text-sm muted">All layout components use only <code>v</code> attributes. Resize your browser to see responsive behavior.</k-text>
+        </k-stack>
+
+        <!-- Typography (k-text) -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Typography (k-text)</k-text>
+          <k-stack v="gap-3">
+            <k-text v="h1 text-4xl bold">Heading 1 — h1 text-4xl bold</k-text>
+            <k-text v="h2 text-3xl semibold">Heading 2 — h2 text-3xl semibold</k-text>
+            <k-text v="h3 text-2xl semibold">Heading 3 — h3 text-2xl semibold</k-text>
+            <k-text v="h4 text-xl medium">Heading 4 — h4 text-xl medium</k-text>
+            <k-text>Body paragraph — default size, primary color.</k-text>
+            <k-text v="text-sm">Small text — text-sm</k-text>
+            <k-text v="text-xs">Extra small — text-xs</k-text>
+            <k-text v="muted">Muted text — uses --k-text-muted</k-text>
+            <k-text v="error">Error text — color=error</k-text>
+            <k-text v="success">Success text — color=success</k-text>
+            <k-text v="code">Inline code</k-text>
+          </k-stack>
+        </k-stack>
+
+        <!-- Dividers (k-divider) -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Dividers (k-divider)</k-text>
+          <k-stack v="gap-3">
+            <k-text v="text-xs muted">Default (--k-border)</k-text>
+            <k-divider></k-divider>
+            <k-text v="text-xs muted">Muted (--k-border-subtle)</k-text>
+            <k-divider v="muted"></k-divider>
+            <k-text v="text-xs muted">Strong (--k-border-strong)</k-text>
+            <k-divider v="strong"></k-divider>
+          </k-stack>
+        </k-stack>
+
+        <!-- Stacks (k-stack) -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Stacks (k-stack) — Vertical & Horizontal</k-text>
+          <k-row v="gap-4">
+            <k-col>
+              <k-box v="surface p-4 r-md">
+                <k-stack v="gap-2">
+                  <k-text v="text-sm semibold">Vertical Stack</k-text>
+                  <k-divider v="muted"></k-divider>
+                  <k-stack v="gap-2">
+                    <k-button v="filled sm">Action 1</k-button>
+                    <k-button v="outlined sm">Action 2</k-button>
+                    <k-button v="ghost sm">Action 3</k-button>
+                  </k-stack>
+                </k-stack>
+              </k-box>
+            </k-col>
+            <k-col>
+              <k-box v="surface p-4 r-md">
+                <k-stack v="gap-2">
+                  <k-text v="text-sm semibold">Horizontal Stack</k-text>
+                  <k-divider v="muted"></k-divider>
+                  <k-stack v="horizontal gap-2">
+                    <k-button v="filled sm">Save</k-button>
+                    <k-button v="outlined sm">Cancel</k-button>
+                  </k-stack>
+                </k-stack>
+              </k-box>
+            </k-col>
+          </k-row>
+        </k-stack>
+
+        <!-- Rows (k-row) -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Rows (k-row) — Flex with wrapping</k-text>
+          <k-row v="gap-3 align-center">
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Item A</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Item B</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Item C</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Item D</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Item E</k-text></k-box>
+          </k-row>
+        </k-stack>
+
+        <!-- Grids (k-grid) -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Grids (k-grid) — Auto-responsive</k-text>
+          <k-text v="text-xs muted">Resize the window — columns wrap automatically.</k-text>
+          <k-grid v="gap-3">
+            <k-box v="elevated p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-sm semibold">Card One</k-text>
+                <k-text v="text-xs muted">auto-fit minmax(260px, 1fr)</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="elevated p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-sm semibold">Card Two</k-text>
+                <k-text v="text-xs muted">auto-fit minmax(260px, 1fr)</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="elevated p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-sm semibold">Card Three</k-text>
+                <k-text v="text-xs muted">auto-fit minmax(260px, 1fr)</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="elevated p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-sm semibold">Card Four</k-text>
+                <k-text v="text-xs muted">auto-fit minmax(260px, 1fr)</k-text>
+              </k-stack>
+            </k-box>
+          </k-grid>
+        </k-stack>
+
+        <!-- Grid with explicit columns -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">k-grid v="cols-3" — Explicit 3 columns</k-text>
+          <k-grid v="cols-3 gap-3">
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Col 1</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Col 2</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Col 3</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Col 4</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Col 5</k-text></k-box>
+            <k-box v="surface p-3 r-md"><k-text v="text-sm">Col 6</k-text></k-box>
+          </k-grid>
+        </k-stack>
+
+        <!-- Column spans -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">k-col with span — Advanced layouts</k-text>
+          <k-grid v="cols-6 gap-3">
+            <k-col v="span-4">
+              <k-box v="surface p-3 r-md"><k-text v="text-sm">span-4 (main)</k-text></k-box>
+            </k-col>
+            <k-col v="span-2">
+              <k-box v="surface p-3 r-md"><k-text v="text-sm">span-2 (sidebar)</k-text></k-box>
+            </k-col>
+            <k-col v="span-full">
+              <k-box v="surface p-3 r-md"><k-text v="text-sm">span-full (full width)</k-text></k-box>
+            </k-col>
+          </k-grid>
+        </k-stack>
+
+        <!-- Boxes (surfaces) -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Boxes (k-box) — Surface variants</k-text>
+          <k-row v="gap-3">
+            <k-box v="base p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs semibold">base</k-text>
+                <k-text v="text-xs muted">--k-bg-base</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="surface p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs semibold">surface</k-text>
+                <k-text v="text-xs muted">--k-bg-surface</k-text>
+              </k-stack>
+            </k-box>
+            <k-box v="elevated p-4 r-md">
+              <k-stack v="gap-2">
+                <k-text v="text-xs semibold">elevated</k-text>
+                <k-text v="text-xs muted">--k-bg-elevated</k-text>
+              </k-stack>
+            </k-box>
+          </k-row>
+        </k-stack>
+
+        <!-- Real-world layout -->
+        <k-stack v="gap-2">
+          <k-text v="text-sm semibold text-muted">Real-world: Feature section</k-text>
+          <k-box v="surface p-6 r-lg">
+            <k-stack v="gap-6">
+              <k-stack v="gap-2 align-center">
+                <k-text v="h2 text-2xl semibold">Our Features</k-text>
+                <k-text v="text-base muted">Everything you need, out of the box.</k-text>
+              </k-stack>
+              <k-grid v="gap-4">
+                <k-box v="elevated p-5 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="text-base semibold">Zero Config</k-text>
+                    <k-text v="text-sm muted">Import and use. No setup required.</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="elevated p-5 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="text-base semibold">Theme Aware</k-text>
+                    <k-text v="text-sm muted">All three themes work automatically.</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="elevated p-5 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="text-base semibold">Responsive</k-text>
+                    <k-text v="text-sm muted">Layouts adapt to any screen size.</k-text>
+                  </k-stack>
+                </k-box>
+              </k-grid>
+              <k-row v="justify-center">
+                <k-button v="filled lg r-full">Get Started</k-button>
+              </k-row>
+            </k-stack>
+          </k-box>
+        </k-stack>
+      </k-stack>
+
+      <!-- ═══ SECTION 4: LOADING ANIMATIONS ════════════════════════════════ -->
+      <k-stack v="gap-5">
+        <k-stack v="gap-2">
+          <k-text v="h2 text-2xl semibold">§4 — Loading Animations</k-text>
+          <k-text v="text-sm muted">All animations from <code>kenikool-ui/styles</code>. Colors update with themes.</k-text>
+        </k-stack>
+
+        <k-grid v="gap-4">
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="spinner lg"></k-loader>
+              <k-text v="text-sm semibold">Spinner</k-text>
+              <k-text v="text-xs muted">k-spin</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="dots lg"></k-loader>
+              <k-text v="text-sm semibold">Dots</k-text>
+              <k-text v="text-xs muted">k-dots-bounce</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="pulse lg"></k-loader>
+              <k-text v="text-sm semibold">Pulse</k-text>
+              <k-text v="text-xs muted">k-pulse</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="bars lg"></k-loader>
+              <k-text v="text-sm semibold">Bars</k-text>
+              <k-text v="text-xs muted">k-bars</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="ring lg"></k-loader>
+              <k-text v="text-sm semibold">Ring</k-text>
+              <k-text v="text-xs muted">k-ring-cw/ccw</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="ripple lg"></k-loader>
+              <k-text v="text-sm semibold">Ripple</k-text>
+              <k-text v="text-xs muted">k-ripple</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="bounce lg"></k-loader>
+              <k-text v="text-sm semibold">Bounce</k-text>
+              <k-text v="text-xs muted">k-bounce</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3 align-center">
+              <k-loader v="wave lg"></k-loader>
+              <k-text v="text-sm semibold">Wave</k-text>
+              <k-text v="text-xs muted">k-wave</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3">
+              <k-loader v="shimmer lg"></k-loader>
+              <k-text v="text-sm semibold">Shimmer</k-text>
+              <k-text v="text-xs muted">k-shimmer (skeleton)</k-text>
+            </k-stack>
+          </k-box>
+
+          <k-box v="elevated p-5 r-md">
+            <k-stack v="gap-3">
+              <k-loader v="progress lg"></k-loader>
+              <k-text v="text-sm semibold">Progress</k-text>
+              <k-text v="text-xs muted">k-progress-slide</k-text>
+            </k-stack>
+          </k-box>
+        </k-grid>
+      </k-stack>
+
+    </k-stack>
+  </main>
+</body>
+</html>

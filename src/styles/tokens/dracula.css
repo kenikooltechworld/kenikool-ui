@@ -1,0 +1,90 @@
+/**
+ * dracula.css — Dracula theme color tokens.
+ *
+ * Applied when data-theme="dracula" is set on <html>.
+ * Based on the official Dracula color palette from draculatheme.com/contribute
+ *
+ * Official Dracula primitive values used:
+ *   Background:    #282A36
+ *   Current Line:  #44475A  (surface / elevated)
+ *   Selection:     #44475A
+ *   Foreground:    #F8F8F2  (primary text)
+ *   Comment:       #6272A4  (muted text)
+ *   Red:           #FF5555  (error)
+ *   Orange:        #FFB86C  (warning)
+ *   Yellow:        #F1FA8C  (highlight)
+ *   Green:         #50FA7B  (success)
+ *   Cyan:          #8BE9FD  (info)
+ *   Purple:        #BD93F9  (primary accent)
+ *   Pink:          #FF79C6  (secondary accent)
+ */
+
+[data-theme="dracula"] {
+
+  /* ─── Backgrounds ───────────────────────────────────────────────────────── */
+  /* Official Dracula Background */
+  --k-bg-base:     #282a36;
+  /* Official Dracula Current Line — used for elevated surfaces */
+  --k-bg-surface:  #323447;
+  /* Slightly lighter than Current Line for nested elevation */
+  --k-bg-elevated: #44475a;
+  /* Modal backdrop */
+  --k-bg-overlay:  rgba(40, 42, 54, 0.88);
+
+  /* ─── Text ──────────────────────────────────────────────────────────────── */
+  /* Official Dracula Foreground */
+  --k-text-primary:   #f8f8f2;
+  /* Strong text — highest contrast for bold/semibold */
+  --k-text-strong:    #ffffff;
+  /* Slightly muted Foreground */
+  --k-text-secondary: #cdd6f4;
+  /* Official Dracula Comment — muted/placeholder text */
+  --k-text-muted:     #cdd6f4;
+  /* Dimmed comment for disabled state */
+  --k-text-disabled:  #4a5068;
+  /* Inverse text on light accent backgrounds */
+  --k-text-inverse:   #282a36;
+
+  /* ─── Accent ────────────────────────────────────────────────────────────── */
+  /* Official Dracula Purple — primary CTA, links, focus */
+  --k-accent:        #bd93f9;
+  /* Lighter purple for hover */
+  --k-accent-hover:  #caa7fa;
+  /* Deeper purple for active/pressed */
+  --k-accent-active: #a87ef7;
+  /* Purple at 15% opacity for subtle tints */
+  --k-accent-subtle: rgba(189, 147, 249, 0.15);
+
+  /* ─── Semantic status colors ────────────────────────────────────────────── */
+  /* Official Dracula Green */
+  --k-success:        #50fa7b;
+  --k-success-subtle: rgba(80, 250, 123, 0.15);
+  /* Official Dracula Orange */
+  --k-warning:        #ffb86c;
+  --k-warning-subtle: rgba(255, 184, 108, 0.15);
+  /* Official Dracula Red */
+  --k-error:          #ff5555;
+  --k-error-subtle:   rgba(255, 85, 85, 0.15);
+  /* Official Dracula Cyan */
+  --k-info:           #8be9fd;
+  --k-info-subtle:    rgba(139, 233, 253, 0.15);
+
+  /* ─── Borders ───────────────────────────────────────────────────────────── */
+  /* Same as bg-elevated — blends with surface */
+  --k-border:        #44475a;
+  /* Subtle — barely visible */
+  --k-border-subtle: #383a47;
+  /* Strong — used for focus rings and emphasized separators */
+  --k-border-strong: #6272a4;
+
+  /* ─── Interactive ───────────────────────────────────────────────────────── */
+  /* Purple at 50% opacity for keyboard focus rings */
+  --k-focus-ring: rgba(189, 147, 249, 0.50);
+
+  /* ─── Shadows ───────────────────────────────────────────────────────────── */
+  /* Dark purple-tinted shadows match the Dracula aesthetic */
+  --k-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.40), 0 1px 2px rgba(40, 42, 54, 0.30);
+  --k-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.55), 0 2px 6px rgba(40, 42, 54, 0.40);
+  --k-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(40, 42, 54, 0.50);
+  --k-shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.75), 0 8px 24px rgba(40, 42, 54, 0.60);
+}

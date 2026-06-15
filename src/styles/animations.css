@@ -1,0 +1,200 @@
+/**
+ * animations.css — All @keyframes for kenikool-ui loaders and transitions.
+ *
+ * Ten loader animation types, plus utility keyframes used by components
+ * (fade-in, slide-up, slide-in, scale-in).
+ *
+ * All animations are suppressed under prefers-reduced-motion.
+ * Components reference these by name in their own CSS files.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   LOADER ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════ */
+
+/** 1. spinner — single rotating arc */
+@keyframes k-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/** 2. dots — three dots bouncing with staggered delay */
+@keyframes k-dots-bounce {
+  0%, 80%, 100% { transform: scale(0.4); opacity: 0.4; }
+  40%           { transform: scale(1.0); opacity: 1; }
+}
+
+/** 3. pulse — expanding fade-out ring */
+@keyframes k-pulse {
+  0%   { transform: scale(0.8); opacity: 0.9; }
+  50%  { transform: scale(1.2); opacity: 0.4; }
+  100% { transform: scale(0.8); opacity: 0.9; }
+}
+
+/** 4. bars — equalizer-style vertical bars */
+@keyframes k-bars {
+  0%, 100% { transform: scaleY(0.3); }
+  50%      { transform: scaleY(1.0); }
+}
+
+/** 5. ring — dual concentric rings rotating in opposite directions */
+@keyframes k-ring-cw {
+  to { transform: rotate(360deg); }
+}
+@keyframes k-ring-ccw {
+  to { transform: rotate(-360deg); }
+}
+
+/** 6. ripple — concentric circles expanding outward */
+@keyframes k-ripple {
+  0%   { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/** 7. bounce — single ball bouncing vertically */
+@keyframes k-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  50% {
+    transform: translateY(-24px);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  }
+}
+
+/** 8. wave — sine-wave dots */
+@keyframes k-wave {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-12px); }
+}
+
+/** 9. shimmer — skeleton content placeholder */
+@keyframes k-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/** 10. progress — indeterminate progress bar sliding highlight */
+@keyframes k-progress-slide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/** 11. flip — rotating square/block */
+@keyframes k-flip {
+  0%   { transform: perspective(120px) rotateX(0deg) rotateY(0deg); }
+  50%  { transform: perspective(120px) rotateX(180deg) rotateY(180deg); }
+  100% { transform: perspective(120px) rotateX(360deg) rotateY(360deg); }
+}
+
+/** 12. orbit — dot orbiting a center */
+@keyframes k-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/** 13. squeeze — horizontal expansion/contraction */
+@keyframes k-squeeze {
+  0%, 100% { transform: scaleX(0.6); opacity: 0.6; }
+  50%      { transform: scaleX(1.2); opacity: 1; }
+}
+
+/** 14. beat — rhythmic heartbeat pulse */
+@keyframes k-beat {
+  0%, 20%, 100% { transform: scale(1); }
+  10%, 30%      { transform: scale(1.2); }
+}
+
+/** 15. crescent — filling arc effect */
+@keyframes k-crescent {
+  0%   { transform: rotate(0deg); opacity: 0.3; }
+  50%  { transform: rotate(180deg); opacity: 1; }
+  100% { transform: rotate(360deg); opacity: 0.3; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   COMPONENT TRANSITION KEYFRAMES
+   Used by Modal, Toast, Tooltip, Dropdown
+   ═══════════════════════════════════════════════════════════════════ */
+
+/** Fade in */
+@keyframes k-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/** Fade out */
+@keyframes k-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/** Scale up from center (modal default, centered variant) */
+@keyframes k-scale-in {
+  from { opacity: 0; transform: scale(0.94) translateY(-4px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/** Slide up from bottom (bottom-sheet modal, toast from bottom) */
+@keyframes k-slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/** Slide down to bottom (exit animation) */
+@keyframes k-slide-down {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(24px); }
+}
+
+/** Slide in from left (left drawer) */
+@keyframes k-slide-in-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/** Slide in from right (right drawer) */
+@keyframes k-slide-in-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/** Slide out to left */
+@keyframes k-slide-out-left {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-100%); }
+}
+
+/** Slide out to right */
+@keyframes k-slide-out-right {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
+}
+
+/** Toast slide in from right (default position: bottom-right) */
+@keyframes k-toast-in {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/** Toast slide out to right */
+@keyframes k-toast-out {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REDUCED MOTION — suppresses ALL animations in the library
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+    scroll-behavior:      auto !important;
+  }
+}

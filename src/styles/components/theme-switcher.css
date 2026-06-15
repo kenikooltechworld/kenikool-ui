@@ -1,0 +1,150 @@
+/**
+ * theme-switcher.css — <k-theme-switcher> styles.
+ *
+ * A professional dropdown for theme management.
+ * Pure CSS implementation using semantic tokens.
+ */
+
+.k-theme-switcher-container {
+  display: inline-block;
+  position: relative;
+  font-family: var(--k-font-sans);
+}
+
+/* ── Trigger Button ───────────────────────────────────────────────────────── */
+.k-theme-switcher-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  padding: var(--k-space-1) var(--k-space-3);
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-medium);
+  color: var(--k-text-primary);
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-sm);
+  cursor: pointer;
+  transition: var(--k-transition-base);
+  user-select: none;
+}
+
+.k-theme-switcher-trigger:hover {
+  background: var(--k-bg-elevated);
+  border-color: var(--k-border-strong);
+}
+
+.k-theme-switcher-trigger .trigger-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--k-accent);
+}
+
+.k-theme-switcher-trigger .chevron {
+  margin-left: auto;
+  padding-left: var(--k-space-2);
+  opacity: 0.5;
+}
+
+/* ── Dropdown List ────────────────────────────────────────────────────────── */
+.k-theme-switcher-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: var(--k-z-dropdown);
+  min-width: 180px;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  box-shadow: var(--k-shadow-md);
+  padding: var(--k-space-2);
+  gap: var(--k-space-1);
+  display: flex;
+  flex-direction: column;
+  color: var(--k-text-primary);
+}
+
+.k-theme-switcher-list[hidden] {
+  display: none;
+}
+
+/* ── Options ──────────────────────────────────────────────────────────────── */
+.k-theme-switcher-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--k-space-2) var(--k-space-3);
+  border-radius: var(--k-radius-sm);
+  cursor: pointer; /* The fix requested by the user */
+  transition: var(--k-transition-base);
+  user-select: none;
+  outline: none;
+  color: var(--k-text-primary);
+}
+
+.k-theme-switcher-option:hover {
+  background: var(--k-bg-elevated);
+}
+
+.k-theme-switcher-option[aria-selected="true"] {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+}
+
+.option-info {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  font-size: var(--k-text-sm);
+}
+
+.option-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+}
+
+/* ── Swatches ─────────────────────────────────────────────────────────────── */
+.option-swatches {
+  display: flex;
+  gap: 3px;
+  margin: 0 var(--k-space-3);
+}
+
+.swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Swatch colors driven by data-theme on the container */
+.option-swatches[data-theme="light"] .swatch.bg { background: #ffffff; }
+.option-swatches[data-theme="light"] .swatch.accent { background: #6366f1; }
+.option-swatches[data-theme="light"] .swatch.text { background: #0f172a; }
+
+.option-swatches[data-theme="dark"] .swatch.bg { background: #0f0f13; }
+.option-swatches[data-theme="dark"] .swatch.accent { background: #818cf8; }
+.option-swatches[data-theme="dark"] .swatch.text { background: #f1f1f5; }
+
+.option-swatches[data-theme="dracula"] .swatch.bg { background: #282a36; }
+.option-swatches[data-theme="dracula"] .swatch.accent { background: #bd93f9; }
+.option-swatches[data-theme="dracula"] .swatch.text { background: #f8f8f2; }
+
+/* ── Checkmark ──────────────────────────────────────────────────────────── */
+.option-check {
+  width: 14px;
+  height: 14px;
+  color: var(--k-accent);
+  opacity: 0;
+  transition: opacity var(--k-transition-base);
+}
+
+.k-theme-switcher-option[aria-selected="true"] .option-check {
+  opacity: 1;
+}

@@ -1,0 +1,373 @@
+/**
+ * button.css — <k-button> component styles.
+ *
+ * Architecture: ALL selectors use data-* attributes on the <k-button> host.
+ * The inner <button> has zero CSS classes — it is purely semantic.
+ *
+ * Selector pattern:
+ *   k-button                          → host layout
+ *   k-button button                   → inner button base structure
+ *   k-button[data-variant="filled"] button   → variant visual style
+ *   k-button[data-size="lg"] button          → size scale
+ *   k-button[data-color="error"][data-variant="filled"] button → color × variant
+ *   k-button[data-loading="true"] button     → state
+ *
+ * Color × variant behavior (per requirements.md §3.9):
+ *   filled / gradient / glow / soft / subtle → color changes background
+ *   outlined                                 → color changes border + text
+ *   ghost / minimal                          → color changes text only
+ *   elevated / destructive                   → color token ignored
+ *   primary (default)                        → defers to --k-accent, no override
+ */
+
+/* ─── Host layout ─────────────────────────────────────────────────────── */
+
+k-button {
+  display: inline-flex;
+  align-items: stretch;
+}
+
+k-button[data-full="true"] {
+  display: flex;
+  width: 100%;
+}
+
+/* ─── Inner button — structural base (no visual styling here) ─────────── */
+
+k-button button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--k-space-2);
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-family: var(--k-font-sans);
+  font-weight: var(--k-font-medium);
+  border-radius: var(--k-radius-md);
+  transition: background var(--k-transition-base),
+              color var(--k-transition-base),
+              box-shadow var(--k-transition-base),
+              border-color var(--k-transition-base),
+              opacity var(--k-transition-base),
+              filter var(--k-transition-base),
+              transform var(--k-transition-base);
+  white-space: nowrap;
+S  text-decoration: none;
+  position: relative;
+  outline: none;
+  /* No background, color, border — variants provide those below */
+}
+
+k-button button:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ─── Sizes ───────────────────────────────────────────────────────────── */
+
+k-button[data-size="xs"] button { padding: 4px 8px;   font-size: var(--k-text-xs); }
+k-button[data-size="sm"] button { padding: 6px 12px;  font-size: var(--k-text-sm); }
+k-button[data-size="md"] button { padding: 8px 16px;  font-size: var(--k-text-base); }
+k-button[data-size="lg"] button { padding: 12px 24px; font-size: var(--k-text-lg); }
+k-button[data-size="xl"] button { padding: 16px 32px; font-size: var(--k-text-xl); }
+
+/* ─── Variants ────────────────────────────────────────────────────────── */
+
+/* filled */
+k-button[data-variant="filled"] button {
+  background: var(--k-accent);
+  color: var(--k-text-inverse);
+}
+k-button[data-variant="filled"] button:hover  { background: var(--k-accent-hover); }
+k-button[data-variant="filled"] button:active { background: var(--k-accent-active); }
+
+/* outlined */
+k-button[data-variant="outlined"] button {
+  background: transparent;
+  color: var(--k-accent);
+  border: 1px solid var(--k-accent);
+}
+k-button[data-variant="outlined"] button:hover { background: var(--k-accent-subtle); }
+
+/* ghost */
+k-button[data-variant="ghost"] button {
+  background: transparent;
+  color: var(--k-text-primary);
+  border: none;
+}
+k-button[data-variant="ghost"] button:hover { background: var(--k-bg-surface); }
+
+/* subtle */
+k-button[data-variant="subtle"] button {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+  border: none;
+}
+k-button[data-variant="subtle"] button:hover { filter: brightness(0.92); }
+
+/* soft */
+k-button[data-variant="soft"] button {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+  border: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+k-button[data-variant="soft"] button:hover { filter: brightness(0.88); }
+
+/* gradient */
+k-button[data-variant="gradient"] button {
+  background: linear-gradient(135deg, var(--k-accent), var(--k-accent-hover));
+  color: var(--k-text-inverse);
+  border: none;
+}
+k-button[data-variant="gradient"] button:hover {
+  background: linear-gradient(160deg, var(--k-accent), var(--k-accent-hover));
+}
+
+/* glow */
+k-button[data-variant="glow"] button {
+  background: var(--k-accent);
+  color: var(--k-text-inverse);
+  border: none;
+  box-shadow: 0 0 16px var(--k-accent-subtle), 0 0 4px var(--k-accent);
+}
+k-button[data-variant="glow"] button:hover {
+  box-shadow: 0 0 24px var(--k-accent-subtle), 0 0 8px var(--k-accent);
+}
+
+/* minimal */
+k-button[data-variant="minimal"] button {
+  background: transparent;
+  color: var(--k-text-primary);
+  border: none;
+  padding-inline: 4px;
+}
+k-button[data-variant="minimal"] button:hover { text-decoration: underline; }
+
+/* elevated */
+k-button[data-variant="elevated"] button {
+  background: var(--k-bg-elevated);
+  color: var(--k-text-primary);
+  border: none;
+  box-shadow: var(--k-shadow-md);
+}
+k-button[data-variant="elevated"] button:hover { box-shadow: var(--k-shadow-lg); }
+
+/* destructive */
+k-button[data-variant="destructive"] button {
+  background: var(--k-error);
+  color: var(--k-text-inverse);
+  border: none;
+}
+k-button[data-variant="destructive"] button:hover { filter: brightness(0.9); }
+
+/* ─── States ──────────────────────────────────────────────────────────── */
+
+k-button[data-loading="true"] button {
+  opacity: 0.75;
+  cursor: wait;
+  pointer-events: none;
+}
+
+k-button[data-disabled="true"] button {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Color × variant overrides ───────────────────────────────────────── */
+/*
+ * filled / gradient / glow / soft / subtle + color → background changes
+ */
+
+/* error */
+k-button[data-color="error"][data-variant="filled"] button,
+k-button[data-color="error"][data-variant="gradient"] button,
+k-button[data-color="error"][data-variant="glow"] button,
+k-button[data-color="error"][data-variant="soft"] button,
+k-button[data-color="error"][data-variant="subtle"] button {
+  background: var(--k-error);
+  color: var(--k-text-inverse);
+}
+k-button[data-color="error"][data-variant="glow"] button {
+  box-shadow: 0 0 16px var(--k-error-subtle), 0 0 4px var(--k-error);
+}
+k-button[data-color="error"][data-variant="glow"] button:hover {
+  box-shadow: 0 0 24px var(--k-error-subtle), 0 0 8px var(--k-error);
+}
+
+/* success */
+k-button[data-color="success"][data-variant="filled"] button,
+k-button[data-color="success"][data-variant="gradient"] button,
+k-button[data-color="success"][data-variant="glow"] button,
+k-button[data-color="success"][data-variant="soft"] button,
+k-button[data-color="success"][data-variant="subtle"] button {
+  background: var(--k-success);
+  color: var(--k-text-inverse);
+}
+k-button[data-color="success"][data-variant="glow"] button {
+  box-shadow: 0 0 16px var(--k-success-subtle), 0 0 4px var(--k-success);
+}
+k-button[data-color="success"][data-variant="glow"] button:hover {
+  box-shadow: 0 0 24px var(--k-success-subtle), 0 0 8px var(--k-success);
+}
+
+/* warning */
+k-button[data-color="warning"][data-variant="filled"] button,
+k-button[data-color="warning"][data-variant="gradient"] button,
+k-button[data-color="warning"][data-variant="glow"] button,
+k-button[data-color="warning"][data-variant="soft"] button,
+k-button[data-color="warning"][data-variant="subtle"] button {
+  background: var(--k-warning);
+  color: var(--k-text-inverse);
+}
+k-button[data-color="warning"][data-variant="glow"] button {
+  box-shadow: 0 0 16px var(--k-warning-subtle), 0 0 4px var(--k-warning);
+}
+k-button[data-color="warning"][data-variant="glow"] button:hover {
+  box-shadow: 0 0 24px var(--k-warning-subtle), 0 0 8px var(--k-warning);
+}
+
+/* info */
+k-button[data-color="info"][data-variant="filled"] button,
+k-button[data-color="info"][data-variant="gradient"] button,
+k-button[data-color="info"][data-variant="glow"] button,
+k-button[data-color="info"][data-variant="soft"] button,
+k-button[data-color="info"][data-variant="subtle"] button {
+  background: var(--k-info);
+  color: var(--k-text-inverse);
+}
+k-button[data-color="info"][data-variant="glow"] button {
+  box-shadow: 0 0 16px var(--k-info-subtle), 0 0 4px var(--k-info);
+}
+k-button[data-color="info"][data-variant="glow"] button:hover {
+  box-shadow: 0 0 24px var(--k-info-subtle), 0 0 8px var(--k-info);
+}
+
+/*
+ * outlined + color → border-color + text color change
+ */
+k-button[data-color="error"][data-variant="outlined"] button {
+  color: var(--k-error);
+  border-color: var(--k-error);
+}
+k-button[data-color="error"][data-variant="outlined"] button:hover {
+  background: var(--k-error-subtle);
+}
+
+k-button[data-color="success"][data-variant="outlined"] button {
+  color: var(--k-success);
+  border-color: var(--k-success);
+}
+k-button[data-color="success"][data-variant="outlined"] button:hover {
+  background: var(--k-success-subtle);
+}
+
+k-button[data-color="warning"][data-variant="outlined"] button {
+  color: var(--k-warning);
+  border-color: var(--k-warning);
+}
+k-button[data-color="warning"][data-variant="outlined"] button:hover {
+  background: var(--k-warning-subtle);
+}
+
+k-button[data-color="info"][data-variant="outlined"] button {
+  color: var(--k-info);
+  border-color: var(--k-info);
+}
+k-button[data-color="info"][data-variant="outlined"] button:hover {
+  background: var(--k-info-subtle);
+}
+
+/*
+ * ghost + minimal + color → text color only
+ */
+k-button[data-color="error"][data-variant="ghost"] button,
+k-button[data-color="error"][data-variant="minimal"] button   { color: var(--k-error); }
+
+k-button[data-color="success"][data-variant="ghost"] button,
+k-button[data-color="success"][data-variant="minimal"] button { color: var(--k-success); }
+
+k-button[data-color="warning"][data-variant="ghost"] button,
+k-button[data-color="warning"][data-variant="minimal"] button { color: var(--k-warning); }
+
+k-button[data-color="info"][data-variant="ghost"] button,
+k-button[data-color="info"][data-variant="minimal"] button    { color: var(--k-info); }
+
+/*
+ * default color → neutral surface/grey
+ */
+k-button[data-color="default"] button {
+  background: var(--k-bg-elevated);
+  color: var(--k-text-secondary);
+  border-color: var(--k-border);
+}
+
+/* ─── Radius overrides ────────────────────────────────────────────────── */
+
+k-button[data-radius="none"] button { border-radius: var(--k-radius-none); }
+k-button[data-radius="sm"]   button { border-radius: var(--k-radius-sm); }
+k-button[data-radius="md"]   button { border-radius: var(--k-radius-md); }
+k-button[data-radius="lg"]   button { border-radius: var(--k-radius-lg); }
+k-button[data-radius="full"] button { border-radius: var(--k-radius-full); }
+
+/* ─── Loading spinner ─────────────────────────────────────────────────── */
+
+.k-button__loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.k-button__loader svg {
+  display: block;
+  animation: k-spin 0.7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .k-button__loader svg {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* ─── Tactile Feedback ────────────────────────────────────────────────────── */
+
+k-button button:active {
+  transform: scale(0.97);
+  filter: brightness(0.9);
+}
+
+/* ─── Responsive Mode ────────────────────────────────────────────────────── */
+
+.k-button__icon-left,
+.k-button__icon-right {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.k-button__icon-left svg,
+.k-button__icon-right svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+@media (max-width: 640px) {
+  k-button[data-responsive="true"] .k-button__text {
+    display: none;
+  }
+  
+  k-button[data-responsive="true"] button {
+    padding: 8px;
+    min-width: 40px;
+    height: 40px;
+  }
+}

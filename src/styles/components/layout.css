@@ -1,0 +1,858 @@
+/**
+ * layout.css — Responsive layout components.
+ *
+ * Components: k-grid, k-row, k-col, k-stack, k-box, k-text, k-divider
+ *
+ * Architecture:
+ *   - ALL selectors use data-* attributes on the host element.
+ *   - Zero new CSS variables — 100% reuses existing --k-space-*, --k-radius-*,
+ *     --k-bg-*, --k-shadow-*, --k-text-*, --k-font-* tokens from shared.css.
+ *   - All components are RESPONSIVE BY DEFAULT. Users need zero attributes
+ *     for basic responsive behaviour.
+ *   - Breakpoints are media queries (CSS vars don't work in @media).
+ *     Values match --k-bp-* tokens defined in shared.css.
+ *
+ * Breakpoint reference (matches --k-bp-* in shared.css):
+ *   xs: 480px  sm: 640px  md: 768px  lg: 1024px  xl: 1280px
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-grid — CSS Grid, responsive by default
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-grid {
+  display: grid;
+  /* auto-fit: columns fill available space and wrap naturally.
+     minmax(var(--k-grid-col-min), 1fr): each column is at least 260px wide.
+     This is the "responsive by default" magic — no breakpoints needed. */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--k-grid-col-min, 260px), 1fr)
+  );
+  gap: var(--k-layout-gap, var(--k-space-4));
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Explicit column count overrides ── */
+k-grid[data-cols="1"] {
+  grid-template-columns: repeat(1, 1fr);
+}
+k-grid[data-cols="2"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+k-grid[data-cols="3"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+k-grid[data-cols="4"] {
+  grid-template-columns: repeat(4, 1fr);
+}
+k-grid[data-cols="5"] {
+  grid-template-columns: repeat(5, 1fr);
+}
+k-grid[data-cols="6"] {
+  grid-template-columns: repeat(6, 1fr);
+}
+k-grid[data-cols="7"] {
+  grid-template-columns: repeat(7, 1fr);
+}
+k-grid[data-cols="8"] {
+  grid-template-columns: repeat(8, 1fr);
+}
+k-grid[data-cols="9"] {
+  grid-template-columns: repeat(9, 1fr);
+}
+k-grid[data-cols="10"] {
+  grid-template-columns: repeat(10, 1fr);
+}
+k-grid[data-cols="11"] {
+  grid-template-columns: repeat(11, 1fr);
+}
+k-grid[data-cols="12"] {
+  grid-template-columns: repeat(12, 1fr);
+}
+k-grid[data-cols="auto"] {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--k-grid-col-min, 260px), 1fr)
+  );
+}
+
+/* dense variant — fill gaps automatically */
+k-grid[data-variant="dense"] {
+  grid-auto-flow: dense;
+}
+
+/* ── Responsive: force single column on very small screens ── */
+@media (max-width: 480px) {
+  k-grid[data-cols="2"],
+  k-grid[data-cols="3"],
+  k-grid[data-cols="4"],
+  k-grid[data-cols="5"],
+  k-grid[data-cols="6"],
+  k-grid[data-cols="7"],
+  k-grid[data-cols="8"],
+  k-grid[data-cols="9"],
+  k-grid[data-cols="10"],
+  k-grid[data-cols="11"],
+  k-grid[data-cols="12"] {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Responsive: max 2 columns on small screens ── */
+@media (min-width: 481px) and (max-width: 767px) {
+  k-grid[data-cols="3"],
+  k-grid[data-cols="4"],
+  k-grid[data-cols="5"],
+  k-grid[data-cols="6"],
+  k-grid[data-cols="7"],
+  k-grid[data-cols="8"],
+  k-grid[data-cols="9"],
+  k-grid[data-cols="10"],
+  k-grid[data-cols="11"],
+  k-grid[data-cols="12"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Responsive: max 3 columns on tablets ── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  k-grid[data-cols="4"],
+  k-grid[data-cols="5"],
+  k-grid[data-cols="6"],
+  k-grid[data-cols="7"],
+  k-grid[data-cols="8"],
+  k-grid[data-cols="9"],
+  k-grid[data-cols="10"],
+  k-grid[data-cols="11"],
+  k-grid[data-cols="12"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-row — Flexbox row, responsive by default
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* wraps to next line when children overflow — responsive by default */
+  gap: var(--k-layout-gap, var(--k-space-4));
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch;
+}
+
+/* ── Responsive: stack vertically on phones ── */
+@media (max-width: 480px) {
+  k-row {
+    flex-direction: column;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-col — Flex/Grid child
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-col {
+  /* flex: grow shrink min-width.
+     min-width of 260px means it wraps to its own row on small screens.
+     This is the core "responsive by default" mechanism for flex layouts. */
+  flex: 1 1 var(--k-grid-col-min, 260px);
+  min-width: 0; /* prevents overflow with long content */
+  box-sizing: border-box;
+}
+
+/* ── Grid span overrides ── */
+k-col[data-span="1"] {
+  grid-column: span 1;
+}
+k-col[data-span="2"] {
+  grid-column: span 2;
+}
+k-col[data-span="3"] {
+  grid-column: span 3;
+}
+k-col[data-span="4"] {
+  grid-column: span 4;
+}
+k-col[data-span="5"] {
+  grid-column: span 5;
+}
+k-col[data-span="6"] {
+  grid-column: span 6;
+}
+k-col[data-span="7"] {
+  grid-column: span 7;
+}
+k-col[data-span="8"] {
+  grid-column: span 8;
+}
+k-col[data-span="9"] {
+  grid-column: span 9;
+}
+k-col[data-span="10"] {
+  grid-column: span 10;
+}
+k-col[data-span="11"] {
+  grid-column: span 11;
+}
+k-col[data-span="12"] {
+  grid-column: span 12;
+}
+k-col[data-span="full"] {
+  grid-column: 1 / -1;
+}
+
+/* ── Responsive: reset spans on small screens ── */
+@media (max-width: 480px) {
+  k-col[data-span] {
+    grid-column: 1 / -1;
+    flex: 1 1 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-stack — Vertical flex stack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-layout-gap, var(--k-space-4));
+  width: 100%;
+  box-sizing: border-box;
+}
+
+k-stack[data-direction="horizontal"] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Responsive: horizontal stacks collapse on phones ── */
+@media (max-width: 480px) {
+  k-stack[data-direction="horizontal"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared: alignment tokens for k-row, k-stack, k-grid
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* align (cross-axis) */
+k-row[data-align="start"],
+k-stack[data-align="start"],
+k-grid[data-align="start"] {
+  align-items: flex-start;
+}
+
+k-row[data-align="center"],
+k-stack[data-align="center"],
+k-grid[data-align="center"] {
+  align-items: center;
+}
+
+k-row[data-align="end"],
+k-stack[data-align="end"],
+k-grid[data-align="end"] {
+  align-items: flex-end;
+}
+
+k-row[data-align="stretch"],
+k-stack[data-align="stretch"],
+k-grid[data-align="stretch"] {
+  align-items: stretch;
+}
+
+k-row[data-align="baseline"],
+k-stack[data-align="baseline"] {
+  align-items: baseline;
+}
+
+/* justify (main-axis) */
+k-row[data-justify="start"],
+k-stack[data-justify="start"] {
+  justify-content: flex-start;
+}
+
+k-row[data-justify="center"],
+k-stack[data-justify="center"] {
+  justify-content: center;
+}
+
+k-row[data-justify="end"],
+k-stack[data-justify="end"] {
+  justify-content: flex-end;
+}
+
+k-row[data-justify="between"],
+k-stack[data-justify="between"] {
+  justify-content: space-between;
+}
+
+k-row[data-justify="around"],
+k-stack[data-justify="around"] {
+  justify-content: space-around;
+}
+
+k-row[data-justify="evenly"],
+k-stack[data-justify="evenly"] {
+  justify-content: space-evenly;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared: gap token overrides (gap-N → --k-space-N)
+   Applies to: k-grid, k-row, k-stack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-grid[data-gap="0"],
+k-row[data-gap="0"],
+k-stack[data-gap="0"] {
+  gap: var(--k-space-0);
+}
+k-grid[data-gap="px"],
+k-row[data-gap="px"],
+k-stack[data-gap="px"] {
+  gap: var(--k-space-px);
+}
+k-grid[data-gap="0-5"],
+k-row[data-gap="0-5"],
+k-stack[data-gap="0-5"] {
+  gap: var(--k-space-0-5);
+}
+k-grid[data-gap="1"],
+k-row[data-gap="1"],
+k-stack[data-gap="1"] {
+  gap: var(--k-space-1);
+}
+k-grid[data-gap="1-5"],
+k-row[data-gap="1-5"],
+k-stack[data-gap="1-5"] {
+  gap: var(--k-space-1-5);
+}
+k-grid[data-gap="2"],
+k-row[data-gap="2"],
+k-stack[data-gap="2"] {
+  gap: var(--k-space-2);
+}
+k-grid[data-gap="2-5"],
+k-row[data-gap="2-5"],
+k-stack[data-gap="2-5"] {
+  gap: var(--k-space-2-5);
+}
+k-grid[data-gap="3"],
+k-row[data-gap="3"],
+k-stack[data-gap="3"] {
+  gap: var(--k-space-3);
+}
+k-grid[data-gap="3-5"],
+k-row[data-gap="3-5"],
+k-stack[data-gap="3-5"] {
+  gap: var(--k-space-3-5);
+}
+k-grid[data-gap="4"],
+k-row[data-gap="4"],
+k-stack[data-gap="4"] {
+  gap: var(--k-space-4);
+}
+k-grid[data-gap="5"],
+k-row[data-gap="5"],
+k-stack[data-gap="5"] {
+  gap: var(--k-space-5);
+}
+k-grid[data-gap="6"],
+k-row[data-gap="6"],
+k-stack[data-gap="6"] {
+  gap: var(--k-space-6);
+}
+k-grid[data-gap="7"],
+k-row[data-gap="7"],
+k-stack[data-gap="7"] {
+  gap: var(--k-space-7);
+}
+k-grid[data-gap="8"],
+k-row[data-gap="8"],
+k-stack[data-gap="8"] {
+  gap: var(--k-space-8);
+}
+k-grid[data-gap="10"],
+k-row[data-gap="10"],
+k-stack[data-gap="10"] {
+  gap: var(--k-space-10);
+}
+k-grid[data-gap="12"],
+k-row[data-gap="12"],
+k-stack[data-gap="12"] {
+  gap: var(--k-space-12);
+}
+k-grid[data-gap="16"],
+k-row[data-gap="16"],
+k-stack[data-gap="16"] {
+  gap: var(--k-space-16);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-box — padded surface container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-box {
+  display: block;
+  padding: var(--k-box-padding, var(--k-space-4));
+  box-sizing: border-box;
+  border-radius: var(--k-radius-md);
+  width: 100%;
+}
+
+/* ── Surface variants ── */
+k-box[data-surface="base"] {
+  background: var(--k-bg-base);
+}
+k-box[data-surface="surface"] {
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+}
+
+/* elevated and overlay come through as data-variant (not data-surface)
+   because those token names are shared with button variants */
+k-box[data-variant="elevated"] {
+  background: var(--k-bg-elevated);
+  box-shadow: var(--k-shadow-sm);
+  border: 1px solid var(--k-border-subtle);
+}
+k-box[data-variant="overlay"] {
+  background: var(--k-bg-overlay);
+}
+
+/* ── Radius overrides (reuses same data-radius from KBaseElement) ── */
+k-box[data-radius="none"] {
+  border-radius: var(--k-radius-none);
+}
+k-box[data-radius="sm"] {
+  border-radius: var(--k-radius-sm);
+}
+k-box[data-radius="md"] {
+  border-radius: var(--k-radius-md);
+}
+k-box[data-radius="lg"] {
+  border-radius: var(--k-radius-lg);
+}
+k-box[data-radius="full"] {
+  border-radius: var(--k-radius-full);
+}
+
+/* ── Padding overrides (p-N → --k-space-N) ──
+   Applies to all layout containers for consistent spacing
+*/
+k-box[data-padding="0"],
+k-stack[data-padding="0"],
+k-row[data-padding="0"],
+k-grid[data-padding="0"],
+k-container[data-padding="0"],
+k-section[data-padding="0"],
+k-frame[data-padding="0"] {
+  padding: var(--k-space-0);
+}
+k-box[data-padding="1"],
+k-stack[data-padding="1"],
+k-row[data-padding="1"],
+k-grid[data-padding="1"],
+k-container[data-padding="1"],
+k-section[data-padding="1"],
+k-frame[data-padding="1"] {
+  padding: var(--k-space-1);
+}
+k-box[data-padding="2"],
+k-stack[data-padding="2"],
+k-row[data-padding="2"],
+k-grid[data-padding="2"],
+k-container[data-padding="2"],
+k-section[data-padding="2"],
+k-frame[data-padding="2"] {
+  padding: var(--k-space-2);
+}
+k-box[data-padding="3"],
+k-stack[data-padding="3"],
+k-row[data-padding="3"],
+k-grid[data-padding="3"],
+k-container[data-padding="3"],
+k-section[data-padding="3"],
+k-frame[data-padding="3"] {
+  padding: var(--k-space-3);
+}
+k-box[data-padding="4"],
+k-stack[data-padding="4"],
+k-row[data-padding="4"],
+k-grid[data-padding="4"],
+k-container[data-padding="4"],
+k-section[data-padding="4"],
+k-frame[data-padding="4"] {
+  padding: var(--k-space-4);
+}
+k-box[data-padding="5"],
+k-stack[data-padding="5"],
+k-row[data-padding="5"],
+k-grid[data-padding="5"],
+k-container[data-padding="5"],
+k-section[data-padding="5"],
+k-frame[data-padding="5"] {
+  padding: var(--k-space-5);
+}
+k-box[data-padding="6"],
+k-stack[data-padding="6"],
+k-row[data-padding="6"],
+k-grid[data-padding="6"],
+k-container[data-padding="6"],
+k-section[data-padding="6"],
+k-frame[data-padding="6"] {
+  padding: var(--k-space-6);
+}
+k-box[data-padding="8"],
+k-stack[data-padding="8"],
+k-row[data-padding="8"],
+k-grid[data-padding="8"],
+k-container[data-padding="8"],
+k-section[data-padding="8"],
+k-frame[data-padding="8"] {
+  padding: var(--k-space-8);
+}
+k-box[data-padding="10"],
+k-stack[data-padding="10"],
+k-row[data-padding="10"],
+k-grid[data-padding="10"],
+k-container[data-padding="10"],
+k-section[data-padding="10"],
+k-frame[data-padding="10"] {
+  padding: var(--k-space-10);
+}
+k-box[data-padding="12"],
+k-stack[data-padding="12"],
+k-row[data-padding="12"],
+k-grid[data-padding="12"],
+k-container[data-padding="12"],
+k-section[data-padding="12"],
+k-frame[data-padding="12"] {
+  padding: var(--k-space-12);
+}
+k-box[data-padding="16"],
+k-stack[data-padding="16"],
+k-row[data-padding="16"],
+k-grid[data-padding="16"],
+k-container[data-padding="16"],
+k-section[data-padding="16"],
+k-frame[data-padding="16"] {
+  padding: var(--k-space-16);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-text — semantic typography
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-text {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--k-text-primary);
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-base);
+  font-weight: var(--k-font-normal);
+  line-height: var(--k-leading-normal);
+}
+
+/* ── Explicit color application to inner elements ──
+   Ensures browser defaults for <h1> etc. don't override the theme.
+*/
+k-text * {
+  color: inherit;
+}
+
+/* Overriding the inherited color for specific variants */
+k-text[data-variant="muted"] {
+  color: var(--k-text-muted);
+}
+k-text[data-variant="muted"] * {
+  color: var(--k-text-muted);
+}
+
+k-text[data-variant="inverse"] {
+  color: var(--k-text-inverse);
+}
+k-text[data-variant="inverse"] * {
+  color: var(--k-text-inverse);
+}
+
+/* Semantic color overrides */
+k-text[data-color="primary"] {
+  color: var(--k-text-primary);
+}
+k-text[data-color="primary"] * {
+  color: var(--k-text-primary);
+}
+
+k-text[data-color="default"] {
+  color: var(--k-text-secondary);
+}
+k-text[data-color="default"] * {
+  color: var(--k-text-secondary);
+}
+
+k-text[data-color="info"] {
+  color: var(--k-text-muted);
+}
+k-text[data-color="info"] * {
+  color: var(--k-text-muted);
+}
+
+k-text[data-color="success"] {
+  color: var(--k-success);
+}
+k-text[data-color="success"] * {
+  color: var(--k-success);
+}
+
+k-text[data-color="warning"] {
+  color: var(--k-warning);
+}
+k-text[data-color="warning"] * {
+  color: var(--k-warning);
+}
+
+k-text[data-color="error"] {
+  color: var(--k-error);
+}
+k-text[data-color="error"] * {
+  color: var(--k-error);
+}
+
+/* ── Text size tokens (data-text-size from parseV textSize) ── */
+k-text[data-text-size="xs"] {
+  font-size: var(--k-text-xs);
+  line-height: var(--k-leading-normal);
+}
+k-text[data-text-size="sm"] {
+  font-size: var(--k-text-sm);
+  line-height: var(--k-leading-normal);
+}
+k-text[data-text-size="base"] {
+  font-size: var(--k-text-base);
+  line-height: var(--k-leading-normal);
+}
+k-text[data-text-size="lg"] {
+  font-size: var(--k-text-lg);
+  line-height: var(--k-leading-snug);
+}
+k-text[data-text-size="xl"] {
+  font-size: var(--k-text-xl);
+  line-height: var(--k-leading-snug);
+}
+k-text[data-text-size="2xl"] {
+  font-size: var(--k-text-2xl);
+  line-height: var(--k-leading-tight);
+}
+k-text[data-text-size="3xl"] {
+  font-size: var(--k-text-3xl);
+  line-height: var(--k-leading-tight);
+}
+k-text[data-text-size="4xl"] {
+  font-size: var(--k-text-4xl);
+  line-height: var(--k-leading-none);
+}
+
+/* ── Responsive typography: scale down on small screens ── */
+@media (max-width: 480px) {
+  k-text[data-text-size="4xl"] {
+    font-size: var(--k-text-3xl);
+  }
+  k-text[data-text-size="3xl"] {
+    font-size: var(--k-text-2xl);
+  }
+  k-text[data-text-size="2xl"] {
+    font-size: var(--k-text-xl);
+  }
+}
+
+/* ── Font weight tokens ── */
+k-text[data-weight="normal"] {
+  font-weight: var(--k-font-normal);
+}
+k-text[data-weight="medium"] {
+  font-weight: var(--k-font-medium);
+}
+k-text[data-weight="semibold"] {
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-strong);
+}
+k-text[data-weight="bold"] {
+  font-weight: var(--k-font-bold);
+  color: var(--k-text-strong);
+}
+
+/* ── Color tokens — reuses existing semantic color tokens ── */
+k-text[data-color="primary"] {
+  color: var(--k-text-primary);
+}
+k-text[data-color="default"] {
+  color: var(--k-text-secondary);
+}
+k-text[data-color="info"] {
+  color: var(--k-text-muted);
+}
+/* "muted" is a text-specific color set via variant name */
+k-text[data-variant="muted"] {
+  color: var(--k-text-muted);
+}
+k-text[data-variant="inverse"] {
+  color: var(--k-text-inverse);
+}
+k-text[data-color="success"] {
+  color: var(--k-success);
+}
+k-text[data-color="warning"] {
+  color: var(--k-warning);
+}
+k-text[data-color="error"] {
+  color: var(--k-error);
+}
+
+/* ── Monospace for code/pre ── */
+k-text code,
+k-text pre {
+  font-family: var(--k-font-mono);
+  font-size: 0.9em;
+}
+
+k-text pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-divider — separator line
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--k-border);
+  border: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+k-divider[data-direction="vertical"],
+k-divider[data-variant="vertical"] {
+  width: 1px;
+  height: auto;
+  align-self: stretch;
+  min-height: 1em;
+}
+
+/* Color/weight variants */
+k-divider[data-variant="muted"] {
+  background-color: var(--k-border-subtle);
+}
+k-divider[data-variant="strong"] {
+  background-color: var(--k-border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Responsive Containers: k-container, k-section, k-frame
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* k-container — Page Wrapper */
+k-container {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  /* Fluid max-width: 1280px on desktop, 100% on mobile */
+  max-width: 1280px;
+  /* Out-of-the-box side gutters (responsive) */
+  padding-left: clamp(var(--k-space-3), 2vw, var(--k-space-6));
+  padding-right: clamp(var(--k-space-3), 2vw, var(--k-space-6));
+}
+
+k-container[data-variant="full"] {
+  max-width: none;
+}
+
+/* k-section — Full-bleed Visual Band */
+k-section {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--k-space-8) 0; /* Default vertical breathing room */
+}
+
+/* Theme-aware surfaces for sections */
+k-section[data-surface="base"]    { background: var(--k-bg-base); }
+k-section[data-surface="surface"] { background: var(--k-bg-surface); }
+k-section[data-variant="elevated"] {
+  background: var(--k-bg-elevated);
+  border-top: 1px solid var(--k-border-subtle);
+  border-bottom: 1px solid var(--k-border-subtle);
+}
+k-section[data-variant="inverse"]  { background: var(--k-text-inverse); color: var(--k-bg-base); }
+
+/* k-frame — Content Focus/Readable Area */
+k-frame {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  /* Constrained for readability */
+  max-width: 720px;
+  padding: var(--k-space-4) 0;
+}
+
+/* Frame surface variants */
+k-frame[data-surface="surface"] {
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-lg);
+  padding: var(--k-space-6);
+}
+
+k-frame[data-variant="elevated"] {
+  background: var(--k-bg-elevated);
+  box-shadow: var(--k-shadow-md);
+  border-radius: var(--k-radius-xl);
+  padding: var(--k-space-6);
+}
+
+/* Responsive override: frames should be slightly more compact on mobile */
+@media (max-width: 480px) {
+  k-frame {
+    max-width: 100%;
+  }
+  k-frame[data-surface], k-frame[data-variant] {
+    padding: var(--k-space-4);
+    border-radius: var(--k-radius-md);
+  }
+}
+
+/* Reset: include new containers in box-sizing reset */
+k-grid, k-row, k-col, k-stack, k-box, k-text, k-divider, k-container, k-section, k-frame,
+k-grid *, k-row *, k-col *, k-stack *, k-box *, k-text *, k-container *, k-section *, k-frame * {
+  box-sizing: border-box;
+}
+
+/* ── prefers-reduced-motion: no layout transitions ── */
+@media (prefers-reduced-motion: reduce) {
+  k-grid,
+  k-row,
+  k-col,
+  k-stack,
+  k-box,
+  k-text,
+  k-divider {
+    transition: none;
+  }
+}

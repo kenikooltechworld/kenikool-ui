@@ -1,0 +1,377 @@
+/*
+ * Input Component Styles — Premium Edition
+ * Design Philosophy: Depth, Precision, and Motion.
+ */
+
+k-input {
+  display: block;
+  margin-bottom: var(--k-space-4);
+  font-family: var(--k-font-sans);
+  width: 100%;
+}
+
+/* --- Structural Wrapper --- */
+.k-input__wrapper {
+  display: inline-flex;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+  border-radius: var(--k-radius-md);
+  transition:
+    border-color var(--k-transition-base),
+    box-shadow var(--k-transition-base),
+    background-color var(--k-transition-base);
+  background-clip: padding-box;
+}
+
+/* Field Group handles the label and the actual input area */
+.k-input__field-group {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* The actual interaction element */
+.k-input__field {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--k-text-primary);
+  font-family: inherit;
+  font-size: var(--k-text-base);
+  padding: var(--k-space-3) var(--k-space-4);
+  transition: all var(--k-transition-base);
+  border-radius: inherit;
+  appearance: none;
+}
+
+/* --- The Ring System (The "Premium" Look) --- */
+/* We use a combo of border and a subtle box-shadow ring for depth */
+.k-input__wrapper:focus-within {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 4px var(--k-accent-subtle);
+}
+
+/* --- Icons --- */
+.k-input__icon-left,
+.k-input__icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  color: var(--k-text-muted);
+  transition: color var(--k-transition-base);
+  z-index: 2;
+}
+
+.k-input__wrapper:focus-within .k-input__icon-left,
+.k-input__wrapper:focus-within .k-input__icon-right {
+  color: var(--k-accent);
+}
+
+/* --- Labels & Typography --- */
+.k-input__label {
+  display: block;
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-secondary);
+  text-align: left;
+  transition: color var(--k-transition-base);
+  user-select: none;
+}
+
+/* Label Positions */
+k-input[data-label-position="top"] .k-input__label {
+  margin-bottom: var(--k-space-2);
+}
+
+k-input[data-label-position="bottom"] .k-input__label {
+  margin-top: var(--k-space-2);
+}
+
+/* Default position if not set */
+k-input:not([data-label-position]) .k-input__label {
+  margin-bottom: var(--k-space-2);
+}
+
+.k-input__wrapper:focus-within ~ .k-input__label,
+.k-input__label:not(.floating) {
+  /* Standard label alignment */
+}
+
+/* --- Hint / Error Messaging --- */
+.k-input__hint {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-2);
+  padding-left: var(--k-space-1);
+  transition: color var(--k-transition-base);
+}
+
+/* --- VARIANTS ───────────────────────────────────────────────────────────────── */
+
+/* 1. Default (Clean, subtle) */
+k-input[data-variant="default"] .k-input__wrapper {
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+}
+
+/* 2. Filled (Depth and contrast) */
+k-input[data-variant="filled"] .k-input__wrapper {
+  background: var(--k-bg-elevated);
+  border: 1px solid transparent;
+}
+k-input[data-variant="filled"] .k-input__wrapper:hover {
+  background: var(--k-bg-surface);
+}
+k-input[data-variant="filled"] .k-input__wrapper:focus-within {
+  background: var(--k-bg-surface);
+  border-color: var(--k-accent);
+}
+
+/* 3. Outlined (High definition) */
+k-input[data-variant="outlined"] .k-input__wrapper {
+  background: transparent;
+  border: 1.5px solid var(--k-border);
+}
+k-input[data-variant="outlined"] .k-input__wrapper:hover {
+  border-color: var(--k-text-muted);
+}
+
+/* 4. Underlined (Minimalist) */
+k-input[data-variant="underlined"] .k-input__wrapper {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--k-border);
+  border-radius: 0;
+}
+k-input[data-variant="underlined"] .k-input__wrapper:focus-within {
+  border-bottom-color: var(--k-accent);
+  box-shadow: none;
+}
+
+/* 5. Floating Label (The "Notched" Look) */
+k-input[data-variant="floating-label"] .k-input__wrapper {
+  background: transparent;
+  border: 1px solid var(--k-border);
+}
+k-input[data-variant="floating-label"] .k-input__label {
+  position: absolute;
+  top: 50%;
+  left: var(--k-space-4);
+  transform: translateY(-50%);
+  pointer-events: none;
+  margin-bottom: 0;
+  transition: all var(--k-transition-spring);
+  z-index: 2;
+  color: var(--k-text-muted);
+}
+
+k-input[data-variant="floating-label"] .k-input__field {
+  padding-top: var(--k-space-4);
+  padding-bottom: var(--k-space-2);
+}
+
+/* Floating state: Label moves up and gets a background mask */
+k-input[data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  top: 0;
+  transform: translateY(-50%) scale(0.8);
+  background: var(--k-bg-base); /* Masks the border */
+  padding: 0 var(--k-space-2);
+  font-size: var(--k-text-xs);
+  color: var(--k-accent);
+  border-radius: 2px;
+}
+
+/* 6. Search (Pill-shaped a la Google/Apple) */
+k-input[data-variant="search"] .k-input__wrapper {
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-full);
+  padding-left: var(--k-space-2);
+}
+k-input[data-variant="search"] .k-input__field {
+  padding-left: var(--k-space-2);
+}
+
+/* 7. Password Toggle */
+.k-input__password-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--k-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--k-transition-base);
+}
+.k-input__password-toggle:hover {
+  background: var(--k-bg-elevated);
+  color: var(--k-text-primary);
+}
+
+/* 8. OTP (Unified Segmented Look) */
+k-input[data-variant="otp"] .k-input__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0; /* Remove gap to create a unified look */
+  border: none;
+  background: none;
+}
+k-input[data-variant="otp"] .k-input__field {
+  width: 3rem;
+  height: 3.5rem;
+  text-align: center;
+  font-size: var(--k-text-xl);
+  font-weight: var(--k-font-bold);
+  border: 1px solid var(--k-border);
+  background: var(--k-bg-surface);
+  border-radius: 0; /* Flat edges for the group */
+  flex-shrink: 0;
+}
+
+/* Responsive OTP: shrink on small screens */
+@media (max-width: 480px) {
+  k-input[data-variant="otp"] .k-input__field {
+    width: 2.2rem;
+    height: 2.8rem;
+    font-size: var(--k-text-lg);
+  }
+}
+
+k-input[data-variant="otp"] .k-input__field:first-child {
+  border-radius: var(--k-radius-md) 0 0 var(--k-radius-md);
+}
+k-input[data-variant="otp"] .k-input__field:last-child {
+  border-radius: 0 var(--k-radius-md) var(--k-radius-md) 0;
+}
+k-input[data-variant="otp"] .k-input__field:not(:first-child) {
+  border-left: none; /* Prevent double borders */
+}
+k-input[data-variant="otp"] .k-input__field:focus {
+  border-color: var(--k-accent);
+  background: var(--k-bg-base);
+  z-index: 1;
+  box-shadow: 0 0 0 2px var(--k-accent-subtle);
+}
+
+/* 9. Textarea */
+k-input[data-variant="textarea"] .k-input__field {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* 10. With Addon variant */
+k-input[data-variant="with-addon"] .k-input__wrapper {
+  display: flex;
+  align-items: stretch;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+}
+
+.k-input__addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  background: var(--k-bg-elevated);
+  color: var(--k-text-muted);
+  font-size: var(--k-text-sm);
+  border-radius: inherit;
+  user-select: none;
+  border-right: 1px solid var(--k-border);
+}
+
+.k-input__addon-right {
+  border-right: none;
+  border-left: 1px solid var(--k-border);
+}
+
+k-input[data-variant="with-addon"] .k-input__field {
+  border: none;
+}
+
+/* ── Password Requirements Checklist ── */
+.k-input__pwd-reqs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-1);
+  margin-top: var(--k-space-2);
+  padding-left: var(--k-space-2);
+}
+
+.k-input__req-item {
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  transition: color var(--k-transition-base);
+}
+
+.k-input__req-item[data-met="true"] {
+  color: var(--k-success);
+}
+
+.k-input__req-item[data-met="true"]::before {
+  content: '✓';
+  font-weight: bold;
+}
+
+.k-input__req-item[data-met="false"]::before {
+  content: '○';
+}
+
+k-input[data-size="xs"] .k-input__field {
+  font-size: var(--k-text-xs);
+  padding: var(--k-space-1) var(--k-space-3);
+}
+k-input[data-size="sm"] .k-input__field {
+  font-size: var(--k-text-sm);
+  padding: var(--k-space-2) var(--k-space-4);
+}
+k-input[data-size="md"] .k-input__field {
+  font-size: var(--k-text-base);
+  padding: var(--k-space-3) var(--k-space-4);
+}
+k-input[data-size="lg"] .k-input__field {
+  font-size: var(--k-text-lg);
+  padding: var(--k-space-3) var(--k-space-6);
+}
+k-input[data-size="xl"] .k-input__field {
+  font-size: var(--k-text-xl);
+  padding: var(--k-space-4) var(--k-space-8);
+}
+
+/* ── STATES ────────────────────────────────────────────────────────────────── */
+
+k-input[data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+k-input[data-disabled="true"] .k-input__wrapper {
+  background: var(--k-bg-elevated);
+  border-color: var(--k-border-subtle);
+}
+
+k-input[data-error="true"] .k-input__wrapper {
+  border-color: var(--k-error) !important;
+}
+k-input[data-error="true"] .k-input__wrapper:focus-within {
+  box-shadow: 0 0 0 4px var(--k-error-subtle);
+}
+k-input[data-error="true"] .k-input__hint {
+  color: var(--k-error);
+  font-weight: var(--k-font-medium);
+}

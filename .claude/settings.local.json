@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm build *)",
+      "Bash(node scripts/smoke-install.mjs)",
+      "Bash(ln -s ../../dist __smoke/node_modules/kenikool-ui)",
+      "WebSearch",
+      "Bash(npm install *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm run *)"
+    ]
+  }
+}

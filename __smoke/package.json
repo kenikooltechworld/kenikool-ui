@@ -1,0 +1,16 @@
+{
+  "name": "kenikool-ui-smoke",
+  "private": true,
+  "description": "Post-install smoke test — simulates a real user app after npm install kenikool-ui",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "kenikool-ui": "file:../kenikool-ui-0.1.0.tgz"
+  },
+  "devDependencies": {
+    "vite": "^8.0.0"
+  }
+}

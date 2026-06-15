@@ -1,0 +1,175 @@
+.k-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--k-space-2);
+  border: none;
+  cursor: pointer;
+  font-family: var(--k-font-sans);
+  font-weight: var(--k-font-medium);
+  border-radius: var(--k-radius-md);
+  transition: background var(--k-transition-base),
+              color var(--k-transition-base),
+              box-shadow var(--k-transition-base),
+              border-color var(--k-transition-base),
+              opacity var(--k-transition-base),
+              filter var(--k-transition-base);
+  white-space: nowrap;
+  outline: none;
+}
+
+.k-button:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-button--xs { padding: 4px 8px; font-size: var(--k-text-xs); }
+.k-button--sm { padding: 6px 12px; font-size: var(--k-text-sm); }
+.k-button--md { padding: 8px 16px; font-size: var(--k-text-base); }
+.k-button--lg { padding: 12px 24px; font-size: var(--k-text-lg); }
+.k-button--xl { padding: 16px 32px; font-size: var(--k-text-xl); }
+
+.k-button--filled {
+  background: var(--k-accent);
+  color: var(--k-text-inverse);
+}
+.k-button--filled:hover {
+  background: var(--k-accent-hover);
+}
+
+.k-button--outlined {
+  background: transparent;
+  color: var(--k-accent);
+  border: 1px solid var(--k-accent);
+}
+.k-button--outlined:hover {
+  background: var(--k-accent-subtle);
+}
+
+.k-button--ghost {
+  background: transparent;
+  color: var(--k-text-primary);
+  border: none;
+}
+.k-button--ghost:hover {
+  background: var(--k-bg-surface);
+}
+
+.k-button--subtle {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+  border: none;
+}
+.k-button--subtle:hover {
+  filter: brightness(0.92);
+}
+
+.k-button--soft {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+  border: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.k-button--soft:hover {
+  filter: brightness(0.88);
+}
+
+.k-button--gradient {
+  background: linear-gradient(135deg, var(--k-accent), var(--k-accent-hover));
+  color: var(--k-text-inverse);
+  border: none;
+}
+.k-button--gradient:hover {
+  background: linear-gradient(160deg, var(--k-accent), var(--k-accent-hover));
+}
+
+.k-button--glow {
+  background: var(--k-accent);
+  color: var(--k-text-inverse);
+  border: none;
+  box-shadow: 0 0 16px var(--k-accent-subtle), 0 0 4px var(--k-accent);
+}
+.k-button--glow:hover {
+  box-shadow: 0 0 24px var(--k-accent-subtle), 0 0 8px var(--k-accent);
+}
+
+.k-button--minimal {
+  background: transparent;
+  color: var(--k-text-primary);
+  border: none;
+  padding-inline: 4px;
+}
+.k-button--minimal:hover {
+  text-decoration: underline;
+}
+
+.k-button--elevated {
+  background: var(--k-bg-elevated);
+  color: var(--k-text-primary);
+  border: none;
+  box-shadow: var(--k-shadow-md);
+}
+.k-button--elevated:hover {
+  box-shadow: var(--k-shadow-lg);
+}
+
+.k-button--destructive {
+  background: var(--k-error);
+  color: var(--k-text-inverse);
+  border: none;
+}
+.k-button--destructive:hover {
+  filter: brightness(0.9);
+}
+
+.k-button--loading {
+  opacity: 0.75;
+  cursor: wait;
+  pointer-events: none;
+}
+
+.k-button--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.k-button--full {
+  width: 100%;
+}
+
+.k-button--r-none { border-radius: var(--k-radius-none); }
+.k-button--r-sm { border-radius: var(--k-radius-sm); }
+.k-button--r-md { border-radius: var(--k-radius-md); }
+.k-button--r-lg { border-radius: var(--k-radius-lg); }
+.k-button--r-full { border-radius: var(--k-radius-full); }
+
+.k-button__icon-left,
+.k-button__icon-right {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.k-button__loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.k-button__loader svg {
+  display: block;
+  animation: k-spin 0.7s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .k-button__loader svg {
+    animation: none;
+    opacity: 0.6;
+  }
+}

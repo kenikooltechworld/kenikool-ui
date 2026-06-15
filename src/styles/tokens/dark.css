@@ -1,0 +1,66 @@
+/**
+ * dark.css — Dark theme color tokens.
+ *
+ * Applied when data-theme="dark" is set on <html>.
+ * ALL 27 semantic tokens redefined — no fallback to light theme values.
+ *
+ * Design intent: deep near-black surfaces, indigo-400 accent,
+ * elevated grays for layering, high-contrast text.
+ */
+
+[data-theme="dark"] {
+
+  /* ─── Backgrounds ───────────────────────────────────────────────────────── */
+  /* Near-black page background — not pure black (easier on eyes) */
+  --k-bg-base:     #0f0f13;
+  /* Component surface — slightly lighter */
+  --k-bg-surface:  #18181f;
+  /* Elevated surface — cards, popovers, dropdowns */
+  --k-bg-elevated: #222230;
+  /* Modal backdrop */
+  --k-bg-overlay:  rgba(0, 0, 0, 0.70);
+
+  /* ─── Text ──────────────────────────────────────────────────────────────── */
+  --k-text-primary:   #f1f1f5;
+  /* Strong text — highest contrast for bold/semibold */
+  --k-text-strong:    #ffffff;
+  --k-text-secondary: #c4c4d4;
+  --k-text-muted:     #d1d1e0;
+  --k-text-disabled:  #4a4a62;
+  --k-text-inverse:   #0f0f13;
+
+  /* ─── Accent ────────────────────────────────────────────────────────────── */
+  /* Indigo-400 — brighter for dark backgrounds */
+  --k-accent:        #818cf8;
+  /* Indigo-300 — hover */
+  --k-accent-hover:  #a5b4fc;
+  /* Indigo-500 — active/pressed */
+  --k-accent-active: #6366f1;
+  --k-accent-subtle: rgba(129, 140, 248, 0.15);
+
+  /* ─── Semantic status colors ────────────────────────────────────────────── */
+  /* Brighter variants for dark backgrounds — same hue families */
+  --k-success:        #4ade80;
+  --k-success-subtle: rgba(74, 222, 128, 0.15);
+  --k-warning:        #fbbf24;
+  --k-warning-subtle: rgba(251, 191, 36, 0.15);
+  --k-error:          #f87171;
+  --k-error-subtle:   rgba(248, 113, 113, 0.15);
+  --k-info:           #38bdf8;
+  --k-info-subtle:    rgba(56, 189, 248, 0.15);
+
+  /* ─── Borders ───────────────────────────────────────────────────────────── */
+  --k-border:        #2a2a38;
+  --k-border-subtle: #1e1e2a;
+  --k-border-strong: #3d3d52;
+
+  /* ─── Interactive ───────────────────────────────────────────────────────── */
+  --k-focus-ring: rgba(129, 140, 248, 0.50);
+
+  /* ─── Shadows ───────────────────────────────────────────────────────────── */
+  /* Heavier shadows for dark — needed for elevation to be visible */
+  --k-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.50), 0 1px 2px rgba(0, 0, 0, 0.30);
+  --k-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.60), 0 2px 6px rgba(0, 0, 0, 0.40);
+  --k-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.70), 0 4px 12px rgba(0, 0, 0, 0.50);
+  --k-shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.80), 0 8px 24px rgba(0, 0, 0, 0.60);
+}

@@ -1,0 +1,167 @@
+/**
+ * shared.css — Theme-agnostic design tokens.
+ *
+ * These tokens NEVER change between themes — they define structure, not color.
+ * Defined once on :root. Do NOT redefine these inside theme blocks.
+ *
+ * Naming convention: --k-[category]-[scale]
+ * All component CSS and theme token files reference only --k-* variables.
+ */
+
+:root {
+
+  /* ═══════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     Font families, size scale, weight scale, line height scale
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-font-sans:  'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+                  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --k-font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code',
+                  'Source Code Pro', Menlo, Monaco, Consolas, monospace;
+
+  /* Font size scale (Fluid typography using clamp)
+     Formula: clamp(min, preferred, max)
+     Ensures smooth scaling from mobile to desktop without media query jumps.
+  */
+  --k-text-xs:   clamp(0.7rem,   0.65rem + 0.2vw,  0.75rem);    /* ~11px - 12px */
+  --k-text-sm:   clamp(0.8rem,   0.75rem + 0.3vw,  0.875rem);   /* ~13px - 14px */
+  --k-text-base: clamp(0.9rem,   0.85rem + 0.5vw,  1rem);       /* ~14px - 16px */
+  --k-text-lg:   clamp(1rem,     0.9rem + 0.7vw,   1.125rem);   /* ~16px - 18px */
+  --k-text-xl:   clamp(1.1rem,   1rem + 1vw,       1.25rem);    /* ~18px - 20px */
+  --k-text-2xl:  clamp(1.3rem,   1.2rem + 1.5vw,   1.5rem);     /* ~21px - 24px */
+  --k-text-3xl:  clamp(1.5rem,   1.4rem + 2vw,     1.875rem);   /* ~24px - 30px */
+  --k-text-4xl:  clamp(1.8rem,   1.6rem + 3vw,     2.25rem);    /* ~29px - 36px */
+
+  /* Font weight scale */
+  --k-font-normal:   400;
+  --k-font-medium:   500;
+  --k-font-semibold: 600;
+  --k-font-bold:     700;
+
+  /* Line height scale */
+  --k-leading-none:   1;
+  --k-leading-tight:  1.25;
+  --k-leading-snug:   1.375;
+  --k-leading-normal: 1.5;
+  --k-leading-relaxed:1.625;
+  --k-leading-loose:  2;
+
+  /* Letter spacing */
+  --k-tracking-tight:  -0.025em;
+  --k-tracking-normal:  0em;
+  --k-tracking-wide:    0.025em;
+  --k-tracking-wider:   0.05em;
+  --k-tracking-widest:  0.1em;
+
+  /* ═══════════════════════════════════════════════════════════════
+     SPACING
+     4px base unit, scale of 1–16
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-space-0:   0px;
+  --k-space-px:  1px;
+  --k-space-0-5: 2px;
+  --k-space-1:   4px;
+  --k-space-1-5: 6px;
+  --k-space-2:   8px;
+  --k-space-2-5: 10px;
+  --k-space-3:   12px;
+  --k-space-3-5: 14px;
+  --k-space-4:   16px;
+  --k-space-5:   20px;
+  --k-space-6:   24px;
+  --k-space-7:   28px;
+  --k-space-8:   32px;
+  --k-space-9:   36px;
+  --k-space-10:  40px;
+  --k-space-11:  44px;
+  --k-space-12:  48px;
+  --k-space-14:  56px;
+  --k-space-16:  64px;
+  --k-space-20:  80px;
+  --k-space-24:  96px;
+
+  /* ═══════════════════════════════════════════════════════════════
+     BORDER RADIUS
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-radius-none: 0px;
+  --k-radius-sm:   4px;
+  --k-radius-md:   8px;
+  --k-radius-lg:   12px;
+  --k-radius-xl:   16px;
+  --k-radius-2xl:  24px;
+  --k-radius-3xl:  32px;
+  --k-radius-full: 9999px;
+
+  /* ═══════════════════════════════════════════════════════════════
+     TRANSITIONS & ANIMATIONS
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-transition-fast:   150ms ease;
+  --k-transition-base:   200ms ease;
+  --k-transition-slow:   300ms ease;
+  --k-transition-slower: 500ms ease;
+
+  /* Spring — for bouncy micro-interactions (buttons, toggles) */
+  --k-transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Ease-out — for element entrances (modals, toasts sliding in) */
+  --k-transition-enter: 250ms cubic-bezier(0.0, 0.0, 0.2, 1);
+
+  /* Ease-in — for element exits (modals, toasts sliding out) */
+  --k-transition-exit:  200ms cubic-bezier(0.4, 0.0, 1, 1);
+
+  /* ═══════════════════════════════════════════════════════════════
+     Z-INDEX SCALE
+     Layering: base → dropdown → sticky → overlay → modal → toast → tooltip
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-z-base:     0;
+  --k-z-raised:   10;
+  --k-z-dropdown: 100;
+  --k-z-sticky:   200;
+  --k-z-overlay:  300;
+  --k-z-modal:    400;
+  --k-z-toast:    500;
+  --k-z-tooltip:  600;
+
+  /* ═══════════════════════════════════════════════════════════════
+     SIZING HELPERS
+     Used internally for consistent icon and avatar sizes
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-icon-xs:  12px;
+  --k-icon-sm:  16px;
+  --k-icon-md:  20px;
+  --k-icon-lg:  24px;
+  --k-icon-xl:  32px;
+
+  /* ═══════════════════════════════════════════════════════════════
+     BREAKPOINTS
+     Used in layout component media queries. Not referenced via
+     var() in CSS (media queries don't support CSS variables) but
+     defined here for documentation and JS access via getPropertyValue.
+     ═══════════════════════════════════════════════════════════════ */
+
+  --k-bp-xs:  480px;   /* small phones */
+  --k-bp-sm:  640px;   /* large phones */
+  --k-bp-md:  768px;   /* tablets */
+  --k-bp-lg:  1024px;  /* small desktops / landscape tablets */
+  --k-bp-xl:  1280px;  /* desktops */
+  --k-bp-2xl: 1536px;  /* large desktops */
+
+  /* ═══════════════════════════════════════════════════════════════
+     LAYOUT DEFAULTS
+     Default values used by layout components (k-grid, k-row, etc.)
+     Overridable by users via CSS custom property override.
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* Minimum column width before auto-fit wraps to new row */
+  --k-grid-col-min:  260px;
+  /* Default gap between grid and flex children */
+  --k-layout-gap:    var(--k-space-4);
+  /* Default horizontal padding inside k-box */
+  --k-box-padding:   var(--k-space-4);
+}

@@ -1,0 +1,47 @@
+/**
+ * reset.css — Minimal CSS reset for kenikool-ui.
+ *
+ * Scope: handles essential global styles and scoped resets for k-* elements.
+ */
+
+/* Global base styles for themed applications */
+body {
+  background-color: var(--k-bg-base);
+  color: var(--k-text-primary);
+  transition: background-color var(--k-transition-base);
+  margin: 0;
+  font-family: var(--k-font-sans);
+}
+
+/* Box-sizing on all library elements */
+k-button, k-input, k-badge, k-card, k-modal,
+k-select, k-checkbox, k-toast, k-tooltip, k-avatar,
+k-loader, k-theme-switcher,
+k-grid, k-row, k-col, k-stack, k-box, k-text, k-divider,
+[class*="k-"] {
+  box-sizing: border-box;
+}
+
+/* Remove default button styles from inner <button> elements */
+k-button button,
+k-theme-switcher button,
+k-select button {
+  margin:      0;
+  padding:     0;
+  border:      none;
+  background:  transparent;
+  font:        inherit;
+  color:       inherit;
+  cursor:      pointer;
+  appearance:  none;
+  -webkit-appearance: none;
+}
+
+/* Remove default list styles from dropdowns */
+k-select ul,
+.k-select__list,
+.k-theme-switcher__menu {
+  list-style:  none;
+  margin:      0;
+  padding:     0;
+}
