@@ -15,6 +15,100 @@ k-badge {
   transition: all var(--k-transition-base);
   cursor: default;
   user-select: none;
+  padding: var(--k-space-1) var(--k-space-3);
+  min-height: 1.4rem;
+}
+
+/* --- NOTIFICATION BADGE MODE ────────────────────────────────────────────────── */
+/* When wrapping children (avatars, icons, buttons, etc.) */
+
+k-badge[data-variant="notification"] {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+  min-height: auto;
+  vertical-align: middle;
+}
+
+/* Children wrapper */
+.k-badge__children {
+  display: inline-block;
+  position: relative;
+}
+
+/* Badge indicator (the count/dot overlay) */
+.k-badge__indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  transform-origin: 100% 0%;
+  z-index: 10;
+  
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: 12px;
+  font-weight: var(--k-font-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  
+  border-radius: 10px;
+  background: var(--k-error);
+  color: var(--k-text-inverse);
+  
+  box-shadow: 0 0 0 2px var(--k-bg-base);
+  
+  transition: all var(--k-transition-base);
+}
+
+/* Dot mode - just a small circle */
+.k-badge__indicator--dot {
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+/* Color variants for notification badges */
+k-badge[data-variant="notification"][data-color="primary"] .k-badge__indicator {
+  background: var(--k-accent);
+}
+k-badge[data-variant="notification"][data-color="success"] .k-badge__indicator {
+  background: var(--k-success);
+}
+k-badge[data-variant="notification"][data-color="warning"] .k-badge__indicator {
+  background: var(--k-warning);
+}
+k-badge[data-variant="notification"][data-color="error"] .k-badge__indicator {
+  background: var(--k-error);
+}
+k-badge[data-variant="notification"][data-color="info"] .k-badge__indicator {
+  background: var(--k-info);
+}
+k-badge[data-variant="notification"][data-color="default"] .k-badge__indicator {
+  background: var(--k-text-secondary);
+}
+
+/* Offset support - custom positioning */
+k-badge[data-variant="notification"][data-offset-x] .k-badge__indicator {
+  right: var(--badge-offset-x, 0);
+}
+k-badge[data-variant="notification"][data-offset-y] .k-badge__indicator {
+  top: var(--badge-offset-y, 0);
+}
+
+/* --- STANDALONE BADGE MODE (Labels/Tags) ──────────────────────────────────── */
+
+/* Reset notification styles for standalone variants */
+k-badge:not([data-variant="notification"]) {
+  position: static;
 }
 
 /* --- Base Structure --- */
@@ -22,8 +116,6 @@ k-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--k-space-1);
-  padding: var(--k-space-1) var(--k-space-2);
-  min-height: 1.4rem;
 }
 
 /* --- Variants ────────────────────────────────────────────────────────────────── */
@@ -83,13 +175,26 @@ k-badge[data-variant="dot"][data-color="default"] { background: var(--k-text-mut
 k-badge[data-variant="pill"] {
   border-radius: var(--k-radius-full);
 }
+k-badge[data-variant="pill"][data-color="primary"] { background: var(--k-accent); color: var(--k-text-inverse); }
+k-badge[data-variant="pill"][data-color="success"] { background: var(--k-success); color: var(--k-text-inverse); }
+k-badge[data-variant="pill"][data-color="warning"] { background: var(--k-warning); color: var(--k-text-inverse); }
+k-badge[data-variant="pill"][data-color="error"] { background: var(--k-error); color: var(--k-text-inverse); }
+k-badge[data-variant="pill"][data-color="info"] { background: var(--k-info); color: var(--k-text-inverse); }
+k-badge[data-variant="pill"][data-color="default"] { background: var(--k-text-secondary); color: var(--k-text-inverse); }
 
 /* 6. Count (Numeric focus) */
 k-badge[data-variant="count"] {
   min-width: 1.2rem;
-  padding: 0 var(--k-space-1);
+  padding: var(--k-space-1) var(--k-space-2);
   font-variant-numeric: tabular-nums;
+  border-radius: var(--k-radius-sm);
 }
+k-badge[data-variant="count"][data-color="primary"] { background: var(--k-accent); color: var(--k-text-inverse); }
+k-badge[data-variant="count"][data-color="success"] { background: var(--k-success); color: var(--k-text-inverse); }
+k-badge[data-variant="count"][data-color="warning"] { background: var(--k-warning); color: var(--k-text-inverse); }
+k-badge[data-variant="count"][data-color="error"] { background: var(--k-error); color: var(--k-text-inverse); }
+k-badge[data-variant="count"][data-color="info"] { background: var(--k-info); color: var(--k-text-inverse); }
+k-badge[data-variant="count"][data-color="default"] { background: var(--k-text-secondary); color: var(--k-text-inverse); }
 
 /* 7. Tag (Subtle + Action) */
 k-badge[data-variant="tag"] {
@@ -100,19 +205,39 @@ k-badge[data-variant="tag"] {
 }
 
 /* 8. Status (Dot + Label) */
+k-badge[data-variant="status"] {
+  background: var(--k-bg-elevated);
+  border-radius: var(--k-radius-sm);
+}
 .k-badge__status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
 }
+k-badge[data-variant="status"][data-color="primary"] { color: var(--k-accent); }
 k-badge[data-variant="status"][data-color="primary"] .k-badge__status-dot { background: var(--k-accent); }
+k-badge[data-variant="status"][data-color="success"] { color: var(--k-success); }
 k-badge[data-variant="status"][data-color="success"] .k-badge__status-dot { background: var(--k-success); }
+k-badge[data-variant="status"][data-color="warning"] { color: var(--k-warning); }
 k-badge[data-variant="status"][data-color="warning"] .k-badge__status-dot { background: var(--k-warning); }
+k-badge[data-variant="status"][data-color="error"] { color: var(--k-error); }
 k-badge[data-variant="status"][data-color="error"] .k-badge__status-dot { background: var(--k-error); }
+k-badge[data-variant="status"][data-color="info"] { color: var(--k-info); }
 k-badge[data-variant="status"][data-color="info"] .k-badge__status-dot { background: var(--k-info); }
+k-badge[data-variant="status"][data-color="default"] { color: var(--k-text-secondary); }
 k-badge[data-variant="status"][data-color="default"] .k-badge__status-dot { background: var(--k-text-muted); }
 
 /* 9. Dismissible (Actionable) */
+k-badge[data-variant="dismissible"] {
+  border-radius: var(--k-radius-sm);
+}
+k-badge[data-variant="dismissible"][data-color="primary"] { background: var(--k-accent-subtle); color: var(--k-accent); }
+k-badge[data-variant="dismissible"][data-color="success"] { background: var(--k-success-subtle); color: var(--k-success); }
+k-badge[data-variant="dismissible"][data-color="warning"] { background: var(--k-warning-subtle); color: var(--k-warning); }
+k-badge[data-variant="dismissible"][data-color="error"] { background: var(--k-error-subtle); color: var(--k-error); }
+k-badge[data-variant="dismissible"][data-color="info"] { background: var(--k-info-subtle); color: var(--k-info); }
+k-badge[data-variant="dismissible"][data-color="default"] { background: var(--k-bg-elevated); color: var(--k-text-secondary); }
+
 .k-badge__close {
   cursor: pointer;
   background: transparent;
@@ -130,6 +255,16 @@ k-badge[data-variant="status"][data-color="default"] .k-badge__status-dot { back
 }
 
 /* 10. Icon Badge */
+k-badge[data-variant="icon-badge"] {
+  border-radius: var(--k-radius-sm);
+}
+k-badge[data-variant="icon-badge"][data-color="primary"] { background: var(--k-accent-subtle); color: var(--k-accent); }
+k-badge[data-variant="icon-badge"][data-color="success"] { background: var(--k-success-subtle); color: var(--k-success); }
+k-badge[data-variant="icon-badge"][data-color="warning"] { background: var(--k-warning-subtle); color: var(--k-warning); }
+k-badge[data-variant="icon-badge"][data-color="error"] { background: var(--k-error-subtle); color: var(--k-error); }
+k-badge[data-variant="icon-badge"][data-color="info"] { background: var(--k-info-subtle); color: var(--k-info); }
+k-badge[data-variant="icon-badge"][data-color="default"] { background: var(--k-bg-elevated); color: var(--k-text-secondary); }
+
 .k-badge__icon {
   display: flex;
   align-items: center;

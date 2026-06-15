@@ -12,7 +12,7 @@ k-input {
 
 /* --- Structural Wrapper --- */
 .k-input__wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: stretch;
   position: relative;
   width: 100%;
@@ -22,6 +22,8 @@ k-input {
     box-shadow var(--k-transition-base),
     background-color var(--k-transition-base);
   background-clip: padding-box;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
 }
 
 /* Field Group handles the label and the actual input area */

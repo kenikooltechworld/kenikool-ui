@@ -8,6 +8,7 @@
   <!-- DIRECT LINK to build output (no node_modules overhead) -->
   <link rel="stylesheet" href="./dist/styles/base.css" />
   <script type="module" src="./dist/vanilla/index.mjs"></script>
+  <script src="./playground.js" defer></script>
 </head>
 
 <body>
@@ -712,7 +713,7 @@
 
               <!-- Variants Gallery -->
               <k-stack v="gap-2">
-                <k-text v="semibold text-muted">Variant Gallery</k-text>
+                <k-text v="semibold text-muted">Variant Gallery (Standalone Labels)</k-text>
                 <k-row v="gap-2 wrap align-center">
                   <k-badge v="filled primary">Filled</k-badge>
                   <k-badge v="outlined success">Outlined</k-badge>
@@ -724,6 +725,92 @@
                   <k-badge v="status success">Online Now</k-badge>
                   <k-badge v="dismissible primary">Dismiss Me</k-badge>
                   <k-badge v="icon-badge primary" icon="search">Search</k-badge>
+                </k-row>
+              </k-stack>
+
+              <!-- Notification Badges (The Real Deal) -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Notification Badges (Overlay on Elements)</k-text>
+                <k-row v="gap-4 wrap align-center">
+                  <!-- Badge on Button -->
+                  <k-badge v="notification error .msg-badge" count="5">
+                    <k-button v="outlined">Messages</k-button>
+                  </k-badge>
+
+                  <!-- Badge on Icon Button -->
+                  <k-badge v="notification error #notif-badge" count="99">
+                    <k-button v="filled" icon="bell">Notifications</k-button>
+                  </k-badge>
+
+                  <!-- Dot Badge (Online Status) -->
+                  <k-badge v="notification success .status-badge" dot>
+                    <k-avatar v="md">JD</k-avatar>
+                  </k-badge>
+
+                  <!-- Badge with 99+ overflow -->
+                  <k-badge v="notification primary .chat-badge" count="150">
+                    <k-button v="ghost" icon="message">Chat</k-button>
+                  </k-badge>
+
+                  <!-- Badge on any element -->
+                  <k-badge v="notification warning .cart-badge" count="3">
+                    <k-box v="surface p-3 r-md">
+                      <k-text v="text-sm">Cart</k-text>
+                    </k-box>
+                  </k-badge>
+
+                  <!-- Zero count (hidden by default) -->
+                  <k-badge v="notification" count="0">
+                    <k-button v="outlined">Inbox</k-button>
+                  </k-badge>
+
+                  <!-- Zero count with showZero -->
+                  <k-badge v="notification" count="0" showZero>
+                    <k-button v="outlined">Archive</k-badge>
+                  </k-badge>
+                </k-row>
+              </k-stack>
+
+              <!-- Interactive Demo -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Interactive Test - Update Counts Dynamically</k-text>
+                <k-row v="gap-2 wrap">
+                  <k-button v="filled" onclick="const b = document.querySelector('.msg-badge'); b.setAttribute('count', parseInt(b.getAttribute('count') || 0) + 1)">
+                    + Message
+                  </k-button>
+                  <k-button v="outlined" onclick="const b = document.querySelector('.msg-badge'); b.setAttribute('count', Math.max(0, parseInt(b.getAttribute('count') || 0) - 1))">
+                    - Message
+                  </k-button>
+                  <k-button v="filled .btn-cart-add">Add to Cart</k-button>
+                  <k-button v="outlined" onclick="document.querySelector('.cart-badge').setAttribute('count', '0')">
+                    Clear Cart
+                  </k-button>
+                  <k-button v="filled .btn-notif-random">Random Notifications</k-button>
+                  <k-button v="outlined" onclick="document.querySelector('.chat-badge').setAttribute('count', '0')">
+                    Mark All Read
+                  </k-button>
+                </k-row>
+              </k-stack>
+
+              <!-- Status Badge Interactive Demo -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Status Toggle - Online/Away/Offline</k-text>
+                <k-row v="gap-4 wrap align-center">
+                  <k-badge v="notification success .status-demo" dot>
+                    <k-avatar v="md">JD</k-avatar>
+                  </k-badge>
+                  <k-row v="gap-2">
+                    <k-button v="filled success" onclick="const b = document.querySelector('.status-demo'); b.setAttribute('v', b.getAttribute('v').replace(/error|warning|success/, 'success'))">
+                      Online
+                    </k-button>
+                    <k-button v="filled warning" onclick="const b = document.querySelector('.status-demo'); b.setAttribute('v', b.getAttribute('v').replace(/error|warning|success/, 'warning'))">
+                      Away
+                    </k-button>
+                    <k-button v="filled error" onclick="const b = document.querySelector('.status-demo'); b.setAttribute('v', b.getAttribute('v').replace(/error|warning|success/, 'error'))">
+                      Offline
+                    </k-button>
+                    <k-button v="outlined .btn-toggle">Toggle Status</k-button>
+                  </k-row>
                 </k-row>
               </k-stack>
 
