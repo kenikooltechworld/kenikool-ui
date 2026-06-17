@@ -33,6 +33,10 @@ import {
   SIZES, COLORS, RADII, RADIUS_MAP, SPACE_SCALE,
   ALIGN_VALUES, JUSTIFY_VALUES, SURFACE_VALUES,
   TEXT_SIZES, TEXT_SIZE_MAP, WEIGHT_VALUES, AS_VALUES,
+  WIDTH_KEYWORDS, HEIGHT_KEYWORDS, MAX_WIDTH_KEYWORDS, MAX_HEIGHT_KEYWORDS,
+  MIN_WIDTH_TOKENS, MIN_HEIGHT_TOKENS, TEXT_ALIGN_TOKENS,
+  OVERFLOW_TOKENS, OVERFLOW_Y_TOKENS, OVERFLOW_X_TOKENS,
+  BORDER_TOKENS, SHADOW_TOKENS, DISPLAY_TOKENS, CURSOR_TOKENS,
   V_DEFAULTS,
 } from './constants.js';
 
@@ -176,6 +180,138 @@ export function parseV(v: string | null | undefined): VTokens {
       const val = token.slice(2);
       if (SPACE_SCALE.has(val)) {
         result.padding = val;
+      }
+      continue;
+    }
+
+    // ── Universal: w-* (width) - keywords or spacing scale ─────────────────
+    if (token.startsWith('w-')) {
+      const val = token.slice(2);
+      if (WIDTH_KEYWORDS.has(val) || SPACE_SCALE.has(val)) {
+        result.width = val as VTokens['width'];
+      }
+      continue;
+    }
+
+    // ── Universal: h-* (height) - keywords or spacing scale ────────────────
+    if (token.startsWith('h-')) {
+      const val = token.slice(2);
+      if (HEIGHT_KEYWORDS.has(val) || SPACE_SCALE.has(val)) {
+        result.height = val as VTokens['height'];
+      }
+      continue;
+    }
+
+    // ── Universal: mw-* (max-width) - keywords or spacing scale ───────────
+    if (token.startsWith('mw-')) {
+      const val = token.slice(3);
+      if (MAX_WIDTH_KEYWORDS.has(val) || SPACE_SCALE.has(val)) {
+        result.maxWidth = val as VTokens['maxWidth'];
+      }
+      continue;
+    }
+
+    // ── Universal: mh-* (max-height) - keywords or spacing scale ──────────
+    if (token.startsWith('mh-')) {
+      const val = token.slice(3);
+      if (MAX_HEIGHT_KEYWORDS.has(val) || SPACE_SCALE.has(val)) {
+        result.maxHeight = val as VTokens['maxHeight'];
+      }
+      continue;
+    }
+
+    // ── Universal: mnw-* (min-width) ──────────────────────────────────────
+    if (token.startsWith('mnw-')) {
+      const val = token.slice(4);
+      if (MIN_WIDTH_TOKENS.has(val)) {
+        result.minWidth = val as VTokens['minWidth'];
+      }
+      continue;
+    }
+
+    // ── Universal: mnh-* (min-height) ─────────────────────────────────────
+    if (token.startsWith('mnh-')) {
+      const val = token.slice(4);
+      if (MIN_HEIGHT_TOKENS.has(val)) {
+        result.minHeight = val as VTokens['minHeight'];
+      }
+      continue;
+    }
+
+    // ── Universal: txt-* (text-align) ─────────────────────────────────────
+    if (token.startsWith('txt-')) {
+      const val = token.slice(4);
+      if (TEXT_ALIGN_TOKENS.has(val)) {
+        result.textAlign = val as VTokens['textAlign'];
+      }
+      continue;
+    }
+
+    // ── Universal: ovf-* (overflow) ───────────────────────────────────────
+    if (token.startsWith('ovf-')) {
+      const val = token.slice(4);
+      if (OVERFLOW_TOKENS.has(val)) {
+        result.overflow = val as VTokens['overflow'];
+      }
+      continue;
+    }
+
+    // ── Universal: ovfy-* (overflow-y) ────────────────────────────────────
+    if (token.startsWith('ovfy-')) {
+      const val = token.slice(5);
+      if (OVERFLOW_Y_TOKENS.has(val)) {
+        result.overflowY = val as VTokens['overflowY'];
+      }
+      continue;
+    }
+
+    // ── Universal: ovfx-* (overflow-x) ────────────────────────────────────
+    if (token.startsWith('ovfx-')) {
+      const val = token.slice(5);
+      if (OVERFLOW_X_TOKENS.has(val)) {
+        result.overflowX = val as VTokens['overflowX'];
+      }
+      continue;
+    }
+
+    // ── Universal: bdr-* (border) ─────────────────────────────────────────
+    if (token.startsWith('bdr-')) {
+      const val = token.slice(4);
+      if (BORDER_TOKENS.has(val)) {
+        // Map 'bdr' to 'all' for the data attribute
+        result.border = (val === 'bdr' ? 'all' : val) as VTokens['border'];
+      }
+      continue;
+    }
+    // Special case: 'bdr' without suffix = all sides
+    if (token === 'bdr') {
+      result.border = 'all';
+      continue;
+    }
+
+    // ── Universal: shd-* (shadow) ─────────────────────────────────────────
+    if (token.startsWith('shd-')) {
+      const val = token.slice(4);
+      if (SHADOW_TOKENS.has(val)) {
+        result.shadow = val as VTokens['shadow'];
+      }
+      continue;
+    }
+
+    // ── Universal: d-* (display) ──────────────────────────────────────────
+    if (token.startsWith('d-')) {
+      const val = token.slice(2);
+      if (DISPLAY_TOKENS.has(val)) {
+        result.display = val as VTokens['display'];
+      }
+      continue;
+    }
+
+    // ── Universal: cur-* (cursor) ─────────────────────────────────────────
+    if (token.startsWith('cur-')) {
+      const val = token.slice(4);
+      if (CURSOR_TOKENS.has(val)) {
+        result.cursor = val as VTokens['cursor'];
       }
       continue;
     }

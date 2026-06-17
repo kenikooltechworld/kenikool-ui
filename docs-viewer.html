@@ -7,29 +7,16 @@
   <link rel="stylesheet" href="dist/styles/base.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
-    /* Docs viewer layout constraints only - NOT component styling */
-    .docs-layout {
-      height: 100vh;
-    }
-    .docs-sidebar {
-      border-right: 1px solid var(--k-border);
-      overflow-y: auto;
-    }
-    .docs-content {
-      overflow-y: auto;
-    }
-    .min-h-400 {
+    /* Docs viewer layout - zero custom component CSS, only v tokens */
     .docs-nav-btn {
       justify-content: flex-start;
-    }
-      min-height: 400px;
     }
   </style>
 </head>
 <body>
-  <k-grid v="cols-12 gap-0" class="docs-layout">
+  <k-grid v="cols-12 gap-0 h-screen">
     <!-- Sidebar -->
-    <k-col v="span-3" class="docs-sidebar">
+    <k-col v="span-3 bdr-r ovfy-auto">
       <k-stack v="gap-6 p-6">
         <k-stack v="gap-2">
           <k-text v="h2 text-2xl bold">Kenikool UI</k-text>
@@ -67,10 +54,10 @@
     </k-col>
 
     <!-- Content Area -->
-    <k-col v="span-9 #content-area" class="docs-content">
+    <k-col v="span-9 #content-area ovfy-auto">
       <k-container v="p-12">
-        <k-box v="#markdown-content">
-          <k-stack v="gap-4 align-center justify-center" class="min-h-400">
+        <k-box v="#markdown-content mnh-screen">
+          <k-stack v="gap-4 align-center justify-center mnh-screen">
             <k-loader v="spinner lg primary"></k-loader>
             <k-text v="text-lg muted">Loading documentation...</k-text>
           </k-stack>
@@ -91,7 +78,7 @@
     async function loadMarkdown(path) {
       try {
         content.innerHTML = `
-          <k-stack v="gap-4 align-center justify-center" class="min-h-400">
+          <k-stack v="gap-4 align-center justify-center mnh-screen">
             <k-loader v="spinner lg primary"></k-loader>
             <k-text v="text-lg muted">Loading ${path}...</k-text>
           </k-stack>

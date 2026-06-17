@@ -119,4 +119,104 @@ export interface VTokens {
    * null = use component default (--k-box-padding).
    */
   padding:  string | null;
+
+  // ── New Universal Tokens (v0.1.0) ────────────────────────────────────────
+
+  /**
+   * Width utility.
+   * Parsed from tokens: w-full | w-auto | w-fit | w-screen.
+   * null = use component default.
+   */
+  width: 'full' | 'auto' | 'fit' | 'screen' | null;
+
+  /**
+   * Height utility.
+   * Parsed from tokens: h-full | h-auto | h-screen | h-fit.
+   * null = use component default.
+   */
+  height: 'full' | 'auto' | 'screen' | 'fit' | null;
+
+  /**
+   * Max width utility.
+   * Parsed from tokens: mw-full.
+   * null = no max-width constraint.
+   */
+  maxWidth: 'full' | null;
+
+  /**
+   * Max height utility.
+   * Parsed from tokens: mh-full | mh-screen.
+   * null = no max-height constraint.
+   */
+  maxHeight: 'full' | 'screen' | null;
+
+  /**
+   * Min width utility.
+   * Parsed from tokens: mnw-0.
+   * null = no min-width constraint.
+   */
+  minWidth: '0' | null;
+
+  /**
+   * Min height utility.
+   * Parsed from tokens: mnh-0 | mnh-screen.
+   * null = no min-height constraint.
+   */
+  minHeight: '0' | 'screen' | null;
+
+  /**
+   * Text align utility.
+   * Parsed from tokens: txt-left | txt-center | txt-right | txt-justify.
+   * null = use component default.
+   */
+  textAlign: 'left' | 'center' | 'right' | 'justify' | null;
+
+  /**
+   * Overflow utility (both axes).
+   * Parsed from tokens: ovf-auto | ovf-hidden | ovf-scroll.
+   * null = use component default.
+   */
+  overflow: 'auto' | 'hidden' | 'scroll' | null;
+
+  /**
+   * Overflow-Y utility (vertical only).
+   * Parsed from tokens: ovfy-auto | ovfy-hidden | ovfy-scroll.
+   * null = use component default.
+   */
+  overflowY: 'auto' | 'hidden' | 'scroll' | null;
+
+  /**
+   * Overflow-X utility (horizontal only).
+   * Parsed from tokens: ovfx-auto | ovfx-hidden | ovfx-scroll.
+   * null = use component default.
+   */
+  overflowX: 'auto' | 'hidden' | 'scroll' | null;
+
+  /**
+   * Border utility.
+   * Parsed from tokens: bdr | bdr-t | bdr-r | bdr-b | bdr-l | bdr-none.
+   * null = no border set.
+   */
+  border: 'all' | 't' | 'r' | 'b' | 'l' | 'none' | null;
+
+  /**
+   * Shadow utility.
+   * Parsed from tokens: shd-sm | shd-md | shd-lg | shd-xl | shd-none.
+   * null = use component default.
+   */
+  shadow: 'sm' | 'md' | 'lg' | 'xl' | 'none' | null;
+
+  /**
+   * Display utility.
+   * Parsed from tokens: d-block | d-inline | d-flex | d-grid | d-none.
+   * null = use component default.
+   */
+  display: 'block' | 'inline' | 'flex' | 'grid' | 'none' | null;
+
+  /**
+   * Cursor utility.
+   * Parsed from tokens: cur-ptr | cur-def | cur-not.
+   * null = use component default.
+   */
+  cursor: 'ptr' | 'def' | 'not' | null;
 }

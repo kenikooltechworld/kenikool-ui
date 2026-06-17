@@ -8,7 +8,8 @@ export type ButtonVariant =
   | 'glow'
   | 'minimal'
   | 'elevated'
-  | 'destructive';
+  | 'destructive'
+  | 'icon-only';
 
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -24,6 +25,8 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   loading?: boolean;
   disabled?: boolean;
   full?: boolean;
+  truncate?: boolean;
+  type?: 'button' | 'submit' | 'reset';
   icon?: React.ReactNode;
   iconRight?: React.ReactNode;
   label?: string;

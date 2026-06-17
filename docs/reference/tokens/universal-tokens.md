@@ -438,3 +438,280 @@ k-button[data-variant="filled"][data-color="primary"] {
 - **[GitHub Issues](https://github.com/your-repo/kenikool-ui/issues)** - Report bugs
 - **[Discussions](https://github.com/your-repo/kenikool-ui/discussions)** - Ask questions
 - **[Playground](http://localhost:3001/playground.html)** - Try tokens live
+
+
+---
+
+## NEW: Utility Tokens (v0.1.0)
+
+Universal utility tokens for layout control, overflow, borders, shadows, and more. These work on **all components**.
+
+### Width Tokens (`w-*`)
+
+Control component width.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `w-full` | `width: 100%` | Full width of container |
+| `w-auto` | `width: auto` | Auto width |
+| `w-fit` | `width: fit-content` | Fit content width |
+| `w-screen` | `width: 100vw` | Full viewport width |
+
+**Examples:**
+```html
+<k-box v="w-full">100% width</k-box>
+<k-box v="w-auto">Auto width</k-box>
+<k-box v="w-fit">Fit content</k-box>
+<k-box v="w-screen">100vw</k-box>
+```
+
+---
+
+### Height Tokens (`h-*`)
+
+Control component height.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `h-full` | `height: 100%` | Full height of container |
+| `h-auto` | `height: auto` | Auto height |
+| `h-screen` | `height: 100vh` | Full viewport height |
+| `h-fit` | `height: fit-content` | Fit content height |
+
+**Examples:**
+```html
+<k-box v="h-full">100% height</k-box>
+<k-box v="h-auto">Auto height</k-box>
+<k-box v="h-screen">Full viewport height</k-box>
+<k-box v="h-fit">Fit content</k-box>
+```
+
+---
+
+### Max Width/Height Tokens (`mw-*` | `mh-*`)
+
+Set maximum dimensions.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `mw-full` | `max-width: 100%` | Max 100% width |
+| `mh-full` | `max-height: 100%` | Max 100% height |
+| `mh-screen` | `max-height: 100vh` | Max viewport height |
+
+**Examples:**
+```html
+<k-box v="mw-full">Max width 100%</k-box>
+<k-box v="mh-full">Max height 100%</k-box>
+<k-box v="mh-screen">Max height 100vh</k-box>
+```
+
+---
+
+### Min Width/Height Tokens (`mnw-*` | `mnh-*`)
+
+Set minimum dimensions.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `mnw-0` | `min-width: 0` | Min width 0 |
+| `mnh-0` | `min-height: 0` | Min height 0 |
+| `mnh-screen` | `min-height: 100vh` | Min viewport height |
+
+**Examples:**
+```html
+<k-box v="mnw-0">Min width 0</k-box>
+<k-box v="mnh-0">Min height 0</k-box>
+<k-box v="mnh-screen">Min height 100vh</k-box>
+```
+
+---
+
+### Text Align Tokens (`txt-*`)
+
+Control text alignment.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `txt-left` | `text-align: left` | Left aligned |
+| `txt-center` | `text-align: center` | Center aligned |
+| `txt-right` | `text-align: right` | Right aligned |
+| `txt-justify` | `text-align: justify` | Justified |
+
+**Examples:**
+```html
+<k-text v="txt-left">Left aligned</k-text>
+<k-text v="txt-center">Center aligned</k-text>
+<k-text v="txt-right">Right aligned</k-text>
+<k-text v="txt-justify">Justified text</k-text>
+```
+
+---
+
+### Overflow Tokens (`ovf-*` | `ovfy-*` | `ovfx-*`)
+
+Control overflow behavior.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `ovf-auto` | `overflow: auto` | Show scrollbar when needed (both axes) |
+| `ovf-hidden` | `overflow: hidden` | Hide overflow (both axes) |
+| `ovf-scroll` | `overflow: scroll` | Always show scrollbar (both axes) |
+| `ovfy-auto` | `overflow-y: auto` | Vertical scroll when needed |
+| `ovfy-hidden` | `overflow-y: hidden` | Hide vertical overflow |
+| `ovfy-scroll` | `overflow-y: scroll` | Always show vertical scrollbar |
+| `ovfx-auto` | `overflow-x: auto` | Horizontal scroll when needed |
+| `ovfx-hidden` | `overflow-x: hidden` | Hide horizontal overflow |
+| `ovfx-scroll` | `overflow-x: scroll` | Always show horizontal scrollbar |
+
+**Examples:**
+```html
+<!-- Both axes -->
+<k-box v="ovf-auto h-screen">Auto scroll</k-box>
+<k-box v="ovf-hidden">Hidden</k-box>
+<k-box v="ovf-scroll">Always scroll</k-box>
+
+<!-- Vertical only -->
+<k-box v="ovfy-auto h-screen">Vertical scroll</k-box>
+
+<!-- Horizontal only -->
+<k-box v="ovfx-auto w-full">Horizontal scroll</k-box>
+```
+
+---
+
+### Border Tokens (`bdr` | `bdr-*`)
+
+Add borders to components.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `bdr` | `border: 1px solid var(--k-border)` | All sides |
+| `bdr-t` | `border-top: 1px solid var(--k-border)` | Top only |
+| `bdr-r` | `border-right: 1px solid var(--k-border)` | Right only |
+| `bdr-b` | `border-bottom: 1px solid var(--k-border)` | Bottom only |
+| `bdr-l` | `border-left: 1px solid var(--k-border)` | Left only |
+| `bdr-none` | `border: none` | No border |
+
+**Examples:**
+```html
+<k-box v="bdr">All sides</k-box>
+<k-box v="bdr-t">Top border</k-box>
+<k-box v="bdr-r">Right border</k-box>
+<k-box v="bdr-b">Bottom border</k-box>
+<k-box v="bdr-l">Left border</k-box>
+<k-box v="bdr-none">No border</k-box>
+```
+
+**Border Color:** Uses `--k-border` theme token.
+
+---
+
+### Shadow Tokens (`shd-*`)
+
+Add box shadows for depth.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `shd-sm` | `box-shadow: var(--k-shadow-sm)` | Small shadow |
+| `shd-md` | `box-shadow: var(--k-shadow-md)` | Medium shadow |
+| `shd-lg` | `box-shadow: var(--k-shadow-lg)` | Large shadow |
+| `shd-xl` | `box-shadow: var(--k-shadow-xl)` | Extra large shadow |
+| `shd-none` | `box-shadow: none` | No shadow |
+
+**Examples:**
+```html
+<k-box v="shd-sm">Small shadow</k-box>
+<k-box v="shd-md">Medium shadow</k-box>
+<k-box v="shd-lg">Large shadow</k-box>
+<k-box v="shd-xl">Extra large shadow</k-box>
+<k-box v="shd-none">No shadow</k-box>
+```
+
+---
+
+### Display Tokens (`d-*`)
+
+Control CSS display property.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `d-block` | `display: block` | Block display |
+| `d-inline` | `display: inline` | Inline display |
+| `d-flex` | `display: flex` | Flex display |
+| `d-grid` | `display: grid` | Grid display |
+| `d-none` | `display: none` | Hidden |
+
+**Examples:**
+```html
+<k-box v="d-block">Block</k-box>
+<k-box v="d-inline">Inline</k-box>
+<k-box v="d-flex">Flex</k-box>
+<k-box v="d-grid">Grid</k-box>
+<k-box v="d-none">Hidden</k-box>
+```
+
+---
+
+### Cursor Tokens (`cur-*`)
+
+Control cursor appearance.
+
+| Token | CSS Output | Description |
+|-------|------------|-------------|
+| `cur-ptr` | `cursor: pointer` | Pointer (clickable) |
+| `cur-def` | `cursor: default` | Default cursor |
+| `cur-not` | `cursor: not-allowed` | Not allowed |
+
+**Examples:**
+```html
+<k-box v="cur-ptr">Pointer cursor</k-box>
+<k-box v="cur-def">Default cursor</k-box>
+<k-box v="cur-not">Not allowed</k-box>
+```
+
+---
+
+### Utility Token Combinations
+
+You can combine utility tokens with any other tokens:
+
+```html
+<!-- Full-screen scrollable container with border -->
+<k-col v="h-screen ovfy-auto bdr-r span-3">
+  <k-stack v="gap-6 p-6">
+    <!-- Sidebar content -->
+  </k-stack>
+</k-col>
+
+<!-- Centered box with shadow and rounded corners -->
+<k-box v="w-full mw-full p-6 r-md bdr shd-md txt-center">
+  <k-text v="text-2xl bold">Welcome</k-text>
+</k-box>
+
+<!-- Full viewport height with hidden overflow -->
+<k-grid v="cols-12 gap-0 h-screen ovf-hidden">
+  <!-- Content -->
+</k-grid>
+```
+
+---
+
+## Updated Token Count
+
+| Category | Tokens | Count | Default | Description |
+|----------|--------|-------|---------|-------------|
+| **Size** | `xs`, `sm`, `md`, `lg`, `xl` | 5 | `md` | Component dimensions |
+| **Color** | `primary`, `success`, `warning`, `error`, `info`, `default` | 6 | `primary` | Color scheme |
+| **Radius** | `r-none`, `r-sm`, `r-md`, `r-lg`, `r-full` | 5 | varies | Border radius |
+| **State** | `loading`, `disabled`, `full` | 3 | false | Boolean flags |
+| **Width** | `w-full`, `w-auto`, `w-fit`, `w-screen` | 4 | - | Width control |
+| **Height** | `h-full`, `h-auto`, `h-screen`, `h-fit` | 4 | - | Height control |
+| **Max Size** | `mw-full`, `mh-full`, `mh-screen` | 3 | - | Max dimensions |
+| **Min Size** | `mnw-0`, `mnh-0`, `mnh-screen` | 3 | - | Min dimensions |
+| **Text Align** | `txt-left`, `txt-center`, `txt-right`, `txt-justify` | 4 | - | Text alignment |
+| **Overflow** | `ovf-*`, `ovfy-*`, `ovfx-*` (3×3) | 9 | - | Overflow behavior |
+| **Border** | `bdr`, `bdr-t`, `bdr-r`, `bdr-b`, `bdr-l`, `bdr-none` | 6 | - | Border control |
+| **Shadow** | `shd-sm`, `shd-md`, `shd-lg`, `shd-xl`, `shd-none` | 5 | - | Box shadows |
+| **Display** | `d-block`, `d-inline`, `d-flex`, `d-grid`, `d-none` | 5 | - | Display property |
+| **Cursor** | `cur-ptr`, `cur-def`, `cur-not` | 3 | - | Cursor appearance |
+| **TOTAL** | - | **65** | - | Universal tokens |

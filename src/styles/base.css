@@ -35,6 +35,9 @@
 /* 6.5. Modern scrollbar system */
 @import './scrollbars.css';
 
+/* 6.6. Universal utility tokens */
+@import './utilities.css';
+
 /* 7. Component styles — uncomment as each task is completed */
 @import './components/button.css'; /* T5  */
 @import './components/layout.css'; /* Layout: k-grid, k-row, k-col, k-stack, k-box, k-text, k-divider */

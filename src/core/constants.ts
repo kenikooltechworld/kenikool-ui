@@ -99,6 +99,50 @@ export const SPACE_SCALE = new Set([
   '11', '12', '14', '16', '20', '24',
 ]);
 
+// ── New Universal Tokens (v0.1.0) ─────────────────────────────────────────
+
+/** Width tokens - supports spacing scale + keyword values */
+export const WIDTH_KEYWORDS = new Set(['full', 'auto', 'fit', 'screen']);
+
+/** Height tokens - supports spacing scale + keyword values */
+export const HEIGHT_KEYWORDS = new Set(['full', 'auto', 'screen', 'fit']);
+
+/** Max width tokens - supports spacing scale + keyword values */
+export const MAX_WIDTH_KEYWORDS = new Set(['full']);
+
+/** Max height tokens - supports spacing scale + keyword values */
+export const MAX_HEIGHT_KEYWORDS = new Set(['full', 'screen']);
+
+/** Min width tokens */
+export const MIN_WIDTH_TOKENS = new Set(['0']);
+
+/** Min height tokens */
+export const MIN_HEIGHT_TOKENS = new Set(['0', 'screen']);
+
+/** Text align tokens */
+export const TEXT_ALIGN_TOKENS = new Set(['left', 'center', 'right', 'justify']);
+
+/** Overflow tokens */
+export const OVERFLOW_TOKENS = new Set(['auto', 'hidden', 'scroll']);
+
+/** Overflow-Y tokens */
+export const OVERFLOW_Y_TOKENS = new Set(['auto', 'hidden', 'scroll']);
+
+/** Overflow-X tokens */
+export const OVERFLOW_X_TOKENS = new Set(['auto', 'hidden', 'scroll']);
+
+/** Border tokens */
+export const BORDER_TOKENS = new Set(['bdr', 't', 'r', 'b', 'l', 'none']);
+
+/** Shadow tokens */
+export const SHADOW_TOKENS = new Set(['sm', 'md', 'lg', 'xl', 'none']);
+
+/** Display tokens */
+export const DISPLAY_TOKENS = new Set(['block', 'inline', 'flex', 'grid', 'none']);
+
+/** Cursor tokens */
+export const CURSOR_TOKENS = new Set(['ptr', 'def', 'not']);
+
 /** Default values applied when tokens are absent from the v attribute. */
 export const V_DEFAULTS = {
   variant:   'filled',
@@ -121,4 +165,19 @@ export const V_DEFAULTS = {
   weight:    null      as 'normal' | 'medium' | 'semibold' | 'bold' | null,
   as:        null      as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label' | 'code' | 'pre' | null,
   padding:   null      as string | null,
+  // New universal tokens (v0.1.0)
+  width:     null      as 'full' | 'auto' | 'fit' | 'screen' | null,
+  height:    null      as 'full' | 'auto' | 'screen' | 'fit' | null,
+  maxWidth:  null      as 'full' | null,
+  maxHeight: null      as 'full' | 'screen' | null,
+  minWidth:  null      as '0' | null,
+  minHeight: null      as '0' | 'screen' | null,
+  textAlign: null      as 'left' | 'center' | 'right' | 'justify' | null,
+  overflow:  null      as 'auto' | 'hidden' | 'scroll' | null,
+  overflowY: null      as 'auto' | 'hidden' | 'scroll' | null,
+  overflowX: null      as 'auto' | 'hidden' | 'scroll' | null,
+  border:    null      as 'all' | 't' | 'r' | 'b' | 'l' | 'none' | null,
+  shadow:    null      as 'sm' | 'md' | 'lg' | 'xl' | 'none' | null,
+  display:   null      as 'block' | 'inline' | 'flex' | 'grid' | 'none' | null,
+  cursor:    null      as 'ptr' | 'def' | 'not' | null,
 } as const;

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K-Button Component Matrix</title>
+    <link rel="stylesheet" href="../../src/styles/base.css" />
+    <link rel="stylesheet" href="../../src/styles/components/button.css" />
+    <style>
+      body {
+        font-family: var(--k-font-sans);
+        padding: 40px;
+        background: var(--k-bg-base);
+        color: var(--k-text-primary);
+      }
+      .section {
+        margin-bottom: 60px;
+      }
+      h1 {
+        font-size: var(--k-text-3xl);
+        margin-bottom: 20px;
+      }
+      h2 {
+        font-size: var(--k-text-xl);
+        margin-top: 40px;
+        border-bottom: 1px solid var(--k-border);
+        padding-bottom: 10px;
+      }
+
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .matrix-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 20px;
+        background: var(--k-bg-surface);
+        border-radius: var(--k-radius-md);
+        border: 1px solid var(--k-border);
+      }
+      .token-label {
+        font-size: var(--k-text-xs);
+        color: var(--k-text-secondary);
+        font-family: var(--k-font-mono);
+      }
+      .stability-test {
+        margin-top: 20px;
+        padding: 20px;
+        background: var(--k-bg-elevated);
+        border-radius: var(--k-radius-md);
+      }
+      #stability-result {
+        font-weight: bold;
+        margin-left: 10px;
+      }
+      .pass {
+        color: var(--k-success);
+      }
+      .fail {
+        color: var(--k-error);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🔘 K-Button Component Matrix</h1>
+    <p>Automated visual verification of all token and variant combinations.</p>
+
+    <div class="section">
+      <h2>1. Visual Permutations</h2>
+      <div id="permutation-matrix" class="matrix-grid"></div>
+    </div>
+
+    <div class="section">
+      <h2>2. Advanced Feature Tests</h2>
+      <div id="advanced-matrix" class="matrix-grid"></div>
+    </div>
+
+    <div class="section">
+      <h2>3. Layout Stability Audit (Loading State)</h2>
+      <div class="stability-test">
+        <k-button id="stability-btn" v="filled md primary"
+          >Stability Test</k-button
+        >
+        <button
+          onclick="runStabilityTest()"
+          style="margin-top: 20px; padding: 8px 16px"
+        >
+          Run Audit
+        </button>
+        <span id="stability-result">Ready...</span>
+      </div>
+    </div>
+
+    <script type="module">
+      import "./../../src/vanilla/index.ts"; // Import components
+
+      const VARIANTS = [
+        "filled",
+        "outlined",
+        "ghost",
+        "subtle",
+        "soft",
+        "gradient",
+        "glow",
+        "minimal",
+        "elevated",
+        "destructive",
+        "icon-only",
+      ];
+      const SIZES = ["xs", "sm", "md", "lg", "xl"];
+      const COLORS = [
+        "primary",
+        "success",
+        "warning",
+        "error",
+        "info",
+        "default",
+      ];
+
+      const matrix = document.getElementById("permutation-matrix");
+
+      // Generate all combinations
+      VARIANTS.forEach((v) => {
+        SIZES.forEach((s) => {
+          COLORS.forEach((c) => {
+            const item = document.createElement("div");
+            item.className = "matrix-item";
+
+            const btn = document.createElement("k-button");
+            btn.setAttribute("v", `${v} ${s} ${c}`);
+            btn.textContent = "Action";
+
+            const label = document.createElement("div");
+            label.className = "token-label";
+            label.textContent = `v="${v} ${s} ${c}"`;
+
+            item.appendChild(btn);
+            item.appendChild(label);
+            matrix.appendChild(item);
+          });
+        });
+      });
+
+      // Advanced Tests
+      const advMatrix = document.getElementById("advanced-matrix");
+      const advancedTests = [
+        {
+          v: "filled md truncate",
+          text: "This is a very long label that should truncate",
+          name: "Truncate",
+        },
+        { v: "icon-only primary", icon: "settings", name: "Icon-Only" },
+        { v: "filled loading", text: "Loading...", name: "Loading State" },
+        { v: "filled disabled", text: "Disabled", name: "Disabled State" },
+        { v: "filled full", text: "Full Width", name: "Full Width" },
+        { v: "r-full filled", text: "Pill Shape", name: "Radius Full" },
+        { v: "r-none filled", text: "Sharp Shape", name: "Radius None" },
+      ];
+
+      advancedTests.forEach((test) => {
+        const item = document.createElement("div");
+        item.className = "matrix-item";
+
+        const btn = document.createElement("k-button");
+        btn.setAttribute("v", test.v);
+        if (test.icon) btn.setAttribute("icon", test.icon);
+        if (test.text) btn.textContent = test.text;
+
+        const label = document.createElement("div");
+        label.className = "token-label";
+        label.textContent = `${test.name}: ${test.v}`;
+
+        item.appendChild(btn);
+        item.appendChild(label);
+        advMatrix.appendChild(item);
+      });
+
+      // Stability Test Implementation
+      window.runStabilityTest = async () => {
+        const btn = document.getElementById("stability-btn");
+        const result = document.getElementById("stability-result");
+
+        const getDims = () => {
+          const rect = btn.getBoundingClientRect();
+          return { w: rect.width, h: rect.height };
+        };
+
+        const before = getDims();
+
+        // Trigger loading
+        const v = btn.getAttribute("v") || "";
+        btn.setAttribute("v", v + " loading");
+
+        // Wait for DOM update
+        await new Promise((r) => setTimeout(r, 50));
+
+        const after = getDims();
+
+        if (before.w === after.w && before.h === after.h) {
+          result.textContent = "PASS: No layout shift detected!";
+          result.className = "pass";
+        } else {
+          result.textContent = `FAIL: Shift detected! (${before.w}x${before.h} -> ${after.w}x${after.h})`;
+          result.className = "fail";
+        }
+
+        // Reset
+        btn.setAttribute("v", v);
+      };
+    </script>
+  </body>
+</html>

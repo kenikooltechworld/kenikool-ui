@@ -18,6 +18,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading = false,
       disabled = false,
       full = false,
+      truncate = false,
+      type = 'button',
       icon,
       iconRight,
       label,
@@ -37,6 +39,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       loading ? 'k-button--loading' : '',
       disabled ? 'k-button--disabled' : '',
       full ? 'k-button--full' : '',
+      truncate ? 'k-button--truncate' : '',
       className ?? '',
     ]
       .filter(Boolean)
@@ -56,6 +59,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={classes}
+        type={type}
         disabled={disabled}
         aria-disabled={disabled}
         aria-busy={loading}

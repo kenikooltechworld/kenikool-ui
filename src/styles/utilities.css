@@ -1,0 +1,253 @@
+/**
+ * utilities.css — Universal utility tokens for the v attribute system
+ * 
+ * These utilities apply to ALL components that use the v attribute.
+ * They provide shorthand control over common CSS properties without
+ * needing custom CSS or inline styles.
+ * 
+ * Token format: Short Tailwind-style abbreviations (e.g. w-full, h-screen, ovfy-auto)
+ * Applied via: data-* attributes set by KBaseElement._applyV()
+ * 
+ * Usage example:
+ *   <k-box v="w-full h-screen ovfy-auto bdr txt-center">...</k-box>
+ */
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* WIDTH TOKENS                                                                */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-width="full"] {
+  width: 100%;
+}
+
+[data-width="auto"] {
+  width: auto;
+}
+
+[data-width="fit"] {
+  width: fit-content;
+}
+
+[data-width="screen"] {
+  width: 100vw;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* HEIGHT TOKENS                                                               */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-height="full"] {
+  height: 100%;
+}
+
+[data-height="auto"] {
+  height: auto;
+}
+
+[data-height="screen"] {
+  height: 100vh;
+}
+
+[data-height="fit"] {
+  height: fit-content;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* MAX WIDTH TOKENS                                                            */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-max-width="full"] {
+  max-width: 100%;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* MAX HEIGHT TOKENS                                                           */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-max-height="full"] {
+  max-height: 100%;
+}
+
+[data-max-height="screen"] {
+  max-height: 100vh;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* MIN WIDTH TOKENS                                                            */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-min-width="0"] {
+  min-width: 0;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* MIN HEIGHT TOKENS                                                           */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-min-height="0"] {
+  min-height: 0;
+}
+
+[data-min-height="screen"] {
+  min-height: 100vh;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* TEXT ALIGN TOKENS                                                           */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-text-align="left"] {
+  text-align: left;
+}
+
+[data-text-align="center"] {
+  text-align: center;
+}
+
+[data-text-align="right"] {
+  text-align: right;
+}
+
+[data-text-align="justify"] {
+  text-align: justify;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* OVERFLOW TOKENS                                                             */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-overflow="auto"] {
+  overflow: auto;
+}
+
+[data-overflow="hidden"] {
+  overflow: hidden;
+}
+
+[data-overflow="scroll"] {
+  overflow: scroll;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* OVERFLOW-Y TOKENS                                                           */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-overflow-y="auto"] {
+  overflow-y: auto;
+}
+
+[data-overflow-y="hidden"] {
+  overflow-y: hidden;
+}
+
+[data-overflow-y="scroll"] {
+  overflow-y: scroll;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* OVERFLOW-X TOKENS                                                           */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-overflow-x="auto"] {
+  overflow-x: auto;
+}
+
+[data-overflow-x="hidden"] {
+  overflow-x: hidden;
+}
+
+[data-overflow-x="scroll"] {
+  overflow-x: scroll;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* BORDER TOKENS                                                               */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-border="all"] {
+  border: 1px solid var(--k-border);
+}
+
+[data-border="t"] {
+  border-top: 1px solid var(--k-border);
+}
+
+[data-border="r"] {
+  border-right: 1px solid var(--k-border);
+}
+
+[data-border="b"] {
+  border-bottom: 1px solid var(--k-border);
+}
+
+[data-border="l"] {
+  border-left: 1px solid var(--k-border);
+}
+
+[data-border="none"] {
+  border: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* SHADOW TOKENS                                                               */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-shadow="sm"] {
+  box-shadow: var(--k-shadow-sm);
+}
+
+[data-shadow="md"] {
+  box-shadow: var(--k-shadow-md);
+}
+
+[data-shadow="lg"] {
+  box-shadow: var(--k-shadow-lg);
+}
+
+[data-shadow="xl"] {
+  box-shadow: var(--k-shadow-xl);
+}
+
+[data-shadow="none"] {
+  box-shadow: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* DISPLAY TOKENS                                                              */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-display="block"] {
+  display: block;
+}
+
+[data-display="inline"] {
+  display: inline;
+}
+
+[data-display="flex"] {
+  display: flex;
+}
+
+[data-display="grid"] {
+  display: grid;
+}
+
+[data-display="none"] {
+  display: none;
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* CURSOR TOKENS                                                               */
+/* ────────────────────────────────────────────────────────────────────────── */
+
+[data-cursor="ptr"] {
+  cursor: pointer;
+}
+
+[data-cursor="def"] {
+  cursor: default;
+}
+
+[data-cursor="not"] {
+  cursor: not-allowed;
+}

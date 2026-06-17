@@ -116,6 +116,22 @@ export abstract class KBaseElement extends HTMLElement {
     this._setOrDelete('weight',    tokens.weight);
     this._setOrDelete('as',        tokens.as);
     this._setOrDelete('padding',   tokens.padding);
+
+    // ── New universal tokens (v0.1.0) ──────────────────────────────────────
+    this._setOrDelete('width',     tokens.width);
+    this._setOrDelete('height',    tokens.height);
+    this._setOrDelete('maxWidth',  tokens.maxWidth);
+    this._setOrDelete('maxHeight', tokens.maxHeight);
+    this._setOrDelete('minWidth',  tokens.minWidth);
+    this._setOrDelete('minHeight', tokens.minHeight);
+    this._setOrDelete('textAlign', tokens.textAlign);
+    this._setOrDelete('overflow',  tokens.overflow);
+    this._setOrDelete('overflowY', tokens.overflowY);
+    this._setOrDelete('overflowX', tokens.overflowX);
+    this._setOrDelete('border',    tokens.border);
+    this._setOrDelete('shadow',    tokens.shadow);
+    this._setOrDelete('display',   tokens.display);
+    this._setOrDelete('cursor',    tokens.cursor);
   }
 
   /**

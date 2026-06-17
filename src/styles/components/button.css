@@ -18,7 +18,7 @@
  *   ghost / minimal                          → color changes text only
  *   elevated / destructive                   → color token ignored
  *   primary (default)                        → defers to --k-accent, no override
- */
+ * */
 
 /* ─── Host layout ─────────────────────────────────────────────────────── */
 
@@ -53,10 +53,9 @@ k-button button {
               filter var(--k-transition-base),
               transform var(--k-transition-base);
   white-space: nowrap;
-S  text-decoration: none;
+  text-decoration: none;
   position: relative;
   outline: none;
-  /* No background, color, border — variants provide those below */
 }
 
 k-button button:focus-visible {
@@ -155,7 +154,7 @@ k-button[data-variant="elevated"] button {
 }
 k-button[data-variant="elevated"] button:hover { box-shadow: var(--k-shadow-lg); }
 
-/* destructive */
+/* destructive */ la
 k-button[data-variant="destructive"] button {
   background: var(--k-error);
   color: var(--k-text-inverse);
@@ -316,6 +315,10 @@ k-button[data-radius="full"] button { border-radius: var(--k-radius-full); }
 /* ─── Loading spinner ─────────────────────────────────────────────────── */
 
 .k-button__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -364,10 +367,39 @@ k-button button:active {
   k-button[data-responsive="true"] .k-button__text {
     display: none;
   }
-  
+
   k-button[data-responsive="true"] button {
     padding: 8px;
     min-width: 40px;
     height: 40px;
   }
+}
+
+/* ─── Advanced Variants ───────────────────────────────────────────────────── */
+
+.k-button__content-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--k-space-2);
+  transition: opacity var(--k-transition-base);
+}
+
+k-button[data-loading="true"] .k-button__content-wrap {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.k-button--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+k-button[data-variant="icon-only"] button {
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
 }

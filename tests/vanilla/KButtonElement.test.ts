@@ -53,9 +53,21 @@ describe('inner button structure', () => {
     expect(el.querySelectorAll('button').length).toBe(1);
   });
 
-  it('inner <button> has type="button"', () => {
+  it('inner <button> has type="button" by default', () => {
     const el = makeButton('filled');
     expect(inner(el)?.type).toBe('button');
+  });
+
+  it('inner <button> has custom type when provided as attribute', () => {
+    const el = makeButton('filled');
+    el.setAttribute('type', 'submit');
+    expect(inner(el)?.type).toBe('submit');
+  });
+
+  it('inner <button> has custom type "reset" when provided as attribute', () => {
+    const el = makeButton('filled');
+    el.setAttribute('type', 'reset');
+    expect(inner(el)?.type).toBe('reset');
   });
 
   it('inner <button> has NO className — zero classes', () => {
@@ -208,6 +220,12 @@ describe('accessibility attributes', () => {
   it('sets aria-label to button text', () => {
     const el = makeButton('filled', 'Submit');
     expect(inner(el)?.getAttribute('aria-label')).toBe('Submit');
+  });
+
+  it('sets aria-label to explicitly provided label attribute', () => {
+    const el = makeButton('filled', 'Submit');
+    el.setAttribute('label', 'Custom Accessible Label');
+    expect(inner(el)?.getAttribute('aria-label')).toBe('Custom Accessible Label');
   });
 
   it('appends "— loading" suffix to aria-label when loading', () => {

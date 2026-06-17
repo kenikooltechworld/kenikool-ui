@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>K-Button Laboratory</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../src/styles/base.css">
+    <link rel="stylesheet" href="../../src/styles/components/button.css">
+    <style>
+        body {
+            font-family: var(--k-font-sans);
+            background: var(--k-bg-base);
+            color: var(--k-text-primary);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Controls */
+        .sidebar {
+            width: 380px;
+            background: var(--k-bg-surface);
+            border-right: 1px solid var(--k-border);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--k-border);
+            background: var(--k-bg-elevated);
+        }
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        /* Control Groups */
+        .control-group {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .control-label {
+            font-size: var(--k-text-xs);
+            font-weight: var(--k-font-semibold);
+            color: var(--k-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: var(--k-radius-sm);
+            border: 1px solid var(--k-border);
+            background: var(--k-bg-base);
+            color: var(--k-text-primary);
+            font-family: var(--k-font-sans);
+            font-size: var(--k-text-sm);
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: var(--k-text-sm);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Preview Area */
+        .preview-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background:
+                radial-gradient(circle at 2px 2px, var(--k-border) 1px, transparent 0);
+            background-size: 24px 24px;
+            position: relative;
+        }
+        .preview-stage {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .preview-footer {
+            background: var(--k-bg-surface);
+            border-top: 1px solid var(--k-border);
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 24px;
+        }
+
+        /* Code Mirror */
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 16px;
+            border-radius: var(--k-radius-md);
+            font-family: var(--k-font-mono);
+            font-size: var(--k-text-sm);
+            position: relative;
+            border: 1px solid #333;
+        }
+        .code-block::before {
+            content: "HTML Snippet";
+            display: block;
+            font-size: 10px;
+            color: #888;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        /* Inspector */
+        .inspector {
+            background: var(--k-bg-elevated);
+            padding: 16px;
+            border-radius: var(--k-radius-md);
+            border: 1px solid var(--k-border);
+            font-family: var(--k-font-mono);
+            font-size: var(--k-text-xs);
+        }
+        .inspector h4 {
+            margin: 0 0 8px 0;
+            font-size: 11px;
+            color: var(--k-text-secondary);
+            text-transform: uppercase;
+        }
+        .inspector-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .inspector-val { color: var(--k-accent); }
+
+        /* Stability Tool */
+        .stability-tool {
+            margin-top: 20px;
+            padding: 12px;
+            background: var(--k-bg-base);
+            border: 1px solid var(--k-border);
+            border-radius: var(--k-radius-sm);
+            text-align: center;
+        }
+        #stability-res {
+            display: block;
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: var(--k-text-xs);
+        }
+        .pass { color: var(--k-success); }
+        .fail { color: var(--k-error); }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1 style="font-size: var(--k-text-lg); margin: 0;">🔘 Button Lab</h1>
+            <p style="font-size: var(--k-text-xs); color: var(--k-text-secondary); margin: 4px 0 0 0;">Real-time Component Validation</p>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- Variants -->
+            <div class="control-group">
+                <span class="control-label">Variant</span>
+                <select id="ctrl-variant">
+                    <option value="filled">Filled</option>
+                    <option value="outlined">Outlined</option>
+                    <option value="ghost">Ghost</option>
+                    <option value="subtle">Subtle</option>
+                    <option value="soft">Soft</option>
+                    <option value="gradient">Gradient</option>
+                    <option value="glow">Glow</option>
+                    <option value="minimal">Minimal</option>
+                    <option value="elevated">Elevated</option>
+                    <option value="destructive">Destructive</option>
+                    <option value="icon-only">Icon Only</option>
+                </select>
+            </div>
+
+            <!-- Size -->
+            <div class="control-group">
+                <span class="control-label">Size</span>
+                <select id="ctrl-size">
+                    <option value="xs">Extra Small (XS)</option>
+                    <option value="sm">Small (SM)</option>
+                    <option value="md" selected>Medium (MD)</option>
+                    <option value="lg">Large (LG)</option>
+                    <option value="xl">Extra Large (XL)</option>
+                </select>
+            </div>
+
+            <!-- Color -->
+            <div class="control-group">
+                <span class="control-label">Color</span>
+                <select id="ctrl-color">
+                    <option value="primary" selected>Primary</option>
+                    <option value="success">Success</option>
+                    <option value="warning">Warning</option>
+                    <option value="error">Error</option>
+                    <option value="info">Info</option>
+                    <option value="default">Default</option>
+                </select>
+            </div>
+
+            <!-- Radius -->
+            <div class="control-group">
+                <span class="control-label">Radius</span>
+                <select id="ctrl-radius">
+                    <option value="">Component Default</option>
+                    <option value="r-none">Sharp (None)</option>
+                    <option value="r-sm">Small</option>
+                    <option value="r-md">Medium</option>
+                    <option value="r-lg">Large</option>
+                    <option value="r-full">Full (Pill)</option>
+                </select>
+            </div>
+
+            <!-- Type -->
+            <div class="control-group">
+                <span class="control-label">HTML Type</span>
+                <select id="ctrl-type">
+                    <option value="button" selected>button</option>
+                    <option value="submit">submit</option>
+                    <option value="reset">reset</option>
+                </select>
+            </div>
+
+            <!-- Content -->
+            <div class="control-group">
+                <span class="control-label">Label</span>
+                <input type="text" id="ctrl-label" value="Click Me">
+            </div>
+
+            <div class="control-group">
+                <span class="control-label">Left Icon (Name/HTML)</span>
+                <input type="text" id="ctrl-icon" placeholder="e.g. search">
+            </div>
+
+            <div class="control-group">
+                <span class="control-label">Right Icon (Name/HTML)</span>
+                <input type="text" id="ctrl-iconRight" placeholder="e.g. arrow-right">
+            </div>
+
+            <!-- Flags -->
+            <div class="control-group">
+                <span class="control-label">Flags</span>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="ctrl-loading"> Loading State
+                </label>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="ctrl-disabled"> Disabled
+                </label>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="ctrl-full"> Full Width
+                </label>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="ctrl-truncate"> Truncate Text
+                </label>
+            </div>
+
+            <div class="stability-tool">
+                <button onclick="auditStability()" style="cursor:pointer; padding: 4px 12px; font-size: 12px;">Run Layout Stability Audit</button>
+                <span id="stability-res">Ready...</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="preview-main">
+        <div class="preview-stage">
+            <k-button id="preview-btn" v="filled md primary">Click Me</k-button>
+        </div>
+
+        <div class="preview-footer">
+            <div class="code-block" id="code-output">
+                &lt;k-button v="filled md primary"&gt;Click Me&lt;/k-button&gt;
+            </div>
+            <div class="inspector">
+                <h4>A11y & DOM Inspector</h4>
+                <div class="inspector-row">
+                    <span>aria-label:</span>
+                    <span class="inspector-val" id="insp-label">-</span>
+                </div>
+                <div class="inspector-row">
+                    <span>aria-busy:</span>
+                    <span class="inspector-val" id="insp-busy">-</span>
+                </div>
+                <div class="inspector-row">
+                    <span>tabindex:</span>
+                    <span class="inspector-val" id="insp-tab">-</span>
+                </div>
+                <div class="inspector-row">
+                    <span>native type:</span>
+                    <span class="inspector-val" id="insp-type">-</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import './../../src/vanilla/index.ts';
+
+        const btn = document.getElementById('preview-btn');
+        const codeOutput = document.getElementById('code-output');
+
+        const controls = {
+            variant: document.getElementById('ctrl-variant'),
+            size: document.getElementById('ctrl-size'),
+            color: document.getElementById('ctrl-color'),
+            radius: document.getElementById('ctrl-radius'),
+            type: document.getElementById('ctrl-type'),
+            label: document.getElementById('ctrl-label'),
+            icon: document.getElementById('ctrl-icon'),
+            iconRight: document.getElementById('ctrl-iconRight'),
+            loading: document.getElementById('ctrl-loading'),
+            disabled: document.getElementById('ctrl-disabled'),
+            full: document.getElementById('ctrl-full'),
+            truncate: document.getElementById('ctrl-truncate'),
+        };
+
+        function updateButton() {
+            // 1. Construct V Attribute
+            const vParts = [];
+            vParts.push(controls.variant.value);
+            vParts.push(controls.size.value);
+            vParts.push(controls.color.value);
+            if (controls.radius.value) vParts.push(controls.radius.value);
+            if (controls.loading.checked) vParts.push('loading');
+            if (controls.disabled.checked) vParts.push('disabled');
+            if (controls.full.checked) vParts.push('full');
+            if (controls.truncate.checked) vParts.push('truncate');
+
+            const vString = vParts.join(' ');
+            btn.setAttribute('v', vString);
+            btn.setAttribute('type', controls.type.value);
+            btn.setAttribute('icon', controls.icon.value);
+            btn.setAttribute('iconRight', controls.iconRight.value);
+            btn.textContent = controls.label.value;
+
+            // 2. Update Code Snippet
+            let html = `<k-button v="${vString}"`;
+            if (controls.type.value !== 'button') html += ` type="${controls.type.value}"`;
+            if (controls.icon.value) html += ` icon="${controls.icon.value}"`;
+            if (controls.iconRight.value) html += ` iconRight="${controls.iconRight.value}"`;
+            html += `>${controls.label.value}</k-button>`;
+            codeOutput.textContent = html;
+
+            // 3. Update Inspector
+            const inner = btn.querySelector('button');
+            if (inner) {
+                document.getElementById('insp-label').textContent = inner.getAttribute('aria-label');
+                document.getElementById('insp-busy').textContent = inner.getAttribute('aria-busy');
+                document.getElementById('insp-tab').textContent = inner.getAttribute('tabindex');
+                document.getElementById('insp-type').textContent = inner.type;
+            }
+        }
+
+        // Listeners
+        Object.values(controls).forEach(ctrl => {
+            ctrl.addEventListener('input', updateButton);
+        });
+
+        // Stability Test
+        window.auditStability = async () => {
+            const res = document.getElementById('stability-res');
+            const currentV = btn.getAttribute('v') || '';
+
+            const getDims = () => btn.getBoundingClientRect();
+            const before = getDims();
+
+            // Force loading
+            btn.setAttribute('v', currentV + ' loading');
+            await new Promise(r => setTimeout(r, 100));
+            const after = getDims();
+
+            if (Math.abs(before.width - after.width) < 0.5 && Math.abs(before.height - after.height) < 0.5) {
+                res.textContent = 'PASS: Stable Layout!';
+                res.className = 'pass';
+            } else {
+                res.textContent = `FAIL: Shifted ${Math.round(after.width - before.width)}px`;
+                res.className = 'fail';
+            }
+            btn.setAttribute('v', currentV);
+        };
+
+        // Init
+        updateButton();
+        setInterval(updateButton, 500); // Ensure inspector stays in sync with a-sync rendering
+    </script>
+</body>
+</html>

@@ -36,8 +36,9 @@ export class KButtonElement extends KBaseElement {
   private _inner: HTMLButtonElement | null = null;
 
   static get observedAttributes(): string[] {
-    return [...super.observedAttributes, 'icon', 'iconRight', 'label'];
+    return [...super.observedAttributes, 'icon', 'iconRight', 'label', 'type'];
   }
+
 
   /** Bound click handler — stored so it can be removed in disconnectedCallback. */
   private readonly _onClick = (e: MouseEvent): void => {
@@ -59,7 +60,7 @@ export class KButtonElement extends KBaseElement {
     if (this._inner) return;
 
     const btn = document.createElement('button');
-    btn.type  = 'button';
+    btn.type  = (this.getAttribute('type') as 'button' | 'submit' | 'reset') || 'button';
     btn.appendChild(this._assembleContent());
     this.appendChild(btn);
     this._inner = btn;
@@ -69,6 +70,9 @@ export class KButtonElement extends KBaseElement {
     const fragment = document.createDocumentFragment();
     const rawLabel = (this.textContent ?? '').trim();
     this.textContent = '';
+
+    const contentWrap = document.createElement('span');
+    contentWrap.className = 'k-button__content-wrap';
 
     // 1. Handle Leading Icon (Attribute or Slot)
     const leftIcon = this.getAttribute('icon') || this.querySelector('[slot="icon"]');
@@ -82,7 +86,7 @@ export class KButtonElement extends KBaseElement {
         leftIcon.removeAttribute('slot');
         iconWrap.appendChild(leftIcon);
       }
-      fragment.appendChild(iconWrap);
+      contentWrap.appendChild(iconWrap);
     }
 
     // 2. Handle Text Label
@@ -91,7 +95,7 @@ export class KButtonElement extends KBaseElement {
       const span = document.createElement('span');
       span.className = 'k-button__text';
       span.textContent = label;
-      fragment.appendChild(span);
+      contentWrap.appendChild(span);
     }
 
     // 3. Handle Trailing Icon (Attribute or Slot)
@@ -106,9 +110,10 @@ export class KButtonElement extends KBaseElement {
         rightIcon.removeAttribute('slot');
         iconWrap.appendChild(rightIcon);
       }
-      fragment.appendChild(iconWrap);
+      contentWrap.appendChild(iconWrap);
     }
 
+    fragment.appendChild(contentWrap);
     return fragment;
   }
 
@@ -128,6 +133,8 @@ export class KButtonElement extends KBaseElement {
     btn.disabled = tokens.disabled;
     btn.setAttribute('aria-disabled', String(tokens.disabled));
     btn.setAttribute('tabindex', tokens.disabled ? '-1' : '0');
+
+    btn.type = (this.getAttribute('type') as 'button' | 'submit' | 'reset') || 'button';
 
     btn.setAttribute('aria-busy', String(tokens.loading));
 
@@ -169,7 +176,7 @@ export class KButtonElement extends KBaseElement {
     if (this._inner.querySelector('.k-button__loader')) return;
     const loader = document.createElement('span');
     loader.className = 'k-button__loader';
-    loader.innerHTML = SPINNER_SVG; // safe: SPINNER_SVG is library-controlled, not user input
+    loader.innerHTML = SPINNER_SVG;
     loader.setAttribute('aria-hidden', 'true');
     this._inner.appendChild(loader);
   }
