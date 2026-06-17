@@ -1,0 +1,410 @@
+/**
+ * Lightbox component styles — Beautiful modern lightbox with gallery support
+ * 
+ * Features:
+ * - Full-screen overlay with backdrop blur
+ * - Smooth animations and transitions
+ * - Image zoom and pan controls
+ * - Gallery navigation with counters
+ * - Mobile-responsive touch controls
+ * - Accessibility compliance
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHTBOX TRIGGER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-lightbox {
+  display: inline-block;
+}
+
+.k-lightbox-trigger {
+  cursor: pointer;
+  transition: transform var(--k-transition-fast), filter var(--k-transition-fast);
+  border-radius: var(--k-radius-md);
+}
+
+.k-lightbox-trigger:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHTBOX OVERLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--k-z-modal);
+  opacity: 0;
+  transition: opacity var(--k-transition-base);
+  user-select: none;
+}
+
+.k-lightbox-overlay.k-lightbox-open {
+  opacity: 1;
+}
+
+.k-lightbox-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IMAGE CONTAINER & IMAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-lightbox-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--k-radius-lg);
+  background: var(--k-bg-elevated);
+  box-shadow: var(--k-shadow-lg);
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.k-lightbox-image {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform var(--k-transition-base);
+  transform-origin: center;
+  cursor: grab;
+}
+
+.k-lightbox-image:active {
+  cursor: grabbing;
+}
+
+/* Scale animation on load */
+.k-lightbox-image {
+  animation: k-lightbox-image-enter var(--k-transition-enter);
+}
+
+@keyframes k-lightbox-image-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTROLS & BUTTONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-lightbox-btn {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--k-text-xl);
+  font-weight: var(--k-font-bold);
+  cursor: pointer;
+  transition: all var(--k-transition-fast);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.k-lightbox-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.k-lightbox-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.k-lightbox-btn:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Close button */
+.k-lightbox-close {
+  top: 20px;
+  right: 20px;
+  font-size: var(--k-text-lg);
+}
+
+/* Navigation buttons */
+.k-lightbox-prev {
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.k-lightbox-next {
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.k-lightbox-prev:hover,
+.k-lightbox-next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Zoom controls */
+.k-lightbox-controls {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--k-space-2);
+  background: rgba(0, 0, 0, 0.6);
+  padding: var(--k-space-2);
+  border-radius: var(--k-radius-full);
+  backdrop-filter: blur(10px);
+}
+
+.k-lightbox-zoom-in,
+.k-lightbox-zoom-out {
+  position: static;
+  width: 40px;
+  height: 40px;
+  font-size: var(--k-text-lg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COUNTER & INFO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-lightbox-counter {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: var(--k-space-2) var(--k-space-4);
+  border-radius: var(--k-radius-full);
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-medium);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-lightbox-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.k-lightbox-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: k-lightbox-spin 1s linear infinite;
+}
+
+@keyframes k-lightbox-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .k-lightbox-container {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+
+  .k-lightbox-image {
+    max-height: 80vh;
+  }
+
+  /* Move navigation buttons closer on mobile */
+  .k-lightbox-prev {
+    left: 10px;
+  }
+
+  .k-lightbox-next {
+    right: 10px;
+  }
+
+  /* Stack controls vertically on mobile */
+  .k-lightbox-controls {
+    bottom: 20px;
+    flex-direction: column;
+    gap: var(--k-space-1);
+  }
+
+  .k-lightbox-counter {
+    top: 20px;
+  }
+
+  .k-lightbox-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Smaller buttons on mobile */
+  .k-lightbox-btn {
+    width: 40px;
+    height: 40px;
+    font-size: var(--k-text-base);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHTBOX VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Basic variant - minimal controls */
+k-lightbox[data-variant="basic"] .k-lightbox-controls {
+  display: none;
+}
+
+/* Gallery variant - enhanced navigation */
+k-lightbox[data-variant="gallery"] .k-lightbox-counter {
+  display: block;
+}
+
+/* Zoom variant - show zoom controls */
+k-lightbox[data-variant="zoom"] .k-lightbox-controls {
+  display: flex;
+}
+
+/* Slideshow variant - auto-advance timer */
+k-lightbox[data-variant="slideshow"] .k-lightbox-container::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  height: 2px;
+  background: var(--k-accent);
+  animation: k-lightbox-progress 5s linear infinite;
+}
+
+@keyframes k-lightbox-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Loading state */
+.k-lightbox-overlay[data-loading="true"] .k-lightbox-image-container {
+  background: var(--k-bg-surface);
+}
+
+/* Error state */
+.k-lightbox-overlay[data-error="true"] .k-lightbox-image-container::before {
+  content: "⚠️ Failed to load image";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--k-text-muted);
+  font-size: var(--k-text-lg);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY & REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .k-lightbox-overlay,
+  .k-lightbox-image,
+  .k-lightbox-btn {
+    animation: none;
+    transition: none;
+  }
+
+  .k-lightbox-spinner {
+    animation: none;
+    border-top-color: transparent;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .k-lightbox-overlay {
+    background: black;
+    backdrop-filter: none;
+  }
+
+  .k-lightbox-btn {
+    background: black;
+    border: 2px solid white;
+  }
+
+  .k-lightbox-counter,
+  .k-lightbox-controls {
+    background: black;
+    border: 1px solid white;
+  }
+}
+
+/* Focus management for keyboard users */
+.k-lightbox-overlay:focus-within .k-lightbox-btn {
+  opacity: 1;
+}
+
+/* Hide controls when not needed */
+.k-lightbox-overlay:not(:hover) .k-lightbox-btn:not(:focus) {
+  opacity: 0.7;
+  transition: opacity var(--k-transition-slow);
+}
+
+.k-lightbox-overlay:hover .k-lightbox-btn,
+.k-lightbox-btn:focus {
+  opacity: 1;
+}
+
+/* Print styles - hide lightbox completely */
+@media print {
+  .k-lightbox-overlay {
+    display: none !important;
+  }
+}

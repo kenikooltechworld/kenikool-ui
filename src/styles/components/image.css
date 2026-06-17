@@ -1,0 +1,491 @@
+/**
+ * Image component styles — Modern image optimization with security & performance
+ * 
+ * Features:
+ * - 7 image types with optimized layouts
+ * - Responsive behavior with aspect ratio control
+ * - Loading states: skeleton, spinner, fade-in animations
+ * - Error states with fallback handling
+ * - Layout shift prevention via aspect ratios
+ * - Accessibility compliance (focus rings, reduced motion)
+ * - CSP-compliant (no inline styles)
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE IMAGE CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-image {
+  display: inline-block;
+  position: relative;
+  line-height: 0; /* Removes descender space */
+}
+
+.k-image-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--k-bg-surface);
+  border-radius: var(--k-radius-sm);
+  
+  /* Default aspect ratio - overridden by variants */
+  aspect-ratio: var(--k-image-aspect-ratio, auto);
+}
+
+.k-image-main {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--k-image-object-fit, cover);
+  object-position: center;
+  transition: opacity var(--k-transition-base), filter var(--k-transition-base);
+  
+  /* Prevent dragging by default */
+  -webkit-user-drag: none;
+  user-select: none;
+  
+  /* Ensure smooth rendering */
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Focus ring for keyboard navigation */
+k-image:focus-visible .k-image-container,
+.k-image-main:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOADING STATES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-image-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--k-bg-surface);
+  z-index: 2;
+}
+
+/* Skeleton loader (for hero, banner, gallery types) */
+.k-image-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--k-bg-surface) 0%,
+    var(--k-border-subtle) 50%,
+    var(--k-bg-surface) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: inherit;
+  animation: k-image-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes k-image-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Spinner loader (for avatar, thumbnail types) */
+.k-image-spinner {
+  width: var(--k-icon-lg);
+  height: var(--k-icon-lg);
+  border: 2px solid var(--k-border);
+  border-top: 2px solid var(--k-accent);
+  border-radius: 50%;
+  animation: k-image-spin 1s linear infinite;
+}
+
+@keyframes k-image-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FALLBACK STATES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-image-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--k-bg-elevated);
+  color: var(--k-text-muted);
+  z-index: 1;
+}
+
+.k-image-fallback-text {
+  font-size: calc(var(--k-image-size, 48px) * 0.4);
+  font-weight: var(--k-font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--k-tracking-wide);
+}
+
+.k-image-fallback-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  filter: grayscale(20%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IMAGE TYPE VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. BASIC — Default image display */
+k-image[data-variant="basic"] .k-image-container {
+  border-radius: var(--k-radius-md);
+  aspect-ratio: var(--k-image-aspect-ratio, auto);
+}
+
+/* 2. HERO — Full-width hero images */
+k-image[data-variant="hero"] {
+  display: block;
+  width: 100%;
+}
+
+k-image[data-variant="hero"] .k-image-container {
+  width: 100%;
+  min-height: 300px;
+  aspect-ratio: var(--k-image-aspect-ratio, 16/9);
+  border-radius: var(--k-radius-lg);
+}
+
+k-image[data-variant="hero"] .k-image-main {
+  object-fit: var(--k-image-object-fit, cover);
+}
+
+/* 3. AVATAR — Circular profile images */
+k-image[data-variant="avatar"] .k-image-container {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: var(--k-image-size, 48px);
+  height: var(--k-image-size, 48px);
+  flex-shrink: 0;
+}
+
+k-image[data-variant="avatar"] .k-image-main {
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* Avatar sizes */
+k-image[data-variant="avatar"][data-size="xs"] .k-image-container {
+  --k-image-size: 24px;
+}
+
+k-image[data-variant="avatar"][data-size="sm"] .k-image-container {
+  --k-image-size: 32px;
+}
+
+k-image[data-variant="avatar"][data-size="md"] .k-image-container {
+  --k-image-size: 48px;
+}
+
+k-image[data-variant="avatar"][data-size="lg"] .k-image-container {
+  --k-image-size: 64px;
+}
+
+k-image[data-variant="avatar"][data-size="xl"] .k-image-container {
+  --k-image-size: 96px;
+}
+
+/* 4. THUMBNAIL — Small preview images */
+k-image[data-variant="thumbnail"] .k-image-container {
+  width: var(--k-image-size, 80px);
+  height: var(--k-image-size, 80px);
+  border-radius: var(--k-radius-sm);
+  border: 1px solid var(--k-border);
+}
+
+k-image[data-variant="thumbnail"] .k-image-main {
+  object-fit: cover;
+}
+
+/* Thumbnail hover effect */
+k-image[data-variant="thumbnail"]:hover .k-image-container {
+  border-color: var(--k-accent);
+  transform: scale(1.05);
+  transition: transform var(--k-transition-fast), border-color var(--k-transition-fast);
+}
+
+/* 5. BANNER — Wide banner images */
+k-image[data-variant="banner"] {
+  display: block;
+  width: 100%;
+}
+
+k-image[data-variant="banner"] .k-image-container {
+  width: 100%;
+  aspect-ratio: var(--k-image-aspect-ratio, 21/9);
+  border-radius: var(--k-radius-lg);
+  min-height: 120px;
+}
+
+k-image[data-variant="banner"] .k-image-main {
+  object-fit: var(--k-image-object-fit, cover);
+}
+
+/* 6. GALLERY — Images in gallery grid */
+k-image[data-variant="gallery"] .k-image-container {
+  aspect-ratio: var(--k-image-aspect-ratio, 1);
+  border-radius: var(--k-radius-md);
+  cursor: pointer;
+  transition: transform var(--k-transition-fast), box-shadow var(--k-transition-fast);
+}
+
+k-image[data-variant="gallery"]:hover .k-image-container {
+  transform: scale(1.02);
+  box-shadow: var(--k-shadow-lg);
+}
+
+k-image[data-variant="gallery"] .k-image-main {
+  object-fit: cover;
+}
+
+/* 7. RESPONSIVE — Fully responsive image */
+k-image[data-variant="responsive"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+k-image[data-variant="responsive"] .k-image-container {
+  width: 100%;
+  aspect-ratio: var(--k-image-aspect-ratio, auto);
+  border-radius: var(--k-radius-md);
+}
+
+k-image[data-variant="responsive"] .k-image-main {
+  width: 100%;
+  height: auto;
+  object-fit: var(--k-image-object-fit, contain);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Loading state */
+.k-image-container[data-state="loading"] {
+  background-color: var(--k-bg-surface);
+}
+
+/* Loaded state - fade in animation */
+.k-image-container[data-state="loaded"] .k-image-main {
+  animation: k-image-fade-in 0.3s ease-out;
+}
+
+@keyframes k-image-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Error state */
+.k-image-container[data-state="error"] {
+  background-color: var(--k-error-subtle);
+  border: 1px dashed var(--k-error);
+}
+
+.k-image-container[data-state="error"]::before {
+  content: "⚠️";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--k-text-lg);
+  z-index: 1;
+}
+
+/* Disabled state */
+k-image[data-disabled="true"] .k-image-container {
+  opacity: 0.5;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+}
+
+/* Loading state */
+k-image[data-loading="true"] .k-image-container {
+  pointer-events: none;
+}
+
+/* Full width */
+k-image[data-full="true"] {
+  display: block;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COLOR VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Primary accent */
+k-image[data-color="primary"] .k-image-container {
+  border-color: var(--k-accent);
+}
+
+k-image[data-color="primary"]:focus-visible .k-image-container {
+  outline-color: var(--k-accent);
+}
+
+/* Success */
+k-image[data-color="success"] .k-image-container {
+  border-color: var(--k-success);
+}
+
+k-image[data-color="success"]:focus-visible .k-image-container {
+  outline-color: var(--k-success);
+}
+
+/* Warning */
+k-image[data-color="warning"] .k-image-container {
+  border-color: var(--k-warning);
+}
+
+k-image[data-color="warning"]:focus-visible .k-image-container {
+  outline-color: var(--k-warning);
+}
+
+/* Error */
+k-image[data-color="error"] .k-image-container {
+  border-color: var(--k-error);
+}
+
+k-image[data-color="error"]:focus-visible .k-image-container {
+  outline-color: var(--k-error);
+}
+
+/* Info */
+k-image[data-color="info"] .k-image-container {
+  border-color: var(--k-info);
+}
+
+k-image[data-color="info"]:focus-visible .k-image-container {
+  outline-color: var(--k-info);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RADIUS OVERRIDES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-image[data-radius="none"] .k-image-container,
+k-image[data-radius="none"] .k-image-main {
+  border-radius: 0;
+}
+
+k-image[data-radius="sm"] .k-image-container,
+k-image[data-radius="sm"] .k-image-main {
+  border-radius: var(--k-radius-sm);
+}
+
+k-image[data-radius="md"] .k-image-container,
+k-image[data-radius="md"] .k-image-main {
+  border-radius: var(--k-radius-md);
+}
+
+k-image[data-radius="lg"] .k-image-container,
+k-image[data-radius="lg"] .k-image-main {
+  border-radius: var(--k-radius-lg);
+}
+
+k-image[data-radius="full"] .k-image-container,
+k-image[data-radius="full"] .k-image-main {
+  border-radius: 50%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  k-image[data-variant="hero"] .k-image-container {
+    min-height: 200px;
+    aspect-ratio: var(--k-image-aspect-ratio, 4/3);
+  }
+
+  k-image[data-variant="banner"] .k-image-container {
+    aspect-ratio: var(--k-image-aspect-ratio, 16/9);
+    min-height: 100px;
+  }
+
+  /* Smaller avatar sizes on mobile */
+  k-image[data-variant="avatar"][data-size="xl"] .k-image-container {
+    --k-image-size: 80px;
+  }
+
+  k-image[data-variant="avatar"][data-size="lg"] .k-image-container {
+    --k-image-size: 56px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY & REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .k-image-skeleton,
+  .k-image-spinner,
+  .k-image-main {
+    animation: none;
+    transition: none;
+  }
+
+  k-image[data-variant="thumbnail"]:hover .k-image-container,
+  k-image[data-variant="gallery"]:hover .k-image-container {
+    transform: none;
+  }
+
+  .k-image-container[data-state="loaded"] .k-image-main {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .k-image-container {
+    border: 1px solid;
+  }
+
+  .k-image-fallback {
+    background-color: ButtonFace;
+    color: ButtonText;
+  }
+
+  .k-image-container[data-state="error"] {
+    border-color: red;
+    background-color: rgba(255, 0, 0, 0.1);
+  }
+}
+
+/* Print styles */
+@media print {
+  .k-image-loading,
+  .k-image-spinner,
+  .k-image-skeleton {
+    display: none;
+  }
+
+  .k-image-main {
+    display: block !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}

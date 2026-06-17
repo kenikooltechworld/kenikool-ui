@@ -1,0 +1,407 @@
+/**
+ * navbar-horizontal.css — <k-navbar-horizontal> component styles.
+ *
+ * Architecture: Uses data-* attributes on host for variants/states.
+ * All tokens are from shared.css and theme token files — NO new tokens.
+ *
+ * Responsive behavior:
+ * - Desktop (≥ 768px): Full horizontal layout with logo, links, actions
+ * - Mobile (< 768px): Logo + hamburger, links collapse into slide-in drawer
+ */
+
+/* ─── Host ────────────────────────────────────────────────────────────────── */
+
+k-navbar-horizontal {
+  display: block;
+  width: 100%;
+}
+
+/* Sticky positioning (v="sticky") */
+k-navbar-horizontal[data-variant="sticky"] {
+  position: sticky;
+  top: 0;
+  z-index: var(--k-z-sticky);
+}
+
+/* ─── Nav element (semantic <nav>) ────────────────────────────────────────── */
+
+.k-navbar-horizontal__nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  background: var(--k-bg-surface);
+  border-bottom: 1px solid var(--k-border);
+  transition: background var(--k-transition-base),
+              border-color var(--k-transition-base),
+              box-shadow var(--k-transition-base);
+}
+
+/* Variants */
+k-navbar-horizontal[data-variant="elevated"] .k-navbar-horizontal__nav {
+  background: var(--k-bg-elevated);
+  box-shadow: var(--k-shadow-sm);
+  border-bottom: none;
+}
+
+k-navbar-horizontal[data-variant="bordered"] .k-navbar-horizontal__nav {
+  border-bottom: 2px solid var(--k-border-strong);
+}
+
+k-navbar-horizontal[data-variant="transparent"] .k-navbar-horizontal__nav {
+  background: transparent;
+  border-bottom: 1px solid var(--k-border-subtle);
+}
+
+/* Size variants */
+k-navbar-horizontal[data-size="sm"] .k-navbar-horizontal__nav {
+  height: 56px;
+}
+
+k-navbar-horizontal[data-size="lg"] .k-navbar-horizontal__nav {
+  height: 72px;
+}
+
+/* ─── Container (k-row with responsive cols) ──────────────────────────────── */
+
+.k-navbar-horizontal__container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--k-space-6);
+  flex-wrap: nowrap !important; /* CRITICAL: Never wrap logo, links, actions to multiple rows */
+}
+
+/* ─── Logo column ─────────────────────────────────────────────────────────── */
+
+.k-navbar-horizontal__logo-col {
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+  max-width: 250px; /* Fixed maximum space for logo */
+}
+
+.k-navbar-horizontal__logo-col img {
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+/* ─── Links column ────────────────────────────────────────────────────────── */
+
+.k-navbar-horizontal__links-col {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+.k-navbar-horizontal__links {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  overflow: hidden; /* Prevent wrapping */
+}
+
+.k-navbar-horizontal__links a {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-base);
+  font-weight: var(--k-font-medium);
+  color: var(--k-text-secondary);
+  text-decoration: none;
+  padding: var(--k-space-2) var(--k-space-3);
+  border-bottom: 2px solid transparent;
+  transition: color var(--k-transition-fast),
+              border-color var(--k-transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0; /* Don't shrink individual links */
+}
+
+.k-navbar-horizontal__links a:hover {
+  color: var(--k-text-primary);
+}
+
+.k-navbar-horizontal__links a:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--k-radius-sm);
+}
+
+/* Active link styling (via aria-current or .active class) */
+.k-navbar-horizontal__links a[aria-current="page"],
+.k-navbar-horizontal__links a.active {
+  color: var(--k-text-primary);
+  border-bottom-color: var(--k-accent);
+}
+
+/* ─── Actions column ──────────────────────────────────────────────────────── */
+
+.k-navbar-horizontal__actions-col {
+  flex: 0 0 auto !important;
+  min-width: 0 !important;
+  max-width: 200px; /* Fixed maximum space for actions */
+}
+
+/* ─── Mobile toggle (hamburger) ───────────────────────────────────────────── */
+
+.k-navbar-horizontal__mobile-toggle {
+  display: none; /* Hidden on desktop */
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: var(--k-space-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--k-radius-md);
+  color: var(--k-text-primary);
+  cursor: pointer;
+  transition: background var(--k-transition-fast);
+}
+
+.k-navbar-horizontal__mobile-toggle:hover {
+  background: var(--k-bg-elevated);
+}
+
+.k-navbar-horizontal__mobile-toggle:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-navbar-horizontal__mobile-toggle svg {
+  display: block;
+}
+
+/* ─── Mobile overlay (backdrop) ───────────────────────────────────────────── */
+
+.k-navbar-horizontal__mobile-overlay {
+  display: none; /* Hidden on desktop and when closed */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--k-bg-overlay);
+  z-index: calc(var(--k-z-sticky) + 1);
+  opacity: 0;
+  transition: opacity var(--k-transition-enter);
+  pointer-events: none;
+}
+
+.k-navbar-horizontal__mobile-overlay--visible {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ─── Mobile drawer (slide-in menu) ───────────────────────────────────────── */
+
+.k-navbar-horizontal__mobile-drawer {
+  display: none; /* Hidden on desktop */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(320px, 85vw);
+  height: 100vh;
+  background: var(--k-bg-base);
+  box-shadow: var(--k-shadow-xl);
+  z-index: calc(var(--k-z-sticky) + 2);
+  transform: translateX(100%);
+  transition: transform var(--k-transition-enter);
+  overflow-y: auto;
+  padding: var(--k-space-6);
+}
+
+.k-navbar-horizontal__mobile-drawer--open {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-6);
+  transform: translateX(0);
+}
+
+/* Mobile links (inside drawer) */
+.k-navbar-horizontal__mobile-links a {
+  display: flex;
+  align-items: center;
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-lg);
+  font-weight: var(--k-font-medium);
+  color: var(--k-text-secondary);
+  text-decoration: none;
+  padding: var(--k-space-3) var(--k-space-4);
+  border-radius: var(--k-radius-md);
+  transition: background var(--k-transition-fast),
+              color var(--k-transition-fast);
+}
+
+.k-navbar-horizontal__mobile-links a:hover {
+  background: var(--k-bg-surface);
+  color: var(--k-text-primary);
+}
+
+.k-navbar-horizontal__mobile-links a:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-navbar-horizontal__mobile-links a[aria-current="page"],
+.k-navbar-horizontal__mobile-links a.active {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+}
+
+/* Mobile actions (inside drawer) - k-stack handles layout */
+.k-navbar-horizontal__mobile-actions {
+  padding-top: var(--k-space-4);
+  border-top: 1px solid var(--k-border);
+}
+
+/* ─── Responsive breakpoint: Mobile (< 768px) ─────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* Hide desktop links and actions columns */
+  .k-navbar-horizontal__links-col,
+  .k-navbar-horizontal__actions-col {
+    display: none;
+  }
+
+  /* Show mobile toggle */
+  .k-navbar-horizontal__mobile-toggle {
+    display: flex;
+  }
+
+  /* Adjust container padding for mobile */
+  .k-navbar-horizontal__container {
+    padding: 0 var(--k-space-4);
+  }
+
+  /* Logo slightly smaller on mobile */
+  .k-navbar-horizontal__logo-col img {
+    height: 32px;
+  }
+}
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .k-navbar-horizontal__nav,
+  .k-navbar-horizontal__links a,
+  .k-navbar-horizontal__mobile-toggle,
+  .k-navbar-horizontal__mobile-overlay,
+  .k-navbar-horizontal__mobile-drawer,
+  .k-navbar-horizontal__mobile-links a {
+    transition: none;
+  }
+}
+
+/* ─── "More" button (desktop overflow dropdown) ───────────────────────────── */
+
+.k-navbar-horizontal__more-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--k-space-1);
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-base);
+  font-weight: var(--k-font-medium);
+  color: var(--k-text-secondary);
+  text-decoration: none;
+  padding: var(--k-space-2) var(--k-space-3);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--k-radius-sm);
+  cursor: pointer;
+  transition: color var(--k-transition-fast),
+              border-color var(--k-transition-fast),
+              background var(--k-transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0; /* Don't shrink the More button */
+}
+
+.k-navbar-horizontal__more-button:hover {
+  color: var(--k-text-primary);
+  background: var(--k-bg-elevated);
+}
+
+.k-navbar-horizontal__more-button:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-navbar-horizontal__more-button[aria-expanded="true"] {
+  color: var(--k-text-primary);
+  background: var(--k-bg-elevated);
+}
+
+.k-navbar-horizontal__more-button svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--k-transition-fast);
+}
+
+.k-navbar-horizontal__more-button[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* ─── "More" dropdown menu ────────────────────────────────────────────────── */
+
+.k-navbar-horizontal__more-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--k-space-2);
+  min-width: 200px;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  box-shadow: var(--k-shadow-lg);
+  padding: var(--k-space-2);
+  z-index: var(--k-z-dropdown);
+  animation: k-fade-in 0.2s ease-out;
+}
+
+/* Position dropdown relative to links column */
+.k-navbar-horizontal__links-col {
+  position: relative;
+}
+
+.k-navbar-horizontal__more-link {
+  display: block;
+  width: 100%;
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-base);
+  font-weight: var(--k-font-medium);
+  color: var(--k-text-secondary);
+  text-decoration: none;
+  padding: var(--k-space-2) var(--k-space-3);
+  border-radius: var(--k-radius-sm);
+  transition: color var(--k-transition-fast),
+              background var(--k-transition-fast);
+  white-space: nowrap;
+}
+
+.k-navbar-horizontal__more-link:hover {
+  color: var(--k-text-primary);
+  background: var(--k-bg-elevated);
+}
+
+.k-navbar-horizontal__more-link:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: -2px;
+}
+
+.k-navbar-horizontal__more-link[aria-current="page"],
+.k-navbar-horizontal__more-link.active {
+  color: var(--k-text-primary);
+  background: var(--k-accent-subtle);
+  font-weight: var(--k-font-semibold);
+}
+
+/* ─── Mobile: Hide More button and dropdown ───────────────────────────────── */
+
+@media (max-width: 767px) {
+  .k-navbar-horizontal__more-button,
+  .k-navbar-horizontal__more-dropdown {
+    display: none !important;
+  }
+}

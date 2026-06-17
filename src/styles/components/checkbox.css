@@ -1,0 +1,529 @@
+/* src/styles/components/checkbox.css */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   k-checkbox — Industry-standard checkbox/radio with 10 variants
+   
+   Supports:
+   - Sizes: xs, sm, md (default), lg, xl
+   - Colors: primary (default), success, warning, error, info, default
+   - 10 variants: default, filled, outlined, switch, switch-filled, radio,
+     radio-card, indeterminate, icon-check, animated
+   - Full WCAG 2.2 AA compliance with focus rings and keyboard support
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  position: relative;
+}
+
+/* Label wraps everything for full clickability */
+.k-checkbox__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+/* Hide native input visually but keep it accessible */
+.k-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* Custom visual overlay base */
+.k-checkbox__visual {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--k-space-4);
+  height: var(--k-space-4);
+  border-radius: var(--k-radius-sm);
+  border: 1px solid var(--k-border);
+  background: var(--k-bg-surface);
+  transition: all var(--k-transition-base);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.k-checkbox__text {
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-base);
+  line-height: 1.5;
+  color: var(--k-text-primary);
+  transition: color var(--k-transition-base);
+}
+
+/* Checkmark SVG styling */
+.k-checkbox__checkmark {
+  width: 60%;
+  height: 60%;
+  color: transparent;
+  transition: all var(--k-transition-base);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOCUS RING — WCAG 2.2 AA Compliance
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.k-checkbox__input:focus-visible + .k-checkbox__visual {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATE: CHECKED
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-checkbox .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-bg-surface);
+  border-color: var(--k-accent);
+}
+
+k-checkbox .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATE: DISABLED
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+k-checkbox[data-disabled="true"] .k-checkbox__label,
+k-checkbox .k-checkbox__input:disabled ~ * {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SIZES — xs, sm, md (default), lg, xl
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* XS */
+k-checkbox[data-size="xs"] .k-checkbox__visual {
+  width: 14px;
+  height: 14px;
+}
+k-checkbox[data-size="xs"] .k-checkbox__text {
+  font-size: var(--k-text-xs);
+}
+
+/* SM */
+k-checkbox[data-size="sm"] .k-checkbox__visual {
+  width: 16px;
+  height: 16px;
+}
+k-checkbox[data-size="sm"] .k-checkbox__text {
+  font-size: var(--k-text-sm);
+}
+
+/* MD (default) — already set in base */
+
+/* LG */
+k-checkbox[data-size="lg"] .k-checkbox__visual {
+  width: 24px;
+  height: 24px;
+}
+k-checkbox[data-size="lg"] .k-checkbox__text {
+  font-size: var(--k-text-lg);
+}
+
+/* XL */
+k-checkbox[data-size="xl"] .k-checkbox__visual {
+  width: 28px;
+  height: 28px;
+}
+k-checkbox[data-size="xl"] .k-checkbox__text {
+  font-size: var(--k-text-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COLORS — primary (default), success, warning, error, info, default
+   Color modifies the accent color when checked
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Primary (default) — uses --k-accent */
+
+/* Success */
+k-checkbox[data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-success);
+}
+k-checkbox[data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-success);
+}
+k-checkbox[data-color="success"] .k-checkbox__input:focus-visible + .k-checkbox__visual {
+  outline-color: var(--k-success);
+}
+
+/* Warning */
+k-checkbox[data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-warning);
+}
+k-checkbox[data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-warning);
+}
+k-checkbox[data-color="warning"] .k-checkbox__input:focus-visible + .k-checkbox__visual {
+  outline-color: var(--k-warning);
+}
+
+/* Error */
+k-checkbox[data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-error);
+}
+k-checkbox[data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-error);
+}
+k-checkbox[data-color="error"] .k-checkbox__input:focus-visible + .k-checkbox__visual {
+  outline-color: var(--k-error);
+}
+
+/* Info */
+k-checkbox[data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-info);
+}
+k-checkbox[data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-info);
+}
+k-checkbox[data-color="info"] .k-checkbox__input:focus-visible + .k-checkbox__visual {
+  outline-color: var(--k-info);
+}
+
+/* Default (neutral grey) */
+k-checkbox[data-color="default"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-text-secondary);
+}
+k-checkbox[data-color="default"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-text-secondary);
+}
+k-checkbox[data-color="default"] .k-checkbox__input:focus-visible + .k-checkbox__visual {
+  outline-color: var(--k-text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. Default (handled by base) */
+
+/* 2. Filled */
+k-checkbox[data-variant="filled"] .k-checkbox__visual {
+  background: var(--k-bg-elevated);
+  border-color: var(--k-border-strong);
+}
+k-checkbox[data-variant="filled"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-accent);
+  border-color: var(--k-accent);
+}
+k-checkbox[data-variant="filled"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-text-inverse);
+}
+/* Color overrides for filled */
+k-checkbox[data-variant="filled"][data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-success);
+  border-color: var(--k-success);
+}
+k-checkbox[data-variant="filled"][data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-warning);
+  border-color: var(--k-warning);
+}
+k-checkbox[data-variant="filled"][data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-error);
+  border-color: var(--k-error);
+}
+k-checkbox[data-variant="filled"][data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-info);
+  border-color: var(--k-info);
+}
+
+/* 3. Outlined */
+k-checkbox[data-variant="outlined"] .k-checkbox__visual {
+  background: transparent;
+  border: 2px solid var(--k-border);
+}
+k-checkbox[data-variant="outlined"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-accent);
+  background: transparent;
+}
+/* Color overrides for outlined */
+k-checkbox[data-variant="outlined"][data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-success);
+}
+k-checkbox[data-variant="outlined"][data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-warning);
+}
+k-checkbox[data-variant="outlined"][data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-error);
+}
+k-checkbox[data-variant="outlined"][data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual {
+  border-color: var(--k-info);
+}
+
+/* 4. Switch */
+k-checkbox[data-variant="switch"] .k-checkbox__visual {
+  width: var(--k-space-6);
+  height: calc(var(--k-space-3) + 2px);
+  border-radius: var(--k-radius-full);
+  background: var(--k-border-strong);
+  border: none;
+}
+k-checkbox[data-variant="switch"] .k-checkbox__visual::after {
+  content: '';
+  position: absolute;
+  width: calc(var(--k-space-3) - 2px);
+  height: calc(var(--k-space-3) - 2px);
+  background: var(--k-text-inverse);
+  border-radius: 50%;
+  left: 2px;
+  transition: transform var(--k-transition-base);
+}
+k-checkbox[data-variant="switch"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-accent);
+}
+k-checkbox[data-variant="switch"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  transform: translateX(calc(var(--k-space-3) - 2px));
+}
+/* Size adjustments for switch */
+k-checkbox[data-variant="switch"][data-size="xs"] .k-checkbox__visual {
+  width: 28px;
+  height: 16px;
+}
+k-checkbox[data-variant="switch"][data-size="xs"] .k-checkbox__visual::after {
+  width: 12px;
+  height: 12px;
+}
+k-checkbox[data-variant="switch"][data-size="xs"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  transform: translateX(12px);
+}
+k-checkbox[data-variant="switch"][data-size="sm"] .k-checkbox__visual {
+  width: 32px;
+  height: 18px;
+}
+k-checkbox[data-variant="switch"][data-size="sm"] .k-checkbox__visual::after {
+  width: 14px;
+  height: 14px;
+}
+k-checkbox[data-variant="switch"][data-size="sm"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  transform: translateX(14px);
+}
+k-checkbox[data-variant="switch"][data-size="lg"] .k-checkbox__visual {
+  width: 52px;
+  height: 28px;
+}
+k-checkbox[data-variant="switch"][data-size="lg"] .k-checkbox__visual::after {
+  width: 24px;
+  height: 24px;
+}
+k-checkbox[data-variant="switch"][data-size="lg"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  transform: translateX(24px);
+}
+k-checkbox[data-variant="switch"][data-size="xl"] .k-checkbox__visual {
+  width: 60px;
+  height: 32px;
+}
+k-checkbox[data-variant="switch"][data-size="xl"] .k-checkbox__visual::after {
+  width: 28px;
+  height: 28px;
+}
+k-checkbox[data-variant="switch"][data-size="xl"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  transform: translateX(28px);
+}
+/* Color overrides for switch */
+k-checkbox[data-variant="switch"][data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-success);
+}
+k-checkbox[data-variant="switch"][data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-warning);
+}
+k-checkbox[data-variant="switch"][data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-error);
+}
+k-checkbox[data-variant="switch"][data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-info);
+}
+
+/* 5. Switch Filled */
+k-checkbox[data-variant="switch-filled"] .k-checkbox__visual {
+  width: var(--k-space-6);
+  height: calc(var(--k-space-3) + 2px);
+  border-radius: var(--k-radius-full);
+  background: var(--k-bg-elevated);
+  border: 1px solid var(--k-border);
+}
+k-checkbox[data-variant="switch-filled"] .k-checkbox__visual::after {
+  content: '';
+  position: absolute;
+  width: calc(var(--k-space-3) - 4px);
+  height: calc(var(--k-space-3) - 4px);
+  background: var(--k-text-muted);
+  border-radius: 50%;
+  left: 3px;
+  transition: transform var(--k-transition-base), background var(--k-transition-base);
+}
+k-checkbox[data-variant="switch-filled"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-accent);
+  border-color: var(--k-accent);
+}
+k-checkbox[data-variant="switch-filled"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  transform: translateX(calc(var(--k-space-3) - 4px));
+  background: var(--k-text-inverse);
+}
+/* Color overrides for switch-filled */
+k-checkbox[data-variant="switch-filled"][data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-success);
+  border-color: var(--k-success);
+}
+k-checkbox[data-variant="switch-filled"][data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-warning);
+  border-color: var(--k-warning);
+}
+k-checkbox[data-variant="switch-filled"][data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-error);
+  border-color: var(--k-error);
+}
+k-checkbox[data-variant="switch-filled"][data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-info);
+  border-color: var(--k-info);
+}
+
+/* 6. Radio */
+k-checkbox[data-variant="radio"] .k-checkbox__visual {
+  border-radius: 50%;
+}
+k-checkbox[data-variant="radio"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: var(--k-accent);
+}
+/* Color overrides for radio */
+k-checkbox[data-variant="radio"][data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  background: var(--k-success);
+}
+k-checkbox[data-variant="radio"][data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  background: var(--k-warning);
+}
+k-checkbox[data-variant="radio"][data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  background: var(--k-error);
+}
+k-checkbox[data-variant="radio"][data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  background: var(--k-info);
+}
+
+/* 7. Radio Card */
+k-checkbox[data-variant="radio-card"] {
+  width: 100%;
+}
+k-checkbox[data-variant="radio-card"] .k-checkbox__label {
+  width: 100%;
+  padding: var(--k-space-3) var(--k-space-4);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  background: var(--k-bg-surface);
+  transition: all var(--k-transition-base);
+}
+k-checkbox[data-variant="radio-card"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-accent-subtle);
+  border-color: var(--k-accent);
+}
+k-checkbox[data-variant="radio-card"] .k-checkbox__label:hover {
+  border-color: var(--k-accent-subtle);
+  background: var(--k-bg-elevated);
+}
+k-checkbox[data-variant="radio-card"] .k-checkbox__input:checked ~ .k-checkbox__text {
+  font-weight: 500;
+}
+k-checkbox[data-variant="radio-card"] .k-checkbox__visual {
+  border-radius: 50%;
+}
+k-checkbox[data-variant="radio-card"] .k-checkbox__input:checked + .k-checkbox__visual::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  background: var(--k-accent);
+}
+
+/* 8. Indeterminate */
+k-checkbox[data-variant="indeterminate"] .k-checkbox__input:indeterminate + .k-checkbox__visual::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  background: var(--k-accent);
+  left: 20%;
+}
+/* Color overrides for indeterminate */
+k-checkbox[data-variant="indeterminate"][data-color="success"] .k-checkbox__input:indeterminate + .k-checkbox__visual::after {
+  background: var(--k-success);
+}
+k-checkbox[data-variant="indeterminate"][data-color="warning"] .k-checkbox__input:indeterminate + .k-checkbox__visual::after {
+  background: var(--k-warning);
+}
+k-checkbox[data-variant="indeterminate"][data-color="error"] .k-checkbox__input:indeterminate + .k-checkbox__visual::after {
+  background: var(--k-error);
+}
+k-checkbox[data-variant="indeterminate"][data-color="info"] .k-checkbox__input:indeterminate + .k-checkbox__visual::after {
+  background: var(--k-info);
+}
+
+/* 9. Icon Check */
+k-checkbox[data-variant="icon-check"] .k-checkbox__visual {
+  background: var(--k-bg-surface);
+  border: 2px solid var(--k-border);
+}
+k-checkbox[data-variant="icon-check"] .k-checkbox__input:checked + .k-checkbox__visual {
+  background: var(--k-accent-subtle);
+  border-color: var(--k-accent);
+}
+
+/* 10. Animated */
+k-checkbox[data-variant="animated"] .k-checkbox__checkmark {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  transition: stroke-dashoffset 0.3s ease-in-out;
+}
+k-checkbox[data-variant="animated"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  stroke-dashoffset: 0;
+  color: var(--k-accent);
+}
+/* Color overrides for animated */
+k-checkbox[data-variant="animated"][data-color="success"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-success);
+}
+k-checkbox[data-variant="animated"][data-color="warning"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-warning);
+}
+k-checkbox[data-variant="animated"][data-color="error"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-error);
+}
+k-checkbox[data-variant="animated"][data-color="info"] .k-checkbox__input:checked + .k-checkbox__visual .k-checkbox__checkmark {
+  color: var(--k-info);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY — prefers-reduced-motion
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .k-checkbox__visual,
+  .k-checkbox__checkmark,
+  .k-checkbox__visual::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  k-checkbox[data-variant="animated"] .k-checkbox__checkmark {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

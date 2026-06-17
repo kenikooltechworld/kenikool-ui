@@ -98,8 +98,43 @@ function closeModal(selector) {
 // ═══ TOAST NOTIFICATIONS ═══════════════════════════════════════════════════════
 
 function showToast(message, variant = 'info') {
-  console.log(`Toast: [${variant}] ${message}`);
+  window.toastManager.show({
+    message,
+    variant,
+    duration: 5000,
+    position: 'top-right'
+  });
 }
+
+// Example: Progress toast that updates
+function showProgressToast() {
+  const toastId = window.toastManager.show({
+    message: 'Processing... 0%',
+    variant: 'info',
+    duration: 10000,
+    id: 'progress-toast'
+  });
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 20;
+    if (progress <= 100) {
+      window.toastManager.update(toastId, {
+        message: `Processing... ${progress}%`,
+        variant: progress === 100 ? 'success' : 'info'
+      });
+    }
+    if (progress >= 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        window.toastManager.dismiss(toastId);
+      }, 1000);
+    }
+  }, 500);
+}
+
+// Make it available globally for demo buttons
+window.showProgressToast = showProgressToast;
 
 console.log('🎮 Playground interactive demos loaded');
 
@@ -129,3 +164,35 @@ document.querySelector('.btn-toggle').onclick = () => {
     badge.setAttribute('v', v.replace('warning', 'success'));
   }
 };
+
+// ═══ CARD INTERACTIONS ════════════════════════════════════════════════════════
+
+// Interactive card click counter
+const demoCard = document.querySelector('.demo-card');
+const clickCountDisplay = document.querySelector('.click-count');
+let clickCount = 0;
+
+if (demoCard && clickCountDisplay) {
+  demoCard.addEventListener('k:click', () => {
+    clickCount++;
+    clickCountDisplay.textContent = clickCount;
+  });
+}
+
+// ═══ LIGHTBOX/GALLERY INTERACTIONS ════════════════════════════════════════════
+
+/**
+ * Open gallery lightbox at specific index
+ * Used by image gallery demos in Section 21
+ */
+function openGalleryLightbox(index = 0) {
+  const galleryLightbox = document.querySelector('#gallery-lightbox');
+  if (galleryLightbox && typeof galleryLightbox.open === 'function') {
+    galleryLightbox.open(index);
+  }
+}
+
+// Make it available globally for onclick handlers
+window.openGalleryLightbox = openGalleryLightbox;
+
+console.log('🖼️ Lightbox/Gallery interactions loaded');

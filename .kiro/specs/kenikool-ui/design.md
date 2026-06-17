@@ -817,10 +817,107 @@ k-button[data-radius="full"] button { border-radius: var(--k-radius-full); }
   flex-shrink: 0;
 }
 
+### 4.3 CSS Architecture for Web Components
+... (existing content) ...
 @media (prefers-reduced-motion: reduce) {
   .k-btn-loader { animation: none; opacity: 0.6; }
 }
+
+### 4.4 KTabsElement — Content Orchestration
+The Tabs component is a composite element that coordinates a list of tab triggers and a corresponding set of content panels.
+
+```typescript
+// src/vanilla/Tabs/KTabsElement.ts
+
+class KTabsElement extends KBaseElement {
+  private _tabList: HTMLElement | null = null;
+  private _panelsContainer: HTMLElement | null = null;
+  private _tabs: HTMLElement[] = [];
+  private _panels: HTMLElement[] = [];
+  private _activeIndex: number = 0;
+
+  protected _render(): void {
+    // 1. Create Tab List (Trigger Container)
+    this._tabList = document.createElement('div');
+    this._tabList.setAttribute('role', 'tablist');
+    this._tabList.className = 'k-tabs-list';
+    
+    // 2. Create Panels Container
+    this._panelsContainer = document.createElement('div');
+    this._panelsContainer.className = 'k-tabs-panels';
+
+    this.appendChild(this._tabList);
+    this.appendChild(this._panelsContainer);
+
+    this._syncChildren();
+  }
+
+  private _syncChildren(): void {
+    // Find all <k-tab> and <k-panel> children
+    this._tabs = Array.from(this.querySelectorAll('k-tab'));
+    this._panels = Array.from(this.querySelectorAll('k-panel'));
+
+    // Move them into their respective containers
+    this._tabs.forEach(tab => this._tabList?.appendChild(tab));
+    this._panels.forEach(panel => this._panelsContainer?.appendChild(panel));
+
+    this._updateActiveState();
+  }
+
+  private _updateActiveState(): void {
+    this._tabs.forEach((tab, i) => {
+      const isActive = i === this._activeIndex;
+      tab.setAttribute('aria-selected', String(isActive));
+      tab.setAttribute('tabindex', isActive ? '0' : '-1');
+      
+      // Link tab to panel
+      const panel = this._panels[i];
+      if (panel) {
+        const panelId = panel.id || `k-panel-${i}`;
+        panel.id = panelId;
+        tab.setAttribute('aria-controls', panelId);
+      }
+    });
+
+    this._panels.forEach((panel, i) => {
+      const isActive = i === this._activeIndex;
+      panel.style.display = isActive ? 'block' : 'none';
+      
+      // Link panel back to tab
+      const tab = this._tabs[i];
+      if (tab) {
+        const tabId = tab.id || `k-tab-${i}`;
+        tab.id = tabId;
+        panel.setAttribute('aria-labelledby', tabId);
+      }
+    });
+  }
+
+  protected _applyAccessibility(): void {
+    // Tablist keyboard navigation
+    this._tabList?.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') this._moveActive(1);
+      if (e.key === 'ArrowLeft') this._moveActive(-1);
+    });
+  }
+
+  private _moveActive(dir: number): void {
+    const next = (this._activeIndex + dir + this._tabs.length) % this._tabs.length;
+    this._activeIndex = next;
+    this._updateActiveState();
+    this._tabs[next].focus();
+  }
+}
+
+customElements.define('k-tabs', KTabsElement);
 ```
+
+**CSS Mapping for Tabs Variants:**
+- `k-tabs[data-variant="pill"] .k-tab[aria-selected="true"]` $\to$ `background: var(--k-accent); color: var(--k-text-inverse); border-radius: var(--k-radius-full);`
+- `k-tabs[data-variant="underlined"] .k-tab[aria-selected="true"]` $\to$ `border-bottom: 2px solid var(--k-accent);`
+- `k-tabs[data-variant="vertical"]` $\to$ `display: flex; flex-direction: row;` (tabs on left, panels on right)
+- `k-tabs[data-variant="glass"] .k-tabs-list` $\to$ `background: rgba(var(--k-bg-surface-rgb), 0.6); backdrop-filter: blur(12px);`
+- `k-tabs[data-color="error"] .k-tab[aria-selected="true"]` $\to$ `background: var(--k-error);`
 
 ---
 

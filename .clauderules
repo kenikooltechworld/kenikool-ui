@@ -1,0 +1,42 @@
+# Kenikool UI Workspace Rules
+
+These rules are mandatory for all development work in this repository to ensure architectural consistency and a high-quality developer experience.
+
+## 🛠️ Architectural Constraints
+
+### 1. Vanilla-First Workflow
+- **Rule**: All new features, components, and logic must be implemented in `src/vanilla` as Web Custom Elements before being wrapped for React.
+- **Reason**: The Vanilla implementation is the core engine; React is a consumer of that engine.
+
+### 2. The `v` Attribute Standard
+- **Rule**: Styling variants, sizes, and colors must be passed via the `v` attribute (e.g., `v="filled md primary"`).
+- **Constraint**: Avoid creating a plethora of individual boolean props for styling. Use the `parseV` utility to map tokens to `data-` attributes.
+
+### 3. CSS-Driven Visuals
+- **Rule**: Visual states (e.g., `loading`, `disabled`, `error`) must be driven by CSS selectors targeting `data-` attributes.
+- **Constraint**: Do not use `.style.property = 'value'` in TypeScript/JavaScript for visual states.
+
+### 4. Security & Sanitization
+- **Rule**: All input attributes that are rendered to the DOM must be sanitized.
+- **Required Utility**: Use `src/core/utils/sanitize.ts` (`sanitizeText` or `sanitizeUrl`) for all such inputs.
+
+## 📝 Documentation & API Rules
+
+### 5. The "Docs-First" Contract
+- **Rule**: The documentation in `docs/` is the Source of Truth.
+- **Constraint**: API changes must be documented in the corresponding `.md` file *before* or *at the same time* as the code change.
+
+### 6. Dual-Target Parity
+- **Rule**: Every component found in `src/vanilla` must have a corresponding wrapper in `src/react`.
+- **Check**: If a new `KElement` is added to vanilla, a matching `.tsx` component must be created.
+
+## 🧪 Quality Assurance
+
+### 7. Accessibility (a11y)
+- **Rule**: Every single interactive component must include:
+    - Correct ARIA roles.
+    - Keyboard navigation (Enter/Space/Tab).
+    - Focus management (via `--k-focus-ring`).
+
+### 8. Testing
+- **Rule**: New components must be verified in both a plain HTML environment and a React environment before being marked as complete.

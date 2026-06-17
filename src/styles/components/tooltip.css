@@ -1,0 +1,134 @@
+/* src/styles/components/tooltip.css */
+
+.k-tooltip-container {
+  position: fixed;
+  z-index: var(--k-z-overlay);
+  background: var(--k-bg-surface);
+  color: var(--k-text-primary);
+  padding: var(--k-space-2) var(--k-space-3);
+  border-radius: var(--k-radius-sm);
+  font-size: var(--k-text-xs);
+  font-weight: var(--k-font-medium);
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--k-border-color);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  /* Default hidden state */
+  opacity: 0;
+  transform: scale(0.95);
+  visibility: hidden;
+}
+
+/* Explicitly hide when data-visible is false */
+.k-tooltip-container[data-visible="false"] {
+  opacity: 0;
+  transform: scale(0.95);
+  visibility: hidden;
+}
+
+/* Show when data-visible is true */
+.k-tooltip-container[data-visible="true"] {
+  opacity: 1;
+  transform: scale(1);
+  visibility: visible;
+}
+
+/* Interactive variant: allows pointer events to enter the tooltip */
+.k-tooltip-container[data-interactive="true"] {
+  pointer-events: auto;
+}
+
+/* Arrow (Caret) */
+.k-tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+/* === Placement & Arrow Positioning === */
+
+/* TOP */
+.k-tooltip-container[data-placement^="top"] {
+  margin-bottom: 8px;
+}
+.k-tooltip-container[data-placement^="top"] .k-tooltip-arrow {
+  bottom: -4px;
+  border-width: 4px 4px 0 4px;
+  border-color: var(--k-bg-surface) transparent transparent transparent;
+}
+.k-tooltip-container[data-placement="top"] .k-tooltip-arrow { left: 50%; transform: translateX(-50%); }
+.k-tooltip-container[data-placement="top-start"] .k-tooltip-arrow { left: 8px; }
+.k-tooltip-container[data-placement="top-end"] .k-tooltip-arrow { right: 8px; }
+
+/* BOTTOM */
+.k-tooltip-container[data-placement^="bottom"] {
+  margin-top: 8px;
+}
+.k-tooltip-container[data-placement^="bottom"] .k-tooltip-arrow {
+  top: -4px;
+  border-width: 0 4px 4px 4px;
+  border-color: transparent transparent var(--k-bg-surface) transparent;
+}
+.k-tooltip-container[data-placement="bottom"] .k-tooltip-arrow { left: 50%; transform: translateX(-50%); }
+.k-tooltip-container[data-placement="bottom-start"] .k-tooltip-arrow { left: 8px; }
+.k-tooltip-container[data-placement="bottom-end"] .k-tooltip-arrow { right: 8px; }
+
+/* LEFT */
+.k-tooltip-container[data-placement^="left"] {
+  margin-right: 8px;
+}
+.k-tooltip-container[data-placement^="left"] .k-tooltip-arrow {
+  right: -4px;
+  border-width: 4px 0 4px 4px;
+  border-color: transparent transparent transparent var(--k-bg-surface);
+}
+.k-tooltip-container[data-placement="left"] .k-tooltip-arrow { top: 50%; transform: translateY(-50%); }
+.k-tooltip-container[data-placement="left-start"] .k-tooltip-arrow { top: 8px; }
+.k-tooltip-container[data-placement="left-end"] .k-tooltip-arrow { bottom: 8px; }
+
+/* RIGHT */
+.k-tooltip-container[data-placement^="right"] {
+  margin-left: 8px;
+}
+.k-tooltip-container[data-placement^="right"] .k-tooltip-arrow {
+  left: -4px;
+  border-width: 4px 4px 4px 0;
+  border-color: transparent var(--k-bg-surface) transparent transparent;
+}
+.k-tooltip-container[data-placement="right"] .k-tooltip-arrow { top: 50%; transform: translateY(-50%); }
+.k-tooltip-container[data-placement="right-start"] .k-tooltip-arrow { top: 8px; }
+.k-tooltip-container[data-placement="right-end"] .k-tooltip-arrow { bottom: 8px; }
+
+/* Variants */
+k-tooltip[data-variant="dark"] .k-tooltip-container {
+  background: var(--k-bg-dark);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+k-tooltip[data-variant="dark"] .k-tooltip-arrow {
+  border-color: var(--k-bg-dark) transparent transparent transparent; /* simplified, needs to match placement */
+}
+
+/* Re-map arrows for dark variant specifically since border-color is a shorthand */
+k-tooltip[data-variant="dark"] .k-tooltip-container[data-placement^="top"] .k-tooltip-arrow { border-color: var(--k-bg-dark) transparent transparent transparent; }
+k-tooltip[data-variant="dark"] .k-tooltip-container[data-placement^="bottom"] .k-tooltip-arrow { border-color: transparent transparent var(--k-bg-dark) transparent; }
+k-tooltip[data-variant="dark"] .k-tooltip-container[data-placement^="left"] .k-tooltip-arrow { border-color: transparent transparent transparent var(--k-bg-dark); }
+k-tooltip[data-variant="dark"] .k-tooltip-container[data-placement^="right"] .k-tooltip-arrow { border-color: transparent var(--k-bg-dark) transparent transparent; }
+
+k-tooltip[data-variant="primary"] .k-tooltip-container {
+  background: var(--k-accent);
+  color: var(--k-text-inverse);
+  border-color: var(--k-accent-hover);
+}
+k-tooltip[data-variant="primary"] .k-tooltip-container[data-placement^="top"] .k-tooltip-arrow { border-color: var(--k-accent) transparent transparent transparent; }
+k-tooltip[data-variant="primary"] .k-tooltip-container[data-placement^="bottom"] .k-tooltip-arrow { border-color: transparent transparent var(--k-accent) transparent; }
+k-tooltip[data-variant="primary"] .k-tooltip-container[data-placement^="left"] .k-tooltip-arrow { border-color: transparent transparent transparent var(--k-accent); }
+k-tooltip[data-variant="primary"] .k-tooltip-container[data-placement^="right"] .k-tooltip-arrow { border-color: transparent var(--k-accent) transparent transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-tooltip-container {
+    transition: none !important;
+  }
+}

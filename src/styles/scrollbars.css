@@ -1,0 +1,291 @@
+/**
+ * Modern Scrollbar System
+ * 
+ * 5 variants controlled via data-scrollbar attribute on <html> or component:
+ * - default: Modern thin scrollbar, auto-hide on desktop
+ * - minimal: Ultra-thin, low contrast, always visible
+ * - thick: Wider, high visibility for accessibility
+ * - floating: Overlay style, doesn't affect layout
+ * - mac: Mac-style translucent with hover effects
+ * 
+ * All variants are theme-aware (use --k-* tokens)
+ * 
+ * Usage:
+ *   <html data-scrollbar="default">
+ *   <k-modal v="default" data-scrollbar="floating">
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DEFAULT VARIANT — Modern thin scrollbar (8px)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-scrollbar="default"] {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--k-border-strong) transparent;
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+:root::-webkit-scrollbar,
+[data-scrollbar="default"]::-webkit-scrollbar,
+[data-scrollbar="default"] *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+:root::-webkit-scrollbar-track,
+[data-scrollbar="default"]::-webkit-scrollbar-track,
+[data-scrollbar="default"] *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:root::-webkit-scrollbar-thumb,
+[data-scrollbar="default"]::-webkit-scrollbar-thumb,
+[data-scrollbar="default"] *::-webkit-scrollbar-thumb {
+  background: var(--k-border-strong);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+:root::-webkit-scrollbar-thumb:hover,
+[data-scrollbar="default"]::-webkit-scrollbar-thumb:hover,
+[data-scrollbar="default"] *::-webkit-scrollbar-thumb:hover {
+  background: var(--k-accent);
+  background-clip: padding-box;
+}
+
+:root::-webkit-scrollbar-thumb:active,
+[data-scrollbar="default"]::-webkit-scrollbar-thumb:active,
+[data-scrollbar="default"] *::-webkit-scrollbar-thumb:active {
+  background: var(--k-accent-active);
+  background-clip: padding-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MINIMAL VARIANT — Ultra-thin (4px), low contrast
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-scrollbar="minimal"] {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--k-border-subtle) transparent;
+}
+
+[data-scrollbar="minimal"]::-webkit-scrollbar,
+[data-scrollbar="minimal"] *::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+[data-scrollbar="minimal"]::-webkit-scrollbar-track,
+[data-scrollbar="minimal"] *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-scrollbar="minimal"]::-webkit-scrollbar-thumb,
+[data-scrollbar="minimal"] *::-webkit-scrollbar-thumb {
+  background: var(--k-border-subtle);
+  border-radius: 2px;
+}
+
+[data-scrollbar="minimal"]::-webkit-scrollbar-thumb:hover,
+[data-scrollbar="minimal"] *::-webkit-scrollbar-thumb:hover {
+  background: var(--k-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THICK VARIANT — Wide (12px), high visibility
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-scrollbar="thick"] {
+  /* Firefox */
+  scrollbar-width: auto;
+  scrollbar-color: var(--k-accent-subtle) var(--k-bg-elevated);
+}
+
+[data-scrollbar="thick"]::-webkit-scrollbar,
+[data-scrollbar="thick"] *::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+[data-scrollbar="thick"]::-webkit-scrollbar-track,
+[data-scrollbar="thick"] *::-webkit-scrollbar-track {
+  background: var(--k-bg-elevated);
+  border-radius: 6px;
+}
+
+[data-scrollbar="thick"]::-webkit-scrollbar-thumb,
+[data-scrollbar="thick"] *::-webkit-scrollbar-thumb {
+  background: var(--k-accent);
+  border-radius: 6px;
+  border: 2px solid var(--k-bg-elevated);
+}
+
+[data-scrollbar="thick"]::-webkit-scrollbar-thumb:hover,
+[data-scrollbar="thick"] *::-webkit-scrollbar-thumb:hover {
+  background: var(--k-accent-hover);
+}
+
+[data-scrollbar="thick"]::-webkit-scrollbar-thumb:active,
+[data-scrollbar="thick"] *::-webkit-scrollbar-thumb:active {
+  background: var(--k-accent-active);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FLOATING VARIANT — Overlay style (10px), doesn't affect layout
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-scrollbar="floating"] {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--k-accent-rgb, 99, 102, 241), 0.5) transparent;
+}
+
+[data-scrollbar="floating"]::-webkit-scrollbar,
+[data-scrollbar="floating"] *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+[data-scrollbar="floating"]::-webkit-scrollbar-track,
+[data-scrollbar="floating"] *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-scrollbar="floating"]::-webkit-scrollbar-thumb,
+[data-scrollbar="floating"] *::-webkit-scrollbar-thumb {
+  background: var(--k-accent);
+  opacity: 0.4;
+  border-radius: 5px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-scrollbar="floating"]::-webkit-scrollbar-thumb:hover,
+[data-scrollbar="floating"] *::-webkit-scrollbar-thumb:hover {
+  opacity: 0.7;
+  background: var(--k-accent-hover);
+  background-clip: padding-box;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-scrollbar="floating"]::-webkit-scrollbar-thumb:active,
+[data-scrollbar="floating"] *::-webkit-scrollbar-thumb:active {
+  opacity: 1;
+  background: var(--k-accent-active);
+  background-clip: padding-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAC VARIANT — Mac-style translucent with rounded corners
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-scrollbar="mac"] {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+[data-scrollbar="mac"]::-webkit-scrollbar,
+[data-scrollbar="mac"] *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+[data-scrollbar="mac"]::-webkit-scrollbar-track,
+[data-scrollbar="mac"] *::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-scrollbar="mac"]::-webkit-scrollbar-thumb,
+[data-scrollbar="mac"] *::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+[data-scrollbar="mac"]::-webkit-scrollbar-thumb:hover,
+[data-scrollbar="mac"] *::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+}
+
+[data-scrollbar="mac"]::-webkit-scrollbar-thumb:active,
+[data-scrollbar="mac"] *::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.7);
+  background-clip: padding-box;
+}
+
+/* Dark theme adjustment for Mac variant */
+[data-theme="dark"] [data-scrollbar="mac"]::-webkit-scrollbar-thumb,
+[data-theme="dark"] [data-scrollbar="mac"] *::-webkit-scrollbar-thumb,
+[data-theme="dracula"] [data-scrollbar="mac"]::-webkit-scrollbar-thumb,
+[data-theme="dracula"] [data-scrollbar="mac"] *::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] [data-scrollbar="mac"]::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] [data-scrollbar="mac"] *::-webkit-scrollbar-thumb:hover,
+[data-theme="dracula"] [data-scrollbar="mac"]::-webkit-scrollbar-thumb:hover,
+[data-theme="dracula"] [data-scrollbar="mac"] *::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] [data-scrollbar="mac"]::-webkit-scrollbar-thumb:active,
+[data-theme="dark"] [data-scrollbar="mac"] *::-webkit-scrollbar-thumb:active,
+[data-theme="dracula"] [data-scrollbar="mac"]::-webkit-scrollbar-thumb:active,
+[data-theme="dracula"] [data-scrollbar="mac"] *::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HIDDEN VARIANT — No scrollbar (overflow still works)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-scrollbar="hidden"] {
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+[data-scrollbar="hidden"]::-webkit-scrollbar,
+[data-scrollbar="hidden"] *::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SMOOTH SCROLLING (Optional, can be disabled)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Disable smooth scroll when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COMPONENT-SPECIFIC SCROLLBAR SUPPORT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Modal body scrolling */
+.k-modal__body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Card scrollable content */
+k-card[data-scrollable="true"] .k-card__body {
+  overflow-y: auto;
+  max-height: 400px;
+}

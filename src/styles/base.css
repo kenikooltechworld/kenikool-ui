@@ -32,18 +32,39 @@
 /* 6. Keyframe animations */
 @import './animations.css';
 
+/* 6.5. Modern scrollbar system */
+@import './scrollbars.css';
+
 /* 7. Component styles — uncomment as each task is completed */
 @import './components/button.css'; /* T5  */
 @import './components/layout.css'; /* Layout: k-grid, k-row, k-col, k-stack, k-box, k-text, k-divider */
 @import './components/theme-switcher.css'; /* T7  */
 @import './components/badge.css'; /* T7  */
 @import './components/input.css';     /* T6  */
-/* @import './components/badge.css'; */     /* T7  */
-/* @import './components/card.css'; */      /* T8  */
-/* @import './components/modal.css'; */     /* T9  */
-/* @import './components/select.css'; */    /* T10 */
-/* @import './components/checkbox.css'; */  /* T11 */
-/* @import './components/toast.css'; */     /* T12 */
-/* @import './components/tooltip.css'; */   /* T13 */
-/* @import './components/avatar.css'; */    /* T14 */
+@import './components/card.css';      /* T8  */
+@import './components/modal.css';     /* T9  */
+@import './components/select.css';    /* T10 */
+@import './components/checkbox.css';  /* T11 */
+@import './components/toast.css';     /* T12 */
+@import './components/tooltip.css';   /* T13 */
+@import './components/avatar.css';    /* T14 */
 @import './components/loader.css';    /* T15 */
+@import './components/tabs.css';      /* Tabs component */
+@import './components/carousel.css';
+@import './components/image.css';
+@import './components/lightbox.css';  /* Carousel component system */
+
+/* Navigation components */
+@import './components/navbar-horizontal.css'; /* Navbar Type 1: Horizontal Top Bar */
+
+/* ─── Global Utilities & Component Styles (after all imports) ─────────────── */
+
+/**
+ * Global scroll behavior for sticky navbar anchor navigation.
+ * Prevents content from scrolling behind sticky navbar when using anchor links.
+ */
+html {
+  scroll-padding-top: 80px; /* 64px navbar height + 16px buffer */
+}
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quick Navbar Test</title>
+  <link rel="stylesheet" href="./dist/styles/base.css" />
+  <script type="module" src="./dist/vanilla/index.mjs"></script>
+</head>
+<body>
+
+<k-navbar-horizontal v="sticky">
+  <k-text slot="logo" v="semibold">LOGO</k-text>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/products" aria-current="page">Products</a>
+  <a href="/pricing">Pricing</a>
+  <k-stack slot="actions" v="horizontal gap-3">
+    <k-button v="ghost sm">Login</k-button>
+    <k-button v="filled sm">Sign Up</k-button>
+  </k-stack>
+</k-navbar-horizontal>
+
+<k-container>
+  <k-section v="base">
+    <k-stack v="gap-8 p-8">
+      <k-stack v="gap-4">
+        <k-text v="h1 semibold">Navbar Test</k-text>
+        <k-text v="muted">Resize browser to see mobile menu (< 768px)</k-text>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-text v="muted">Scroll down to test sticky behavior. Resize browser to < 768px to see mobile menu.</k-text>
+
+      <!-- Spacer content -->
+      <k-box v="surface p-8 r-md" style="height: 2000px;">
+        <k-text v="h3 semibold">Scroll Content</k-text>
+        <k-text v="muted">The navbar stays at the top as you scroll.</k-text>
+      </k-box>
+    </k-stack>
+  </k-section>
+</k-container>
+
+<k-box v="elevated p-2 r-md" style="position: fixed; bottom: 20px; right: 20px;">
+  <k-theme-switcher v="horizontal"></k-theme-switcher>
+</k-box>
+
+</body>
+</html>

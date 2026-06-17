@@ -1,0 +1,129 @@
+/* src/styles/components/avatar.css */
+
+k-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Base Container */
+.k-avatar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--k-bg-elevated);
+  color: var(--k-text-primary);
+  border-radius: var(--k-radius-full);
+  overflow: hidden;
+  transition: all var(--k-transition-base);
+  user-select: none;
+}
+
+/* Sizes */
+k-avatar[data-size="xs"] .k-avatar-container { width: 24px; height: 24px; font-size: var(--k-text-xs); }
+k-avatar[data-size="sm"] .k-avatar-container { width: 32px; height: 32px; font-size: var(--k-text-xs); }
+k-avatar[data-size="md"] .k-avatar-container { width: 40px; height: 40px; font-size: var(--k-text-sm); }
+k-avatar[data-size="lg"] .k-avatar-container { width: 48px; height: 48px; font-size: var(--k-text-base); }
+k-avatar[data-size="xl"] .k-avatar-container { width: 64px; height: 64px; font-size: var(--k-text-lg); }
+
+/* Image fit */
+.k-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Initials Styling */
+.k-avatar-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--k-font-semibold);
+  text-transform: uppercase;
+}
+
+/* Variants */
+
+/* with-border */
+k-avatar[data-variant="with-border"] .k-avatar-container {
+  border: 2px solid var(--k-border);
+  padding: 2px;
+}
+k-avatar[data-variant="with-border"] .k-avatar-img,
+k-avatar[data-variant="with-border"] .k-avatar-initials {
+  border-radius: calc(var(--k-radius-full) - 2px);
+}
+
+/* with-status */
+.k-avatar-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--k-bg-surface);
+  z-index: 1;
+}
+k-avatar[data-size="xs"] .k-avatar-status { width: 8px; height: 8px; border-width: 1px; }
+k-avatar[data-size="sm"] .k-avatar-status { width: 10px; height: 10px; }
+
+/* Status Colors */
+.k-avatar-status[data-status="online"] { background: var(--k-success); }
+.k-avatar-status[data-status="offline"] { background: var(--k-text-disabled); }
+.k-avatar-status[data-status="busy"] { background: var(--k-error); }
+.k-avatar-status[data-status="away"] { background: var(--k-warning); }
+
+/* with-badge */
+.k-avatar-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/* stacked (Used in AvatarGroup) */
+.k-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+.k-avatar-group k-avatar {
+  margin-left: -12px;
+}
+.k-avatar-group k-avatar:first-child {
+  margin-left: 0;
+}
+
+/* square */
+k-avatar[data-variant="square"] .k-avatar-container {
+  border-radius: var(--k-radius-md);
+}
+
+/* glow */
+k-avatar[data-variant="glow"] .k-avatar-container {
+  box-shadow: 0 0 8px var(--k-accent-subtle), 0 0 4px var(--k-accent);
+}
+
+/* gradient */
+k-avatar[data-variant="gradient"] .k-avatar-initials {
+  background: linear-gradient(135deg, var(--k-accent), var(--k-accent-hover));
+  color: var(--k-text-inverse);
+}
+
+/* Default Initials Color (Derived in JS) */
+.k-avatar-initials[data-color-index] {
+  /* Background is set via inline style based on name hash */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .k-avatar-container {
+    transition: none !important;
+  }
+}

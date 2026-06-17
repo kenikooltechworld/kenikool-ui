@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Horizontal Navbar Demo — kenikool-ui</title>
+  <link rel="stylesheet" href="./dist/styles/base.css" />
+  <script type="module" src="./dist/vanilla/index.mjs"></script>
+</head>
+<body>
+
+<!-- Demo 1: Default Horizontal Navbar (Sticky) -->
+<k-navbar-horizontal v="sticky">
+  <k-text slot="logo" v="semibold accent">BRAND</k-text>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/products" aria-current="page">Products</a>
+  <a href="/pricing">Pricing</a>
+  <a href="/docs">Docs</a>
+  <k-stack slot="actions" v="horizontal gap-3">
+    <k-button v="ghost sm">Login</k-button>
+    <k-button v="filled sm">Sign Up</k-button>
+  </k-stack>
+</k-navbar-horizontal>
+
+<k-container>
+  <k-section v="base">
+    <k-stack v="gap-10 p-8">
+      <k-stack v="gap-4">
+        <k-text v="h1 bold">Horizontal Top Bar Navbar</k-text>
+        <k-text v="muted">
+          The most common navigation pattern for websites. Desktop shows full horizontal layout with logo, links, and actions. 
+          Mobile (< 768px) collapses to hamburger menu with slide-in drawer.
+        </k-text>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-stack v="gap-4">
+        <k-text v="h2 semibold">Features</k-text>
+        <k-stack v="gap-2">
+          <k-text>✓ Sticky positioning (stays at top on scroll)</k-text>
+          <k-text>✓ Responsive mobile hamburger menu</k-text>
+          <k-text>✓ Active link styling with <k-text v="code">aria-current="page"</k-text></k-text>
+          <k-text>✓ Named slots: <k-text v="code">logo</k-text>, default (nav links), <k-text v="code">actions</k-text></k-text>
+          <k-text>✓ Keyboard accessible (Tab, Enter, Escape)</k-text>
+          <k-text>✓ Click outside to close mobile menu</k-text>
+          <k-text>✓ Auto-closes mobile menu on link click</k-text>
+        </k-stack>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-stack v="gap-4">
+        <k-text v="h2 semibold">Usage</k-text>
+        <k-box v="surface p-4 r-md">
+          <k-text v="code">
+&lt;k-navbar-horizontal v="sticky"&gt;
+  &lt;k-box slot="logo" v="elevated p-2 r-md"&gt;
+    &lt;k-text v="semibold"&gt;BRAND&lt;/k-text&gt;
+  &lt;/k-box&gt;
+  &lt;a href="/"&gt;Home&lt;/a&gt;
+  &lt;a href="/about"&gt;About&lt;/a&gt;
+  &lt;a href="/products" aria-current="page"&gt;Products&lt;/a&gt;
+  &lt;k-stack slot="actions" v="horizontal gap-3"&gt;
+    &lt;k-button v="ghost sm"&gt;Login&lt;/k-button&gt;
+    &lt;k-button v="filled sm"&gt;Sign Up&lt;/k-button&gt;
+  &lt;/k-stack&gt;
+&lt;/k-navbar-horizontal&gt;
+          </k-text>
+        </k-box>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-stack v="gap-4">
+        <k-text v="h2 semibold">Try it out</k-text>
+        <k-text v="muted">
+          Resize your browser to see responsive behavior. Below 768px, the navigation collapses to a hamburger menu.
+          Click the hamburger to open the slide-in drawer. Press Escape or click outside to close.
+        </k-text>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-stack v="gap-4">
+        <k-text v="h2 semibold">Variants</k-text>
+        <k-text v="muted">The navbar supports different visual variants via the <k-text v="code">v</k-text> attribute:</k-text>
+        <k-stack v="gap-2">
+          <k-text><k-text v="semibold">default</k-text> (current): Surface background with bottom border</k-text>
+          <k-text><k-text v="semibold">elevated</k-text>: Elevated surface with shadow, no border</k-text>
+          <k-text><k-text v="semibold">bordered</k-text>: Stronger 2px bottom border</k-text>
+          <k-text><k-text v="semibold">transparent</k-text>: Transparent background with subtle border</k-text>
+        </k-stack>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-stack v="gap-4">
+        <k-text v="h2 semibold">Sizes</k-text>
+        <k-stack v="gap-2">
+          <k-text><k-text v="semibold">sm</k-text>: 56px height</k-text>
+          <k-text><k-text v="semibold">md</k-text> (default): 64px height</k-text>
+          <k-text><k-text v="semibold">lg</k-text>: 72px height</k-text>
+        </k-stack>
+      </k-stack>
+
+      <k-divider></k-divider>
+
+      <k-stack v="gap-4">
+        <k-text v="h2 semibold">Scroll to test sticky behavior</k-text>
+        <k-text v="muted">The navbar above has <k-text v="code">v="sticky"</k-text> so it stays at the top as you scroll.</k-text>
+        <k-box v="surface p-8 r-md" style="height: 1000px;">
+          <k-text v="muted">Scroll content area...</k-text>
+        </k-box>
+      </k-stack>
+    </k-stack>
+  </k-section>
+</k-container>
+
+<!-- Theme Switcher for testing -->
+<k-box v="elevated p-2 r-md" style="position: fixed; bottom: 20px; right: 20px;">
+  <k-theme-switcher v="horizontal"></k-theme-switcher>
+</k-box>
+
+</body>
+</html>

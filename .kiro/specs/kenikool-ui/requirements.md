@@ -384,7 +384,33 @@ The library ships with three built-in themes (Light, Dark, Dracula), ten pre-des
 
 3. The `src` URL MUST be sanitized with `sanitizeUrl()` before being set as the `src` attribute to prevent `javascript:` XSS vectors.
 
-4. The `alt` prop MUST default to the `name` prop value if not explicitly provided. If neither is available, `alt=""` MUST be set (decorative image convention).
+4. #### 5.10 Avatar Component
+... (existing content) ...
+The `alt` prop MUST default to the `name` prop value if not explicitly provided. If neither is available, `alt=""` MUST be set (decorative image convention).
+
+#### 5.11 Tabs Component
+1. The Tabs component MUST organize content into a set of panels, with only one panel visible at a time.
+2. The Tabs component MUST support 10 visual variants:
+   - `default`: Classic tabs with a bottom border highlight for the active tab.
+   - `pill`: Active tab is styled as a rounded pill with a solid background.
+   - `underlined`: Minimalist look with a thin, high-contrast underline for the active tab.
+   - `filled`: Active tab has a solid semantic background, others are ghost-like.
+   - `outlined`: Tabs have borders; the active tab's border uses the accent color.
+   - `glass`: Tab bar features glassmorphism (backdrop-blur) and semi-transparent borders.
+   - `gradient`: Active tab utilizes a linear gradient background.
+   - `compact`: Reduced padding and smaller typography for high-density interfaces.
+   - `vertical`: Tabs are arranged in a vertical sidebar instead of a horizontal bar.
+   - `card`: Tabs are styled as integrated cards within a container.
+3. The Tabs component MUST support semantic colors (`primary`, `success`, `warning`, `error`, `info`, `default`) to style the active indicator and highlight colors.
+4. Tabs MUST be managed via an `activeIndex` (0-indexed) or a `value` attribute. Changing these MUST update the visible panel and active tab trigger.
+5. ARIA:
+   - The container for triggers MUST have `role="tablist"`.
+   - Each trigger MUST have `role="tab"`, `aria-selected="true|false"`, and `aria-controls` pointing to its panel.
+   - Each content panel MUST have `role="tabpanel"`, `aria-labelledby` pointing to its trigger, and `tabindex="0"` to allow scrolling.
+6. Keyboard Navigation: `ArrowLeft`/`ArrowRight` (horizontal) or `ArrowUp`/`ArrowDown` (vertical) MUST move focus between tabs. `Enter` or `Space` MUST activate the focused tab.
+7. The Tabs component MUST support a `v` attribute for configuring `variant`, `size`, and `color` (e.g., `v="pill lg primary"`).
+8. Content panels MUST be hidden using `display: none` or `visibility: hidden` when inactive to ensure they are removed from the accessibility tree.
+
 
 ---
 

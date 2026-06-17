@@ -198,3 +198,80 @@
     scroll-behavior:      auto !important;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   FUTURISTIC CARD ANIMATIONS (2026)
+   Used by Card component futuristic variants
+   ═══════════════════════════════════════════════════════════════════ */
+
+/** 1. NEON — Rotating gradient border (holographic effect) */
+@keyframes k-neon-border-rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/** 2. GLOW-PULSE — Breathing glow effect */
+@keyframes k-glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px var(--k-accent), 0 0 20px var(--k-accent-subtle); }
+  50%      { box-shadow: 0 0 20px var(--k-accent), 0 0 40px var(--k-accent-subtle), 0 0 60px var(--k-accent-subtle); }
+}
+
+/** 3. AURORA — Animated gradient background (northern lights) */
+@keyframes k-aurora-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/** 4. HOLOGRAM — Shimmer effect passing across surface */
+@keyframes k-hologram-shimmer {
+  0%   { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(200%) rotate(45deg); }
+}
+
+/** 5. PARTICLE — Floating particles drift upward */
+@keyframes k-particle-float {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(-100px) translateX(10px); opacity: 0; }
+}
+
+/** 6. GLITCH — RGB split effect */
+@keyframes k-glitch-shift {
+  0%, 100% { transform: translate(0); }
+  33%      { transform: translate(-2px, 2px); }
+  66%      { transform: translate(2px, -2px); }
+}
+
+/** 7. GLITCH BORDER — Flickering border */
+@keyframes k-glitch-border {
+  0%, 100% { border-style: solid; }
+  20%, 60% { border-style: dashed; }
+}
+
+/** 8. NEUMORPHIC PULSE — Shadow depth animation */
+@keyframes k-neuro-pulse {
+  0%, 100% {
+    box-shadow: 
+      6px 6px 12px rgba(0, 0, 0, 0.15),
+      -6px -6px 12px rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    box-shadow: 
+      8px 8px 16px rgba(0, 0, 0, 0.2),
+      -8px -8px 16px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/** 9. FROSTED GRAIN — Animated noise texture */
+@keyframes k-frosted-grain {
+  0%, 100% { opacity: 0.03; }
+  50%      { opacity: 0.06; }
+}
+
+/** 10. SPOTLIGHT RIPPLE — Radial glow expansion */
+@keyframes k-spotlight-ripple {
+  0%   { opacity: 0.6; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(2); }
+}

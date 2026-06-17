@@ -1,0 +1,193 @@
+/* src/styles/components/toast.css */
+
+/* Containers */
+.k-toast-container {
+  position: fixed;
+  z-index: var(--k-z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-3);
+  padding: var(--k-space-4);
+  pointer-events: none; /* Let clicks pass through the container itself */
+}
+
+.k-toast-container > * {
+  pointer-events: auto; /* But toasts are interactive */
+}
+
+.k-toast-container--top-right {
+  top: 0;
+  right: 0;
+  align-items: flex-end;
+}
+
+.k-toast-container--top-left {
+  top: 0;
+  left: 0;
+  align-items: flex-start;
+}
+
+.k-toast-container--bottom-right {
+  bottom: 0;
+  right: 0;
+  align-items: flex-end;
+  flex-direction: column-reverse;
+}
+
+.k-toast-container--bottom-left {
+  bottom: 0;
+  left: 0;
+  align-items: flex-start;
+  flex-direction: column-reverse;
+}
+
+.k-toast-container--bottom-center {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+/* Toast Element */
+k-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-3);
+  min-width: 280px;
+  max-width: 450px;
+  padding: var(--k-space-3) var(--k-space-4);
+  border-radius: var(--k-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: var(--k-bg-surface);
+  color: var(--k-text-primary);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  animation: k-toast-slide-in 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+k-toast.k-toast--dismissing {
+  animation: k-toast-slide-out 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.k-toast__message {
+  flex: 1;
+  font-size: var(--k-text-base);
+}
+
+.k-toast__close {
+  background: none;
+  border: none;
+  color: var(--k-text-muted);
+  cursor: pointer;
+  padding: var(--k-space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--k-transition-base);
+}
+
+.k-toast__close:hover {
+  color: var(--k-text-primary);
+}
+
+/* Progress Bar */
+.k-toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--k-accent);
+  opacity: 0.6;
+}
+
+/* Variants - Using data-color for semantic colors */
+k-toast[data-variant="default"],
+k-toast[data-color="default"] {
+  border-left: 4px solid var(--k-accent);
+}
+
+k-toast[data-variant="success"],
+k-toast[data-color="success"] {
+  border-left: 4px solid var(--k-success);
+  background: var(--k-bg-surface);
+}
+k-toast[data-variant="success"] .k-toast-progress,
+k-toast[data-color="success"] .k-toast-progress {
+  background: var(--k-success);
+}
+
+k-toast[data-variant="error"],
+k-toast[data-color="error"] {
+  border-left: 4px solid var(--k-error);
+}
+k-toast[data-variant="error"] .k-toast-progress,
+k-toast[data-color="error"] .k-toast-progress {
+  background: var(--k-error);
+}
+
+k-toast[data-variant="warning"],
+k-toast[data-color="warning"] {
+  border-left: 4px solid var(--k-warning);
+}
+k-toast[data-variant="warning"] .k-toast-progress,
+k-toast[data-color="warning"] .k-toast-progress {
+  background: var(--k-warning);
+}
+
+k-toast[data-variant="info"],
+k-toast[data-color="info"] {
+  border-left: 4px solid var(--k-info);
+}
+k-toast[data-variant="info"] .k-toast-progress,
+k-toast[data-color="info"] .k-toast-progress {
+  background: var(--k-info);
+}
+
+k-toast[data-variant="primary"],
+k-toast[data-color="primary"] {
+  background: var(--k-accent);
+  color: var(--k-text-inverse);
+}
+k-toast[data-variant="primary"] .k-toast__close,
+k-toast[data-color="primary"] .k-toast__close {
+  color: var(--k-text-inverse);
+}
+
+k-toast[data-variant="dark"] {
+  background: #1a1a1a;
+  color: white;
+}
+
+/* Animations */
+@keyframes k-toast-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes k-toast-slide-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  k-toast, .k-toast-progress {
+    transition: none !important;
+    animation: none !important;
+  }
+}

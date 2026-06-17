@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenikool UI Documentation</title>
+  <link rel="stylesheet" href="dist/styles/base.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    /* Docs viewer layout constraints only - NOT component styling */
+    .docs-layout {
+      height: 100vh;
+    }
+    .docs-sidebar {
+      border-right: 1px solid var(--k-border);
+      overflow-y: auto;
+    }
+    .docs-content {
+      overflow-y: auto;
+    }
+    .min-h-400 {
+    .docs-nav-btn {
+      justify-content: flex-start;
+    }
+      min-height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <k-grid v="cols-12 gap-0" class="docs-layout">
+    <!-- Sidebar -->
+    <k-col v="span-3" class="docs-sidebar">
+      <k-stack v="gap-6 p-6">
+        <k-stack v="gap-2">
+          <k-text v="h2 text-2xl bold">Kenikool UI</k-text>
+          <k-badge v="filled xs info">v0.1.0</k-badge>
+        </k-stack>
+
+        <k-divider></k-divider>
+
+        <k-stack v="gap-2">
+          <k-text v="muted text-xs semibold">GETTING STARTED</k-text>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/README.md">Overview</k-button>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/getting-started/installation.md">Installation</k-button>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/getting-started/first-component.md">First Component</k-button>
+        </k-stack>
+
+        <k-stack v="gap-2">
+          <k-text v="muted text-xs semibold">CONCEPTS</k-text>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/concepts/v-attribute-system.md">v Attribute System</k-button>
+        </k-stack>
+
+        <k-stack v="gap-2">
+          <k-text v="muted text-xs semibold">TOKENS REFERENCE</k-text>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/reference/tokens/README.md">Token Overview</k-button>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/reference/tokens/universal-tokens.md">Universal Tokens</k-button>
+          <k-button v="ghost sm full .nav-btn" data-nav="docs/reference/tokens/layout-tokens.md">Layout Tokens</k-button>
+        </k-stack>
+
+        <k-divider></k-divider>
+
+        <k-stack v="gap-2">
+          <k-text v="muted text-xs semibold">THEME</k-text>
+          <k-theme-switcher></k-theme-switcher>
+        </k-stack>
+      </k-stack>
+    </k-col>
+
+    <!-- Content Area -->
+    <k-col v="span-9 #content-area" class="docs-content">
+      <k-container v="p-12">
+        <k-box v="#markdown-content">
+          <k-stack v="gap-4 align-center justify-center" class="min-h-400">
+            <k-loader v="spinner lg primary"></k-loader>
+            <k-text v="text-lg muted">Loading documentation...</k-text>
+          </k-stack>
+        </k-box>
+      </k-container>
+    </k-col>
+  </k-grid>
+
+  <script type="module">
+    import './dist/vanilla/index.mjs';
+
+    const content = document.querySelector('#markdown-content');
+    const contentArea = document.querySelector('#content-area');
+    const navButtons = document.querySelectorAll('.nav-btn');
+
+    marked.setOptions({ breaks: true, gfm: true });
+
+    async function loadMarkdown(path) {
+      try {
+        content.innerHTML = `
+          <k-stack v="gap-4 align-center justify-center" class="min-h-400">
+            <k-loader v="spinner lg primary"></k-loader>
+            <k-text v="text-lg muted">Loading ${path}...</k-text>
+          </k-stack>
+        `;
+        
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Failed to load ${path}`);
+        
+        const markdown = await response.text();
+        content.innerHTML = marked.parse(markdown);
+
+        // Update active button
+        navButtons.forEach(btn => {
+          if (btn.dataset.nav === path) {
+            btn.setAttribute('v', 'filled sm primary full .nav-btn');
+          } else {
+            btn.setAttribute('v', 'ghost sm full .nav-btn');
+          }
+        });
+
+        contentArea.scrollTop = 0;
+
+        // Handle internal markdown links
+        content.querySelectorAll('a').forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && (href.startsWith('./') || href.startsWith('../'))) {
+            link.addEventListener('click', (e) => {
+              e.preventDefault();
+              const newPath = resolvePath(path, href);
+              window.location.hash = newPath;
+            });
+          }
+        });
+
+      } catch (error) {
+        content.innerHTML = `
+          <k-card v="elevated">
+            <k-stack v="gap-4">
+              <k-text v="h3 text-xl semibold">Error loading documentation</k-text>
+              <k-text v="text-base">${error.message}</k-text>
+              <k-box v="surface p-4 r-md">
+                <k-text v="text-sm muted">Make sure you're running a local server:</k-text>
+                <k-text v="text-sm code">python -m http.server 3001</k-text>
+              </k-box>
+            </k-stack>
+          </k-card>
+        `;
+      }
+    }
+
+    function resolvePath(currentPath, relativePath) {
+      const currentParts = currentPath.split('/');
+      currentParts.pop();
+      const relativeParts = relativePath.split('/');
+      for (const part of relativeParts) {
+        if (part === '..') currentParts.pop();
+        else if (part !== '.') currentParts.push(part);
+      }
+      return currentParts.join('/');
+    }
+
+    window.addEventListener('hashchange', () => {
+      const path = window.location.hash.slice(1) || 'docs/README.md';
+      loadMarkdown(path);
+    });
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('k:click', () => {
+        window.location.hash = btn.dataset.nav;
+      });
+    });
+
+    const initialPath = window.location.hash.slice(1) || 'docs/README.md';
+    loadMarkdown(initialPath);
+  </script>
+</body>
+</html>

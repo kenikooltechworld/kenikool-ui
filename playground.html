@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-scrollbar="default">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,26 +10,46 @@
   <script type="module" src="./dist/vanilla/index.mjs"></script>
   <script src="./playground.js" defer></script>
 </head>
-
+<!-- why do you remove the maxlink atttribute, i thouth it will be there so users ccan specify or there is no need since we're doing it automatically? -->
 <body>
+  <!-- ═══ NAVBAR ═══════════════════════════════════════════════════════════ -->
+  <k-navbar-horizontal v="sticky">
+    <k-stack slot="logo" v="horizontal align-center gap-2">
+      <k-text v="h3 semibold">kenikool-ui</k-text>
+      <k-badge v="primary">v0.1.0</k-badge>
+    </k-stack>
+    <a href="#tokens">Tokens</a>
+    <a href="#button">Button</a>
+    <a href="#layout">Layout</a>
+    <a href="#loading">Loading</a>
+    <a href="#input">Input</a>
+    <a href="#selectors">Selectors</a>
+    <a href="#badge">Badge</a>
+    <a href="#card">Card</a>
+    <a href="#futuristic">Futuristic</a>
+    <a href="#scrollbar">Scrollbar</a>
+    <a href="#checkbox">Checkbox</a>
+    <a href="#modal">Modal</a>
+    <a href="#select">Select</a>
+    <a href="#toast">Toast</a>
+    <a href="#tooltip">Tooltip</a>
+    <a href="#avatar">Avatar</a>
+    <a href="#loading-demo">Loader</a>
+    <a href="#tabs">Tabs</a>
+    <a href="#table">Table System</a>
+    <a href="#carousel">Carousel</a>
+    <a href="#image-components">Images</a>
+    <k-stack slot="actions" v="horizontal gap-2">
+      <k-theme-switcher></k-theme-switcher>
+    </k-stack>
+  </k-navbar-horizontal>
+
   <k-container>
-  <!-- ═══ HEADER ═══════════════════════════════════════════════════════════ -->
-  <k-section v="surface">
-    <k-box v="elevated p-4">
-      <k-row v="justify-between align-center gap-4">
-        <k-stack v="horizontal align-center gap-3">
-          <k-text v="h1 semibold">kenikool-ui smoke test</k-text>
-          <k-badge v="primary">v0.1.0</k-badge>
-        </k-stack>
-        <k-theme-switcher v="horizontal gap-2"></k-theme-switcher>
-      </k-row>
-    </k-box>
-  </k-section>
 
   <main>
 
       <!-- Section 1: Tokens -->
-      <k-section v="base">
+      <k-section v="base" id="tokens">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-5">
@@ -149,7 +169,7 @@
       </k-section>
 
       <!-- Section 2: Button -->
-      <k-section v="surface">
+      <k-section v="surface" id="button">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-5">
@@ -269,7 +289,7 @@
       </k-section>
 
       <!-- Section 3: Layout Components -->
-      <k-section v="base">
+      <k-section v="base" id="layout">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-5">
@@ -480,7 +500,7 @@
       </k-section>
 
       <!-- Section 4: Loading Animations -->
-      <k-section v="surface">
+      <k-section v="surface" id="loading">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-5">
@@ -616,7 +636,7 @@
       </k-section>
 
       <!-- Section 5: Input (Premium Overhaul) -->
-      <k-section v="surface">
+      <k-section v="surface" id="input">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-5">
@@ -687,7 +707,7 @@
       </k-section>
 
       <!-- Section 6: Selector Targets -->
-      <k-section v="surface">
+      <k-section v="surface" id="selectors">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-2">
@@ -702,7 +722,7 @@
       </k-section>
 
       <!-- Section 7: Badges (Indicator System) -->
-      <k-section v="surface">
+      <k-section v="surface" id="badge">
         <k-container>
           <k-stack v="gap-10 p-8">
             <k-stack v="gap-5">
@@ -867,6 +887,3020 @@
           </k-stack>
         </k-container>
       </k-section>
+
+      <!-- Section 8: Card Component -->
+      <k-section v="surface" id="card">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§8 — Card Component</k-text>
+                <k-text v="muted">Flexible container with 10 variants, named slots, and interactive states.</k-text>
+              </k-stack>
+
+              <!-- 10 Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">10 Variants</k-text>
+                <k-grid v="gap-4">
+                  <!-- Default -->
+                  <k-card v="default">
+                    <div slot="header">Default Card</div>
+                    <div>Standard card with border, shadow, and surface background.</div>
+                    <div slot="footer">
+                      <k-button v="filled sm">Action</k-button>
+                    </div>
+                  </k-card>
+
+                  <!-- Elevated -->
+                  <k-card v="elevated">
+                    <div slot="header">Elevated Card</div>
+                    <div>No border, elevated background, medium shadow.</div>
+                  </k-card>
+
+                  <!-- Outlined -->
+                  <k-card v="outlined">
+                    <div slot="header">Outlined Card</div>
+                    <div>Transparent background with border, no shadow.</div>
+                  </k-card>
+
+                  <!-- Filled -->
+                  <k-card v="filled">
+                    <div slot="header">Filled Card</div>
+                    <div>Flat surface background, no border, no shadow.</div>
+                  </k-card>
+
+                  <!-- Glass -->
+                  <k-card v="glass">
+                    <div slot="header">Glass Card</div>
+                    <div>Glassmorphism with backdrop blur and transparency.</div>
+                  </k-card>
+
+                  <!-- Gradient -->
+                  <k-card v="gradient">
+                    <div slot="header">Gradient Card</div>
+                    <div>Linear gradient background from accent to elevated.</div>
+                  </k-card>
+
+                  <!-- Interactive -->
+                  <k-card v="interactive">
+                    <div slot="header">Interactive Card</div>
+                    <div>Hover to see lift animation and shadow increase.</div>
+                  </k-card>
+
+                  <!-- Compact -->
+                  <k-card v="compact">
+                    <div slot="header">Compact Card</div>
+                    <div>Reduced padding and smaller text scale.</div>
+                  </k-card>
+
+                  <!-- Feature -->
+                  <k-card v="feature">
+                    <div slot="header">Feature Card</div>
+                    <div>Large card with accent top border, centered layout.</div>
+                    <div slot="footer">
+                      <k-button v="filled">Get Started</k-button>
+                    </div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Horizontal Layout -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Horizontal Layout</k-text>
+                <k-card v="horizontal">
+                  <img slot="image" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop" alt="Headphones" />
+                  <k-text slot="header" v="lg semibold">Horizontal Card</k-text>
+                  <k-text>Image on the left (200px fixed), content on the right. Perfect for list views and media previews.</k-text>
+                  <k-box slot="footer">
+                    <k-button v="outlined sm">Learn More</k-button>
+                  </k-box>
+                </k-card>
+              </k-stack>
+
+              <!-- With Image -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Card with Image</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <k-card v="elevated">
+                    <img slot="image" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop" alt="Watch" />
+                    <k-text slot="header" v="lg semibold">Product Card</k-text>
+                    <k-text>Top media area for images or video. Image auto-scales to full width.</k-text>
+                    <k-row slot="footer" v="gap-2">
+                      <k-button v="filled sm full">Buy Now</k-button>
+                      <k-button v="outlined sm">Details</k-button>
+                    </k-row>
+                  </k-card>
+
+                  <k-card v="default">
+                    <img slot="image" src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=400&h=300&fit=crop" alt="Laptop" />
+                    <k-text slot="header" v="lg semibold">Blog Post</k-text>
+                    <k-text>Image slot supports any content - img, video, or custom elements.</k-text>
+                    <k-text slot="footer" v="text-xs muted">2 min read</k-text>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Hoverable & Clickable Props -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Hoverable & Clickable</k-text>
+                <k-grid v="gap-4">
+                  <k-card v="outlined" hoverable>
+                    <div slot="header">Hoverable Card</div>
+                    <div>The <code>hoverable</code> attribute adds lift animation on hover to any variant.</div>
+                  </k-card>
+
+                  <k-card v="filled" clickable>
+                    <div slot="header">Clickable Card</div>
+                    <div>The <code>clickable</code> attribute adds pointer cursor and press effect.</div>
+                  </k-card>
+
+                  <k-card v="elevated" hoverable clickable>
+                    <div slot="header">Both Combined</div>
+                    <div>Hoverable + clickable = interactive card perfect for navigation.</div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Size Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Size Scale</k-text>
+                <k-grid v="gap-4">
+                  <k-card v="default xs">
+                    <div slot="header">XS Card</div>
+                    <div>Extra small padding and text.</div>
+                  </k-card>
+
+                  <k-card v="default sm">
+                    <div slot="header">SM Card</div>
+                    <div>Small padding and text.</div>
+                  </k-card>
+
+                  <k-card v="default md">
+                    <div slot="header">MD Card (Default)</div>
+                    <div>Medium is the default size.</div>
+                  </k-card>
+
+                  <k-card v="default lg">
+                    <div slot="header">LG Card</div>
+                    <div>Large padding and text scale.</div>
+                  </k-card>
+
+                  <k-card v="default xl">
+                    <div slot="header">XL Card</div>
+                    <div>Extra large - great for hero sections.</div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Interactive Demo -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Interactive Demo</k-text>
+                <k-card v="interactive" class="demo-card">
+                  <div slot="header">Click Me</div>
+                  <div>This card dispatches a <code>k:click</code> event when clicked.</div>
+                  <div slot="footer">
+                    <k-text v="text-sm muted">Click count: <span class="click-count">0</span></k-text>
+                  </div>
+                </k-card>
+              </k-stack>
+
+              <!-- States -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">States</k-text>
+                <k-grid v="gap-4">
+                  <k-card v="default loading">
+                    <div slot="header">Loading State</div>
+                    <div>Reduced opacity, wait cursor, pointer events disabled.</div>
+                  </k-card>
+
+                  <k-card v="default disabled">
+                    <div slot="header">Disabled State</div>
+                    <div>Reduced opacity, not-allowed cursor, no interaction.</div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 9: Futuristic Card Variants (2026) -->
+      <k-section v="surface" id="futuristic">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§9 — Futuristic Card Variants (2026)</k-text>
+                <k-text v="muted">Advanced cards with animations, 3D effects, and interactive states. All respect prefers-reduced-motion.</k-text>
+              </k-stack>
+
+              <!-- Row 1: Neon, Neumorphic, Glow-Pulse -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Animated Effects</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <!-- Neon Card -->
+                  <k-card v="neon">
+                    <div slot="header">🌈 Neon Card</div>
+                    <div>Holographic rotating gradient border. Cyberpunk aesthetic with animated conic-gradient creating a rainbow effect.</div>
+                    <div slot="footer">
+                      <k-badge v="pill primary">Animated Border</k-badge>
+                    </div>
+                  </k-card>
+
+                  <!-- Neumorphic Card -->
+                  <k-card v="neumorphic">
+                    <div slot="header">🎨 Neumorphic Card</div>
+                    <div>Soft 3D shadows creating tactile depth. Hover to see shadow pulse animation. Click to see pressed state.</div>
+                    <div slot="footer">
+                      <k-badge v="pill default">3D Depth</k-badge>
+                    </div>
+                  </k-card>
+
+                  <!-- Glow-Pulse Card -->
+                  <k-card v="glow-pulse">
+                    <div slot="header">✨ Glow-Pulse Card</div>
+                    <div>Breathing glow effect with pulsing border. Accelerates on hover. Perfect for notifications and live indicators.</div>
+                    <div slot="footer">
+                      <k-badge v="pill success">Live</k-badge>
+                    </div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Row 2: Aurora, Hologram, Frosted -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Background Effects</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <!-- Aurora Card -->
+                  <k-card v="aurora">
+                    <div slot="header">🌌 Aurora Card</div>
+                    <div>Animated gradient background mimicking northern lights. Slow 20s animation cycle creates mesmerizing effect.</div>
+                    <div slot="footer">
+                      <k-button v="outlined sm">Learn More</k-button>
+                    </div>
+                  </k-card>
+
+                  <!-- Hologram Card -->
+                  <k-card v="hologram">
+                    <div slot="header">💎 Hologram Card</div>
+                    <div>Iridescent shimmer effect passing across surface. Rainbow refraction like holographic foil.</div>
+                    <div slot="footer">
+                      <k-badge v="pill info">Premium</k-badge>
+                    </div>
+                  </k-card>
+
+                  <!-- Frosted Card -->
+                  <k-card v="frosted">
+                    <div slot="header">❄️ Frosted Card</div>
+                    <div>Advanced glassmorphism with animated grain texture. Heavy backdrop blur with subtle noise overlay.</div>
+                    <div slot="footer">
+                      <k-badge v="pill default">Glass</k-badge>
+                    </div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Row 3: Spotlight, Magnetic, Glitch -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Interactive Effects</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <!-- Spotlight Card -->
+                  <k-card v="spotlight">
+                    <div slot="header">🔦 Spotlight Card</div>
+                    <div>Move your cursor over this card! Radial gradient follows mouse position creating a spotlight effect.</div>
+                    <div slot="footer">
+                      <k-badge v="pill warning">Interactive</k-badge>
+                    </div>
+                  </k-card>
+
+                  <!-- Magnetic Card -->
+                  <k-card v="magnetic">
+                    <div slot="header">🧲 Magnetic Card</div>
+                    <div>Hover to see 3D tilt! Card rotates in 3D space following your cursor. True perspective effect.</div>
+                    <div slot="footer">
+                      <k-badge v="pill error">3D Tilt</k-badge>
+                    </div>
+                  </k-card>
+
+                  <!-- Glitch Card -->
+                  <k-card v="glitch">
+                    <div slot="header">⚡ Glitch Card</div>
+                    <div>Hover for cyberpunk RGB split effect! Border flickers and text gets chromatic aberration.</div>
+                    <div slot="footer">
+                      <k-badge v="pill primary">Cyberpunk</k-badge>
+                    </div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Row 4: Particle -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Ambient Effects</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <!-- Particle Card -->
+                  <k-card v="particle">
+                    <div slot="header">🎆 Particle Card</div>
+                    <div>Floating particles drift upward in background. Hover to speed up animation. Perfect for ambient atmosphere.</div>
+                    <div slot="footer">
+                      <k-badge v="pill info">Animated</k-badge>
+                    </div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Combined Examples -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Real-World Use Cases</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <!-- Premium Pricing Card -->
+                  <k-card v="neon">
+                    <div slot="header">Pro Plan</div>
+                    <k-stack v="gap-3">
+                      <k-row v="align-baseline gap-1">
+                        <k-text v="h1 semibold">$99</k-text>
+                        <k-text v="text-base muted">/mo</k-text>
+                      </k-row>
+                      <k-text v="text-sm">Everything you need for professional projects:</k-text>
+                      <k-stack v="gap-1">
+                        <k-text v="text-sm">✓ Unlimited projects</k-text>
+                        <k-text v="text-sm">✓ Advanced analytics</k-text>
+                        <k-text v="text-sm">✓ Priority support</k-text>
+                        <k-text v="text-sm">✓ Custom integrations</k-text>
+                      </k-stack>
+                    </k-stack>
+                    <div slot="footer">
+                      <k-button v="filled full">Upgrade Now</k-button>
+                    </div>
+                  </k-card>
+
+                  <!-- Live Dashboard Card -->
+                  <k-card v="glow-pulse">
+                    <div slot="header">Server Status</div>
+                    <div>
+                      <k-stack v="gap-3">
+                        <k-row v="gap-2 align-center">
+                          <k-badge v="status success">Online</k-badge>
+                          <k-text v="text-sm muted">All systems operational</k-text>
+                        </k-row>
+                        <k-text v="text-sm">Uptime: 99.99%</k-text>
+                        <k-text v="text-sm">Response: 45ms</k-text>
+                      </k-stack>
+                    </div>
+                  </k-card>
+
+                  <!-- Interactive Product Card -->
+                  <k-card v="magnetic">
+                    <div slot="image">
+                      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=250&fit=crop" alt="Premium Headphones" />
+                    </div>
+                    <div slot="header">Premium Headphones</div>
+                    <div>Experience studio-quality sound with active noise cancellation and 30-hour battery life.</div>
+                    <div slot="footer">
+                      <k-row v="gap-2">
+                        <k-button v="filled sm full">Buy Now</k-button>
+                        <k-button v="outlined sm">Details</k-button>
+                      </k-row>
+                    </div>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Performance Note -->
+              <k-box v="surface p-4 r-md">
+                <k-stack v="gap-2">
+                  <k-text v="semibold">♿ Accessibility & Performance</k-text>
+                  <k-text v="text-sm muted">All futuristic card animations automatically respect <code>prefers-reduced-motion</code>. Users who prefer reduced motion will see static versions without animations. Effects are GPU-accelerated and optimized for 60fps performance.</k-text>
+                </k-stack>
+              </k-box>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 10: Scrollbar System -->
+      <k-section v="base" id="scrollbar">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§10 — Modern Scrollbar System</k-text>
+                <k-text v="muted">5 scrollbar variants, theme-aware, zero-config. Set <code>data-scrollbar</code> on <code>&lt;html&gt;</code> for global or on any component.</k-text>
+              </k-stack>
+
+              <!-- Global Scrollbar Control -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Global Scrollbar (Current Page)</k-text>
+                <k-text v="text-sm muted">Click buttons to change the page scrollbar style:</k-text>
+                <k-row v="gap-2 wrap">
+                  <k-button v="filled" onclick="document.documentElement.setAttribute('data-scrollbar', 'default')">Default</k-button>
+                  <k-button v="filled" onclick="document.documentElement.setAttribute('data-scrollbar', 'minimal')">Minimal</k-button>
+                  <k-button v="filled" onclick="document.documentElement.setAttribute('data-scrollbar', 'thick')">Thick</k-button>
+                  <k-button v="filled" onclick="document.documentElement.setAttribute('data-scrollbar', 'floating')">Floating</k-button>
+                  <k-button v="filled" onclick="document.documentElement.setAttribute('data-scrollbar', 'mac')">Mac Style</k-button>
+                </k-row>
+              </k-stack>
+
+              <!-- Scrollbar Demos -->
+              <k-grid v="cols-3 gap-4">
+                <!-- Default Scrollbar -->
+                <k-card v="elevated">
+                  <k-text slot="header" v="semibold">Default</k-text>
+                  <k-box data-scrollbar="default" style="height: 200px; overflow-y: scroll; padding: 1rem; background: var(--k-bg-surface); border-radius: var(--k-radius-md);">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">Modern Thin (8px)</k-text>
+                      <k-text v="text-sm">Theme-aware scrollbar that changes color on hover. Perfect for most use cases.</k-text>
+                      <k-text v="text-sm muted">Scroll down to see more...</k-text>
+                      <k-divider></k-divider>
+                      <k-text v="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</k-text>
+                      <k-text v="text-sm">Sed do eiusmod tempor incididunt ut labore.</k-text>
+                      <k-text v="text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</k-text>
+                      <k-text v="text-sm">Duis aute irure dolor in reprehenderit.</k-text>
+                      <k-text v="text-sm">Excepteur sint occaecat cupidatat non proident.</k-text>
+                      <k-text v="text-sm">Sunt in culpa qui officia deserunt mollit anim.</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-card>
+
+                <!-- Minimal Scrollbar -->
+                <k-card v="elevated">
+                  <k-text slot="header" v="semibold">Minimal</k-text>
+                  <k-box data-scrollbar="minimal" style="height: 200px; overflow-y: scroll; padding: 1rem; background: var(--k-bg-surface); border-radius: var(--k-radius-md);">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">Ultra-Thin (4px)</k-text>
+                      <k-text v="text-sm">Low-contrast, minimal visual footprint. Best for dense interfaces.</k-text>
+                      <k-text v="text-sm muted">Scroll to test...</k-text>
+                      <k-divider></k-divider>
+                      <k-text v="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</k-text>
+                      <k-text v="text-sm">Sed do eiusmod tempor incididunt ut labore.</k-text>
+                      <k-text v="text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</k-text>
+                      <k-text v="text-sm">Duis aute irure dolor in reprehenderit.</k-text>
+                      <k-text v="text-sm">Excepteur sint occaecat cupidatat non proident.</k-text>
+                      <k-text v="text-sm">Sunt in culpa qui officia deserunt mollit anim.</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-card>
+
+                <!-- Thick Scrollbar -->
+                <k-card v="elevated">
+                  <k-text slot="header" v="semibold">Thick</k-text>
+                  <k-box data-scrollbar="thick" style="height: 200px; overflow-y: scroll; padding: 1rem; background: var(--k-bg-surface); border-radius: var(--k-radius-md);">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">Wide (12px)</k-text>
+                      <k-text v="text-sm">High visibility with track background. Great for accessibility and touch screens.</k-text>
+                      <k-text v="text-sm muted">Scroll to test...</k-text>
+                      <k-divider></k-divider>
+                      <k-text v="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</k-text>
+                      <k-text v="text-sm">Sed do eiusmod tempor incididunt ut labore.</k-text>
+                      <k-text v="text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</k-text>
+                      <k-text v="text-sm">Duis aute irure dolor in reprehenderit.</k-text>
+                      <k-text v="text-sm">Excepteur sint occaecat cupidatat non proident.</k-text>
+                      <k-text v="text-sm">Sunt in culpa qui officia deserunt mollit anim.</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-card>
+
+                <!-- Floating Scrollbar -->
+                <k-card v="elevated">
+                  <k-text slot="header" v="semibold">Floating</k-text>
+                  <k-box data-scrollbar="floating" style="height: 200px; overflow-y: scroll; padding: 1rem; background: var(--k-bg-surface); border-radius: var(--k-radius-md);">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">Overlay (10px)</k-text>
+                      <k-text v="text-sm">Translucent overlay with shadow. Doesn't affect content layout.</k-text>
+                      <k-text v="text-sm muted">Scroll to test...</k-text>
+                      <k-divider></k-divider>
+                      <k-text v="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</k-text>
+                      <k-text v="text-sm">Sed do eiusmod tempor incididunt ut labore.</k-text>
+                      <k-text v="text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</k-text>
+                      <k-text v="text-sm">Duis aute irure dolor in reprehenderit.</k-text>
+                      <k-text v="text-sm">Excepteur sint occaecat cupidatat non proident.</k-text>
+                      <k-text v="text-sm">Sunt in culpa qui officia deserunt mollit anim.</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-card>
+
+                <!-- Mac Scrollbar -->
+                <k-card v="elevated">
+                  <k-text slot="header" v="semibold">Mac Style</k-text>
+                  <k-box data-scrollbar="mac" style="height: 200px; overflow-y: scroll; padding: 1rem; background: var(--k-bg-surface); border-radius: var(--k-radius-md);">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">Translucent (10px)</k-text>
+                      <k-text v="text-sm">Mac-style semi-transparent scrollbar. Adapts to theme (dark/light).</k-text>
+                      <k-text v="text-sm muted">Scroll to test...</k-text>
+                      <k-divider></k-divider>
+                      <k-text v="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</k-text>
+                      <k-text v="text-sm">Sed do eiusmod tempor incididunt ut labore.</k-text>
+                      <k-text v="text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</k-text>
+                      <k-text v="text-sm">Duis aute irure dolor in reprehenderit.</k-text>
+                      <k-text v="text-sm">Excepteur sint occaecat cupidatat non proident.</k-text>
+                      <k-text v="text-sm">Sunt in culpa qui officia deserunt mollit anim.</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-card>
+
+                <!-- Hidden Scrollbar -->
+                <k-card v="elevated">
+                  <k-text slot="header" v="semibold">Hidden</k-text>
+                  <k-box data-scrollbar="hidden" style="height: 200px; overflow-y: scroll; padding: 1rem; background: var(--k-bg-surface); border-radius: var(--k-radius-md);">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">No Scrollbar</k-text>
+                      <k-text v="text-sm">Scrollbar hidden but scrolling still works. For clean, minimal UIs.</k-text>
+                      <k-text v="text-sm muted">Try scrolling (no scrollbar visible)...</k-text>
+                      <k-divider></k-divider>
+                      <k-text v="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</k-text>
+                      <k-text v="text-sm">Sed do eiusmod tempor incididunt ut labore.</k-text>
+                      <k-text v="text-sm">Ut enim ad minim veniam, quis nostrud exercitation.</k-text>
+                      <k-text v="text-sm">Duis aute irure dolor in reprehenderit.</k-text>
+                      <k-text v="text-sm">Excepteur sint occaecat cupidatat non proident.</k-text>
+                      <k-text v="text-sm">Sunt in culpa qui officia deserunt mollit anim.</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-card>
+              </k-grid>
+
+              <!-- Usage Guide -->
+              <k-card v="outlined">
+                <k-text slot="header" v="semibold">📖 Usage Guide</k-text>
+                <k-stack v="gap-3">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Global (Entire Page)</k-text>
+                    <k-box v="surface p-3 r-md">
+                      <k-text v="text-sm font-mono">&lt;html data-scrollbar="default"&gt;</k-text>
+                    </k-box>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Component-Level</k-text>
+                    <k-box v="surface p-3 r-md">
+                      <k-text v="text-sm font-mono">&lt;k-modal v="default" data-scrollbar="floating"&gt;</k-text>
+                    </k-box>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Any Scrollable Container</k-text>
+                    <k-box v="surface p-3 r-md">
+                      <k-text v="text-sm font-mono">&lt;div data-scrollbar="mac" style="overflow-y: scroll;"&gt;</k-text>
+                    </k-box>
+                  </k-stack>
+                </k-stack>
+              </k-card>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 11: Checkbox & Radio (Input Controls) -->
+      <k-section v="surface" id="checkbox">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§11 — &lt;k-checkbox&gt; &amp; &lt;k-radio&gt;</k-text>
+                <k-text v="muted">Accessible input controls with 10 visual variants, from classic checkboxes to modern switches and radio cards.</k-text>
+              </k-stack>
+
+              <!-- Variants Gallery -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Variant Gallery</k-text>
+                <k-grid v="gap-4">
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Default</k-text>
+                      <k-checkbox v="default">Accept Terms</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Filled</k-text>
+                      <k-checkbox v="filled">Notification On</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Outlined</k-text>
+                      <k-checkbox v="outlined">Remember Me</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Switch</k-text>
+                      <k-checkbox v="switch">Dark Mode</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Switch Filled</k-text>
+                      <k-checkbox v="switch-filled">Auto-Save</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Radio</k-text>
+                      <k-checkbox v="radio">Option A</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Radio Card</k-text>
+                      <k-checkbox v="radio-card">Premium Plan</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Indeterminate</k-text>
+                      <k-checkbox v="indeterminate">Partial Selection</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Icon Check</k-text>
+                      <k-checkbox v="icon-check">Verified Account</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="text-xs muted">Animated</k-text>
+                      <k-checkbox v="animated">Smooth Animation</k-checkbox>
+                    </k-stack>
+                  </k-box>
+                </k-grid>
+              </k-stack>
+
+              <!-- Size Scale -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Size Scale</k-text>
+                <k-row v="gap-4 wrap align-center">
+                  <k-checkbox v="default xs">XS</k-checkbox>
+                  <k-checkbox v="default sm">SM</k-checkbox>
+                  <k-checkbox v="default md">MD (Default)</k-checkbox>
+                  <k-checkbox v="default lg">LG</k-checkbox>
+                  <k-checkbox v="default xl">XL</k-checkbox>
+                </k-row>
+              </k-stack>
+
+              <!-- Semantic Colors -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Semantic Colors</k-text>
+                <k-row v="gap-4 wrap">
+                  <k-checkbox v="default primary">Primary</k-checkbox>
+                  <k-checkbox v="default success">Success</k-checkbox>
+                  <k-checkbox v="default warning">Warning</k-checkbox>
+                  <k-checkbox v="default error">Error</k-checkbox>
+                  <k-checkbox v="default info">Info</k-checkbox>
+                  <k-checkbox v="default default">Default</k-checkbox>
+                </k-row>
+              </k-stack>
+
+              <!-- Real World Scenarios -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Real-World Scenarios</k-text>
+                <k-grid v="cols-2 gap-6">
+                  <!-- Settings Panel -->
+                  <k-card v="elevated">
+                    <k-text slot="header" v="semibold">Account Settings</k-text>
+                    <k-stack v="gap-4 p-2">
+                      <k-checkbox v="switch">Email Notifications</k-checkbox>
+                      <k-checkbox v="switch">Two-Factor Auth</k-checkbox>
+                      <k-checkbox v="switch">Public Profile</k-checkbox>
+                      <k-divider></k-divider>
+                      <k-text v="text-xs muted">Preferences are saved automatically.</k-text>
+                    </k-stack>
+                  </k-card>
+                  <!-- Agreement Form -->
+                  <k-card v="outlined">
+                    <k-text slot="header" v="semibold">Legal Agreement</k-text>
+                    <k-stack v="gap-3 p-2">
+                      <k-checkbox v="default">I agree to the Terms of Service</k-checkbox>
+                      <k-checkbox v="default">I have read the Privacy Policy</k-checkbox>
+                      <k-checkbox v="default">Send me marketing emails</k-checkbox>
+                      <k-button v="filled full">Continue</k-button>
+                    </k-stack>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 12: Modal Component -->
+      <k-section v="surface" id="modal">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§12 — Modal Component</k-text>
+                <k-text v="muted">Native <code>&lt;dialog&gt;</code> element with 10 variants, focus trap, and zero-config trigger buttons.</k-text>
+              </k-stack>
+
+              <!-- Trigger Buttons -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Zero-Config Triggers</k-text>
+                <k-text v="text-sm muted">Just add <code>data-modal="#modal-id"</code> to any button. No JavaScript needed!</k-text>
+                <k-row v="gap-3 wrap">
+                  <k-button v="filled" data-modal="#modal-default">Open Default Modal</k-button>
+                  <k-button v="filled primary" data-modal="#modal-centered">Open Centered</k-button>
+                  <k-button v="filled success" data-modal="#modal-bottom">Bottom Sheet</k-button>
+                  <k-button v="filled warning" data-modal="#modal-drawer-left">Left Drawer</k-button>
+                  <k-button v="filled error" data-modal="#modal-drawer-right">Right Drawer</k-button>
+                  <k-button v="filled info" data-modal="#modal-fullscreen">Fullscreen</k-button>
+                  <k-button v="filled" data-modal="#modal-compact">Compact</k-button>
+                  <k-button v="filled" data-modal="#modal-form">Form Modal</k-button>
+                  <k-button v="filled error" data-modal="#modal-confirm">Confirm Dialog</k-button>
+                  <k-button v="filled" data-modal="#modal-media">Media Viewer</k-button>
+                </k-row>
+              </k-stack>
+
+              <!-- Features -->
+              <k-grid v="cols-3 gap-4">
+                <k-card v="outlined">
+                  <k-text slot="header" v="semibold">🎯 Focus Trap</k-text>
+                  <k-text v="text-sm">Tab and Shift+Tab cycle only within modal. Focus returns to trigger on close.</k-text>
+                </k-card>
+
+                <k-card v="outlined">
+                  <k-text slot="header" v="semibold">⌨️ Keyboard Control</k-text>
+                  <k-text v="text-sm">Escape closes modal (configurable). Native dialog keyboard support.</k-text>
+                </k-card>
+
+                <k-card v="outlined">
+                  <k-text slot="header" v="semibold">🖱️ Backdrop Click</k-text>
+                  <k-text v="text-sm">Click outside closes modal (configurable with close-on-overlay="false").</k-text>
+                </k-card>
+              </k-grid>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 12: Select Component -->
+      <k-section v="base" id="select">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§12 — Select Component</k-text>
+                <k-text v="muted">Custom dropdown select with 10 variants, searchable, multi-select, grouped options, and full keyboard navigation.</k-text>
+              </k-stack>
+
+              <!-- Basic Variants -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Basic Variants</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <!-- Default -->
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm semibold">Default</k-text>
+                    <k-select 
+                      v="default" 
+                      placeholder="Select option..."
+                      options='[{"value":"js","label":"JavaScript"},{"value":"ts","label":"TypeScript"},{"value":"py","label":"Python"},{"value":"go","label":"Go"},{"value":"rs","label":"Rust"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <!-- Filled -->
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm semibold">Filled</k-text>
+                    <k-select 
+                      v="filled" 
+                      placeholder="Select language..."
+                      options='[{"value":"en","label":"English"},{"value":"es","label":"Spanish"},{"value":"fr","label":"French"},{"value":"de","label":"German"},{"value":"ja","label":"Japanese"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <!-- Outlined -->
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm semibold">Outlined</k-text>
+                    <k-select 
+                      v="outlined" 
+                      placeholder="Select framework..."
+                      options='[{"value":"react","label":"React"},{"value":"vue","label":"Vue"},{"value":"angular","label":"Angular"},{"value":"svelte","label":"Svelte"},{"value":"solid","label":"Solid"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <!-- Underlined -->
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm semibold">Underlined</k-text>
+                    <k-select 
+                      v="underlined" 
+                      placeholder="Select country..."
+                      options='[{"value":"us","label":"United States"},{"value":"uk","label":"United Kingdom"},{"value":"ca","label":"Canada"},{"value":"au","label":"Australia"},{"value":"de","label":"Germany"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <!-- Compact -->
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm semibold">Compact</k-text>
+                    <k-select 
+                      v="compact" 
+                      placeholder="Size..."
+                      options='[{"value":"xs","label":"Extra Small"},{"value":"sm","label":"Small"},{"value":"md","label":"Medium"},{"value":"lg","label":"Large"},{"value":"xl","label":"Extra Large"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <!-- Floating Label -->
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm semibold">Floating Label</k-text>
+                    <k-select 
+                      v="floating-label" 
+                      placeholder="Priority"
+                      options='[{"value":"low","label":"Low"},{"value":"medium","label":"Medium"},{"value":"high","label":"High"},{"value":"urgent","label":"Urgent"}]'>
+                    </k-select>
+                  </k-stack>
+                </k-grid>
+              </k-stack>
+
+              <!-- Searchable Variant -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Searchable (with Filter)</k-text>
+                <k-grid v="cols-2 gap-4">
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Type to filter options in real-time</k-text>
+                    <k-select 
+                      v="searchable" 
+                      placeholder="Search countries..."
+                      options='[
+                        {"value":"us","label":"United States"},
+                        {"value":"uk","label":"United Kingdom"},
+                        {"value":"ca","label":"Canada"},
+                        {"value":"au","label":"Australia"},
+                        {"value":"de","label":"Germany"},
+                        {"value":"fr","label":"France"},
+                        {"value":"it","label":"Italy"},
+                        {"value":"es","label":"Spain"},
+                        {"value":"jp","label":"Japan"},
+                        {"value":"cn","label":"China"},
+                        {"value":"in","label":"India"},
+                        {"value":"br","label":"Brazil"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Large dataset with search</k-text>
+                    <k-select 
+                      v="searchable filled" 
+                      placeholder="Search cities..."
+                      options='[
+                        {"value":"nyc","label":"New York City"},
+                        {"value":"la","label":"Los Angeles"},
+                        {"value":"chi","label":"Chicago"},
+                        {"value":"hou","label":"Houston"},
+                        {"value":"phx","label":"Phoenix"},
+                        {"value":"phi","label":"Philadelphia"},
+                        {"value":"sa","label":"San Antonio"},
+                        {"value":"sd","label":"San Diego"},
+                        {"value":"dal","label":"Dallas"},
+                        {"value":"sj","label":"San Jose"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+                </k-grid>
+              </k-stack>
+
+              <!-- Multi-Select Variant -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Multi-Select (with Pills)</k-text>
+                <k-grid v="cols-2 gap-4">
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Select multiple options. Click pill × to remove. Backspace removes last.</k-text>
+                    <k-select 
+                      v="multi" 
+                      placeholder="Select skills..."
+                      options='[
+                        {"value":"js","label":"JavaScript"},
+                        {"value":"ts","label":"TypeScript"},
+                        {"value":"py","label":"Python"},
+                        {"value":"go","label":"Go"},
+                        {"value":"rs","label":"Rust"},
+                        {"value":"java","label":"Java"},
+                        {"value":"cpp","label":"C++"},
+                        {"value":"cs","label":"C#"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Multi-select with pre-selected values</k-text>
+                    <k-select 
+                      v="multi outlined" 
+                      placeholder="Select tags..."
+                      value="design,dev"
+                      options='[
+                        {"value":"design","label":"Design"},
+                        {"value":"dev","label":"Development"},
+                        {"value":"marketing","label":"Marketing"},
+                        {"value":"sales","label":"Sales"},
+                        {"value":"support","label":"Support"},
+                        {"value":"hr","label":"Human Resources"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+                </k-grid>
+              </k-stack>
+
+              <!-- Grouped Options -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Grouped Options</k-text>
+                <k-grid v="cols-2 gap-4">
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Options organized by groups with headers</k-text>
+                    <k-select 
+                      v="grouped" 
+                      placeholder="Select food..."
+                      options='[
+                        {"value":"apple","label":"Apple","group":"Fruits"},
+                        {"value":"banana","label":"Banana","group":"Fruits"},
+                        {"value":"orange","label":"Orange","group":"Fruits"},
+                        {"value":"carrot","label":"Carrot","group":"Vegetables"},
+                        {"value":"broccoli","label":"Broccoli","group":"Vegetables"},
+                        {"value":"spinach","label":"Spinach","group":"Vegetables"},
+                        {"value":"chicken","label":"Chicken","group":"Protein"},
+                        {"value":"beef","label":"Beef","group":"Protein"},
+                        {"value":"tofu","label":"Tofu","group":"Protein"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Team members grouped by department</k-text>
+                    <k-select 
+                      v="grouped filled" 
+                      placeholder="Assign to..."
+                      options='[
+                        {"value":"alice","label":"Alice Johnson","group":"Engineering"},
+                        {"value":"bob","label":"Bob Smith","group":"Engineering"},
+                        {"value":"charlie","label":"Charlie Brown","group":"Engineering"},
+                        {"value":"diana","label":"Diana Prince","group":"Design"},
+                        {"value":"eve","label":"Eve Davis","group":"Design"},
+                        {"value":"frank","label":"Frank Miller","group":"Marketing"},
+                        {"value":"grace","label":"Grace Lee","group":"Marketing"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+                </k-grid>
+              </k-stack>
+
+              <!-- With Icons -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">With Icons</k-text>
+                <k-grid v="cols-2 gap-4">
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Options with emoji/icon prefixes</k-text>
+                    <k-select 
+                      v="with-icon" 
+                      placeholder="Select status..."
+                      options='[
+                        {"value":"active","label":"Active","icon":"✅"},
+                        {"value":"pending","label":"Pending","icon":"⏳"},
+                        {"value":"completed","label":"Completed","icon":"🎉"},
+                        {"value":"cancelled","label":"Cancelled","icon":"❌"},
+                        {"value":"draft","label":"Draft","icon":"📝"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Social media platforms</k-text>
+                    <k-select 
+                      v="with-icon outlined" 
+                      placeholder="Share on..."
+                      options='[
+                        {"value":"twitter","label":"Twitter","icon":"🐦"},
+                        {"value":"facebook","label":"Facebook","icon":"📘"},
+                        {"value":"linkedin","label":"LinkedIn","icon":"💼"},
+                        {"value":"instagram","label":"Instagram","icon":"📷"},
+                        {"value":"youtube","label":"YouTube","icon":"📹"}
+                      ]'>
+                    </k-select>
+                  </k-stack>
+                </k-grid>
+              </k-stack>
+
+              <!-- Sizes -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Size Variants</k-text>
+                <k-stack v="gap-3">
+                  <k-row v="gap-3 align-end">
+                    <k-stack v="gap-1">
+                      <k-text v="text-xs muted">XS</k-text>
+                      <k-select 
+                        v="filled xs" 
+                        placeholder="Extra Small"
+                        options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                      </k-select>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-xs muted">SM</k-text>
+                      <k-select 
+                        v="filled sm" 
+                        placeholder="Small"
+                        options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                      </k-select>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-xs muted">MD (Default)</k-text>
+                      <k-select 
+                        v="filled md" 
+                        placeholder="Medium"
+                        options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                      </k-select>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-xs muted">LG</k-text>
+                      <k-select 
+                        v="filled lg" 
+                        placeholder="Large"
+                        options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                      </k-select>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-xs muted">XL</k-text>
+                      <k-select 
+                        v="filled xl" 
+                        placeholder="Extra Large"
+                        options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                      </k-select>
+                    </k-stack>
+                  </k-row>
+                </k-stack>
+              </k-stack>
+
+              <!-- States -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">States</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Normal</k-text>
+                    <k-select 
+                      v="outlined" 
+                      placeholder="Active select"
+                      options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Loading</k-text>
+                    <k-select 
+                      v="outlined loading" 
+                      placeholder="Loading..."
+                      options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                    </k-select>
+                  </k-stack>
+
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm muted">Disabled</k-text>
+                    <k-select 
+                      v="outlined disabled" 
+                      placeholder="Disabled select"
+                      options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"}]'>
+                    </k-select>
+                  </k-stack>
+                </k-grid>
+              </k-stack>
+
+              <!-- Color Variants -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Color Focus States</k-text>
+                <k-grid v="cols-3 gap-4">
+                  <k-select 
+                    v="outlined primary" 
+                    placeholder="Primary (default)"
+                    options='[{"value":"1","label":"Click to see focus color"}]'>
+                  </k-select>
+
+                  <k-select 
+                    v="outlined success" 
+                    placeholder="Success"
+                    options='[{"value":"1","label":"Click to see focus color"}]'>
+                  </k-select>
+
+                  <k-select 
+                    v="outlined warning" 
+                    placeholder="Warning"
+                    options='[{"value":"1","label":"Click to see focus color"}]'>
+                  </k-select>
+
+                  <k-select 
+                    v="outlined error" 
+                    placeholder="Error"
+                    options='[{"value":"1","label":"Click to see focus color"}]'>
+                  </k-select>
+
+                  <k-select 
+                    v="outlined info" 
+                    placeholder="Info"
+                    options='[{"value":"1","label":"Click to see focus color"}]'>
+                  </k-select>
+                </k-grid>
+              </k-stack>
+
+              <!-- Keyboard Navigation Demo -->
+              <k-card v="outlined">
+                <k-text slot="header" v="semibold">⌨️ Keyboard Navigation</k-text>
+                <k-stack v="gap-3">
+                  <k-grid v="cols-2 gap-3">
+                    <k-stack v="gap-1">
+                      <k-text v="text-sm semibold">Closed Dropdown</k-text>
+                      <k-text v="text-xs muted"><kbd>Enter</kbd> or <kbd>Space</kbd> — Open</k-text>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-sm semibold">Open Dropdown</k-text>
+                      <k-text v="text-xs muted"><kbd>↑</kbd> <kbd>↓</kbd> — Navigate</k-text>
+                      <k-text v="text-xs muted"><kbd>Home</kbd> <kbd>End</kbd> — First/Last</k-text>
+                      <k-text v="text-xs muted"><kbd>Enter</kbd> — Select</k-text>
+                      <k-text v="text-xs muted"><kbd>Esc</kbd> — Close</k-text>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-sm semibold">Multi-Select</k-text>
+                      <k-text v="text-xs muted"><kbd>Backspace</kbd> — Remove last pill</k-text>
+                    </k-stack>
+
+                    <k-stack v="gap-1">
+                      <k-text v="text-sm semibold">Searchable</k-text>
+                      <k-text v="text-xs muted">Type to filter options</k-text>
+                    </k-stack>
+                  </k-grid>
+
+                  <k-divider></k-divider>
+                  <k-text v="text-sm">Try it: Focus any select above and use keyboard to navigate!</k-text>
+                </k-stack>
+              </k-card>
+
+              <!-- Practical Examples -->
+              <k-stack v="gap-2">
+                <k-text v="h3 semibold">Real-World Examples</k-text>
+                <k-grid v="cols-2 gap-4">
+                  <!-- Form Example -->
+                  <k-card v="elevated">
+                    <k-text slot="header" v="semibold">User Registration Form</k-text>
+                    <k-stack v="gap-3">
+                      <k-select 
+                        v="filled full" 
+                        placeholder="Select country"
+                        options='[{"value":"us","label":"United States"},{"value":"uk","label":"United Kingdom"},{"value":"ca","label":"Canada"}]'>
+                      </k-select>
+
+                      <k-select 
+                        v="filled full" 
+                        placeholder="Select role"
+                        options='[{"value":"dev","label":"Developer"},{"value":"design","label":"Designer"},{"value":"manager","label":"Manager"}]'>
+                      </k-select>
+
+                      <k-select 
+                        v="multi filled full" 
+                        placeholder="Select interests"
+                        options='[{"value":"web","label":"Web Dev"},{"value":"mobile","label":"Mobile"},{"value":"ai","label":"AI/ML"},{"value":"cloud","label":"Cloud"}]'>
+                      </k-select>
+
+                      <k-button v="filled primary full">Create Account</k-button>
+                    </k-stack>
+                  </k-card>
+
+                  <!-- Filter Example -->
+                  <k-card v="elevated">
+                    <k-text slot="header" v="semibold">Product Filters</k-text>
+                    <k-stack v="gap-3">
+                      <k-select 
+                        v="outlined full" 
+                        placeholder="Category"
+                        options='[{"value":"electronics","label":"Electronics"},{"value":"clothing","label":"Clothing"},{"value":"books","label":"Books"}]'>
+                      </k-select>
+
+                      <k-select 
+                        v="outlined full" 
+                        placeholder="Sort by"
+                        options='[{"value":"newest","label":"Newest First"},{"value":"price-low","label":"Price: Low to High"},{"value":"price-high","label":"Price: High to Low"}]'>
+                      </k-select>
+
+                      <k-select 
+                        v="multi outlined full" 
+                        placeholder="Brands"
+                        options='[{"value":"apple","label":"Apple"},{"value":"samsung","label":"Samsung"},{"value":"sony","label":"Sony"}]'>
+                      </k-select>
+
+                      <k-button v="filled full">Apply Filters</k-button>
+                    </k-stack>
+                  </k-card>
+                </k-grid>
+              </k-stack>
+
+              <!-- Edge Detection Demo -->
+              <k-card v="outlined">
+                <k-text slot="header" v="semibold">🎯 Smart Edge Detection</k-text>
+                <k-stack v="gap-3">
+                  <k-text>The select dropdown automatically detects viewport edges and adjusts its position:</k-text>
+                  <k-stack v="gap-2">
+                    <k-text v="text-sm">✅ <strong>Bottom edge:</strong> Opens upward if no space below</k-text>
+                    <k-text v="text-sm">✅ <strong>Right edge:</strong> Aligns to right if overflowing</k-text>
+                    <k-text v="text-sm">✅ <strong>Scroll/Resize:</strong> Repositions automatically</k-text>
+                    <k-text v="text-sm">✅ <strong>Viewport constraint:</strong> Limits max-width if needed</k-text>
+                  </k-stack>
+                  <k-divider></k-divider>
+                  <k-text v="semibold">Test it:</k-text>
+                  <k-text v="text-sm muted">Scroll to the bottom of this page and open any select below. It will automatically flip to open upward!</k-text>
+                  <k-row v="gap-3">
+                    <k-select 
+                      v="filled" 
+                      placeholder="Test bottom edge..."
+                      options='[{"value":"1","label":"Option 1"},{"value":"2","label":"Option 2"},{"value":"3","label":"Option 3"},{"value":"4","label":"Option 4"},{"value":"5","label":"Option 5"}]'>
+                    </k-select>
+                    <k-select 
+                      v="outlined" 
+                      placeholder="Test at page bottom..."
+                      options='[{"value":"a","label":"Apple"},{"value":"b","label":"Banana"},{"value":"c","label":"Cherry"},{"value":"d","label":"Date"},{"value":"e","label":"Elderberry"}]'>
+                    </k-select>
+                  </k-row>
+                </k-stack>
+              </k-card>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 13: Toast Notifications -->
+      <k-section v="surface" id="toast">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§13 — &lt;k-toast&gt; Notification System</k-text>
+                <k-text v="muted">Dynamic notifications with auto-dismiss, progress bars, and 5 screen positions.</k-text>
+              </k-stack>
+
+              <!-- Variant & Position Test Grid -->
+              <k-grid v="cols-3 gap-4">
+                <!-- Success Toast -->
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Success</k-text>
+                    <k-button v="filled success sm" onclick="showToast('Action completed successfully!', 'success')">Show Success</k-button>
+                  </k-stack>
+                </k-box>
+                <!-- Error Toast -->
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Error</k-text>
+                    <k-button v="filled error sm" onclick="showToast('A critical error occurred!', 'error')">Show Error</k-button>
+                  </k-stack>
+                </k-box>
+                <!-- Warning Toast -->
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Warning</k-text>
+                    <k-button v="filled warning sm" onclick="showToast('Your storage is almost full.', 'warning')">Show Warning</k-button>
+                  </k-stack>
+                </k-box>
+                <!-- Info Toast -->
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Info</k-text>
+                    <k-button v="filled info sm" onclick="showToast('New update available.', 'info')">Show Info</k-button>
+                  </k-stack>
+                </k-box>
+                <!-- Primary Toast -->
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Primary</k-text>
+                    <k-button v="filled primary sm" onclick="showToast('Welcome back to the dashboard!', 'primary')">Show Primary</k-button>
+                  </k-stack>
+                </k-box>
+                <!-- Default Toast -->
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-text v="semibold">Default</k-text>
+                    <k-button v="filled sm" onclick="showToast('You have a new message.', 'default')">Show Default</k-button>
+                  </k-stack>
+                </k-box>
+              </k-grid>
+
+              <!-- Position Tests -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Position Testing</k-text>
+                <k-row v="gap-2 wrap">
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Top Right Toast', position: 'top-right'})">Top Right</k-button>
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Top Left Toast', position: 'top-left'})">Top Left</k-button>
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Bottom Right Toast', position: 'bottom-right'})">Bottom Right</k-button>
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Bottom Left Toast', position: 'bottom-left'})">Bottom Left</k-button>
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Bottom Center Toast', position: 'bottom-center'})">Bottom Center</k-button>
+                </k-row>
+              </k-stack>
+
+              <!-- Duration Test -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Duration Test</k-text>
+                <k-row v="gap-2 wrap">
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Quick Toast (2s)', duration: 2000})">2 Seconds</k-button>
+                  <k-button v="outlined sm" onclick="window.toastManager.show({message: 'Long Toast (10s)', duration: 10000})">10 Seconds</k-button>
+                </k-row>
+              </k-stack>
+
+              <!-- Dynamic Update Test -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Dynamic Update Test</k-text>
+                <k-row v="gap-2 wrap">
+                  <k-button v="gradient sm" onclick="showProgressToast()">Show Progress (0% → 100%)</k-button>
+                </k-row>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 15: Tooltips -->
+      <k-section v="surface" id="tooltip">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§15 — &lt;k-tooltip&gt; Component</k-text>
+                <k-text v="muted">Floating contextual hints with smart collision detection and 12 placement options.</k-text>
+              </k-stack>
+
+              <!-- Placements Grid -->
+              <k-text v="semibold text-muted">Placements (Collision Testing)</k-text>
+              <k-grid v="gap-4">
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="top" text="I'm on top!">
+                    <k-button v="outlined sm">Top</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="top-start" text="Top Start aligned">
+                    <k-button v="outlined sm">Top Start</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="top-end" text="Top End aligned">
+                    <k-button v="outlined sm">Top End</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="bottom" text="I'm on bottom!">
+                    <k-button v="outlined sm">Bottom</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="bottom-start" text="Bottom Start aligned">
+                    <k-button v="outlined sm">Bottom Start</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="bottom-end" text="Bottom End aligned">
+                    <k-button v="outlined sm">Bottom End</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="left" text="I'm on the left!">
+                    <k-button v="outlined sm">Left</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="left-start" text="Left Start aligned">
+                    <k-button v="outlined sm">Left Start</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="left-end" text="Left End aligned">
+                    <k-button v="outlined sm">Left End</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="right" text="I'm on the right!">
+                    <k-button v="outlined sm">Right</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="right-start" text="Right Start aligned">
+                    <k-button v="outlined sm">Right Start</k-button>
+                  </k-tooltip>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-tooltip v="right-end" text="Right End aligned">
+                    <k-button v="outlined sm">Right End</k-button>
+                  </k-tooltip>
+                </k-box>
+              </k-grid>
+
+              <!-- Variants & Interactive -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Variants & Special Features</k-text>
+                <k-row v="gap-4 wrap">
+                  <k-tooltip v="dark" text="Dark variant tooltip">
+                    <k-button v="filled sm">Dark Tooltip</k-button>
+                  </k-tooltip>
+                  <k-tooltip v="primary" text="Primary accent tooltip">
+                    <k-button v="filled sm">Primary Tooltip</k-button>
+                  </k-tooltip>
+                  <k-tooltip v="interactive" text="I am interactive! Hover me to see me stay open.">
+                    <k-button v="outlined sm">Interactive Tooltip</k-button>
+                  </k-tooltip>
+                  <k-tooltip v="top" text="I'm just a simple text hint" style="display: inline-block;">
+                    <k-text v="text-sm">Hover over this text</k-text>
+                  </k-tooltip>
+                </k-row>
+              </k-stack>
+
+              <!-- Edge Case: Viewport Collision -->
+              <k-box v="surface p-4 r-md">
+                <k-stack v="gap-2">
+                  <k-text v="semibold">🎯 Collision Detection Test</k-text>
+                  <k-text v="text-sm muted">Scroll this section to the very bottom of the page, then hover over the "Top Preferred" button. It should automatically flip to "bottom" because there is no space above.</k-text>
+                  <k-row v="gap-3">
+                    <k-tooltip v="top" text="I flipped to bottom!">
+                      <k-button v="filled sm">Top Preferred</k-button>
+                    </k-tooltip>
+                    <k-tooltip v="left" text="I flipped to right!">
+                      <k-button v="filled sm">Left Preferred</k-button>
+                    </k-tooltip>
+                  </k-row>
+                </k-stack>
+              </k-box>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 16: Avatar Component -->
+      <k-section v="surface" id="avatar">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§16 — &lt;k-avatar&gt; Component</k-text>
+                <k-text v="muted">Flexible user representations with deterministic initials, status indicators, and grouping support.</k-text>
+              </k-stack>
+
+              <!-- Variants Gallery -->
+              <k-text v="semibold text-muted">Variant Gallery</k-text>
+              <k-grid v="gap-4">
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">Default (Image)</k-text>
+                    <k-avatar src="https://i.pravatar.cc/150?u=1" name="Alice Johnson"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">Initials (Fallback)</k-text>
+                    <k-avatar name="Bob Smith"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r- la-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">With Border</k-text>
+                    <k-avatar v="with-border" src="https://i.pravatar.cc/150?u=2" name="Charlie Brown"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">With Status (Online)</k-text>
+                    <k-avatar status="online" src="https://i.pravatar.cc/150?u=3" name="Diana Prince"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">With Status (Busy)</k-text>
+                    <k-avatar status="busy" src="https://i.pravatar.cc/150?u=4" name="Eve Davis"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">Square</k-text>
+                    <k-avatar v="square" src="https://i.pravatar.cc/150?u=5" name="Frank Miller"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">Glow</k-text>
+                    <k-avatar v="glow" src="https://i.pravatar.cc/150?u=6" name="Grace Lee"></k-avatar>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2 align-center">
+                    <k-text v="text-xs muted">Gradient Initials</k-text>
+                    <k-avatar v="gradient" name="Henry Ford"></k-avatar>
+                  </k-stack>
+                </k-box>
+              </k-grid>
+
+              <!-- Size Scale -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Size Scale</k-text>
+                <k-row v="gap-4 wrap align-center">
+                  <k-avatar v="default xs" src="https://i.pravatar.cc/150?u=10" name="XS"></k-avatar>
+                  <k-avatar v="default sm" src="https://i.pravatar.cc/150?u=11" name="SM"></k-avatar>
+                  <k-avatar v="default md" src="https://i.pravatar.cc/150?u=12" name="MD"></k-avatar>
+                  <k-avatar v="default lg" src="https://i.pravatar.cc/150?u=13" name="LG"></k-avatar>
+                  <k-avatar v="default xl" src="https://i.pravatar.cc/150?u=14" name="XL"></k-avatar>
+                </k-row>
+              </k-stack>
+
+              <!-- Avatar Group (Stacked) -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Stacked Group</k-text>
+                <div class="k-avatar-group">
+                  <k-avatar v="stacked" src="https://i.pravatar.cc/150?u=20"></k-avatar>
+                  <k-avatar v="stacked" src="https://i.pravatar.cc/150?u=21"></k-avatar>
+                  <k-avatar v="stacked" src="https://i.pravatar.cc/150?u=22"></k-avatar>
+                  <k-avatar v="stacked" src="https://i.pravatar.cc/150?u=23"></k-avatar>
+                  <k-avatar v="stacked" src="https://i.pravatar.cc/e-42" name="+5 Others"></k-avatar>
+                </div>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Section 17: Loading Animations -->
+      <k-section v="surface" id="loading-demo">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§17 — &lt;k-loader&gt; Animations</k-text>
+                <k-text v="muted">Pure CSS loaders with 15 distinct animation styles. Fully theme-aware.</k-text>
+              </k-stack>
+
+              <!-- Animation Grid -->
+              <k-grid v="gap-4">
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="spinner lg"> </k-loader>
+                    <k-text v="semibold">Spinner</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="dots lg"> </k-loader>
+                    <k-text v="semibold">Dots</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="pulse lg"> </k-loader>
+                    <k-text v="semibold">Pulse</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="bars lg"> </k-loader>
+                    <k-text v="semibold">Bars</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="ring lg"> </k-loader>
+                    <k-text v="semibold">Ring</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="ripple lg"> </k-loader>
+                    <k-text v="semibold">Ripple</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="bounce lg"> </k-loader>
+                    <k-text v="semibold">Bounce</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="wave lg"> </k-loader>
+                    <k-text v="semibold">Wave</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="skeleton lg" width="100px" height="20px"></k-loader>
+                    <k-text v="semibold">Skeleton</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="progress lg" value="65"></k-loader>
+                    <k-text v="semibold">Progress (65%)</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="flip lg"> </k-loader>
+                    <k-text v="semibold">Flip</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="orbit lg"> </k-loader>
+                    <k-text v="semibold">Orbit</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="squeeze lg"> </k-loader>
+                    <k-text v="semibold">Squeeze</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="beat lg"> </k-loader>
+                    <k-text v="semibold">Beat</k-text>
+                  </k-stack>
+                </k-box>
+                <k-box v="surface p-5 r-md">
+                  <k-stack v="gap-3 align-center">
+                    <k-loader v="crescent lg"> </k-loader>
+                    <k-text v="semibold">Crescent</k-text>
+                  </k-stack>
+                </k-box>
+              </k-grid>
+
+              <!-- Color and Size Tests -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Colors & Sizes</k-text>
+                <k-row v="gap-4 wrap align-center">
+                  <k-loader v="spinner success sm"> </k-loader>
+                  <k-loader v="spinner warning sm"> </k-loader>
+                  <k-loader v="spinner error sm"> </k-loader>
+                  <k-loader v="spinner info sm"> </k-loader>
+                  <k-loader v="spinner default sm"> </k-loader>
+                  <k-loader v="spinner primary xs"> </k-loader>
+                  <k-loader v="spinner primary md"> </k-loader>
+                  <k-loader v="spinner primary lg"> </k-loader>
+                  <k-loader v="spinner primary xl"> </k-loader>
+                </k-row>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+    
+
+      <!-- ═══ SECTION 19: TABS COMPONENT ═══════════════════════════════════════ -->
+      <k-section>
+        <k-container v="max-7xl">
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§19 — &lt;k-tabs&gt; Tabbed Interfaces</k-text>
+                <k-text v="muted">Accessible tab navigation with 10 variants, keyboard controls, semantic panel switching. Responsive by default - stacks vertically on mobile.</k-text>
+              </k-stack>
+
+              <!-- Default Tabs -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Default Tabs</k-text>
+                <k-tabs v="default" label="Dashboard Tabs">
+                  <div slot="tabs">
+                    <k-tab target="overview" active>Overview</k-tab>
+                    <k-tab target="analytics">Analytics</k-tab>
+                    <k-tab target="settings">Settings</k-tab>
+                    <k-tab target="help">Help</k-tab>
+                  </div>
+                  <div slot="panels">
+                    <div id="overview" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Overview Panel</k-text>
+                        <k-text v="text-sm muted">Dashboard metrics and KPI summaries go here. Quick insights and high-level data.</k-text>
+                        <k-row v="gap-3 mt-3">
+                          <k-badge v="success">94% Uptime</k-badge>
+                          <k-badge v="primary">1.2M Users</k-badge>
+                          <k-badge v="warning">3 Issues</k-badge>
+                        </k-row>
+                      </k-card>
+                    </div>
+                    <div id="analytics" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Analytics Panel</k-text>
+                        <k-text v="text-sm muted">Detailed charts, trends, and performance metrics.</k-text>
+                      </k-card>
+                    </div>
+                    <div id="settings" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Settings Panel</k-text>
+                        <k-text v="text-sm muted">Configuration options and preferences.</k-text>
+                      </k-card>
+                    </div>
+                    <div id="help" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Help Panel</k-text>
+                        <k-text v="text-sm muted">Documentation, FAQs, and support resources.</k-text>
+                      </k-card>
+                    </div>
+                  </div>
+                </k-tabs>
+              </k-stack>
+
+              <!-- Pill Tabs -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Pill Variant</k-text>
+                <k-tabs v="pill" label="Project Tabs">
+                  <div slot="tabs">
+                    <k-tab target="tasks" active>Tasks</k-tab>
+                    <k-tab target="team">Team</k-tab>
+                    <k-tab target="files">Files</k-tab>
+                  </div>
+                  <div slot="panels">
+                    <div id="tasks" role="tabpanel">
+                      <k-text v="text-sm">Task management and project workflow.</k-text>
+                    </div>
+                    <div id="team" role="tabpanel">
+                      <k-text v="text-sm">Team members and collaboration tools.</k-text>
+                    </div>
+                    <div id="files" role="tabpanel">
+                      <k-text v="text-sm">Project files and document sharing.</k-text>
+                    </div>
+                  </div>
+                </k-tabs>
+              </k-stack>
+
+              <!-- All Variants
+              <k-stack v="gap-4">
+                <k-text v="semibold text-muted">All Variants</k-text>
+                <k-grid v="cols-2 gap-4">
+                  <k-box v="surface p-4">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Underlined</k-text>
+                      <k-tabs v="underlined" label="Navigation">
+                        <div slot="tabs">
+                          <k-tab target="home1" active>Home</k-tab>
+                          <k-tab target="about1">About</k-tab>
+                          <k-tab target="contact1">Contact</k-tab>
+                        </div>
+                        <div slot="panels">
+                          <div id="home1" role="tabpanel"><k-text v="text-sm">Home content</k-text></div>
+                          <div id="about1" role="tabpanel"><k-text v="text-sm">About content</k-text></div>
+                          <div id="contact1" role="tabpanel"><k-text v="text-sm">Contact content</k-text></div>
+                        </div>
+                      </k-tabs>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Filled</k-text>
+                      <k-tabs v="filled" label="Navigation">
+                        <div slot="tabs">
+                          <k-tab target="home2" active>Home</k-tab>
+                          <k-tab target="about2">About</k-tab>
+                          <k-tab target="contact2">Contact</k-tab>
+                        </div>
+                        <div slot="panels">
+                          <div id="home2" role="tabpanel"><k-text v="text-sm">Home content</k-text></div>
+                          <div id="about2" role="tabpanel"><k-text v="text-sm">About content</k-text></div>
+                          <div id="contact2" role="tabpanel"><k-text v="text-sm">Contact content</k-text></div>
+                        </div>
+                      </k-tabs>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Outlined</k-text>
+                      <k-tabs v="outlined" label="Navigation">
+                        <div slot="tabs">
+                          <k-tab target="home3" active>Home</k-tab>
+                          <k-tab target="about3">About</k-tab>
+                          <k-tab target="contact3">Contact</k-tab>
+                        </div>
+                        <div slot="panels">
+                          <div id="home3" role="tabpanel"><k-text v="text-sm">Home content</k-text></div>
+                          <div id="about3" role="tabpanel"><k-text v="text-sm">About content</k-text></div>
+                          <div id="contact3" role="tabpanel"><k-text v="text-sm">Contact content</k-text></div>
+                        </div>
+                      </k-tabs>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-4">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Compact</k-text>
+                      <k-tabs v="compact" label="Navigation">
+                        <div slot="tabs">
+                          <k-tab target="home4" active>Home</k-tab>
+                          <k-tab target="about4">About</k-tab>
+                          <k-tab target="contact4">Contact</k-tab>
+                        </div>
+                        <div slot="panels">
+                          <div id="home4" role="tabpanel"><k-text v="text-sm">Home content</k-text></div>
+                          <div id="about4" role="tabpanel"><k-text v="text-sm">About content</k-text></div>
+                          <div id="contact4" role="tabpanel"><k-text v="text-sm">Contact content</k-text></div>
+                        </div>
+                      </k-tabs>
+                    </k-stack>
+                  </k-box>
+                </k-grid>
+              </k-stack> -->
+
+              <!-- Premium Variants -->
+              <k-stack v="gap-4">
+                <k-text v="semibold text-muted">Premium Variants</k-text>
+                <k-row v="gap-4">
+                  <k-col>
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Glass</k-text>
+                      <k-tabs v="glass" label="Glassmorphism Tabs">
+                        <div slot="tabs">
+                          <k-tab target="design" active>Design</k-tab>
+                          <k-tab target="develop">Develop</k-tab>
+                          <k-tab target="deploy">Deploy</k-tab>
+                        </div>
+                        <div slot="panels">
+                          <div id="design" role="tabpanel">
+                            <k-text v="text-sm">Design system and UI components.</k-text>
+                          </div>
+                          <div id="develop" role="tabpanel">
+                            <k-text v="text-sm">Development workflow and tools.</k-text>
+                          </div>
+                          <div id="deploy" role="tabpanel">
+                            <k-text v="text-sm">Deployment and hosting setup.</k-text>
+                          </div>
+                        </div>
+                      </k-tabs>
+                    </k-stack>
+                  </k-col>
+                  <k-col>
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Card</k-text>
+                      <k-tabs v="card" label="Card-style Tabs">
+                        <div slot="tabs">
+                          <k-tab target="profile" active>Profile</k-tab>
+                          <k-tab target="security">Security</k-tab>
+                          <k-tab target="billing">Billing</k-tab>
+                        </div>
+                        <div slot="panels">
+                          <div id="profile" role="tabpanel" style="padding: 1rem;">
+                            <k-text v="text-sm">User profile and personal information.</k-text>
+                          </div>
+                          <div id="security" role="tabpanel" style="padding: 1rem;">
+                            <k-text v="text-sm">Security settings and authentication.</k-text>
+                          </div>
+                          <div id="billing" role="tabpanel" style="padding: 1rem;">
+                            <k-text v="text-sm">Billing history and payment methods.</k-text>
+                          </div>
+                        </div>
+                      </k-tabs>
+                    </k-stack>
+                  </k-col>
+                </k-row>
+              </k-stack>
+
+              <!-- Vertical Layout -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Vertical Layout</k-text>
+                <k-tabs v="vertical" label="Sidebar Navigation">
+                  <div slot="tabs">
+                    <k-tab target="dashboard" active>Dashboard</k-tab>
+                    <k-tab target="projects">Projects</k-tab>
+                    <k-tab target="reports">Reports</k-tab>
+                    <k-tab target="admin">Admin</k-tab>
+                  </div>
+                  <div slot="panels">
+                    <div id="dashboard" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Dashboard</k-text>
+                        <k-text v="text-sm muted">Main application dashboard with widgets and overview.</k-text>
+                      </k-card>
+                    </div>
+                    <div id="projects" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Projects</k-text>
+                        <k-text v="text-sm muted">Project management and task tracking.</k-text>
+                      </k-card>
+                    </div>
+                    <div id="reports" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Reports</k-text>
+                        <k-text v="text-sm muted">Analytics, metrics, and generated reports.</k-text>
+                      </k-card>
+                    </div>
+                    <div id="admin" role="tabpanel">
+                      <k-card v="compact">
+                        <k-text v="semibold">Admin</k-text>
+                        <k-text v="text-sm muted">System administration and user management.</k-text>
+                      </k-card>
+                    </div>
+                  </div>
+                </k-tabs>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- ═══ SECTION 20: CAROUSEL COMPONENT SYSTEM ═════════════════════════════ -->
+      <k-section v="surface" id="carousel">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§20 — Carousel Component System</k-text>
+                <k-text v="muted">Five different carousel types with touch/swipe support, keyboard navigation, and autoplay. All carousels are responsive by default.</k-text>
+              </k-stack>
+
+              <!-- Navigation Hint -->
+              <k-box v="warning-subtle p-4 r-md">
+                <k-stack v="gap-2">
+                  <k-text v="semibold">🎮 Navigation Controls</k-text>
+                  <k-text v="text-sm">Use arrow keys, mouse/touch drag, or autoplay. Mobile: swipe gestures enabled.</k-text>
+                </k-stack>
+              </k-box>
+
+              <!-- 1. Classic Carousel -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">1. Classic Carousel (Default)</k-text>
+                <k-text v="muted">Traditional slideshow with arrows and dots. One slide visible at a time.</k-text>
+                <k-carousel v="classic md" autoplay="4000" label="Product Gallery">
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop&crop=center" alt="Modern office building">
+                      <k-stack v="gap-2 align-center">
+                        <k-text v="h3 semibold">Corporate Solutions</k-text>
+                        <k-text v="muted">Professional workspace solutions for modern businesses.</k-text>
+                        <k-button v="outlined sm">Learn More</k-button>
+                      </k-stack>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop&crop=center" alt="Business analytics dashboard">
+                      <k-stack v="gap-2 align-center">
+                        <k-text v="h3 semibold">Data Analytics</k-text>
+                        <k-text v="muted">Transform your data into actionable insights.</k-text>
+                        <k-button v="filled success sm">Get Started</k-button>
+                      </k-stack>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=400&fit=crop&crop=center" alt="Team collaboration">
+                      <k-stack v="gap-2 align-center">
+                        <k-text v="h3 semibold">Team Collaboration</k-text>
+                        <k-text v="muted">Boost productivity with seamless team workflows.</k-text>
+                        <k-button v="filled info sm">View Details</k-button>
+                      </k-stack>
+                    </k-stack>
+                  </k-carousel-slide>
+                </k-carousel>
+              </k-stack>
+
+              <!-- 2. Card Carousel -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">2. Card Carousel</k-text>
+                <k-text v="muted">Multiple cards visible, horizontal scrolling. Responsive: 3→2→1 cards on smaller screens.</k-text>
+                <k-carousel v="cards lg" items-visible="3" gap="4" label="Feature Cards">
+                  <k-carousel-slide>
+                    <k-stack v="gap-3">
+                      <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=400&h=200&fit=crop&crop=center" alt="Rocket launch">
+                      <k-text v="h4 semibold">🚀 Performance</k-text>
+                      <k-text v="muted">Lightning-fast components with minimal bundle size.</k-text>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-3">
+                      <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&h=200&fit=crop&crop=center" alt="Artist palette">
+                      <k-text v="h4 semibold">🎨 Theming</k-text>
+                      <k-text v="muted">Three built-in themes: Light, Dark, and Dracula.</k-text>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-3">
+                      <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=400&h=200&fit=crop&crop=center" alt="Accessibility symbol">
+                      <k-text v="h4 semibold">♿ Accessible</k-text>
+                      <k-text v="muted">ARIA compliant, keyboard navigation, screen readers.</k-text>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-3">
+                      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=200&fit=crop&crop=center" alt="Mobile devices">
+                      <k-text v="h4 semibold">📱 Responsive</k-text>
+                      <k-text v="muted">Mobile-first design, touch gestures supported.</k-text>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-3">
+                      <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=200&fit=crop&crop=center" alt="Tools and settings">
+                      <k-text v="h4 semibold">🔧 Customizable</k-text>
+                      <k-text v="muted">CSS variables, data attributes, extensive variants.</k-text>
+                    </k-stack>
+                  </k-carousel-slide>
+                </k-carousel>
+              </k-stack>
+
+              <!-- 3. Fade Carousel -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">3. Fade Carousel</k-text>
+                <k-text v="muted">Cross-fade transitions between slides. No sliding, just opacity changes.</k-text>
+                <k-carousel v="fade md" autoplay="3000" label="Image Gallery">
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop&crop=center" alt="Mountain landscape">
+                      <k-box v="elevated p-4 r-lg">
+                        <k-stack v="gap-2 align-center">
+                          <k-text v="h3 semibold">Mountain Adventure</k-text>
+                          <k-text v="muted">Discover breathtaking mountain landscapes and outdoor adventures.</k-text>
+                        </k-stack>
+                      </k-box>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop&crop=center" alt="Ocean waves">
+                      <k-box v="elevated p-4 r-lg">
+                        <k-stack v="gap-2 align-center">
+                          <k-text v="h3 semibold">Ocean Paradise</k-text>
+                          <k-text v="muted">Relax and unwind with pristine ocean views and crystal waters.</k-text>
+                        </k-stack>
+                      </k-box>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop&crop=center" alt="Forest path">
+                      <k-box v="elevated p-4 r-lg">
+                        <k-stack v="gap-2 align-center">
+                          <k-text v="h3 semibold">Forest Retreat</k-text>
+                          <k-text v="muted">Find peace and tranquility in lush forest environments.</k-text>
+                        </k-stack>
+                      </k-box>
+                    </k-stack>
+                  </k-carousel-slide>
+                </k-carousel>
+              </k-stack>
+
+              <!-- 4. Infinite Loop Carousel -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">4. Infinite Loop Carousel</k-text>
+                <k-text v="muted">Continuous seamless scrolling. Perfect for logos, testimonials, or brand showcases.</k-text>
+                <k-carousel v="infinite sm" label="Brand Showcase">
+                  <k-carousel-slide>
+                    <k-box v="elevated p-4 r-md">
+                      <k-stack v="gap-2 align-center">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=100&fit=crop&crop=center" alt="Company logo 1">
+                        <k-text v="semibold">TechCorp</k-text>
+                      </k-stack>
+                    </k-box>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-box v="elevated p-4 r-md">
+                      <k-stack v="gap-2 align-center">
+                        <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=200&h=100&fit=crop&crop=center" alt="Company logo 2">
+                        <k-text v="semibold">StartupHub</k-text>
+                      </k-stack>
+                    </k-box>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-box v="elevated p-4 r-md">
+                      <k-stack v="gap-2 align-center">
+                        <img src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=200&h=100&fit=crop&crop=center" alt="Company logo 3">
+                        <k-text v="semibold">EnterpriseGroup</k-text>
+                      </k-stack>
+                    </k-box>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-box v="elevated p-4 r-md">
+                      <k-stack v="gap-2 align-center">
+                        <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop&crop=center" alt="Company logo 4">
+                        <k-text v="semibold">InnovationLab</k-text>
+                      </k-stack>
+                    </k-box>
+                  </k-carousel-slide>
+                </k-carousel>
+              </k-stack>
+
+              <!-- 5. Vertical Carousel -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">5. Vertical Carousel</k-text>
+                <k-text v="muted">Vertical scrolling for news feeds, social media posts, or timelines.</k-text>
+                <k-carousel v="vertical lg" label="News Feed">
+                  <k-carousel-slide>
+                    <k-row v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=100&h=100&fit=crop&crop=center" alt="Breaking news">
+                      <k-stack v="gap-2">
+                        <k-text v="h4 semibold">📰 Breaking: Major Tech Acquisition</k-text>
+                        <k-text v="muted text-sm">Global tech giant acquires innovative AI startup for $2.5B, marking the largest acquisition in the AI sector this year.</k-text>
+                        <k-text v="text-xs text-muted">2 hours ago</k-text>
+                      </k-stack>
+                    </k-row>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-row v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&h=100&fit=crop&crop=center" alt="Product launch">
+                      <k-stack v="gap-2">
+                        <k-text v="h4 semibold">🎉 New Component Library Released</k-text>
+                        <k-text v="muted text-sm">kenikool-ui carousel system launches with 5 distinct types, full accessibility support, and responsive design.</k-text>
+                        <k-text v="text-xs text-muted">5 hours ago</k-text>
+                      </k-stack>
+                    </k-row>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-row v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=100&h=100&fit=crop&crop=center" alt="Developer update">
+                      <k-stack v="gap-2">
+                        <k-text v="h4 semibold">🔧 Developer Experience Enhanced</k-text>
+                        <k-text v="muted text-sm">Touch gestures, keyboard navigation, and autoplay functionality now fully integrated across all carousel types.</k-text>
+                        <k-text v="text-xs text-muted">1 day ago</k-text>
+                      </k-stack>
+                    </k-row>
+                  </k-carousel-slide>
+                </k-carousel>
+              </k-stack>
+
+              <!-- Size Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Size Variants</k-text>
+                <k-text v="muted">All carousel types support xs, sm, md, lg, xl sizes.</k-text>
+                <k-grid v="gap-4">
+                  <k-box v="surface p-3 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Extra Small (xs)</k-text>
+                      <k-carousel v="classic xs" label="XS Size Demo">
+                        <k-carousel-slide>
+                          <k-text v="text-center">Slide 1</k-text>
+                        </k-carousel-slide>
+                        <k-carousel-slide>
+                          <k-text v="text-center">Slide 2</k-text>
+                        </k-carousel-slide>
+                      </k-carousel>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="surface p-3 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold text-sm">Small (sm)</k-text>
+                      <k-carousel v="classic sm" label="SM Size Demo">
+                        <k-carousel-slide>
+                          <k-text v="text-center">Slide 1</k-text>
+                        </k-carousel-slide>
+                        <k-carousel-slide>
+                          <k-text v="text-center">Slide 2</k-text>
+                        </k-carousel-slide>
+                      </k-carousel>
+                    </k-stack>
+                  </k-box>
+                </k-grid>
+              </k-stack>
+
+              <!-- Color Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Color Variants (Affects Controls)</k-text>
+                <k-text v="muted">Colors change the active dot and control styling.</k-text>
+                <k-row v="gap-4 wrap">
+                  <k-carousel v="classic sm primary" label="Primary Color">
+                    <k-carousel-slide>
+                      <k-text v="text-center">Primary</k-text>
+                    </k-carousel-slide>
+                    <k-carousel-slide>
+                      <k-text v="text-center">Slide 2</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                  <k-carousel v="classic sm success" label="Success Color">
+                    <k-carousel-slide>
+                      <k-text v="text-center">Success</k-text>
+                    </k-carousel-slide>
+                    <k-carousel-slide>
+                      <k-text v="text-center">Slide 2</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                  <k-carousel v="classic sm error" label="Error Color">
+                    <k-carousel-slide>
+                      <k-text v="text-center">Error</k-text>
+                    </k-carousel-slide>
+                    <k-carousel-slide>
+                      <k-text v="text-center">Slide 2</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                </k-row>
+              </k-stack>
+
+              <!-- Radius Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Border Radius</k-text>
+                <k-row v="gap-4 wrap">
+                  <k-carousel v="classic sm r-none" label="No Radius">
+                    <k-carousel-slide>
+                      <k-text v="text-center">r-none</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                  <k-carousel v="classic sm r-md" label="Medium Radius">
+                    <k-carousel-slide>
+                      <k-text v="text-center">r-md</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                  <k-carousel v="classic sm r-full" label="Full Radius">
+                    <k-carousel-slide>
+                      <k-text v="text-center">r-full</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                </k-row>
+              </k-stack>
+
+              <!-- State Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">State Variants</k-text>
+                <k-row v="gap-4 wrap">
+                  <k-carousel v="classic sm loading" label="Loading State">
+                    <k-carousel-slide>
+                      <k-text v="text-center">Loading...</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                  <k-carousel v="classic sm disabled" label="Disabled State">
+                    <k-carousel-slide>
+                      <k-text v="text-center">Disabled</k-text>
+                    </k-carousel-slide>
+                  </k-carousel>
+                </k-row>
+              </k-stack>
+
+              <!-- Interactive Demo -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Interactive Demo with Custom Content</k-text>
+                <k-text v="muted">Mix of different content types: images, text, buttons, and cards with stunning visuals.</k-text>
+                <k-carousel v="classic lg" autoplay="5000" label="Mixed Content Demo">
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=400&fit=crop&crop=center" alt="Welcome hero image">
+                      <k-text v="h2 semibold">Welcome to kenikool-ui</k-text>
+                      <k-text v="muted">A comprehensive component library for modern web applications.</k-text>
+                      <k-button v="filled lg">Get Started</k-button>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=200&fit=crop&crop=center" alt="Features overview">
+                      <k-grid v="gap-4 cols-2">
+                        <k-box v="elevated p-4 r-md">
+                          <k-text v="semibold">🎯 50+ Components</k-text>
+                          <k-text v="muted text-sm">Complete UI toolkit</k-text>
+                        </k-box>
+                        <k-box v="elevated p-4 r-md">
+                          <k-text v="semibold">⚡ Optimized</k-text>
+                          <k-text v="muted text-sm">Lightning fast performance</k-text>
+                        </k-box>
+                        <k-box v="elevated p-4 r-md">
+                          <k-text v="semibold">🔧 Flexible</k-text>
+                          <k-text v="muted text-sm">Highly customizable</k-text>
+                        </k-box>
+                        <k-box v="elevated p-4 r-md">
+                          <k-text v="semibold">📱 Mobile Ready</k-text>
+                          <k-text v="muted text-sm">Touch-friendly design</k-text>
+                        </k-box>
+                      </k-grid>
+                    </k-stack>
+                  </k-carousel-slide>
+                  <k-carousel-slide>
+                    <k-stack v="gap-4 align-center">
+                      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=300&fit=crop&crop=center" alt="Ready to build">
+                      <k-text v="h3 semibold">Ready to Build Something Amazing?</k-text>
+                      <k-text v="muted">Start creating exceptional user experiences today.</k-text>
+                      <k-row v="gap-2">
+                        <k-button v="outlined">Documentation</k-button>
+                        <k-button v="filled">Download Now</k-button>
+                      </k-row>
+                    </k-stack>
+                  </k-carousel-slide>
+                </k-carousel>
+              </k-stack>
+
+              <!-- Technical Details -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Technical Features</k-text>
+                <k-grid v="gap-3">
+                  <k-box v="info-subtle p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">🎮 Navigation</k-text>
+                      <k-text v="text-sm">Arrow keys, mouse drag, touch/swipe gestures</k-text>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="success-subtle p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">♿ Accessible</k-text>
+                      <k-text v="text-sm">ARIA roles, live regions, keyboard focus management</k-text>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="warning-subtle p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">📱 Responsive</k-text>
+                      <k-text v="text-sm">Mobile-first, breakpoint-aware, touch-optimized</k-text>
+                    </k-stack>
+                  </k-box>
+                  <k-box v="accent-subtle p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-text v="semibold">⚡ Performance</k-text>
+                      <k-text v="text-sm">Hardware acceleration, efficient DOM manipulation</k-text>
+                    </k-stack>
+                  </k-box>
+                </k-grid>
+              </k-stack>
+
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- ═════════════════════════════════════════════════════════════════════════
+           SECTION 21: IMAGE COMPONENTS — Modern optimization & security
+           ═════════════════════════════════════════════════════════════════════════ -->
+      <k-section v="base" id="image-components">
+        <k-container>
+          <k-stack v="gap-10 p-8">
+            <k-stack v="gap-5">
+              <k-stack v="gap-2">
+                <k-text v="h2 semibold">§21 — Image Components — Modern Optimization & Security</k-text>
+                <k-text v="muted">Modern image components with optimization, responsive design, and security features.</k-text>
+              </k-stack>
+
+              <!-- Basic Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Basic Images</k-text>
+                <k-row v="gap-4">
+                  <k-image v="basic" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
+                           alt="Mountain landscape" 
+                           width="400" 
+                           height="300">
+                  </k-image>
+                  
+                  <k-image v="basic r-lg" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop" 
+                           alt="Forest scene" 
+                           width="300" 
+                           height="200">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Hero Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Hero Images</k-text>
+                <k-image v="hero" 
+                         src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop"
+                         srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=300&fit=crop 600w,
+                                 https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=600&fit=crop 1200w,
+                                 https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&h=900&fit=crop 1800w"
+                         sizes="100vw"
+                         alt="Hero mountain landscape" 
+                         width="1200" 
+                         height="600"
+                         priority="high">
+                </k-image>
+              </k-stack>
+
+              <!-- Avatar Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Avatar Images</k-text>
+                <k-row v="gap-3 align-center">
+                  <k-image v="avatar xs" 
+                           src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=96&h=96&fit=crop&crop=face" 
+                           alt="User avatar" 
+                           width="24" 
+                           height="24">
+                  </k-image>
+                  
+                  <k-image v="avatar sm" 
+                           src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face" 
+                           alt="User avatar" 
+                           width="32" 
+                           height="32">
+                  </k-image>
+                  
+                  <k-image v="avatar md" 
+                           src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=96&h=96&fit=crop&crop=face" 
+                           alt="User avatar" 
+                           width="48" 
+                           height="48">
+                  </k-image>
+                  
+                  <k-image v="avatar lg" 
+                           src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=96&h=96&fit=crop&crop=face" 
+                           alt="User avatar" 
+                           width="64" 
+                           height="64">
+                  </k-image>
+                  
+                  <k-image v="avatar xl" 
+                           src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=96&h=96&fit=crop&crop=face" 
+                           alt="User avatar" 
+                           width="96" 
+                           height="96">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Avatar with Fallback Text -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Avatar with Fallback</k-text>
+                <k-row v="gap-3 align-center">
+                  <k-image v="avatar md" 
+                           src="https://invalid-url.jpg" 
+                           alt="User avatar" 
+                           fallback-text="JD"
+                           width="48" 
+                           height="48">
+                  </k-image>
+                  
+                  <k-image v="avatar lg" 
+                           src="https://invalid-url.jpg" 
+                           alt="User avatar" 
+                           fallback-text="AM"
+                           width="64" 
+                           height="64">
+                  </k-image>
+                  
+                  <k-image v="avatar xl" 
+                           src="https://invalid-url.jpg" 
+                           alt="User avatar" 
+                           fallback-text="SK"
+                           width="96" 
+                           height="96">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Thumbnail Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Thumbnail Images</k-text>
+                <k-row v="gap-3">
+                  <k-image v="thumbnail" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=160&h=160&fit=crop" 
+                           alt="Thumbnail 1" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=160&h=160&fit=crop" 
+                           alt="Thumbnail 2" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail" 
+                           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=160&h=160&fit=crop" 
+                           alt="Thumbnail 3" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail" 
+                           src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=160&h=160&fit=crop" 
+                           alt="Thumbnail 4" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Banner Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Banner Images</k-text>
+                <k-image v="banner" 
+                         src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop"
+                         srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=200&fit=crop 600w,
+                                 https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=400&fit=crop 1200w"
+                         sizes="100vw"
+                         alt="Banner image" 
+                         width="1200" 
+                         height="400">
+                </k-image>
+              </k-stack>
+
+              <!-- Gallery Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Gallery Images</k-text>
+                <k-grid v="gap-4">
+                  <k-image v="gallery" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" 
+                           alt="Gallery image 1" 
+                           width="200" 
+                           height="200">
+                  </k-image>
+                  
+                  <k-image v="gallery" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop" 
+                           alt="Gallery image 2" 
+                           width="200" 
+                           height="200">
+                  </k-image>
+                  
+                  <k-image v="gallery" 
+                           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=400&fit=crop" 
+                           alt="Gallery image 3" 
+                           width="200" 
+                           height="200">
+                  </k-image>
+                  
+                  <k-image v="gallery" 
+                           src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&h=400&fit=crop" 
+                           alt="Gallery image 4" 
+                           width="200" 
+                           height="200">
+                  </k-image>
+                  
+                  <k-image v="gallery" 
+                           src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=400&fit=crop" 
+                           alt="Gallery image 5" 
+                           width="200" 
+                           height="200">
+                  </k-image>
+                  
+                  <k-image v="gallery" 
+                           src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=400&fit=crop" 
+                           alt="Gallery image 6" 
+                           width="200" 
+                           height="200">
+                  </k-image>
+                </k-grid>
+              </k-stack>
+
+              <!-- Responsive Images -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Responsive Images</k-text>
+                <k-image v="responsive" 
+                         src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+                         srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop 400w,
+                                 https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop 800w,
+                                 https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=900&fit=crop 1200w"
+                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                         alt="Responsive image" 
+                         width="800" 
+                         height="600">
+                </k-image>
+              </k-stack>
+
+              <!-- State Variations -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">State Variations</k-text>
+                <k-row v="gap-4">
+                  <k-image v="basic loading" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop" 
+                           alt="Loading image" 
+                           width="300" 
+                           height="200">
+                  </k-image>
+                  
+                  <k-image v="basic disabled" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop" 
+                           alt="Disabled image" 
+                           width="300" 
+                           height="200">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Color Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Color Variants (Border Colors)</k-text>
+                <k-row v="gap-3">
+                  <k-image v="thumbnail primary" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=160&h=160&fit=crop" 
+                           alt="Primary border" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail success" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=160&h=160&fit=crop" 
+                           alt="Success border" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail warning" 
+                           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=160&h=160&fit=crop" 
+                           alt="Warning border" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail error" 
+                           src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=160&h=160&fit=crop" 
+                           alt="Error border" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                  
+                  <k-image v="thumbnail info" 
+                           src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=160&h=160&fit=crop" 
+                           alt="Info border" 
+                           width="80" 
+                           height="80">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Radius Variants -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Radius Variants</k-text>
+                <k-row v="gap-4">
+                  <k-image v="basic r-none" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop" 
+                           alt="No radius" 
+                           width="200" 
+                           height="150">
+                  </k-image>
+                  
+                  <k-image v="basic r-sm" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=150&fit=crop" 
+                           alt="Small radius" 
+                           width="200" 
+                           height="150">
+                  </k-image>
+                  
+                  <k-image v="basic r-md" 
+                           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200&h=150&fit=crop" 
+                           alt="Medium radius" 
+                           width="200" 
+                           height="150">
+                  </k-image>
+                  
+                  <k-image v="basic r-lg" 
+                           src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=200&h=150&fit=crop" 
+                           alt="Large radius" 
+                           width="200" 
+                           height="150">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Aspect Ratio Examples -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Custom Aspect Ratios</k-text>
+                <k-row v="gap-4">
+                  <k-image v="basic" 
+                           src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop" 
+                           alt="Square aspect ratio" 
+                           width="200" 
+                           height="200"
+                           aspect-ratio="1">
+                  </k-image>
+                  
+                  <k-image v="basic" 
+                           src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop" 
+                           alt="4:3 aspect ratio" 
+                           width="200" 
+                           height="150"
+                           aspect-ratio="4/3">
+                  </k-image>
+                  
+                  <k-image v="basic" 
+                           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=225&fit=crop" 
+                           alt="16:9 aspect ratio" 
+                           width="200" 
+                           height="112"
+                           aspect-ratio="16/9">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Error Handling Demo -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Error Handling</k-text>
+                <k-row v="gap-4">
+                  <k-image v="basic" 
+                           src="https://invalid-image-url.jpg" 
+                           alt="Broken image" 
+                           width="200" 
+                           height="150">
+                  </k-image>
+                  
+                  <k-image v="basic" 
+                           src="https://another-invalid-url.jpg" 
+                           alt="Broken image with fallback" 
+                           fallback-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop"
+                           width="200" 
+                           height="150">
+                  </k-image>
+                </k-row>
+              </k-stack>
+
+              <!-- Performance Features Info -->
+              <k-stack v="gap-2">
+                <k-text v="semibold text-muted">Performance & Security Features</k-text>
+                <k-box v="surface p-4 r-md">
+                  <k-stack v="gap-2">
+                    <k-row v="gap-4 wrap">
+                      <k-stack v="gap-1">
+                        <k-text v="semibold">🏎️ Modern Formats</k-text>
+                        <k-text v="text-sm muted">Automatic WebP/AVIF support with fallbacks (60-80% size reduction)</k-text>
+                      </k-stack>
+                      <k-stack v="gap-1">
+                        <k-text v="semibold">⚡ Lazy Loading</k-text>
+                        <k-text v="text-sm muted">IntersectionObserver with 200px threshold, priority loading for above-fold</k-text>
+                      </k-stack>
+                      <k-stack v="gap-1">
+                        <k-text v="semibold">📱 Responsive Images</k-text>
+                        <k-text v="text-sm muted">srcset/sizes attributes for device-appropriate image delivery</k-text>
+                      </k-stack>
+                    </k-row>
+                    <k-row v="gap-4 wrap">
+                      <k-stack v="gap-1">
+                        <k-text v="semibold">🎯 Layout Shift Prevention</k-text>
+                        <k-text v="text-sm muted">Width/height attributes with CSS aspect ratios</k-text>
+                      </k-stack>
+                      <k-stack v="gap-1">
+                        <k-text v="semibold">🔒 Security</k-text>
+                        <k-text v="text-sm muted">URL sanitization prevents XSS, CSP-compliant img-src policies</k-text>
+                      </k-stack>
+                      <k-stack v="gap-1">
+                        <k-text v="semibold">♿ Accessibility</k-text>
+                        <k-text v="text-sm muted">Proper alt text, loading states, keyboard navigation</k-text>
+                      </k-stack>
+                    </k-row>
+                  </k-stack>
+                </k-box>
+              </k-stack>
+
+              <!-- LIGHTBOX COMPONENT DEMOS -->
+              <k-stack v="gap-5">
+                <k-divider></k-divider>
+                <k-text v="h3 semibold">Lightbox Components — Modern Full-Screen Image Viewer</k-text>
+
+                <!-- Basic Lightbox with Thumbnail Trigger -->
+                <k-stack v="gap-2">
+                  <k-text v="semibold text-muted">Basic Lightbox with Thumbnail</k-text>
+                  <k-text v="text-sm muted">Click the thumbnail to open the lightbox viewer</k-text>
+                  <k-row v="gap-4">
+                    <k-lightbox v="basic" 
+                                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop"
+                                thumbnail="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop"
+                                alt="Mountain landscape in full resolution">
+                    </k-lightbox>
+                    
+                    <k-lightbox v="basic" 
+                                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop"
+                                thumbnail="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=150&fit=crop"
+                                alt="Forest scene in full resolution">
+                    </k-lightbox>
+                    
+                    <k-lightbox v="basic" 
+                                src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&h=1080&fit=crop"
+                                thumbnail="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=200&h=150&fit=crop"
+                                alt="Nature landscape in full resolution">
+                    </k-lightbox>
+                  </k-row>
+                </k-stack>
+
+                <!-- Lightbox with Zoom Controls -->
+                <k-stack v="gap-2">
+                  <k-text v="semibold text-muted">Lightbox with Zoom Controls</k-text>
+                  <k-text v="text-sm muted">Includes zoom in/out buttons, mouse wheel zoom, and pan capabilities</k-text>
+                  <k-lightbox v="zoom" 
+                              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=3840&h=2160&fit=crop"
+                              thumbnail="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop"
+                              alt="High resolution mountain landscape"
+                              max-zoom="4"
+                              show-controls="true">
+                  </k-lightbox>
+                </k-stack>
+
+                <!-- Gallery Lightbox (Programmatic) -->
+                <k-stack v="gap-2">
+                  <k-text v="semibold text-muted">Gallery Mode (Click Images Below)</k-text>
+                  <k-text v="text-sm muted">Navigate between images using arrows, keyboard (←/→), or swipe gestures</k-text>
+                  <k-row v="gap-3" id="gallery-demo">
+                    <k-image v="thumbnail" 
+                             src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=160&h=160&fit=crop" 
+                             alt="Gallery image 1" 
+                             width="80" 
+                             height="80"
+                             style="cursor: pointer;"
+                             onclick="window.openGalleryLightbox(0)">
+                    </k-image>
+                    <k-image v="thumbnail" 
+                             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=160&h=160&fit=crop" 
+                             alt="Gallery image 2" 
+                             width="80" 
+                             height="80"
+                             style="cursor: pointer;"
+                             onclick="window.openGalleryLightbox(1)">
+                    </k-image>
+                    <k-image v="thumbnail" 
+                             src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=160&h=160&fit=crop" 
+                             alt="Gallery image 3" 
+                             width="80" 
+                             height="80"
+                             style="cursor: pointer;"
+                             onclick="window.openGalleryLightbox(2)">
+                    </k-image>
+                    <k-image v="thumbnail" 
+                             src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=160&h=160&fit=crop" 
+                             alt="Gallery image 4" 
+                             width="80" 
+                             height="80"
+                             style="cursor: pointer;"
+                             onclick="window.openGalleryLightbox(3)">
+                    </k-image>
+                    <k-image v="thumbnail" 
+                             src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=160&h=160&fit=crop" 
+                             alt="Gallery image 5" 
+                             width="80" 
+                             height="80"
+                             style="cursor: pointer;"
+                             onclick="window.openGalleryLightbox(4)">
+                    </k-image>
+                    <k-image v="thumbnail" 
+                             src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=160&h=160&fit=crop" 
+                             alt="Gallery image 6" 
+                             width="80" 
+                             height="80"
+                             style="cursor: pointer;"
+                             onclick="window.openGalleryLightbox(5)">
+                    </k-image>
+                  </k-row>
+                </k-stack>
+
+                <!-- Lightbox Features Info -->
+                <k-stack v="gap-2">
+                  <k-text v="semibold text-muted">Lightbox Features</k-text>
+                  <k-box v="surface p-4 r-md">
+                    <k-stack v="gap-2">
+                      <k-row v="gap-4 wrap">
+                        <k-stack v="gap-1">
+                          <k-text v="semibold">🖼️ Full-Screen Display</k-text>
+                          <k-text v="text-sm muted">Immersive full-screen overlay with backdrop blur</k-text>
+                        </k-stack>
+                        <k-stack v="gap-1">
+                          <k-text v="semibold">🔍 Zoom & Pan</k-text>
+                          <k-text v="text-sm muted">Mouse wheel zoom, touch pinch, click-and-drag to pan</k-text>
+                        </k-stack>
+                        <k-stack v="gap-1">
+                          <k-text v="semibold">⌨️ Keyboard Navigation</k-text>
+                          <k-text v="text-sm muted">ESC to close, ←/→ for prev/next, +/- for zoom, Space for next</k-text>
+                        </k-stack>
+                      </k-row>
+                      <k-row v="gap-4 wrap">
+                        <k-stack v="gap-1">
+                          <k-text v="semibold">👆 Touch Gestures</k-text>
+                          <k-text v="text-sm muted">Swipe to navigate, pinch to zoom, drag to pan</k-text>
+                        </k-stack>
+                        <k-stack v="gap-1">
+                          <k-text v="semibold">🎬 Smooth Animations</k-text>
+                          <k-text v="text-sm muted">Elegant fade-in, scale transitions, and smooth navigation</k-text>
+                        </k-stack>
+                        <k-stack v="gap-1">
+                          <k-text v="semibold">♿ Accessible</k-text>
+                          <k-text v="text-sm muted">Focus management, ARIA roles, keyboard-friendly</k-text>
+                        </k-stack>
+                      </k-row>
+                    </k-stack>
+                  </k-box>
+                </k-stack>
+              </k-stack>
+            </k-stack>
+          </k-stack>
+        </k-container>
+      </k-section>
+
+      <!-- Gallery lightbox instance (hidden until opened programmatically) -->
+      <k-lightbox v="gallery" id="gallery-lightbox" style="display:none;">
+        <img slot="image" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop" alt="Mountain landscape" data-caption="Majestic mountain peaks">
+        <img slot="image" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&h=1080&fit=crop" alt="Forest scene" data-caption="Dense forest trail">
+        <img slot="image" src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&h=1080&fit=crop" alt="Nature landscape" data-caption="Serene nature vista">
+        <img slot="image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&h=1080&fit=crop" alt="Meadow landscape" data-caption="Golden meadow at sunset">
+        <img slot="image" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&h=1080&fit=crop" alt="Canyon landscape" data-caption="Grand canyon view">
+        <img slot="image" src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1920&h=1080&fit=crop" alt="Tropical landscape" data-caption="Tropical paradise">
+      </k-lightbox>
+
+      <!-- Section 14: Modal Definitions (moved from Section 12) -->
+
+
+
+      <k-modal v="default" id="modal-default" data-scrollbar="default">
+        <k-text slot="header" v="lg semibold">Default Modal</k-text>
+        <k-stack v="gap-3">
+          <k-text>This is the default centered modal. Max-width 560px with smooth scale animation.</k-text>
+          <k-text v="text-sm muted">Press Escape or click outside to close.</k-text>
+        </k-stack>
+        <k-row slot="footer" v="gap-2 justify-end">
+          <k-button v="outlined">Cancel</k-button>
+          <k-button v="filled">Confirm</k-button>
+        </k-row>
+      </k-modal>
+
+      <k-modal v="centered" id="modal-centered" data-scrollbar="floating">
+        <k-text slot="header" v="lg semibold">Centered Modal</k-text>
+        <k-stack v="gap-3">
+          <k-text>More prominent centered animation with enhanced scale effect.</k-text>
+          <k-input v="outlined" label="Email" placeholder="user@example.com"></k-input>
+          <k-input v="outlined" label="Password" type="password" placeholder="••••••••"></k-input>
+        </k-stack>
+        <k-row slot="footer" v="gap-2 justify-end">
+          <k-button v="outlined">Cancel</k-button>
+          <k-button v="filled primary">Sign In</k-button>
+        </k-row>
+      </k-modal>
+
+      <k-modal v="bottom-sheet" id="modal-bottom">
+        <k-text slot="header" v="lg semibold">Bottom Sheet</k-text>
+        <k-stack v="gap-3">
+          <k-text>Slides up from bottom. Full width, max-height 90vh, scrollable content.</k-text>
+          <k-text>Perfect for mobile-first designs and quick actions.</k-text>
+          <k-grid v="cols-2 gap-3">
+            <k-button v="outlined full">Share</k-button>
+            <k-button v="outlined full">Download</k-button>
+            <k-button v="outlined full">Copy Link</k-button>
+            <k-button v="outlined full">Report</k-button>
+          </k-grid>
+        </k-stack>
+      </k-modal>
+
+      <k-modal v="side-drawer-left" id="modal-drawer-left" data-scrollbar="mac">
+        <k-text slot="header" v="lg semibold">Left Drawer</k-text>
+        <k-stack v="gap-3">
+          <k-text>Slides in from left. Fixed width 320px, full height.</k-text>
+          <k-text v="text-sm muted">Navigation menus, filters, settings panels.</k-text>
+          <k-stack v="gap-2">
+            <k-button v="ghost full justify-start">Dashboard</k-button>
+            <k-button v="ghost full justify-start">Projects</k-button>
+            <k-button v="ghost full justify-start">Team</k-button>
+            <k-button v="ghost full justify-start">Settings</k-button>
+          </k-stack>
+        </k-stack>
+      </k-modal>
+
+      <k-modal v="side-drawer-right" id="modal-drawer-right" data-scrollbar="thick">
+        <k-text slot="header" v="lg semibold">Right Drawer</k-text>
+        <k-stack v="gap-3">
+          <k-text>Slides in from right. Mirror of left drawer.</k-text>
+          <k-text v="text-sm muted">Details panels, shopping carts, notifications.</k-text>
+          <k-card v="compact">
+            <k-text slot="header" v="semibold">Cart Summary</k-text>
+            <k-stack v="gap-2">
+              <k-row v="justify-between">
+                <k-text v="text-sm">Subtotal:</k-text>
+                <k-text v="text-sm semibold">$99.00</k-text>
+              </k-row>
+              <k-row v="justify-between">
+                <k-text v="text-sm">Tax:</k-text>
+                <k-text v="text-sm semibold">$9.90</k-text>
+              </k-row>
+              <k-row v="justify-between">
+                <k-text v="semibold">Total:</k-text>
+                <k-text v="semibold">$108.90</k-text>
+              </k-row>
+            </k-stack>
+            <k-button slot="footer" v="filled success full">Checkout</k-button>
+          </k-card>
+        </k-stack>
+      </k-modal>
+
+      <k-modal v="fullscreen" id="modal-fullscreen">
+        <k-text slot="header" v="lg semibold">Fullscreen Modal</k-text>
+        <k-stack v="gap-3">
+          <k-text>Covers entire viewport. No border radius.</k-text>
+          <k-text>Perfect for immersive experiences, editors, or detailed forms.</k-text>
+          <k-text v="text-sm muted">This content area scrolls independently.</k-text>
+        </k-stack>
+        <k-row slot="footer" v="gap-2 justify-end">
+          <k-button v="outlined">Cancel</k-button>
+          <k-button v="filled">Save</k-button>
+        </k-row>
+      </k-modal>
+
+      <k-modal v="compact" id="modal-compact">
+        <k-text slot="header" v="semibold">Quick Confirmation</k-text>
+        <k-text>Are you sure you want to proceed?</k-text>
+        <k-row slot="footer" v="gap-2 justify-end">
+          <k-button v="outlined sm">No</k-button>
+          <k-button v="filled sm">Yes</k-button>
+        </k-row>
+      </k-modal>
+
+      <k-modal v="form" id="modal-form">
+        <k-text slot="header" v="lg semibold">Create New Project</k-text>
+        <k-stack v="gap-4">
+          <k-input v="outlined" label="Project Name" placeholder="My Awesome Project"></k-input>
+          <k-input v="outlined" label="Description" placeholder="Tell us about your project"></k-input>
+          <k-input v="outlined" label="Repository URL" placeholder="https://github.com/..."></k-input>
+        </k-stack>
+        <k-row slot="footer" v="gap-2 justify-end">
+          <k-button v="outlined">Cancel</k-button>
+          <k-button v="filled success">Create Project</k-button>
+        </k-row>
+      </k-modal>
+
+      <k-modal v="confirm" id="modal-confirm" close-on-overlay="false">
+        <k-text slot="header" v="2xl bold">Delete Account?</k-text>
+        <k-stack v="gap-3">
+          <k-text>This action cannot be undone. All your data will be permanently deleted.</k-text>
+          <k-text v="text-sm muted">Type "DELETE" to confirm.</k-text>
+          <k-input v="outlined" placeholder="DELETE"></k-input>
+        </k-stack>
+        <k-row slot="footer" v="gap-3 justify-center">
+          <k-button v="outlined">Cancel</k-button>
+          <k-button v="filled error">Delete Forever</k-button>
+        </k-row>
+      </k-modal>
+
+      <k-modal v="media" id="modal-media">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&h=600&fit=crop" alt="Product" />
+      </k-modal>
 
 
     

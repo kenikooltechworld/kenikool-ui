@@ -145,9 +145,9 @@ k-row {
   align-items: stretch;
 }
 
-/* ── Responsive: stack vertically on phones ── */
+/* ── Responsive: stack vertically on phones (Optional) ── */
 @media (max-width: 480px) {
-  k-row {
+  k-row[data-variant=\"responsive\"] {
     flex-direction: column;
   }
 }
@@ -232,9 +232,9 @@ k-stack[data-direction="horizontal"] {
   align-items: center;
 }
 
-/* ── Responsive: horizontal stacks collapse on phones ── */
+/* ── Responsive: horizontal stacks collapse on phones (Optional) ── */
 @media (max-width: 480px) {
-  k-stack[data-direction="horizontal"] {
+  k-stack[data-direction="horizontal"][data-variant="responsive"] {
     flex-direction: column;
     align-items: stretch;
   }

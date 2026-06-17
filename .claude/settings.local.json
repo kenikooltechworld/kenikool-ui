@@ -7,7 +7,27 @@
       "WebSearch",
       "Bash(npm install *)",
       "Bash(pnpm install *)",
-      "Bash(pnpm run *)"
+      "Bash(pnpm run *)",
+      "Skill(deep-research)",
+      "PowerShell(ls *)",
+      "Workflow(deep-research)",
+      "WebFetch(domain:www.youngju.dev)",
+      "WebFetch(domain:docsio.co)",
+      "WebFetch(domain:ui-deploy.com)",
+      "WebFetch(domain:www.uxpin.com)",
+      "WebFetch(domain:www.uxguides.com)",
+      "WebFetch(domain:engineered.at)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:compodocx.dev)",
+      "WebFetch(domain:codesparkjs.com)",
+      "WebFetch(domain:www.chakra-ui.com)",
+      "WebFetch(domain:dl.acm.org)",
+      "WebFetch(domain:www.pkgpulse.com)",
+      "WebFetch(domain:contenteratechspace.com)",
+      "WebFetch(domain:carbon-website-git-pictograms-docs.carbon-design-system.vercel.app)",
+      "WebFetch(domain:daisyui.com)",
+      "WebFetch(domain:chakra-ui.com)",
+      "WebFetch(domain:v4.daisyui.com)"
     ]
   }
 }

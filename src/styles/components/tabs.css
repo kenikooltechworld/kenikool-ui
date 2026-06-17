@@ -1,0 +1,382 @@
+/* src/styles/components/tabs.css */
+
+k-tabs {
+  display: block;
+  width: 100%;
+}
+
+.k-tabs-list {
+  display: flex;
+  gap: var(--k-space-2);
+  border-bottom: 1px solid var(--k-border);
+  margin-bottom: var(--k-space-4);
+}
+
+.k-tabs-panels {
+  display: block;
+}
+
+/* Tab Trigger Base - Target the button inside k-tab */
+k-tab,
+k-tab button {
+  padding: var(--k-space-2) var(--k-space-4);
+  font-family: var(--k-font-sans);
+  font-size: var(--k-text-base);
+  color: var(--k-text-secondary);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+  user-select: none;
+  outline: none;
+  border: none;
+  background: transparent;
+  position: relative;
+  width: 100%;
+}
+
+k-tab:hover,
+k-tab button:hover {
+  color: var(--k-text-primary);
+}
+
+k-tab:focus-visible,
+k-tab button:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+k-tab[aria-selected="true"],
+k-tab[aria-selected="true"] button {
+  color: var(--k-text-primary);
+  font-weight: var(--k-font-semibold);
+}
+
+/* === Variants === */
+
+/* default: Bottom border highlight */
+k-tabs[data-variant="default"] .k-tabs-list {
+  border-bottom: 1px solid var(--k-border);
+}
+k-tabs[data-variant="default"] k-tab[aria-selected="true"],
+k-tabs[data-variant="default"] k-tab[aria-selected="true"] button {
+  border-bottom: 3px solid var(--k-accent);
+  margin-bottom: -1px;
+  color: var(--k-accent);
+}
+
+/* pill: Rounded background for active tab */
+k-tabs[data-variant="pill"] .k-tabs-list {
+  border-bottom: none;
+  gap: var(--k-space-3);
+}
+k-tabs[data-variant="pill"] k-tab,
+k-tabs[data-variant="pill"] k-tab button {
+  border-radius: var(--k-radius-full);
+  padding: var(--k-space-2) var(--k-space-4);
+}
+k-tabs[data-variant="pill"] k-tab[aria-selected="true"],
+k-tabs[data-variant="pill"] k-tab[aria-selected="true"] button {
+  background: var(--k-accent) !important;
+  color: var(--k-text-inverse) !important;
+}
+
+/* underlined: Thin line under active tab */
+k-tabs[data-variant="underlined"] .k-tabs-list {
+  border-bottom: none;
+}
+k-tabs[data-variant="underlined"] k-tab[aria-selected="true"],
+k-tabs[data-variant="underlined"] k-tab[aria-selected="true"] button {
+  position: relative;
+  color: var(--k-accent);
+}
+k-tabs[data-variant="underlined"] k-tab[aria-selected="true"]::after,
+k-tabs[data-variant="underlined"] k-tab[aria-selected="true"] button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: var(--k-accent);
+  border-radius: var(--k-radius-full);
+}
+
+/* filled: Solid semantic background */
+k-tabs[data-variant="filled"] k-tab,
+k-tabs[data-variant="filled"] k-tab button {
+  border-radius: var(--k-radius-sm);
+  margin: 0 var(--k-space-1);
+}
+k-tabs[data-variant="filled"] k-tab[aria-selected="true"],
+k-tabs[data-variant="filled"] k-tab[aria-selected="true"] button {
+  background: var(--k-accent) !important;
+  color: var(--k-text-inverse) !important;
+}
+
+/* outlined: Border for active tab */
+k-tabs[data-variant="outlined"] k-tab,
+k-tabs[data-variant="outlined"] k-tab button {
+  border: 2px solid transparent;
+  border-radius: var(--k-radius-sm);
+  margin: 0 var(--k-space-1);
+}
+k-tabs[data-variant="outlined"] k-tab[aria-selected="true"],
+k-tabs[data-variant="outlined"] k-tab[aria-selected="true"] button {
+  border-color: var(--k-accent) !important;
+  color: var(--k-accent) !important;
+  background: color-mix(in srgb, var(--k-accent) 10%, transparent) !important;
+}
+
+/* glass: Glassmorphism bar */
+k-tabs[data-variant="glass"] .k-tabs-list {
+  background: color-mix(in srgb, var(--k-bg-surface) 60%, transparent);
+  backdrop-filter: blur(12px);
+  border-radius: var(--k-radius-md);
+  padding: var(--k-space-2);
+  border: 1px solid color-mix(in srgb, var(--k-border) 30%, transparent);
+}
+k-tabs[data-variant="glass"] k-tab {
+  border-radius: var(--k-radius-sm);
+}
+
+/* gradient: Gradient for active tab */
+k-tabs[data-variant="gradient"] k-tab[aria-selected="true"] {
+  background: linear-gradient(135deg, var(--k-accent), var(--k-accent-hover));
+  color: var(--k-text-inverse);
+  border-radius: var(--k-radius-sm);
+}
+
+/* compact: Reduced spacing */
+k-tabs[data-variant="compact"] k-tab,
+k-tabs[data-variant="compact"] k-tab button {
+  padding: var(--k-space-1-5) var(--k-space-3);
+  font-size: var(--k-text-sm);
+  border-radius: var(--k-radius-sm);
+  margin: 0 1px;
+}
+k-tabs[data-variant="compact"] k-tab[aria-selected="true"],
+k-tabs[data-variant="compact"] k-tab[aria-selected="true"] button {
+  background: var(--k-accent) !important;
+  color: var(--k-text-inverse) !important;
+}
+k-tabs[data-variant="compact"] .k-tabs-list {
+  gap: var(--k-space-1);
+}
+
+/* vertical: Sidebar layout */
+k-tabs[data-variant="vertical"] {
+  display: flex;
+  flex-direction: row;
+  gap: var(--k-space-6);
+}
+k-tabs[data-variant="vertical"] .k-tabs-list {
+  display: flex;
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid var(--k-border);
+  width: 200px;
+  padding-right: var(--k-space-3);
+}
+k-tabs[data-variant="vertical"] k-tab {
+  text-align: left;
+  padding: var(--k-space-3) var(--k-space-4);
+}
+k-tabs[data-variant="vertical"] k-tab[aria-selected="true"] {
+  border-right: 3px solid var(--k-accent);
+  background: var(--k-bg-elevated);
+}
+
+/* card: Integrated cards */
+k-tabs[data-variant="card"] {
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-lg);
+  box-shadow: var(--k-shadow-sm);
+  overflow: hidden;
+}
+k-tabs[data-variant="card"] .k-tabs-list {
+  background: var(--k-bg-elevated);
+  border-bottom: 1px solid var(--k-border);
+}
+k-tabs[data-variant="card"] k-tab[aria-selected="true"] {
+  background: var(--k-bg-surface);
+  font-weight: var(--k-font-semibold);
+}
+
+/* === Color Overrides === */
+
+k-tabs[data-color="success"] k-tab[aria-selected="true"] {
+  border-bottom-color: var(--k-success);
+  background: var(--k-success-subtle);
+  color: var(--k-success);
+}
+k-tabs[data-color="warning"] k-tab[aria-selected="true"] {
+  border-bottom-color: var(--k-warning);
+  background: var(--k-warning-subtle);
+  color: var(--k-warning);
+}
+k-tabs[data-color="error"] k-tab[aria-selected="true"] {
+  border-bottom-color: var(--k-error);
+  background: var(--k-error-subtle);
+  color: var(--k-error);
+}
+k-tabs[data-color="info"] k-tab[aria-selected="true"] {
+  border-bottom-color: var(--k-info);
+  background: var(--k-info-subtle);
+  color: var(--k-info);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  k-tab {
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN - Default for all tabs
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Make tab navigation scrollable by default */
+.k-tabs-list {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.k-tabs-list::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Tablet responsive (768px and below) */
+@media (max-width: 768px) {
+  .k-tabs-list {
+    gap: var(--k-space-1);
+  }
+
+  k-tab,
+  k-tab button {
+    padding: var(--k-space-2) var(--k-space-3);
+    font-size: var(--k-text-sm);
+    min-width: fit-content;
+    flex-shrink: 0;
+  }
+
+  /* Adjust variant spacing for tablets */
+  k-tabs[data-variant="pill"] .k-tabs-list,
+  k-tabs[data-variant="filled"] .k-tabs-list,
+  k-tabs[data-variant="outlined"] .k-tabs-list {
+    gap: var(--k-space-1);
+  }
+
+  /* Vertical tabs become horizontal on tablet */
+  k-tabs[data-variant="vertical"] {
+    flex-direction: column;
+  }
+
+  k-tabs[data-variant="vertical"] .k-tabs-list {
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 1px solid var(--k-border);
+    width: auto;
+    padding-right: 0;
+    padding-bottom: var(--k-space-2);
+    overflow-x: auto;
+  }
+
+  k-tabs[data-variant="vertical"] k-tab {
+    text-align: center;
+    min-width: 120px;
+  }
+
+  k-tabs[data-variant="vertical"] k-tab[aria-selected="true"] {
+    border-right: none;
+    border-bottom: 3px solid var(--k-accent);
+  }
+}
+
+/* Mobile responsive (640px and below) */
+@media (max-width: 640px) {
+  /* Stack tabs vertically on small screens */
+  .k-tabs-list {
+    flex-direction: column;
+    overflow-x: visible;
+    gap: var(--k-space-1);
+  }
+
+  k-tab,
+  k-tab button {
+    width: 100%;
+    text-align: center;
+    padding: var(--k-space-3) var(--k-space-4);
+    margin: 0;
+  }
+
+  /* Adjust variants for mobile stacking */
+  k-tabs[data-variant="default"] k-tab[aria-selected="true"] {
+    border-bottom: none;
+    border-left: 4px solid var(--k-accent);
+    background: var(--k-accent-subtle);
+    margin-bottom: 0;
+  }
+
+  k-tabs[data-variant="underlined"] k-tab[aria-selected="true"]::after {
+    display: none;
+  }
+
+  k-tabs[data-variant="underlined"] k-tab[aria-selected="true"] {
+    border-left: 4px solid var(--k-accent);
+    background: var(--k-accent-subtle);
+    padding-left: calc(var(--k-space-4) - 4px);
+  }
+
+  /* Pill and filled variants work well stacked */
+  k-tabs[data-variant="pill"] k-tab,
+  k-tabs[data-variant="filled"] k-tab {
+    border-radius: var(--k-radius-md);
+    margin-bottom: var(--k-space-1);
+  }
+
+  /* Outlined variant */
+  k-tabs[data-variant="outlined"] k-tab {
+    margin-bottom: var(--k-space-1);
+  }
+
+  /* Glass variant adjustments */
+  k-tabs[data-variant="glass"] .k-tabs-list {
+    padding: var(--k-space-3);
+  }
+
+  /* Card variant - full width on mobile */
+  k-tabs[data-variant="card"] .k-tabs-list {
+    padding: var(--k-space-2);
+  }
+
+  /* Compact variant becomes regular size on mobile for better touch targets */
+  k-tabs[data-variant="compact"] k-tab,
+  k-tabs[data-variant="compact"] k-tab button {
+    padding: var(--k-space-3) var(--k-space-4);
+    font-size: var(--k-text-base);
+  }
+
+  /* Vertical tabs work the same as default on mobile */
+  k-tabs[data-variant="vertical"] {
+    flex-direction: column;
+  }
+
+  k-tabs[data-variant="vertical"] .k-tabs-list {
+    flex-direction: column;
+    border-right: none;
+    border-bottom: none;
+    width: auto;
+    padding-bottom: 0;
+    margin-bottom: var(--k-space-4);
+  }
+
+  k-tabs[data-variant="vertical"] k-tab[aria-selected="true"] {
+    border-bottom: none;
+    border-left: 4px solid var(--k-accent);
+    background: var(--k-accent-subtle);
+    padding-left: calc(var(--k-space-4) - 4px);
+  }
+}
