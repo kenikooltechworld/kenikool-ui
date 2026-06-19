@@ -254,7 +254,7 @@ Control pointer behavior:
 <k-box v="disabled cur-not">Unavailable</k-box>
 ```
 
-### 🔗 Combining Utility Tokens
+### 🎯 Combining Utility Tokens
 Mix and match with other tokens:
 
 ```html
@@ -275,6 +275,21 @@ Mix and match with other tokens:
   <!-- Centered, responsive content -->
 </k-box>
 ```
+
+### 📝 Vanilla vs React Utility Token Support
+
+**React Components**: All utility tokens work seamlessly through CSS class application. React components cascade utility token styling automatically.
+
+**Vanilla Web Components**: Not all vanilla components support utility tokens. Utility tokens are primarily designed for **layout components** (`<k-grid>`, `<k-row>`, `<k-col>`, `<k-stack>`, `<k-box>`, `<k-text>`). 
+
+**Supported in Vanilla:**
+- `<k-grid>`, `<k-row>`, `<k-col>`, `<k-stack>` — full utility token support
+- `<k-box>`, `<k-text>` — full utility token support
+- `<k-button>` — selected utility tokens: `w-full`, `w-auto`, `mw-full`, `bdr`, `bdr-none`, `shd-sm/md/lg/xl`, `txt-left/center/right`, `cur-ptr/def/not`, `truncate`
+
+**Not supported in Vanilla:**
+- Interactive components (`<k-input>`, `<k-select>`, `<k-modal>`, etc.) do not parse utility tokens
+- Use the `v` attribute for component-specific tokens only
 
 ---
 

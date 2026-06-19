@@ -49,6 +49,15 @@ export const ICONS = {
 
   /** Notification bell icon */
   bell: 'M18 8A6 6 0 0 0 6 8c0 7-3 13-3 13h18s-3-6-3-13z',
+
+  /** Plus icon for increment */
+  plus: 'M12 5v14M5 12h14',
+
+  /** Minus icon for decrement */
+  minus: 'M5 12h14',
+
+  /** Calendar icon for date picker */
+  calendar: 'M3 9h18M3 4h18a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M9 3v4M15 3v4',
 } as const;
 
 export type IconName = keyof typeof ICONS;

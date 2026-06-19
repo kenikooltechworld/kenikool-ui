@@ -27,7 +27,7 @@ const ALLOWED_TAGS  = ['b', 'i', 'em', 'strong', 'span', 'br', 'p', 'a'];
 const ALLOWED_ATTRS = ['href', 'title', 'target', 'rel'];
 
 /** URL protocols considered safe. javascript:, data:, vbscript: are NOT included. */
-const SAFE_PROTOCOLS = new Set(['https:', 'http:', 'mailto:', 'tel:']);
+const SAFE_PROTOCOLS = new Set(['https:', 'http:', 'mailto:', 'tel:', 'blob:']);
 
 /**
  * Converts any input to safe plain text using the DOM's own text node mechanism.
@@ -103,8 +103,8 @@ export function sanitizeHtml(dirty: string): string {
  *
  * Use for: img src, anchor href, any attribute set from a URL prop.
  *
- * Blocked protocols: javascript:, data:, vbscript:, blob:, file:
- * Allowed protocols: https:, http:, mailto:, tel:
+ * Blocked protocols: javascript:, data:, vbscript:, file:
+ * Allowed protocols: https:, http:, mailto:, tel:, blob: (local file previews)
  *
  * @param url - Raw URL string from a user prop.
  * @returns   - Validated URL string, or '#' if the URL is unsafe/invalid.

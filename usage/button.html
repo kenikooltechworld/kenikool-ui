@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Button Component - Usage Examples | Kenikool UI</title>
+  
+  <!-- Import Kenikool UI styles and scripts from dist -->
+  <link rel="stylesheet" href="../dist/styles/base.css">
+  <script type="module" src="../dist/vanilla/index.mjs"></script>
+</head>
+<body>
+
+  <k-container v="p-8">
+    <k-stack v="gap-8">
+      
+      <!-- Header -->
+      <k-box>
+        <k-text v="h1">🔘 Button Component - Complete Usage Examples</k-text>
+        <k-text v="p text-base">This page demonstrates every button variant, token, and utility using the built Kenikool UI library.</k-text>
+      </k-box>
+
+      <!-- Zero Config -->
+      <k-section>
+        <k-text v="h2">📦 Zero Config - Out of the Box</k-text>
+        <k-text v="p">No v attribute needed. Buttons work with sensible defaults.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-button>Default Button</k-button>
+            <k-button type="submit">Submit</k-button>
+            <k-button type="reset">Reset</k-button>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Target Selectors -->
+      <k-section>
+        <k-text v="h2">🎯 Target Selectors (.class and #id)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">With CSS class:</k-text>
+              <k-button v="filled .primary-action">Button with .primary-action class</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">With ID:</k-text>
+              <k-button v="filled #submit-btn">Button with #submit-btn ID</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">Combined class, id, and tokens:</k-text>
+              <k-button v="gradient lg .hero-cta #main-action">Hero CTA Button</k-button>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- All Variants -->
+      <k-section>
+        <k-text v="h2">🎨 All 11 Variants</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled">filled</k-button>
+            <k-button v="outlined">outlined</k-button>
+            <k-button v="ghost">ghost</k-button>
+            <k-button v="soft">soft</k-button>
+            <k-button v="subtle">subtle</k-button>
+            <k-button v="gradient">gradient</k-button>
+            <k-button v="glow">glow</k-button>
+            <k-button v="minimal">minimal</k-button>
+            <k-button v="elevated">elevated</k-button>
+            <k-button v="destructive">destructive</k-button>
+            <k-button v="icon-only" icon="settings"></k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- All Sizes -->
+      <k-section>
+        <k-text v="h2">📏 All 5 Sizes</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3 align-center">
+            <k-button v="filled xs">xs</k-button>
+            <k-button v="filled sm">sm</k-button>
+            <k-button v="filled md">md (default)</k-button>
+            <k-button v="filled lg">lg</k-button>
+            <k-button v="filled xl">xl</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- All Colors - Filled -->
+      <k-section>
+        <k-text v="h2">🌈 All 6 Colors</k-text>
+        
+        <k-text v="h3">Colors with Filled Variant (background changes)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled primary">primary</k-button>
+            <k-button v="filled success">success</k-button>
+            <k-button v="filled warning">warning</k-button>
+            <k-button v="filled error">error</k-button>
+            <k-button v="filled info">info</k-button>
+            <k-button v="filled default">default</k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Colors with Outlined Variant (border + text changes)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="outlined primary">primary</k-button>
+            <k-button v="outlined success">success</k-button>
+            <k-button v="outlined warning">warning</k-button>
+            <k-button v="outlined error">error</k-button>
+            <k-button v="outlined info">info</k-button>
+            <k-button v="outlined default">default</k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Colors with Ghost Variant (text only changes)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="ghost primary">primary</k-button>
+            <k-button v="ghost success">success</k-button>
+            <k-button v="ghost warning">warning</k-button>
+            <k-button v="ghost error">error</k-button>
+            <k-button v="ghost info">info</k-button>
+            <k-button v="ghost default">default</k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Colors with Glow Variant</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="glow primary">primary</k-button>
+            <k-button v="glow success">success</k-button>
+            <k-button v="glow warning">warning</k-button>
+            <k-button v="glow error">error</k-button>
+            <k-button v="glow info">info</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- Border Radius -->
+      <k-section>
+        <k-text v="h2">🔘 Border Radius (5 options)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled r-none">r-none (sharp)</k-button>
+            <k-button v="filled r-sm">r-sm</k-button>
+            <k-button v="filled r-md">r-md (default)</k-button>
+            <k-button v="filled r-lg">r-lg</k-button>
+            <k-button v="filled r-full">r-full (pill)</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- State Flags -->
+      <k-section>
+        <k-text v="h2">⚡ State Flags</k-text>
+        
+        <k-text v="h3">Loading State (Default Spinner)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled loading">Loading...</k-button>
+            <k-button v="outlined loading">Loading...</k-button>
+            <k-button v="gradient loading">Processing...</k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Loading with Different Loader Variants</k-text>
+        <k-text v="p muted">Use <code>loader-*</code> token to customize the loading animation:</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-grid v="gap-3 cols-3">
+            <k-button v="filled loading loader-spinner">Spinner</k-button>
+            <k-button v="filled loading loader-dots">Dots</k-button>
+            <k-button v="filled loading loader-pulse">Pulse</k-button>
+            <k-button v="filled loading loader-bars">Bars</k-button>
+            <k-button v="filled loading loader-ring">Ring</k-button>
+            <k-button v="filled loading loader-bounce">Bounce</k-button>
+          </k-grid>
+        </k-box>
+
+        <k-text v="h3">Loader Variants with Different Button Variants</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-row v="gap-3">
+              <k-button v="filled loading loader-dots">Filled + Dots</k-button>
+              <k-button v="outlined loading loader-pulse">Outlined + Pulse</k-button>
+              <k-button v="gradient loading loader-ring">Gradient + Ring</k-button>
+            </k-row>
+            <k-row v="gap-3">
+              <k-button v="ghost loading loader-bars">Ghost + Bars</k-button>
+              <k-button v="soft loading loader-bounce">Soft + Bounce</k-button>
+              <k-button v="glow success loading loader-spinner">Glow + Spinner</k-button>
+            </k-row>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Disabled State</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled disabled">Disabled</k-button>
+            <k-button v="outlined disabled">Disabled</k-button>
+            <k-button v="ghost disabled">Disabled</k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Full Width</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-button v="filled full">Full Width Button</k-button>
+            <k-button v="outlined full">Full Width Outlined</k-button>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Text Truncation</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Without truncate (text wraps):</k-text>
+              <k-button v="filled mw-full">This is a very long button label that will wrap to multiple lines</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">With truncate (ellipsis):</k-text>
+              <k-button v="filled truncate mw-full">This is a very long button label that will be truncated with an ellipsis</k-button>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Width Utilities -->
+      <k-section>
+        <k-text v="h2">↔️ Width Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">w-full (100% width):</k-text>
+              <k-button v="filled w-full">Full Width</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">w-auto (content-based, default):</k-text>
+              <k-button v="filled w-auto">Auto Width</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">w-fit (fit-content):</k-text>
+              <k-button v="filled w-fit">Fit Content Width</k-button>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Height Utilities -->
+      <k-section>
+        <k-text v="h2">↕️ Height Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled h-auto">h-auto (default)</k-button>
+            <k-button v="filled h-fit">h-fit</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- Max/Min Constraints -->
+      <k-section>
+        <k-text v="h2">📐 Max/Min Constraints</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">mw-full (max-width: 100%):</k-text>
+              <k-button v="filled mw-full">Max Width 100%</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">mnw-0 (min-width: 0):</k-text>
+              <k-button v="filled mnw-0">Min Width 0</k-button>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Text Alignment -->
+      <k-section>
+        <k-text v="h2">📝 Text Alignment</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">txt-left:</k-text>
+              <k-button v="filled txt-left w-full">Left Aligned</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">txt-center:</k-text>
+              <k-button v="filled txt-center w-full">Center Aligned (default)</k-button>
+            </k-box>
+            <k-box>
+              <k-text v="label">txt-right:</k-text>
+              <k-button v="filled txt-right w-full">Right Aligned</k-button>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Borders -->
+      <k-section>
+        <k-text v="h2">🖼️ Border Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled bdr">With Border</k-button>
+            <k-button v="ghost bdr">Ghost + Border</k-button>
+            <k-button v="outlined bdr-none">Outlined without border</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- Shadows -->
+      <k-section>
+        <k-text v="h2">☁️ Shadow Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled shd-sm">shd-sm</k-button>
+            <k-button v="filled shd-md">shd-md</k-button>
+            <k-button v="filled shd-lg">shd-lg</k-button>
+            <k-button v="filled shd-xl">shd-xl</k-button>
+            <k-button v="elevated shd-none">No Shadow</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- Cursor Styles -->
+      <k-section>
+        <k-text v="h2">👆 Cursor Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="filled cur-ptr">cur-ptr (default)</k-button>
+            <k-button v="filled cur-def">cur-def</k-button>
+            <k-button v="filled cur-not">cur-not</k-button>
+          </k-row>
+        </k-box>
+      </k-section>
+
+      <!-- Icons -->
+      <k-section>
+        <k-text v="h2">🎨 Icons</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">Icon on left:</k-text>
+              <k-row v="gap-3">
+                <k-button v="filled" icon="search">Search</k-button>
+                <k-button v="filled" icon="user">Profile</k-button>
+                <k-button v="filled" icon="home">Home</k-button>
+              </k-row>
+            </k-box>
+
+            <k-box>
+              <k-text v="label">Icon on right:</k-text>
+              <k-row v="gap-3">
+                <k-button v="outlined" iconRight="arrow-right">Next</k-button>
+                <k-button v="outlined" iconRight="chevronDown">Dropdown</k-button>
+              </k-row>
+            </k-box>
+
+            <k-box>
+              <k-text v="label">Icon-only buttons (perfect circles):</k-text>
+              <k-row v="gap-3">
+                <k-button v="icon-only" icon="settings"></k-button>
+                <k-button v="icon-only primary" icon="search"></k-button>
+                <k-button v="icon-only error" icon="close"></k-button>
+                <k-button v="icon-only success" icon="check"></k-button>
+                <k-button v="icon-only" icon="bell"></k-button>
+              </k-row>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Real-World Examples -->
+      <k-section>
+        <k-text v="h2">🌍 Real-World Examples</k-text>
+        
+        <k-text v="h3">Form Submit Button</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-button v="filled lg primary w-full shd-md" type="submit">Submit Form</k-button>
+        </k-box>
+
+        <k-text v="h3">Delete Confirmation</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-3">
+            <k-button v="destructive md">Confirm Delete</k-button>
+            <k-button v="ghost md">Cancel</k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Floating Action Button (FAB)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-button v="icon-only lg elevated r-full shd-lg" icon="search"></k-button>
+        </k-box>
+
+        <k-text v="h3">Loading State</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-button v="filled primary w-full loading">Processing Payment...</k-button>
+        </k-box>
+
+        <k-text v="h3">Hero CTA</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-button v="gradient xl r-full shd-xl" icon="arrow-right" iconRight="arrow-right">Get Started Free</k-button>
+        </k-box>
+
+        <k-text v="h3">Toolbar Buttons</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-row v="gap-2">
+            <k-button v="ghost sm" icon="user"></k-button>
+            <k-button v="ghost sm" icon="search"></k-button>
+            <k-button v="ghost sm" icon="bell"></k-button>
+            <k-button v="ghost sm" icon="settings"></k-button>
+          </k-row>
+        </k-box>
+
+        <k-text v="h3">Multi-Token Complex Button</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-button v="gradient lg success r-lg w-full shd-xl txt-center .purchase-btn #checkout">
+            Complete Purchase
+          </k-button>
+        </k-box>
+      </k-section>
+
+      <!-- Theme Switcher -->
+      <k-section>
+        <k-text v="h2">🎨 Theme Testing</k-text>
+        <k-text v="p">Switch themes to see buttons adapt automatically. The ThemeSwitcher component handles persistence and theme switching automatically.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-theme-switcher></k-theme-switcher>
+        </k-box>
+      </k-section>
+
+    </k-stack>
+  </k-container>
+
+</body>
+</html>

@@ -37,6 +37,7 @@ import {
   MIN_WIDTH_TOKENS, MIN_HEIGHT_TOKENS, TEXT_ALIGN_TOKENS,
   OVERFLOW_TOKENS, OVERFLOW_Y_TOKENS, OVERFLOW_X_TOKENS,
   BORDER_TOKENS, SHADOW_TOKENS, DISPLAY_TOKENS, CURSOR_TOKENS,
+  LOADER_TOKENS,
   V_DEFAULTS,
 } from './constants.js';
 
@@ -95,6 +96,7 @@ export function parseV(v: string | null | undefined): VTokens {
     if (token === 'loading')  { result.loading  = true; continue; }
     if (token === 'disabled') { result.disabled = true; continue; }
     if (token === 'full')     { result.full     = true; continue; }
+    if (token === 'truncate') { result.truncate = true; continue; }
 
     // ── Layout: cols-N or cols-auto ───────────────────────────────────────
     if (token.startsWith('cols-')) {
@@ -312,6 +314,15 @@ export function parseV(v: string | null | undefined): VTokens {
       const val = token.slice(4);
       if (CURSOR_TOKENS.has(val)) {
         result.cursor = val as VTokens['cursor'];
+      }
+      continue;
+    }
+
+    // ── Universal: loader-* (loader variant) ──────────────────────────────
+    if (token.startsWith('loader-')) {
+      const val = token.slice(7);
+      if (LOADER_TOKENS.has(val)) {
+        result.loader = val as VTokens['loader'];
       }
       continue;
     }

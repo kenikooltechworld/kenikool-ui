@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Component Debug</title>
+  
+  <link rel="stylesheet" href="dist/styles/base.css">
+  <script type="module" src="dist/vanilla/index.mjs"></script>
+  
+  <style>
+    body {
+      font-family: var(--k-font-sans);
+      padding: 40px;
+      background: var(--k-bg-primary);
+    }
+    
+    section {
+      margin-bottom: 60px;
+    }
+    
+    h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--k-text-primary);
+    }
+    
+    .test-box {
+      background: var(--k-bg-surface);
+      border: 1px solid var(--k-border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .test-case {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--k-text-secondary);
+    }
+    
+    .debug-info {
+      background: var(--k-bg-elevated);
+      border-left: 3px solid var(--k-accent);
+      padding: 10px;
+      margin-top: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--k-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<section>
+  <h2>🐛 Date Component Debug Tests</h2>
+  
+  <div class="test-box">
+    <h3>Test 1: Basic Date Picker</h3>
+    <div class="test-case">
+      <label>Select a date:</label>
+      <k-date v="outlined md" label="Test Date" id="test1"></k-date>
+      <div class="debug-info">
+        Check: Calendar opens and closes properly?
+        <br/>Watch for: Duplicate overlays, missing buttons
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 2: Date with Validation</h3>
+    <div class="test-case">
+      <label>Required date (with validation feedback):</label>
+      <k-date v="outlined md" label="Must Select" id="test2" required></k-date>
+      <div class="debug-info">
+        Check: Does it show error state when empty?
+        <br/>Does it show success state when valid date is selected?
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 3: Multiple Calendar Opens</h3>
+    <div class="test-case">
+      <label>Click calendar button multiple times rapidly:</label>
+      <k-date v="outlined md" label="Rapid Click Test" id="test3"></k-date>
+      <div class="debug-info">
+        Check: Does calendar duplicate?
+        <br/>Does it create multiple overlays?
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 4: Manual Input Validation</h3>
+    <div class="test-case">
+      <label>Type manually, then pick from calendar:</label>
+      <k-date v="outlined md" label="Input Test" id="test4" format="MM/DD/YYYY"></k-date>
+      <div class="debug-info">
+        Try typing: "12/25/2024"
+        <br/>Then open calendar - does it show the typed date highlighted?
+        <br/>Check for input events firing properly
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 5: Sanitization Test</h3>
+    <div class="test-case">
+      <label>Check sanitization (should not execute script):</label>
+      <k-date v="outlined md" label="<img src=x onerror='console.log(1)'>Test" id="test5"></k-date>
+      <div class="debug-info">
+        Check console - should NOT log "1"
+        <br/>Label should be escaped, not executed
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 6: Select Button Missing?</h3>
+    <div class="test-case">
+      <label>Should have a "Select" or "OK" button in calendar:</label>
+      <k-date v="outlined md" label="Button Test" id="test6"></k-date>
+      <div class="debug-info">
+        Open calendar - do you see:
+        <br/>✓ Today button?
+        <br/>✓ Clear button?
+        <br/>? Select/OK button? (to confirm selection)
+        <br/>Current: Only Today + Clear visible
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 7: Keyboard Navigation + Display Format</h3>
+    <div class="test-case">
+      <label>DD/MM/YYYY format with keyboard nav:</label>
+      <k-date v="outlined md" label="EU Format" id="test7" format="DD/MM/YYYY"></k-date>
+      <div class="debug-info">
+        Focus input, press ArrowDown to open
+        <br/>Type: "25/12/2024"
+        <br/>Check: Does format conversion work?
+        <br/>Check: Does date value stored in ISO (YYYY-MM-DD)?
+      </div>
+    </div>
+  </div>
+
+  <div class="test-box">
+    <h3>Test 8: Live Validation Feedback</h3>
+    <div class="test-case">
+      <label>Check for live validation visual feedback:</label>
+      <k-date v="outlined md" label="Min/Max Test" id="test8" min="2024-01-01" max="2024-12-31"></k-date>
+      <div class="debug-info">
+        Select date before 2024-01-01 - should show error?
+        <br/>Select date within range - should show success?
+        <br/>Check: data-error and data-valid attributes
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  // Monitor all date inputs for issues
+  document.querySelectorAll('k-date').forEach((el, idx) => {
+    const testNum = idx + 1;
+    
+    el.addEventListener('k:change', (e) => {
+      console.log(`Test ${testNum} - k:change:`, e.detail);
+    });
+    
+    el.addEventListener('input', (e) => {
+      console.log(`Test ${testNum} - input event:`, e.target.value);
+    });
+    
+    el.addEventListener('change', (e) => {
+      console.log(`Test ${testNum} - change event:`, e.target.value);
+    });
+
+    // Check for duplicate overlays every 100ms
+    const checkDuplicates = setInterval(() => {
+      const overlays = el.querySelectorAll('.k-date__calendar-overlay');
+      if (overlays.length > 1) {
+        console.error(`Test ${testNum} - DUPLICATE OVERLAYS DETECTED:`, overlays.length);
+      }
+    }, 100);
+
+    // Stop checking after 10 seconds
+    setTimeout(() => clearInterval(checkDuplicates), 10000);
+  });
+
+  // Log initial state
+  console.log('Date components initialized. Watch console for issues.');
+</script>
+
+</body>
+</html>

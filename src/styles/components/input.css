@@ -202,8 +202,9 @@ k-input[data-variant="search"] .k-input__field {
   padding-left: var(--k-space-2);
 }
 
-/* 7. Password Toggle */
-.k-input__password-toggle {
+/* 7. Password Toggle & Search Clear Button */
+.k-input__password-toggle,
+.k-input__clear-btn {
   cursor: pointer;
   background: transparent;
   border: none;
@@ -217,7 +218,8 @@ k-input[data-variant="search"] .k-input__field {
   justify-content: center;
   transition: all var(--k-transition-base);
 }
-.k-input__password-toggle:hover {
+.k-input__password-toggle:hover,
+.k-input__clear-btn:hover {
   background: var(--k-bg-elevated);
   color: var(--k-text-primary);
 }
@@ -376,4 +378,152 @@ k-input[data-error="true"] .k-input__wrapper:focus-within {
 k-input[data-error="true"] .k-input__hint {
   color: var(--k-error);
   font-weight: var(--k-font-medium);
+}
+
+/* ── DATA-COLOR RULES (P1.3) ─────────────────────────────────────────────── */
+/* The data-color token now tints the focus ring and floating label color.
+   Resting border stays --k-border for visual consistency. The error state
+   still wins (it uses !important above). */
+
+k-input[data-color="primary"]:focus-within .k-input__wrapper {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 4px var(--k-accent-subtle);
+}
+k-input[data-color="primary"][data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-color="primary"][data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  color: var(--k-accent);
+}
+
+k-input[data-color="success"]:focus-within .k-input__wrapper {
+  border-color: var(--k-success);
+  box-shadow: 0 0 0 4px var(--k-success-subtle);
+}
+k-input[data-color="success"][data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-color="success"][data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  color: var(--k-success);
+}
+
+k-input[data-color="warning"]:focus-within .k-input__wrapper {
+  border-color: var(--k-warning);
+  box-shadow: 0 0 0 4px var(--k-warning-subtle);
+}
+k-input[data-color="warning"][data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-color="warning"][data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  color: var(--k-warning);
+}
+
+k-input[data-color="error"]:focus-within .k-input__wrapper {
+  border-color: var(--k-error);
+  box-shadow: 0 0 0 4px var(--k-error-subtle);
+}
+k-input[data-color="error"][data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-color="error"][data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  color: var(--k-error);
+}
+
+k-input[data-color="info"]:focus-within .k-input__wrapper {
+  border-color: var(--k-info);
+  box-shadow: 0 0 0 4px var(--k-info-subtle);
+}
+k-input[data-color="info"][data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-color="info"][data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  color: var(--k-info);
+}
+
+k-input[data-color="default"]:focus-within .k-input__wrapper {
+  border-color: var(--k-border-strong);
+  box-shadow: 0 0 0 4px var(--k-border-subtle);
+}
+
+/* ── VALID SUCCESS STATE (P1.8) ───────────────────────────────────────────── */
+/* Renders a green check icon and tints the border green when the field is
+   valid. Triggered by data-valid="true" (set by the validation logic). */
+
+k-input[data-valid="true"] .k-input__wrapper {
+  border-color: var(--k-success);
+}
+k-input[data-valid="true"][data-variant="floating-label"] .k-input__wrapper:focus-within .k-input__label,
+k-input[data-valid="true"][data-variant="floating-label"] .k-input__field:not(:placeholder-shown) + .k-input__label {
+  color: var(--k-success);
+}
+
+.k-input__valid-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  color: var(--k-success);
+  z-index: 2;
+}
+k-input[data-valid="true"] .k-input__valid-icon {
+  display: flex;
+}
+
+/* ── LOADING STATE (P1.7) ────────────────────────────────────────────────── */
+/* When data-loading="true", the loader spans the wrapper and the field text
+   is visually masked. The loader is rendered as a <k-loader> child element. */
+
+.k-input__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--k-bg-surface);
+  border-radius: inherit;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.85;
+}
+k-input[data-loading="true"] .k-input__field {
+  visibility: hidden;
+}
+
+/* ── MAXLENGTH COUNTER (P1.9) ────────────────────────────────────────────── */
+
+.k-input__counter {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-1);
+  text-align: right;
+  transition: color var(--k-transition-base);
+}
+k-input[data-error="true"] .k-input__counter {
+  color: var(--k-error);
+}
+.k-input__counter--warn {
+  color: var(--k-warning);
+}
+
+/* ── RTL SUPPORT (P1.10) ─────────────────────────────────────────────────── */
+/* Logical-property overrides for right-to-left languages. Browsers that
+   support the dir attribute on a parent (or on the host itself) will apply
+   these rules. */
+
+[dir="rtl"] k-input .k-input__icon-left {
+  padding-left: 0;
+  padding-right: var(--k-space-3);
+}
+[dir="rtl"] k-input .k-input__icon-right {
+  padding-right: 0;
+  padding-left: var(--k-space-3);
+}
+[dir="rtl"] k-input[data-variant="floating-label"] .k-input__label {
+  left: auto;
+  right: var(--k-space-4);
+}
+[dir="rtl"] k-input[data-variant="with-addon"] .k-input__addon {
+  border-right: none;
+  border-left: 1px solid var(--k-border);
+}
+[dir="rtl"] k-input[data-variant="with-addon"] .k-input__addon-right {
+  border-left: none;
+  border-right: 1px solid var(--k-border);
+}
+[dir="rtl"] k-input .k-input__field {
+  text-align: right;
+}
+[dir="rtl"] k-input .k-input__counter {
+  text-align: left;
 }

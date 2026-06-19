@@ -1,0 +1,362 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   k-input — React-side styles.
+   Mirrors the structure of the vanilla <k-input> so consumers get a
+   consistent visual experience regardless of framework. Uses BEM-style
+   class names that match the data-* attribute set in the vanilla version.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.k-input {
+  display: block;
+  margin-bottom: var(--k-space-4);
+  font-family: var(--k-font-sans);
+  width: 100%;
+  position: relative;
+}
+
+/* ─── Structural wrapper ─────────────────────────────────────────────── */
+.k-input__wrapper {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+  border-radius: var(--k-radius-md);
+  transition:
+    border-color var(--k-transition-base),
+    box-shadow var(--k-transition-base),
+    background-color var(--k-transition-base);
+  background-clip: padding-box;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+}
+
+.k-input__field-group {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.k-input__field {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--k-text-primary);
+  font-family: inherit;
+  font-size: var(--k-text-base);
+  padding: var(--k-space-3) var(--k-space-4);
+  transition: all var(--k-transition-base);
+  border-radius: inherit;
+  appearance: none;
+}
+
+.k-input__wrapper:focus-within {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 4px var(--k-accent-subtle);
+}
+
+/* ─── Icons ──────────────────────────────────────────────────────────── */
+.k-input__icon-left,
+.k-input__icon-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  color: var(--k-text-muted);
+  transition: color var(--k-transition-base);
+  z-index: 2;
+}
+.k-input__wrapper:focus-within .k-input__icon-left,
+.k-input__wrapper:focus-within .k-input__icon-right {
+  color: var(--k-accent);
+}
+
+.k-input__password-toggle,
+.k-input__clear-btn {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--k-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--k-transition-base);
+}
+.k-input__password-toggle:hover,
+.k-input__clear-btn:hover {
+  background: var(--k-bg-elevated);
+  color: var(--k-text-primary);
+}
+
+/* ─── Labels & typography ────────────────────────────────────────────── */
+.k-input__label {
+  display: block;
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-secondary);
+  text-align: left;
+  transition: color var(--k-transition-base);
+  user-select: none;
+}
+.k-input__field-group[data-label-position="top"] .k-input__label { margin-bottom: var(--k-space-2); }
+.k-input__field-group[data-label-position="bottom"] .k-input__label { margin-top: var(--k-space-2); }
+
+/* ─── Hint & counter ─────────────────────────────────────────────────── */
+.k-input__hint {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-2);
+  padding-left: var(--k-space-1);
+  transition: color var(--k-transition-base);
+}
+.k-input__counter {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-1);
+  text-align: right;
+  transition: color var(--k-transition-base);
+}
+.k-input__counter--warn { color: var(--k-warning); }
+
+/* ─── Variants ───────────────────────────────────────────────────────── */
+.k-input--default .k-input__wrapper { background: var(--k-bg-surface); border: 1px solid var(--k-border); }
+
+.k-input--filled .k-input__wrapper {
+  background: var(--k-bg-elevated);
+  border: 1px solid transparent;
+}
+.k-input--filled .k-input__wrapper:hover { background: var(--k-bg-surface); }
+.k-input--filled .k-input__wrapper:focus-within {
+  background: var(--k-bg-surface);
+  border-color: var(--k-accent);
+}
+
+.k-input--outlined .k-input__wrapper {
+  background: transparent;
+  border: 1.5px solid var(--k-border);
+}
+.k-input--outlined .k-input__wrapper:hover { border-color: var(--k-text-muted); }
+
+.k-input--underlined .k-input__wrapper {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--k-border);
+  border-radius: 0;
+}
+.k-input--underlined .k-input__wrapper:focus-within {
+  border-bottom-color: var(--k-accent);
+  box-shadow: none;
+}
+
+.k-input--floating-label .k-input__wrapper {
+  background: transparent;
+  border: 1px solid var(--k-border);
+}
+.k-input--floating-label .k-input__label {
+  position: absolute;
+  top: 50%;
+  left: var(--k-space-4);
+  transform: translateY(-50%);
+  pointer-events: none;
+  margin-bottom: 0;
+  transition: all var(--k-transition-spring);
+  z-index: 2;
+  color: var(--k-text-muted);
+}
+.k-input--floating-label .k-input__field {
+  padding-top: var(--k-space-4);
+  padding-bottom: var(--k-space-2);
+}
+.k-input--floating-label .k-input__wrapper:focus-within .k-input__label,
+.k-input--floating-label .k-input__field:not(:placeholder-shown) + .k-input__label {
+  top: 0;
+  transform: translateY(-50%) scale(0.8);
+  background: var(--k-bg-base);
+  padding: 0 var(--k-space-2);
+  font-size: var(--k-text-xs);
+  color: var(--k-accent);
+  border-radius: 2px;
+}
+
+.k-input--search .k-input__wrapper {
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-full);
+  padding-left: var(--k-space-2);
+}
+.k-input--search .k-input__field { padding-left: var(--k-space-2); }
+
+.k-input--textarea .k-input__field {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* OTP variant */
+.k-input--otp .k-input__wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border: none;
+  background: none;
+}
+.k-input--otp .k-input__otp-group {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.k-input--otp .k-input__field {
+  width: 3rem;
+  height: 3.5rem;
+  text-align: center;
+  font-size: var(--k-text-xl);
+  font-weight: var(--k-font-bold);
+  border: 1px solid var(--k-border);
+  background: var(--k-bg-surface);
+  border-radius: 0;
+  flex-shrink: 0;
+  padding: 0;
+}
+.k-input--otp .k-input__field:first-child { border-radius: var(--k-radius-md) 0 0 var(--k-radius-md); }
+.k-input--otp .k-input__field:last-child  { border-radius: 0 var(--k-radius-md) var(--k-radius-md) 0; }
+.k-input--otp .k-input__field:not(:first-child) { border-left: none; }
+.k-input--otp .k-input__field:focus {
+  border-color: var(--k-accent);
+  background: var(--k-bg-base);
+  z-index: 1;
+  box-shadow: 0 0 0 2px var(--k-accent-subtle);
+}
+@media (max-width: 480px) {
+  .k-input--otp .k-input__field {
+    width: 2.2rem;
+    height: 2.8rem;
+    font-size: var(--k-text-lg);
+  }
+}
+
+/* With-addon variant */
+.k-input--with-addon .k-input__wrapper {
+  display: flex;
+  align-items: stretch;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+}
+.k-input--with-addon .k-input__field { border: none; }
+.k-input__addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  background: var(--k-bg-elevated);
+  color: var(--k-text-muted);
+  font-size: var(--k-text-sm);
+  border-radius: inherit;
+  user-select: none;
+  border-right: 1px solid var(--k-border);
+}
+.k-input__addon-right { border-right: none; border-left: 1px solid var(--k-border); }
+
+/* ─── Sizes ──────────────────────────────────────────────────────────── */
+.k-input--xs .k-input__field { font-size: var(--k-text-xs); padding: var(--k-space-1) var(--k-space-3); }
+.k-input--sm .k-input__field { font-size: var(--k-text-sm); padding: var(--k-space-2) var(--k-space-4); }
+.k-input--md .k-input__field { font-size: var(--k-text-base); padding: var(--k-space-3) var(--k-space-4); }
+.k-input--lg .k-input__field { font-size: var(--k-text-lg); padding: var(--k-space-3) var(--k-space-6); }
+.k-input--xl .k-input__field { font-size: var(--k-text-xl); padding: var(--k-space-4) var(--k-space-8); }
+
+/* ─── States ─────────────────────────────────────────────────────────── */
+.k-input--disabled { opacity: 0.5; pointer-events: none; }
+.k-input--disabled .k-input__wrapper {
+  background: var(--k-bg-elevated);
+  border-color: var(--k-border-subtle);
+}
+
+.k-input--error .k-input__wrapper {
+  border-color: var(--k-error) !important;
+}
+.k-input--error .k-input__wrapper:focus-within {
+  box-shadow: 0 0 0 4px var(--k-error-subtle);
+}
+.k-input--error .k-input__hint {
+  color: var(--k-error);
+  font-weight: var(--k-font-medium);
+}
+
+.k-input--valid .k-input__wrapper { border-color: var(--k-success); }
+.k-input--valid .k-input__hint { color: var(--k-success); }
+
+.k-input--loading .k-input__field { visibility: hidden; }
+.k-input__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--k-bg-surface);
+  border-radius: inherit;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+/* ─── Radius ─────────────────────────────────────────────────────────── */
+.k-input--r-none .k-input__wrapper { border-radius: var(--k-radius-none); }
+.k-input--r-sm .k-input__wrapper   { border-radius: var(--k-radius-sm); }
+.k-input--r-md .k-input__wrapper   { border-radius: var(--k-radius-md); }
+.k-input--r-lg .k-input__wrapper   { border-radius: var(--k-radius-lg); }
+.k-input--r-full .k-input__wrapper { border-radius: var(--k-radius-full); }
+
+/* ─── Data-color rules (P1.3) ────────────────────────────────────────── */
+.k-input--primary:focus-within .k-input__wrapper { border-color: var(--k-accent); box-shadow: 0 0 0 4px var(--k-accent-subtle); }
+.k-input--success:focus-within .k-input__wrapper { border-color: var(--k-success); box-shadow: 0 0 0 4px var(--k-success-subtle); }
+.k-input--warning:focus-within .k-input__wrapper { border-color: var(--k-warning); box-shadow: 0 0 0 4px var(--k-warning-subtle); }
+.k-input--error[data-color="error"]:focus-within .k-input__wrapper { border-color: var(--k-error); box-shadow: 0 0 0 4px var(--k-error-subtle); }
+.k-input--info:focus-within .k-input__wrapper { border-color: var(--k-info); box-shadow: 0 0 0 4px var(--k-info-subtle); }
+.k-input--default-color:focus-within .k-input__wrapper { border-color: var(--k-border-strong); box-shadow: 0 0 0 4px var(--k-border-subtle); }
+
+/* ─── Utility tokens ────────────────────────────────────────────────── */
+.k-input--w-full { width: 100%; }
+.k-input--w-auto { width: auto; }
+.k-input--w-fit { width: fit-content; }
+.k-input--w-screen { width: 100vw; }
+.k-input--h-full { height: 100%; }
+.k-input--h-auto { height: auto; }
+.k-input--h-screen { height: 100vh; }
+.k-input--h-fit { height: fit-content; }
+.k-input--mw-full { max-width: 100%; }
+.k-input--mh-full { max-height: 100%; }
+.k-input--mh-screen { max-height: 100vh; }
+.k-input--mnw-0 { min-width: 0; }
+.k-input--mnh-0 { min-height: 0; }
+.k-input--mnh-screen { min-height: 100vh; }
+.k-input--txt-left { text-align: left; }
+.k-input--txt-center { text-align: center; }
+.k-input--txt-right { text-align: right; }
+.k-input--txt-justify { text-align: justify; }
+.k-input--bdr { border: 1px solid var(--k-border); }
+.k-input--bdr-none { border: none; }
+.k-input--shd-sm { box-shadow: var(--k-shadow-sm); }
+.k-input--shd-md { box-shadow: var(--k-shadow-md); }
+.k-input--shd-lg { box-shadow: var(--k-shadow-lg); }
+.k-input--shd-xl { box-shadow: var(--k-shadow-xl); }
+.k-input--shd-none { box-shadow: none; }
+.k-input--cur-ptr { cursor: pointer; }
+.k-input--cur-def { cursor: default; }
+.k-input--cur-not { cursor: not-allowed; }
+.k-input--truncate .k-input__field { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ─── RTL ────────────────────────────────────────────────────────────── */
+[dir="rtl"] .k-input__icon-left  { padding-left: 0; padding-right: var(--k-space-3); }
+[dir="rtl"] .k-input__icon-right { padding-right: 0; padding-left: var(--k-space-3); }
+[dir="rtl"] .k-input--floating-label .k-input__label { left: auto; right: var(--k-space-4); }
+[dir="rtl"] .k-input__addon { border-right: none; border-left: 1px solid var(--k-border); }
+[dir="rtl"] .k-input__addon-right { border-left: none; border-right: 1px solid var(--k-border); }
+[dir="rtl"] .k-input__field { text-align: right; }
+[dir="rtl"] .k-input__counter { text-align: left; }

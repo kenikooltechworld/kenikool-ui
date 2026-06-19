@@ -312,7 +312,7 @@ k-button[data-radius="md"]   button { border-radius: var(--k-radius-md); }
 k-button[data-radius="lg"]   button { border-radius: var(--k-radius-lg); }
 k-button[data-radius="full"] button { border-radius: var(--k-radius-full); }
 
-/* ─── Loading spinner ─────────────────────────────────────────────────── */
+/* ─── Loading indicator ───────────────────────────────────────────────── */
 
 .k-button__loader {
   position: absolute;
@@ -322,22 +322,23 @@ k-button[data-radius="full"] button { border-radius: var(--k-radius-full); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1em;
-  height: 1em;
+  width: 1.2em;
+  height: 1.2em;
   flex-shrink: 0;
 }
 
-.k-button__loader svg {
-  display: block;
-  animation: k-spin 0.7s linear infinite;
+/* The k-loader inside inherits currentColor and scales to fit the wrapper */
+.k-button__loader k-loader {
+  width: 100% !important;
+  height: 100% !important;
+  color: currentColor;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .k-button__loader svg {
-    animation: none;
-    opacity: 0.6;
-  }
+/* Ensure loader elements inside buttons scale properly */
+.k-button__loader k-loader .k-loader__element {
+  color: currentColor;
 }
+
 
 /* ─── Tactile Feedback ────────────────────────────────────────────────────── */
 
@@ -402,4 +403,60 @@ k-button[data-variant="icon-only"] button {
   height: 40px;
   min-width: 40px;
   border-radius: 50%;
+}
+
+/* ─── Utility Tokens ──────────────────────────────────────────────────── */
+
+/* Width utilities */
+k-button[data-width="full"] { width: 100%; }
+k-button[data-width="auto"] { width: auto; }
+k-button[data-width="fit"] { width: fit-content; }
+k-button[data-width="screen"] { width: 100vw; }
+
+/* Height utilities */
+k-button[data-height="full"] { height: 100%; }
+k-button[data-height="auto"] { height: auto; }
+k-button[data-height="screen"] { height: 100vh; }
+k-button[data-height="fit"] { height: fit-content; }
+
+/* Max-width utilities */
+k-button[data-max-width="full"] { max-width: 100%; }
+
+/* Max-height utilities */
+k-button[data-max-height="full"] { max-height: 100%; }
+k-button[data-max-height="screen"] { max-height: 100vh; }
+
+/* Min-width utilities */
+k-button[data-min-width="0"] { min-width: 0; }
+
+/* Min-height utilities */
+k-button[data-min-height="0"] { min-height: 0; }
+k-button[data-min-height="screen"] { min-height: 100vh; }
+
+/* Border utilities */
+k-button[data-border="all"] { border: 1px solid var(--k-border); }
+k-button[data-border="none"] { border: none; }
+
+/* Shadow utilities */
+k-button[data-shadow="sm"] { box-shadow: var(--k-shadow-sm); }
+k-button[data-shadow="md"] { box-shadow: var(--k-shadow-md); }
+k-button[data-shadow="lg"] { box-shadow: var(--k-shadow-lg); }
+k-button[data-shadow="xl"] { box-shadow: var(--k-shadow-xl); }
+k-button[data-shadow="none"] { box-shadow: none; }
+
+/* Text alignment utilities */
+k-button[data-text-align="left"] button { text-align: left; }
+k-button[data-text-align="center"] button { text-align: center; }
+k-button[data-text-align="right"] button { text-align: right; }
+
+/* Cursor utilities */
+k-button[data-cursor="ptr"] { cursor: pointer; }
+k-button[data-cursor="def"] { cursor: default; }
+k-button[data-cursor="not"] { cursor: not-allowed; }
+
+/* Truncation utility */
+k-button .k-button__text[class*="truncate"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

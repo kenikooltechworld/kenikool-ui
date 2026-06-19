@@ -44,6 +44,10 @@
 @import './components/theme-switcher.css'; /* T7  */
 @import './components/badge.css'; /* T7  */
 @import './components/input.css';     /* T6  */
+@import './components/number-input.css';     /* Number input with increment/decrement */
+@import './components/date.css';      /* Date input with calendar picker */
+@import './components/slider.css';    /* Slider component with range support */
+@import './components/color.css';     /* Color picker with palette and swatches */
 @import './components/card.css';      /* T8  */
 @import './components/modal.css';     /* T9  */
 @import './components/select.css';    /* T10 */

@@ -35,6 +35,10 @@ import './Divider/KDividerElement.js';
 import './NavbarHorizontal/KNavbarHorizontalElement.js';
 
 import './Input/KInputElement.js';
+import './NumberInput/KNumberInputElement.js';
+import './Date/KDateElement.js';
+import './Slider/KSliderElement.js';
+import './Color/KColorElement.js';
 import './Select/KSelectElement.js';
 import './Checkbox/KCheckboxElement.js';
 import './Toast/KToastElement.js';

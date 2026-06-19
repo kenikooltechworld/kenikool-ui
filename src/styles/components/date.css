@@ -1,0 +1,722 @@
+/**
+ * k-date — Date Input Component Styles
+ * 
+ * Supports all variants, sizes, colors, states via CSS custom properties.
+ * Calendar overlay positioned below the input field with month/year navigation.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STRUCTURE
+────────────────────────────────────────────────────────────────────────── */
+
+k-date {
+  display: block;
+  width: 100%;
+  font-family: var(--k-font-sans);
+  margin-bottom: var(--k-space-4);
+}
+
+.k-date__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-2);
+}
+
+.k-date__wrapper {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border-radius: var(--k-radius-md);
+  transition:
+    border-color var(--k-transition-base),
+    box-shadow var(--k-transition-base),
+    background-color var(--k-transition-base);
+  background-clip: padding-box;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  overflow: visible;
+}
+
+.k-date__field {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--k-text-primary);
+  font-family: inherit;
+  font-size: var(--k-text-base);
+  padding: var(--k-space-3) var(--k-space-4);
+  transition: all var(--k-transition-base);
+  border-radius: inherit;
+  appearance: none;
+}
+
+.k-date__field::placeholder {
+  color: var(--k-text-muted);
+  opacity: 1;
+}
+
+.k-date__wrapper:focus-within {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 4px var(--k-accent-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LABEL
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__label {
+  display: block;
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-secondary);
+  text-align: left;
+  transition: color var(--k-transition-base);
+  user-select: none;
+  margin-bottom: var(--k-space-2);
+}
+
+k-date[data-label-position="top"] .k-date__label {
+  margin-bottom: var(--k-space-2);
+}
+
+k-date[data-label-position="bottom"] .k-date__label {
+  margin-top: var(--k-space-2);
+  margin-bottom: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ICON
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__icon-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  color: var(--k-text-muted);
+  transition: color var(--k-transition-base);
+  z-index: 1;
+}
+
+.k-date__wrapper:focus-within .k-date__icon-left {
+  color: var(--k-accent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CALENDAR BUTTON (RIGHT SIDE)
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__calendar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--k-space-3);
+  width: 44px;
+  min-width: 44px;
+  border: none;
+  background: transparent;
+  color: var(--k-text-muted);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+  border-radius: 0;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.k-date__calendar-btn:hover:not(:disabled) {
+  color: var(--k-accent);
+}
+
+.k-date__calendar-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.k-date__calendar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.k-date__calendar-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CALENDAR OVERLAY (MODAL) - SMART POSITIONING (Like Select dropdown)
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__calendar-overlay {
+  position: absolute;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  min-width: 320px;
+  padding: var(--k-space-3);
+  animation: slideDown 200ms ease-out;
+  top: auto;
+  bottom: auto;
+  left: 0;
+  right: auto;
+}
+
+/* Below positioning */
+.k-date__calendar-overlay--below {
+  top: calc(100% + 8px);
+  bottom: auto;
+}
+
+/* Above positioning */
+.k-date__calendar-overlay--above {
+  top: auto;
+  bottom: calc(100% + 8px);
+  animation: slideUp 200ms ease-out;
+}
+
+/* Right alignment (default) */
+.k-date__calendar-overlay--right {
+  left: 0;
+  right: auto;
+}
+
+/* Left alignment */
+.k-date__calendar-overlay--left {
+  left: auto;
+  right: 0;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CALENDAR HEADER (MONTH/YEAR + NAVIGATION)
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--k-space-3);
+  gap: var(--k-space-2);
+}
+
+.k-date__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: var(--k-bg-elevated);
+  color: var(--k-text-secondary);
+  border-radius: var(--k-radius-sm);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+  flex-shrink: 0;
+}
+
+.k-date__nav-btn:hover:not(:disabled) {
+  background: var(--k-bg-secondary);
+  color: var(--k-text-primary);
+}
+
+.k-date__nav-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.k-date__nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.k-date__month-year {
+  flex: 1;
+  text-align: center;
+  font-size: var(--k-text-base);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-primary);
+  padding: 0 var(--k-space-2);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DAY NAMES ROW
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__day-names {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: var(--k-space-2);
+  padding-bottom: var(--k-space-2);
+  border-bottom: 1px solid var(--k-border-subtle);
+}
+
+.k-date__day-names > div {
+  text-align: center;
+  font-size: var(--k-text-xs);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DAYS GRID
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: var(--k-space-3);
+}
+
+.k-date__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--k-text-primary);
+  border-radius: var(--k-radius-xs);
+  cursor: pointer;
+  font-size: var(--k-text-sm);
+  transition: all var(--k-transition-base);
+  font-weight: var(--k-font-medium);
+}
+
+.k-date__day:hover:not(:disabled) {
+  background: var(--k-bg-elevated);
+  color: var(--k-accent);
+}
+
+.k-date__day:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+/* Today - highlighted with subtle accent background */
+.k-date__day--today {
+  background: var(--k-accent-subtle);
+  color: var(--k-accent);
+  font-weight: var(--k-font-bold);
+}
+
+.k-date__day--today:hover:not(:disabled) {
+  background: var(--k-accent);
+  color: var(--k-bg-surface);
+}
+
+/* Selected - prominent accent */
+.k-date__day--selected {
+  background: var(--k-accent);
+  color: var(--k-bg-surface);
+  font-weight: var(--k-font-bold);
+}
+
+.k-date__day--selected:hover:not(:disabled) {
+  background: var(--k-accent);
+  filter: brightness(1.1);
+}
+
+/* Empty cells (days outside month) */
+.k-date__day--empty {
+  background: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Disabled dates */
+.k-date__day--disabled {
+  background: transparent;
+  color: var(--k-text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.k-date__day--disabled:hover {
+  background: transparent;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   CALENDAR FOOTER (SHORTCUTS + ACTIONS)
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__calendar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-2);
+}
+
+.k-date__shortcuts {
+  display: flex;
+  gap: var(--k-space-1);
+  flex-wrap: wrap;
+}
+
+.k-date__shortcut-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: var(--k-space-1) var(--k-space-2);
+  border: 1px solid var(--k-border-subtle);
+  background: var(--k-bg-elevated);
+  color: var(--k-text-secondary);
+  border-radius: var(--k-radius-xs);
+  font-size: var(--k-text-xs);
+  font-weight: var(--k-font-medium);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+  outline: none;
+}
+
+.k-date__shortcut-btn:hover:not(:disabled) {
+  background: var(--k-bg-secondary);
+  border-color: var(--k-accent-subtle);
+  color: var(--k-text-primary);
+}
+
+.k-date__shortcut-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.k-date__shortcut-btn:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 1px;
+}
+
+.k-date__actions {
+  display: flex;
+  gap: var(--k-space-2);
+  justify-content: space-between;
+}
+
+.k-date__actions button {
+  flex: 1;
+  padding: var(--k-space-2) var(--k-space-3);
+  border: 1px solid var(--k-border);
+  background: var(--k-bg-elevated);
+  color: var(--k-text-primary);
+  border-radius: var(--k-radius-sm);
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-medium);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+  outline: none;
+}
+
+.k-date__actions button:hover:not(:disabled) {
+  background: var(--k-bg-secondary);
+  border-color: var(--k-accent);
+  color: var(--k-accent);
+}
+
+.k-date__actions button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.k-date__actions button:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Select button - more prominent */
+.k-date__select-btn {
+  background: var(--k-accent) !important;
+  color: var(--k-bg-surface) !important;
+  border-color: var(--k-accent) !important;
+  font-weight: var(--k-font-bold) !important;
+}
+
+.k-date__select-btn:hover:not(:disabled) {
+  background: var(--k-accent) !important;
+  filter: brightness(1.1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   VARIANTS
+────────────────────────────────────────────────────────────────────────── */
+
+/* OUTLINED (default) - already styled above */
+
+/* FILLED */
+k-date[data-variant="filled"] .k-date__wrapper {
+  background: var(--k-bg-elevated);
+  border: 1px solid transparent;
+}
+
+k-date[data-variant="filled"] .k-date__wrapper:hover {
+  background: var(--k-bg-surface);
+}
+
+k-date[data-variant="filled"] .k-date__wrapper:focus-within {
+  background: var(--k-bg-surface);
+  border-color: var(--k-accent);
+}
+
+/* SOFT */
+k-date[data-variant="soft"] .k-date__wrapper {
+  background: var(--k-accent-subtle);
+  border-color: transparent;
+}
+
+k-date[data-variant="soft"] .k-date__field {
+  color: var(--k-accent);
+}
+
+k-date[data-variant="soft"] .k-date__wrapper:focus-within {
+  background: var(--k-accent-subtle);
+  border-color: var(--k-accent);
+}
+
+/* GHOST */
+k-date[data-variant="ghost"] .k-date__wrapper {
+  background: transparent;
+  border-color: transparent;
+}
+
+k-date[data-variant="ghost"] .k-date__wrapper:hover {
+  background: var(--k-bg-elevated);
+}
+
+k-date[data-variant="ghost"] .k-date__wrapper:focus-within {
+  background: var(--k-bg-surface);
+  border-color: var(--k-accent);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SIZES
+────────────────────────────────────────────────────────────────────────── */
+
+k-date[data-size="xs"] .k-date__field {
+  font-size: var(--k-text-xs);
+  padding: var(--k-space-1) var(--k-space-3);
+}
+
+k-date[data-size="xs"] .k-date__calendar-btn {
+  width: 32px;
+}
+
+k-date[data-size="sm"] .k-date__field {
+  font-size: var(--k-text-sm);
+  padding: var(--k-space-2) var(--k-space-4);
+}
+
+k-date[data-size="sm"] .k-date__calendar-btn {
+  width: 38px;
+}
+
+k-date[data-size="md"] .k-date__field {
+  font-size: var(--k-text-base);
+  padding: var(--k-space-3) var(--k-space-4);
+}
+
+k-date[data-size="md"] .k-date__calendar-btn {
+  width: 44px;
+}
+
+k-date[data-size="lg"] .k-date__field {
+  font-size: var(--k-text-lg);
+  padding: var(--k-space-3) var(--k-space-6);
+}
+
+k-date[data-size="lg"] .k-date__calendar-btn {
+  width: 50px;
+}
+
+k-date[data-size="xl"] .k-date__field {
+  font-size: var(--k-text-xl);
+  padding: var(--k-space-4) var(--k-space-8);
+}
+
+k-date[data-size="xl"] .k-date__calendar-btn {
+  width: 56px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   COLORS
+────────────────────────────────────────────────────────────────────────── */
+
+k-date[data-color="primary"] .k-date__wrapper:focus-within {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 4px var(--k-accent-subtle);
+}
+
+k-date[data-color="secondary"] .k-date__wrapper:focus-within {
+  border-color: var(--k-color-secondary);
+  box-shadow: 0 0 0 4px var(--k-color-secondary-subtle);
+}
+
+k-date[data-color="success"] .k-date__wrapper:focus-within {
+  border-color: var(--k-success);
+  box-shadow: 0 0 0 4px var(--k-success-subtle);
+}
+
+k-date[data-color="error"] .k-date__wrapper:focus-within {
+  border-color: var(--k-error);
+  box-shadow: 0 0 0 4px var(--k-error-subtle);
+}
+
+k-date[data-color="warning"] .k-date__wrapper:focus-within {
+  border-color: var(--k-warning);
+  box-shadow: 0 0 0 4px var(--k-warning-subtle);
+}
+
+k-date[data-color="info"] .k-date__wrapper:focus-within {
+  border-color: var(--k-info);
+  box-shadow: 0 0 0 4px var(--k-info-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   STATES
+────────────────────────────────────────────────────────────────────────── */
+
+/* ERROR */
+k-date[data-error="true"] .k-date__wrapper {
+  border-color: var(--k-error) !important;
+}
+
+k-date[data-error="true"] .k-date__wrapper:focus-within {
+  box-shadow: 0 0 0 4px var(--k-error-subtle);
+}
+
+k-date[data-error="true"] .k-date__hint {
+  color: var(--k-error);
+  font-weight: var(--k-font-medium);
+}
+
+/* VALID */
+k-date[data-valid="true"] .k-date__wrapper {
+  border-color: var(--k-success);
+}
+
+/* DISABLED */
+k-date[data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+k-date[data-disabled="true"] .k-date__wrapper {
+  background: var(--k-bg-elevated);
+  border-color: var(--k-border-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   HINT
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__hint {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-2);
+  padding-left: var(--k-space-1);
+  transition: color var(--k-transition-base);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   RADIUS OVERRIDES
+────────────────────────────────────────────────────────────────────────── */
+
+k-date[data-radius="none"] .k-date__field,
+k-date[data-radius="none"] .k-date__wrapper {
+  border-radius: 0;
+}
+
+k-date[data-radius="sm"] .k-date__field,
+k-date[data-radius="sm"] .k-date__wrapper {
+  border-radius: var(--k-radius-sm);
+}
+
+k-date[data-radius="md"] .k-date__field,
+k-date[data-radius="md"] .k-date__wrapper {
+  border-radius: var(--k-radius-md);
+}
+
+k-date[data-radius="lg"] .k-date__field,
+k-date[data-radius="lg"] .k-date__wrapper {
+  border-radius: var(--k-radius-lg);
+}
+
+k-date[data-radius="xl"] .k-date__field,
+k-date[data-radius="xl"] .k-date__wrapper {
+  border-radius: var(--k-radius-xl);
+}
+
+k-date[data-radius="full"] .k-date__field,
+k-date[data-radius="full"] .k-date__wrapper {
+  border-radius: var(--k-radius-full);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ACCESSIBILITY
+────────────────────────────────────────────────────────────────────────── */
+
+.k-date__field:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-date__calendar-btn:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-date__nav-btn:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-date__calendar-footer button:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-date__day:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: -2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION
+────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .k-date__field,
+  .k-date__calendar-btn,
+  .k-date__nav-btn,
+  .k-date__day,
+  .k-date__calendar-footer button,
+  .k-date__wrapper,
+  .k-date__calendar-overlay {
+    transition: none;
+    animation: none;
+  }
+}
+
+</content>

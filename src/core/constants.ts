@@ -30,7 +30,7 @@ export const RADIUS_MAP: Readonly<Record<string, Radius>> = {
 };
 
 /** All boolean state tokens recognised in the v attribute. */
-export const STATE_TOKENS = new Set(['loading', 'disabled', 'full']);
+export const STATE_TOKENS = new Set(['loading', 'disabled', 'full', 'truncate']);
 
 /** localStorage key used to persist the active theme across page loads. */
 export const THEME_STORAGE_KEY = 'kenikool-theme';
@@ -143,6 +143,9 @@ export const DISPLAY_TOKENS = new Set(['block', 'inline', 'flex', 'grid', 'none'
 /** Cursor tokens */
 export const CURSOR_TOKENS = new Set(['ptr', 'def', 'not']);
 
+/** Loader variant tokens */
+export const LOADER_TOKENS = new Set(['spinner', 'dots', 'pulse', 'bars', 'ring', 'ripple', 'bounce', 'wave', 'flip', 'orbit', 'squeeze', 'beat', 'crescent']);
+
 /** Default values applied when tokens are absent from the v attribute. */
 export const V_DEFAULTS = {
   variant:   'filled',
@@ -152,6 +155,7 @@ export const V_DEFAULTS = {
   loading:   false,
   disabled:  false,
   full:      false,
+  truncate:  false,
   target:    null      as string | null,
   // Layout defaults — all null means "use CSS component defaults"
   cols:      null      as number | 'auto' | null,
@@ -166,10 +170,10 @@ export const V_DEFAULTS = {
   as:        null      as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label' | 'code' | 'pre' | null,
   padding:   null      as string | null,
   // New universal tokens (v0.1.0)
-  width:     null      as 'full' | 'auto' | 'fit' | 'screen' | null,
-  height:    null      as 'full' | 'auto' | 'screen' | 'fit' | null,
-  maxWidth:  null      as 'full' | null,
-  maxHeight: null      as 'full' | 'screen' | null,
+  width:     null      as 'full' | 'auto' | 'fit' | 'screen' | string | null,
+  height:    null      as 'full' | 'auto' | 'screen' | 'fit' | string | null,
+  maxWidth:  null      as 'full' | string | null,
+  maxHeight: null      as 'full' | 'screen' | string | null,
   minWidth:  null      as '0' | null,
   minHeight: null      as '0' | 'screen' | null,
   textAlign: null      as 'left' | 'center' | 'right' | 'justify' | null,
@@ -180,4 +184,5 @@ export const V_DEFAULTS = {
   shadow:    null      as 'sm' | 'md' | 'lg' | 'xl' | 'none' | null,
   display:   null      as 'block' | 'inline' | 'flex' | 'grid' | 'none' | null,
   cursor:    null      as 'ptr' | 'def' | 'not' | null,
+  loader:    null      as 'spinner' | 'dots' | 'pulse' | 'bars' | 'ring' | 'ripple' | 'bounce' | 'wave' | 'flip' | 'orbit' | 'squeeze' | 'beat' | 'crescent' | null,
 } as const;

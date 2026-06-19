@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Component - Usage Examples | Kenikool UI</title>
+  
+  <!-- Import Kenikool UI styles and scripts from dist -->
+  <link rel="stylesheet" href="../dist/styles/base.css">
+  <script type="module" src="../dist/vanilla/index.mjs"></script>
+</head>
+<body>
+
+  <k-container v="p-8">
+    <k-stack v="gap-8">
+      
+      <!-- Header -->
+      <k-box>
+        <k-text v="h1">📝 Input Component - Complete Usage Examples</k-text>
+        <k-text v="p text-base">This page demonstrates every input variant, token, and utility using the built Kenikool UI library.</k-text>
+      </k-box>
+
+       <!-- Theme Switcher -->
+      <k-section>
+        <k-text v="h2">🎨 Theme Testing</k-text>
+        <k-text v="p">Switch themes to see inputs adapt automatically. The ThemeSwitcher component handles persistence and theme switching automatically.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-theme-switcher></k-theme-switcher>
+        </k-box>
+      </k-section>
+      
+      <!-- Zero Config -->
+      <k-section>
+        <k-text v="h2">📦 Zero Config - Out of the Box</k-text>
+        <k-text v="p">No v attribute needed. Inputs work with sensible defaults.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input label="Name" placeholder="Enter your name"></k-input>
+            <k-input type="email" label="Email" placeholder="you@example.com"></k-input>
+            <k-input label="Username" placeholder="Choose a username" required></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Target Selectors -->
+      <k-section>
+        <k-text v="h2">🎯 Target Selectors (.class and #id)</k-text>
+        <k-text v="p">The v attribute supports CSS selectors for automatic CSS class/ID assignment.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">With CSS class:</k-text>
+              <k-input v="outlined .form-field" label="Email" placeholder="Gets class='form-field'"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">With ID:</k-text>
+              <k-input v="filled #username-input" label="Username" placeholder="Gets id='username-input'"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">Combined class, id, and tokens:</k-text>
+              <k-input v="floating-label lg success .main-field #email-field" label="Email" placeholder=" "></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- All 10 Variants -->
+      <k-section>
+        <k-text v="h2">🎨 All 10 Variants</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">1. Default</k-text>
+              <k-input v="default" label="Default variant" placeholder="Standard input"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">2. Filled</k-text>
+              <k-input v="filled" label="Filled variant" placeholder="Elevated background"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">3. Outlined</k-text>
+              <k-input v="outlined" label="Outlined variant" placeholder="Transparent with border"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">4. Underlined</k-text>
+              <k-input v="underlined" label="Underlined variant" placeholder="Minimalist bottom border"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">5. Floating Label</k-text>
+              <k-input v="floating-label" label="Full name" placeholder=" "></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">6. Search</k-text>
+              <k-input v="search" placeholder="Search..."></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">7. Password</k-text>
+              <k-input v="password" label="Password" placeholder="Enter password"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">8. OTP</k-text>
+              <k-input v="otp" label="Verification Code"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">9. Textarea</k-text>
+              <k-input v="textarea" label="Comments" placeholder="Enter your comments..."></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">10. With Addon</k-text>
+              <k-input v="with-addon" addonLeft="https://" addonRight=".com" label="Domain" placeholder="mysite"></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- All Sizes -->
+      <k-section>
+        <k-text v="h2">📏 All 5 Sizes</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined xs" label="Extra Small (xs)" placeholder="xs size"></k-input>
+            <k-input v="outlined sm" label="Small (sm)" placeholder="sm size"></k-input>
+            <k-input v="outlined md" label="Medium (md) - Default" placeholder="md size"></k-input>
+            <k-input v="outlined lg" label="Large (lg)" placeholder="lg size"></k-input>
+            <k-input v="outlined xl" label="Extra Large (xl)" placeholder="xl size"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- All Colors -->
+      <k-section>
+        <k-text v="h2">🌈 All 6 Colors</k-text>
+        
+        <k-text v="h3">With Outlined Variant (focus to see color)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined primary" label="Primary" placeholder="Default accent color"></k-input>
+            <k-input v="outlined success" label="Success" placeholder="Green focus ring"></k-input>
+            <k-input v="outlined warning" label="Warning" placeholder="Orange focus ring"></k-input>
+            <k-input v="outlined error" label="Error" placeholder="Red focus ring"></k-input>
+            <k-input v="outlined info" label="Info" placeholder="Blue focus ring"></k-input>
+            <k-input v="outlined default" label="Default" placeholder="Gray focus ring"></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">With Floating Label Variant</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="floating-label primary" label="Primary" placeholder=" "></k-input>
+            <k-input v="floating-label success" label="Success" placeholder=" "></k-input>
+            <k-input v="floating-label warning" label="Warning" placeholder=" "></k-input>
+            <k-input v="floating-label error" label="Error" placeholder=" "></k-input>
+            <k-input v="floating-label info" label="Info" placeholder=" "></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Border Radius -->
+      <k-section>
+        <k-text v="h2">🔘 Border Radius (5 options)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined r-none" label="r-none (sharp)" placeholder="Sharp corners"></k-input>
+            <k-input v="outlined r-sm" label="r-sm" placeholder="Slight rounding"></k-input>
+            <k-input v="outlined r-md" label="r-md (default)" placeholder="Standard rounding"></k-input>
+            <k-input v="outlined r-lg" label="r-lg" placeholder="Large rounding"></k-input>
+            <k-input v="outlined r-full" label="r-full (pill)" placeholder="Full pill shape"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- State Flags -->
+      <k-section>
+        <k-text v="h2">⚡ State Flags</k-text>
+        
+        <k-text v="h3">Loading State (Default Spinner)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined loading" label="Loading..." placeholder="Processing"></k-input>
+            <k-input v="filled loading" label="Saving..." placeholder="Please wait"></k-input>
+            <k-input v="search loading" placeholder="Searching..."></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Loading with Different Loader Variants</k-text>
+        <k-text v="p muted">Use <code>loader-*</code> token to customize the loading animation:</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined loading loader-spinner" label="Spinner" placeholder="Default loader"></k-input>
+            <k-input v="outlined loading loader-dots" label="Dots" placeholder="Three bouncing dots"></k-input>
+            <k-input v="outlined loading loader-pulse" label="Pulse" placeholder="Pulsing circle"></k-input>
+            <k-input v="outlined loading loader-bars" label="Bars" placeholder="Five animated bars"></k-input>
+            <k-input v="outlined loading loader-ring" label="Ring" placeholder="Rotating ring"></k-input>
+            <k-input v="outlined loading loader-bounce" label="Bounce" placeholder="Bouncing ball"></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Disabled State</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined disabled" label="Disabled" value="Read-only value"></k-input>
+            <k-input v="filled disabled" label="Disabled Filled" value="Cannot edit"></k-input>
+            <k-input v="search disabled" placeholder="Search disabled"></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Error State</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label="Email" hint="Please enter a valid email" value="not-an-email" error></k-input>
+            <k-input v="filled" label="Username" hint="Username is required" error></k-input>
+            <k-input v="floating-label" label="Password" placeholder=" " value="123" error></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Valid Success State (green checkmark)</k-text>
+        <k-text v="p">When validation passes, a green checkmark appears automatically. Type valid values to see it.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label="Email" type="email" value="user@example.com" required hint="Valid email shows green checkmark"></k-input>
+            <k-input v="outlined" label="Website" type="url" value="https://example.com" required hint="Valid URL shows green checkmark"></k-input>
+            <k-input v="outlined" label="Phone" type="tel" value="+1 555-123-4567" required hint="Valid phone shows green checkmark"></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Full Width</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined full" label="Full Width" placeholder="100% of container"></k-input>
+            <k-input v="filled full" label="Full Width Filled" placeholder="Spans entire width"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Width Utilities -->
+      <k-section>
+        <k-text v="h2">↔️ Width Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">w-full (100% width):</k-text>
+              <k-input v="outlined w-full" label="Full Width" placeholder="Spans container"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">w-auto (content-based):</k-text>
+              <k-input v="outlined w-auto" label="Auto Width" placeholder="Content width"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">w-fit (fit-content):</k-text>
+              <k-input v="outlined w-fit" label="Fit Width" placeholder="Fit content"></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Height Utilities -->
+      <k-section>
+        <k-text v="h2">↕️ Height Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined h-auto" label="h-auto (default)" placeholder="Auto height"></k-input>
+            <k-input v="outlined h-fit" label="h-fit" placeholder="Fit content height"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Max/Min Constraints -->
+      <k-section>
+        <k-text v="h2">📐 Max/Min Constraints</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">mw-full (max-width: 100%):</k-text>
+              <k-input v="outlined mw-full" label="Max Width 100%" placeholder="Won't exceed container"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">mnw-0 (min-width: 0):</k-text>
+              <k-input v="outlined mnw-0" label="Min Width 0" placeholder="Can shrink to zero"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">mh-full (max-height: 100% for textarea):</k-text>
+              <k-input v="textarea mh-full" label="Max Height 100%" placeholder="Textarea constrained height"></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Border Utilities -->
+      <k-section>
+        <k-text v="h2">🖼️ Border Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined bdr" label="With Border" placeholder="Explicit border"></k-input>
+            <k-input v="ghost bdr" label="Ghost + Border" placeholder="Ghost variant with border"></k-input>
+            <k-input v="underlined bdr-none" label="Underlined without border" placeholder="Bottom border removed"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Shadows -->
+      <k-section>
+        <k-text v="h2">☁️ Shadow Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="filled shd-sm" label="shd-sm" placeholder="Subtle shadow"></k-input>
+            <k-input v="filled shd-md" label="shd-md" placeholder="Medium shadow"></k-input>
+            <k-input v="filled shd-lg" label="shd-lg" placeholder="Large shadow"></k-input>
+            <k-input v="filled shd-xl" label="shd-xl" placeholder="Extra large shadow"></k-input>
+            <k-input v="outlined shd-none" label="shd-none" placeholder="No shadow"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Text Alignment -->
+      <k-section>
+        <k-text v="h2">📝 Text Alignment</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined txt-left" label="txt-left" placeholder="Left aligned"></k-input>
+            <k-input v="outlined txt-center" label="txt-center" placeholder="Center aligned"></k-input>
+            <k-input v="outlined txt-right" label="txt-right" placeholder="Right aligned (for currency)"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Cursor Utilities -->
+      <k-section>
+        <k-text v="h2">👆 Cursor Utilities</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined cur-ptr" label="cur-ptr" placeholder="Pointer cursor (click to edit pattern)"></k-input>
+            <k-input v="outlined cur-def" label="cur-def" placeholder="Default cursor"></k-input>
+            <k-input v="outlined cur-not" label="cur-not" placeholder="Not-allowed cursor (read-only context)"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Icons -->
+      <k-section>
+        <k-text v="h2">🎨 Icons</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">Icon on left:</k-text>
+              <k-stack v="gap-3">
+                <k-input v="outlined" icon="user" label="Username" placeholder="Enter username"></k-input>
+                <k-input v="outlined" icon="bell" label="Email" placeholder="you@example.com"></k-input>
+                <k-input v="outlined" icon="home" label="Address" placeholder="Street address"></k-input>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="label">Icon on right:</k-text>
+              <k-stack v="gap-3">
+                <k-input v="outlined" iconRight="chevronDown" label="Country" placeholder="Select country"></k-input>
+                <k-input v="outlined" iconRight="arrow-right" label="Link" placeholder="Enter URL"></k-input>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="label">Built-in icon behaviors:</k-text>
+              <k-stack v="gap-3">
+                <k-input v="search" placeholder="Search auto-adds icon..."></k-input>
+                <k-input v="password" label="Password" placeholder="Password auto-adds toggle"></k-input>
+              </k-stack>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Label Positions -->
+      <k-section>
+        <k-text v="h2">🏷️ Label Positions</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label-position="top" label="Label on Top (default)" placeholder="Standard position"></k-input>
+            <k-input v="outlined" label-position="bottom" label="Label on Bottom" placeholder="Label below field"></k-input>
+            <k-input v="floating-label" label="Floating Label (Material-style)" placeholder=" "></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Addons -->
+      <k-section>
+        <k-text v="h2">➕ Addons (With-Addon Variant)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="with-addon" addonLeft="https://" addonRight=".com" label="Domain" placeholder="mysite"></k-input>
+            <k-input v="with-addon" addonLeft="$" addonRight="USD" label="Price" placeholder="0.00"></k-input>
+            <k-input v="with-addon" addonLeft="+1" label="Phone" placeholder="555-123-4567"></k-input>
+            <k-input v="with-addon" addonLeft="@" label="Username" placeholder="handle"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Validation -->
+      <k-section>
+        <k-text v="h2">✅ Built-in Validation</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">Email validation:</k-text>
+              <k-input type="email" label="Email" placeholder="you@example.com" required hint="We'll never share your email"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">Password validation with live checklist:</k-text>
+              <k-input v="password" label="Choose Password" required hint="At least 8 characters"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">Phone validation:</k-text>
+              <k-input type="tel" label="Phone Number" placeholder="+1 555-123-4567" required></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">URL validation:</k-text>
+              <k-input type="url" label="Website" placeholder="https://example.com" required></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">Custom pattern (slug):</k-text>
+              <k-input v="outlined" label="Slug" pattern="[a-z0-9-]+" placeholder="my-article-slug" required validation-message="Lowercase letters, numbers, and dashes only."></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Validation Events -->
+      <k-section>
+        <k-text v="h2">🔔 Validation Events (k:invalid, k:valid, k:complete)</k-text>
+        <k-text v="p">Inputs dispatch custom events for programmatic validation handling. Open the browser console to see events.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">k:invalid and k:valid events (type invalid email, then fix it):</k-text>
+              <k-input id="event-email" type="email" label="Email" placeholder="you@example.com" required hint="Events fire on validation state change"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">k:complete event for OTP (fires once when all 6 digits filled):</k-text>
+              <k-input id="event-otp" v="otp" label="Verification Code" hint="Complete event fires when all 6 digits are entered"></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Character Counter -->
+      <k-section>
+        <k-text v="h2">🔢 Character Counter</k-text>
+        <k-text v="p">Counter turns yellow at 80% of the limit.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label="Tweet" maxlength="280" showcounter placeholder="What's happening?"></k-input>
+            <k-input v="textarea" label="Bio" maxlength="160" showcounter placeholder="Tell us about yourself..."></k-input>
+            <k-input v="outlined" label="Username" maxlength="20" showcounter placeholder="Choose a username"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Standard HTML Attributes -->
+      <k-section>
+        <k-text v="h2">🔧 Standard HTML Attributes</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">Autocomplete (for forms):</k-text>
+              <k-stack v="gap-3">
+                <k-input v="outlined" name="email" type="email" autocomplete="email" inputmode="email" label="Email" placeholder="you@example.com"></k-input>
+                <k-input v="outlined" name="phone" type="tel" autocomplete="tel" inputmode="numeric" label="Phone" placeholder="555-123-4567"></k-input>
+                <k-input v="outlined" name="cc" type="text" autocomplete="cc-number" inputmode="numeric" pattern="[0-9\s]{13,19}" maxlength="19" label="Card Number" placeholder="1234 5678 9012 3456"></k-input>
+              </k-stack>
+            </k-box>
+            <k-box>
+              <k-text v="label">Read-only (focusable but not editable):</k-text>
+              <k-input v="outlined" value="ACC-2024-9183" readonly label="Account ID" hint="Contact support to change"></k-input>
+            </k-box>
+            <k-box>
+              <k-text v="label">Textarea with row count:</k-text>
+              <k-input v="textarea" rows="6" label="Feedback" placeholder="Tell us what you think..."></k-input>
+            </k-box>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Form Integration -->
+      <k-section>
+        <k-text v="h2">📋 Form Integration (name, FormData, reset)</k-text>
+        <k-text v="p">Inputs are form-associated and participate in native form submission. Check the console for FormData output.</k-text>
+        <k-box v="surface p-6 r-md">
+          <form id="test-form">
+            <k-stack v="gap-3">
+              <k-input v="outlined" name="username" label="Username" placeholder="Enter username" required></k-input>
+              <k-input v="outlined" name="email" type="email" label="Email" placeholder="you@example.com" required></k-input>
+              <k-input v="password" name="password" label="Password" required></k-input>
+              <k-row v="gap-3">
+                <k-button type="submit" v="filled primary">Submit Form</k-button>
+                <k-button type="reset" v="outlined">Reset Form</k-button>
+              </k-row>
+            </k-stack>
+          </form>
+        </k-box>
+      </k-section>
+
+      <!-- Real-World Examples -->
+      <k-section>
+        <k-text v="h2">🌍 Real-World Examples</k-text>
+        
+        <k-text v="h3">Login Form</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="floating-label" type="email" label="Email" placeholder=" " icon="user" required></k-input>
+            <k-input v="floating-label password" label="Password" placeholder=" " required></k-input>
+            <k-button v="filled lg primary w-full" type="submit">Sign in</k-button>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Sign-Up Form</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label="Email" type="email" required hint="We'll send a verification link"></k-input>
+            <k-input v="password" label="Choose a password" required hint="At least 8 characters"></k-input>
+            <k-input v="outlined" label="Display name" required hint="How others will see you"></k-input>
+            <k-button v="filled primary w-full" type="submit">Create Account</k-button>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Two-Factor Authentication (OTP)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-input v="otp lg" label="Enter the 6-digit code" hint="We sent this to your registered email"></k-input>
+            <k-button v="filled primary w-full">Verify Code</k-button>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Search Bar</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="search lg shd-md" placeholder="Search products..."></k-input>
+            <k-input v="search sm" placeholder="Filter items..."></k-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Profile Form</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label="Full name" icon="user" required></k-input>
+            <k-input v="outlined" label="Email" type="email" icon="bell" required></k-input>
+            <k-input v="outlined" label="Website" type="url" iconRight="arrow-right"></k-input>
+            <k-input v="textarea" label="Bio" placeholder="Tell us about yourself..."></k-input>
+            <k-button v="filled success">Save Changes</k-button>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Currency Input</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-input v="with-addon txt-right" addonLeft="$" addonRight="USD" label="Price" type="text" pattern="^\d+(\.\d{2})?$" placeholder="0.00" validation-message="Enter a valid amount (e.g., 19.99)"></k-input>
+        </k-box>
+
+        <k-text v="h3">Address Form with Addons</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-input v="outlined" label="Street Address" placeholder="123 Main St"></k-input>
+            <k-row v="gap-3">
+              <k-input v="outlined" label="City" placeholder="New York"></k-input>
+              <k-input v="outlined" label="State" placeholder="NY"></k-input>
+            </k-row>
+            <k-input v="outlined" label="ZIP Code" placeholder="10001" pattern="[0-9]{5}"></k-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Number Input Component -->
+      <k-section>
+        <k-text v="h2">🔢 Number Input Component</k-text>
+        <k-text v="p">Dedicated number input with increment/decrement buttons, keyboard shortcuts, min/max enforcement, and thousand separators.</k-text>
+        
+        <k-text v="h3">Target Selectors (.class and #id)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined .quantity-field" label="With CSS class" value="5" hint="Gets class='quantity-field'"></k-number-input>
+            <k-number-input v="filled #price-input" label="With ID" prefix="$" value="99.99" step="0.01" precision="2" hint="Gets id='price-input'"></k-number-input>
+            <k-number-input v="soft primary .form-field #percentage" label="Combined" suffix="%" value="75" hint="Gets both class and id"></k-number-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Basic Examples</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined md" label="Quantity" value="1" min="1" max="100"></k-number-input>
+            <k-number-input v="filled md" label="Price" prefix="$" value="99.99" step="0.01" precision="2"></k-number-input>
+            <k-number-input v="soft md primary" label="Percentage" suffix="%" value="75" min="0" max="100"></k-number-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Button Positions</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined md buttons-inline" label="Inline (Default)" value="42"></k-number-input>
+            <k-number-input v="outlined md buttons-attached" label="Attached" value="42"></k-number-input>
+            <k-number-input v="outlined md buttons-separate" label="Separate" value="42"></k-number-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Prefix & Suffix</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined md" label="Price" prefix="$" value="99.99" step="0.01" precision="2"></k-number-input>
+            <k-number-input v="outlined md" label="Weight" suffix="kg" value="75.5" step="0.1" precision="1"></k-number-input>
+            <k-number-input v="outlined md" label="Temperature" suffix="°C" value="22"></k-number-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Thousand Separators</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined md separator" label="Population" value="1000000" step="1000"></k-number-input>
+            <k-number-input v="outlined md separator" label="Revenue" prefix="$" value="2500000" step="10000"></k-number-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">States</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined md" label="Normal" value="100"></k-number-input>
+            <k-number-input v="outlined md loading" label="Loading" value="100"></k-number-input>
+            <k-number-input v="outlined md disabled" label="Disabled" value="100"></k-number-input>
+            <k-number-input v="outlined md" label="With Error" value="-5" error></k-number-input>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Keyboard Shortcuts</k-text>
+        <k-text v="p">Focus the input and use: ↑/↓ (step), Page Up/Down (step × 10), Home (min), End (max)</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-number-input v="outlined lg primary buttons-attached" label="Try Keyboard Shortcuts" value="50" min="0" max="100" step="5"></k-number-input>
+        </k-box>
+
+        <k-text v="h3">Real-World: E-commerce Product</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-number-input v="outlined lg buttons-attached" label="Quantity" value="1" min="1" max="10" hint="Maximum 10 per customer"></k-number-input>
+        </k-box>
+
+        <k-text v="h3">Real-World: Loan Calculator</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-number-input v="outlined md separator" label="Loan Amount" prefix="$" value="250000" min="0" step="1000"></k-number-input>
+            <k-number-input v="outlined md" label="Interest Rate" suffix="%" value="3.5" min="0" max="20" step="0.1" precision="2"></k-number-input>
+            <k-number-input v="outlined md" label="Loan Term" suffix="years" value="30" min="1" max="40"></k-number-input>
+          </k-stack>
+        </k-box>
+      </k-section>
+
+      <!-- Date Input Component -->
+      <k-section>
+        <k-text v="h2">📅 Date Input Component</k-text>
+        <k-text v="p">Dedicated date input with calendar picker overlay, keyboard navigation, min/max constraints, and multiple display formats.</k-text>
+        
+        <k-text v="h3">Basic Examples</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-date v="outlined md" label="Select a Date" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="filled md" label="Birth Date" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="soft md" label="Meeting Date" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="ghost md" label="Optional Date" placeholder="MM/DD/YYYY"></k-date>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Display Formats</k-text>
+        <k-text v="p">Date values are stored in ISO format (YYYY-MM-DD) internally. Display format controlled by the format attribute.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-date v="outlined md" label="MM/DD/YYYY Format (US)" format="MM/DD/YYYY" placeholder="12/25/2024"></k-date>
+            <k-date v="outlined md" label="DD/MM/YYYY Format (EU)" format="DD/MM/YYYY" placeholder="25/12/2024"></k-date>
+            <k-date v="outlined md" label="YYYY-MM-DD Format (ISO)" format="YYYY-MM-DD" placeholder="2024-12-25"></k-date>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">All Sizes</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-date v="outlined xs" label="Extra Small (xs)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined sm" label="Small (sm)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined md" label="Medium (md)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined lg" label="Large (lg)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined xl" label="Extra Large (xl)" placeholder="MM/DD/YYYY"></k-date>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">All Colors</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-date v="outlined primary" label="Primary (focus to see)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined success" label="Success" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined warning" label="Warning" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined error" label="Error" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined info" label="Info" placeholder="MM/DD/YYYY"></k-date>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Border Radius</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-date v="outlined r-none" label="r-none (sharp)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined r-sm" label="r-sm" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined r-md" label="r-md (default)" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined r-lg" label="r-lg" placeholder="MM/DD/YYYY"></k-date>
+            <k-date v="outlined r-full" label="r-full (pill)" placeholder="MM/DD/YYYY"></k-date>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">States</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Loading State</k-text>
+              <k-date v="outlined loading" label="Loading..." placeholder="MM/DD/YYYY"></k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">Disabled State</k-text>
+              <k-date v="outlined disabled" label="Disabled" value="2024-06-15"></k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">Error State</k-text>
+              <k-date v="outlined" label="Invalid Date" error hint="Please select a valid date"></k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">With Icon</k-text>
+              <k-date v="outlined" label="Appointment" icon="bell" placeholder="MM/DD/YYYY"></k-date>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Min/Max Constraints</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Select from today onwards</k-text>
+              <k-date v="outlined" label="Future Date" disablePast placeholder="MM/DD/YYYY" hint="Past dates are disabled"></k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">Select up to today only</k-text>
+              <k-date v="outlined" label="Birth Date" disableFuture placeholder="MM/DD/YYYY" hint="Future dates are disabled"></k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">Specific date range</k-text>
+              <k-date v="outlined" label="Project Timeline" min="2024-01-01" max="2024-12-31" placeholder="MM/DD/YYYY" hint="Limited to 2024"></k-date>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Keyboard Navigation</k-text>
+        <k-text v="p">Focus the date input and try these shortcuts:</k-text>
+        <k-text v="p muted">Arrow Down / Space: Open calendar | Escape: Close calendar | Arrow Keys (in calendar): Navigate days | Page Up/Down: Previous/Next month</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-date v="outlined lg primary" label="Try Keyboard Navigation" placeholder="MM/DD/YYYY" hint="Use arrow keys and keyboard shortcuts"></k-date>
+        </k-box>
+
+        <k-text v="h3">Real-World Examples</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="h4">Event Registration (Dynamic)</k-text>
+              <k-stack v="gap-3">
+                <k-date v="outlined" label="Event Date" disablePast placeholder="MM/DD/YYYY"
+                  addOn='[{"label":"This Weekend","daysFromNow":2},{"label":"Next Week","daysFromNow":7}]'>
+                </k-date>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Hotel Booking (Dynamic)</k-text>
+              <k-stack v="gap-3">
+                <k-date v="outlined" label="Check-in Date" disablePast placeholder="MM/DD/YYYY"
+                  addOn='[{"label":"Tonight","daysFromNow":0},{"label":"Tomorrow","daysFromNow":1},{"label":"This Weekend","daysFromNow":2}]'>
+                </k-date>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Medical Appointment (Dynamic)</k-text>
+              <k-stack v="gap-3">
+                <k-date v="outlined" label="Appointment Date" disablePast placeholder="MM/DD/YYYY" required
+                  addOn='[{"label":"Tomorrow","daysFromNow":1},{"label":"Next Week","daysFromNow":7},{"label":"In 2 Weeks","daysFromNow":14}]'>
+                </k-date>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Project Deadline (Dynamic - Always relative to today)</k-text>
+              <k-stack v="gap-3">
+                <k-date v="outlined" label="Sprint Deadline" disablePast placeholder="MM/DD/YYYY"
+                  addOn='[{"label":"End of Sprint","daysFromNow":14},{"label":"Release Day","daysFromNow":21},{"label":"Retrospective","daysFromNow":22}]'>
+                </k-date>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Delivery Window (Dynamic - Recalculates daily)</k-text>
+              <k-stack v="gap-3">
+                <k-date v="outlined" label="Delivery Date" disablePast placeholder="MM/DD/YYYY"
+                  addOn='[{"label":"Today","daysFromNow":0},{"label":"Tomorrow","daysFromNow":1},{"label":"In 3 Days","daysFromNow":3},{"label":"Next Week","daysFromNow":7}]'>
+                </k-date>
+              </k-stack>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Quick Shortcuts with addOn</k-text>
+        <k-text v="p">Built-in Today and Next Week buttons. Add custom shortcuts via addOn attribute (JSON array).</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Default (Today + Next Week):</k-text>
+              <k-date v="outlined" label="Pick Date" placeholder="MM/DD/YYYY"></k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">With Custom Shortcuts:</k-text>
+              <k-date v="outlined" label="Custom Dates" placeholder="MM/DD/YYYY"
+                addOn='[{"label":"In 3 Days","daysFromNow":3},{"label":"End of Month","daysFromNow":30}]'>
+              </k-date>
+            </k-box>
+            <k-box>
+              <k-text v="label">Multiple Custom Shortcuts:</k-text>
+              <k-date v="outlined" label="Project Timeline" placeholder="MM/DD/YYYY"
+                addOn='[{"label":"Sprint Start","daysFromNow":7},{"label":"Sprint End","daysFromNow":21},{"label":"Release","daysFromNow":45}]'>
+              </k-date>
+            </k-box>
+          </k-stack>
+        </k-box>
+       
+      </k-section>
+
+      <!-- Slider Component -->
+      <k-section>
+        <k-text v="h2">🎚️ Slider Component</k-text>
+        <k-text v="p">Range slider with single/dual thumbs, hover tooltips, keyboard navigation, step support, and full token support.</k-text>
+        
+        <k-text v="h3">All 11 Variants</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">1. Filled (Solid progress)</k-text>
+              <k-slider v="filled md primary" label="Filled" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">2. Outlined (Colored border)</k-text>
+              <k-slider v="outlined md primary" label="Outlined" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">3. Ghost (Minimal)</k-text>
+              <k-slider v="ghost md primary" label="Ghost" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">4. Soft (Subtle blur)</k-text>
+              <k-slider v="soft md primary" label="Soft" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">5. Subtle (Light background)</k-text>
+              <k-slider v="subtle md primary" label="Subtle" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">6. Gradient (Colorful progress)</k-text>
+              <k-slider v="gradient md primary" label="Gradient" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">7. Glow (Glowing effect)</k-text>
+              <k-slider v="glow md primary" label="Glow" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">8. Minimal (Text-like)</k-text>
+              <k-slider v="minimal md primary" label="Minimal" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">9. Elevated (With shadow)</k-text>
+              <k-slider v="elevated md primary" label="Elevated" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">10. Destructive (Always red)</k-text>
+              <k-slider v="destructive md" label="Destructive" min="0" max="100" value="50"></k-slider>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">All 5 Sizes</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-slider v="filled xs primary" label="Extra Small (xs)" min="0" max="100" value="30"></k-slider>
+            <k-slider v="filled sm primary" label="Small (sm)" min="0" max="100" value="40"></k-slider>
+            <k-slider v="filled md primary" label="Medium (md) - Default" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled lg primary" label="Large (lg)" min="0" max="100" value="60"></k-slider>
+            <k-slider v="filled xl primary" label="Extra Large (xl)" min="0" max="100" value="70"></k-slider>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">All 6 Colors</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-slider v="filled primary" label="Primary" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled success" label="Success" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled warning" label="Warning" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled error" label="Error" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled info" label="Info" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled default" label="Default" min="0" max="100" value="50"></k-slider>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">All 5 Border Radius Tokens</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-slider v="filled primary r-none" label="r-none (sharp)" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled primary r-sm" label="r-sm (4px)" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled primary r-md" label="r-md (8px - default)" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled primary r-lg" label="r-lg (12px)" min="0" max="100" value="50"></k-slider>
+            <k-slider v="filled primary r-full" label="r-full (pill)" min="0" max="100" value="50"></k-slider>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">State Tokens</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-slider v="filled primary loading" label="Loading State" min="0" max="100" value="50" hint="Disabled during processing"></k-slider>
+            <k-slider v="filled primary disabled" label="Disabled State" min="0" max="100" value="50" hint="Not interactive"></k-slider>
+            <k-slider v="filled primary error" label="Error State" min="0" max="100" value="50" hint="Invalid range" error></k-slider>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Step Support</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Step = 5 (snap to multiples of 5)</k-text>
+              <k-slider v="filled primary" label="Quantity" min="0" max="100" step="5" value="50" hint="Hover to see value"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">Step = 10 (coarse control)</k-text>
+              <k-slider v="filled success" label="Percentage" min="0" max="100" step="10" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">Step = 0.5 (fine precision)</k-text>
+              <k-slider v="filled warning" label="Temperature" min="0" max="100" step="0.5" value="50"></k-slider>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Utility Tokens</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">Full Width (w-full)</k-text>
+              <k-slider v="filled primary w-full" label="Full Width" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">With Shadow (shd-md)</k-text>
+              <k-slider v="elevated primary shd-lg" label="With Shadow" min="0" max="100" value="50"></k-slider>
+            </k-box>
+            <k-box>
+              <k-text v="label">With Border (bdr)</k-text>
+              <k-slider v="soft primary bdr" label="With Border" min="0" max="100" value="50"></k-slider>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Real-World Examples</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="h4">Audio Controls</k-text>
+              <k-stack v="gap-3">
+                <k-slider v="filled primary lg" label="Volume" min="0" max="100" value="75" hint="Drag to adjust"></k-slider>
+                <k-slider v="filled" label="Bass" min="-12" max="12" value="0" step="1"></k-slider>
+                <k-slider v="filled" label="Treble" min="-12" max="12" value="0" step="1"></k-slider>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Image Editor</k-text>
+              <k-stack v="gap-3">
+                <k-slider v="filled success" label="Brightness" min="0" max="200" value="100" step="1"></k-slider>
+                <k-slider v="filled warning" label="Contrast" min="0" max="200" value="100" step="1"></k-slider>
+                <k-slider v="filled error" label="Saturation" min="0" max="200" value="100" step="1"></k-slider>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Price Filter</k-text>
+              <k-stack v="gap-3">
+                <k-slider v="gradient lg primary w-full" label="Max Price" min="0" max="1000" value="500" step="10" hint="Drag to filter"></k-slider>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Zoom Level</k-text>
+              <k-stack v="gap-3">
+                <k-slider v="glow md info" label="Zoom" min="50" max="200" value="100" step="10"></k-slider>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Opacity Control (Subtle variant)</k-text>
+              <k-stack v="gap-3">
+                <k-slider v="subtle md" label="Opacity" min="0" max="100" value="80" step="5"></k-slider>
+              </k-stack>
+            </k-box>
+          </k-stack>
+        </k-box>
+       
+      </k-section>
+
+      <!-- Color Component -->
+      <k-section>
+        <k-text v="h2">🎨 Color Component</k-text>
+        <k-text v="p">Native color picker with hex/rgb/hsl format support, text input, and optional color swatches.</k-text>
+        
+        <k-text v="h3">Basic Examples</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="label">Default (Hex Format)</k-text>
+              <k-color v="outlined md" label="Primary Color" value="#3B82F6"></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">Filled Variant</k-text>
+              <k-color v="filled md" label="Background Color" value="#ffffff"></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">Soft Variant</k-text>
+              <k-color v="soft md" label="Accent Color" value="#EC4899"></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">Ghost Variant</k-text>
+              <k-color v="ghost md" label="Text Color" value="#000000"></k-color>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Format Support</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Hex Format (default)</k-text>
+              <k-color v="outlined md" label="Hex Color" format="hex" value="#FF6B6B" hint="Format: #RRGGBB"></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">RGB Format</k-text>
+              <k-color v="outlined md" label="RGB Color" format="rgb" value="#FF6B6B" hint="Displayed as rgb(r, g, b)"></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">HSL Format</k-text>
+              <k-color v="outlined md" label="HSL Color" format="hsl" value="#FF6B6B" hint="Displayed as hsl(h, s%, l%)"></k-color>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">All Sizes</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-color v="outlined xs" label="Extra Small (xs)" value="#3B82F6"></k-color>
+            <k-color v="outlined sm" label="Small (sm)" value="#3B82F6"></k-color>
+            <k-color v="outlined md" label="Medium (md)" value="#3B82F6"></k-color>
+            <k-color v="outlined lg" label="Large (lg)" value="#3B82F6"></k-color>
+            <k-color v="outlined xl" label="Extra Large (xl)" value="#3B82F6"></k-color>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Border Radius</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-color v="outlined r-none" label="r-none (sharp)" value="#3B82F6"></k-color>
+            <k-color v="outlined r-sm" label="r-sm" value="#3B82F6"></k-color>
+            <k-color v="outlined r-md" label="r-md (default)" value="#3B82F6"></k-color>
+            <k-color v="outlined r-lg" label="r-lg" value="#3B82F6"></k-color>
+            <k-color v="outlined r-full" label="r-full" value="#3B82F6"></k-color>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">With Color Swatches</k-text>
+        <k-text v="p">Click swatches to quickly select preset colors.</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Default Swatches</k-text>
+              <k-color v="outlined md" label="Pick Color" value="#3B82F6" swatches></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">Filled with Swatches</k-text>
+              <k-color v="filled md" label="Theme Color" value="#10B981" swatches></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">Soft with Swatches</k-text>
+              <k-color v="soft md primary" label="Accent" value="#8B5CF6" swatches></k-color>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">States</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-3">
+            <k-box>
+              <k-text v="label">Disabled State</k-text>
+              <k-color v="outlined disabled" label="Locked" value="#3B82F6"></k-color>
+            </k-box>
+            <k-box>
+              <k-text v="label">Error State</k-text>
+              <k-color v="outlined" label="Invalid Color" value="#3B82F6" error hint="Please select a valid color"></k-color>
+            </k-box>
+          </k-stack>
+        </k-box>
+
+        <k-text v="h3">Real-World Examples</k-text>
+        <k-box v="surface p-6 r-md">
+          <k-stack v="gap-4">
+            <k-box>
+              <k-text v="h4">Theme Designer</k-text>
+              <k-stack v="gap-3">
+                <k-color v="outlined md primary" label="Primary Color" value="#3B82F6" swatches></k-color>
+                <k-color v="outlined md success" label="Success Color" value="#10B981" swatches></k-color>
+                <k-color v="outlined md error" label="Error Color" value="#EF4444" swatches></k-color>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Branding Panel</k-text>
+              <k-stack v="gap-3">
+                <k-color v="filled md" label="Brand Primary" value="#2563EB" swatches hint="Used for buttons and links"></k-color>
+                <k-color v="filled md" label="Brand Secondary" value="#7C3AED" swatches hint="Used for highlights"></k-color>
+                <k-color v="filled md" label="Brand Neutral" value="#6B7280" swatches hint="Used for text and borders"></k-color>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Image Editor - Color Overlay</k-text>
+              <k-stack v="gap-3">
+                <k-color v="soft md" label="Overlay Color" value="#000000" format="hex" swatches hint="Adjust color overlay intensity"></k-color>
+              </k-stack>
+            </k-box>
+
+            <k-box>
+              <k-text v="h4">Event Customization</k-text>
+              <k-stack v="gap-3">
+                <k-color v="outlined lg primary" label="Event Color" value="#F59E0B" swatches hint="Choose color to represent this event"></k-color>
+              </k-stack>
+            </k-box>
+          </k-stack>
+        </k-box>
+       
+      </k-section>
+
+    </k-stack>
+  </k-container>
+
+</body>
+</html>

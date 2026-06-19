@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slider Variants Test | Kenikool UI</title>
+  <link rel="stylesheet" href="dist/styles/base.css">
+  <script type="module" src="dist/vanilla/index.mjs"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 40px 20px;
+      background: var(--k-bg-base);
+      color: var(--k-text-primary);
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      margin: 40px 0 20px 0;
+      color: var(--k-text-primary);
+    }
+    .slider-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: var(--k-bg-surface);
+      border: 1px solid var(--k-border);
+      border-radius: var(--k-radius-md);
+    }
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--k-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎚️ Slider Component — Variant Visual Tests</h1>
+    <p>Each slider below should look VISUALLY DIFFERENT due to its variant. Verify:</p>
+    <ul>
+      <li><strong>filled:</strong> Solid elevated background track</li>
+      <li><strong>outlined:</strong> Transparent track with colored border</li>
+      <li><strong>ghost:</strong> Minimal bottom line only</li>
+      <li><strong>soft:</strong> Light colored background with blur effect</li>
+      <li><strong>subtle:</strong> Very subtle colored background</li>
+      <li><strong>gradient:</strong> Progress bar has gradient</li>
+      <li><strong>glow:</strong> Progress bar has glow/shadow effect</li>
+      <li><strong>minimal:</strong> Just a line with text color</li>
+      <li><strong>elevated:</strong> Elevated filled with shadow</li>
+      <li><strong>destructive:</strong> Fixed red color (ignores color token)</li>
+      <li><strong>icon-only:</strong> Compact size for embedded use</li>
+    </ul>
+
+    <h2>All 11 Variants (Primary Color)</h2>
+    
+    <div class="slider-demo">
+      <label>1. Filled (Solid elevated background)</label>
+      <k-slider v="filled md primary" label="Filled" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>2. Outlined (Colored border)</label>
+      <k-slider v="outlined md primary" label="Outlined" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>3. Ghost (Minimal line)</label>
+      <k-slider v="ghost md primary" label="Ghost" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>4. Soft (Light background with blur)</label>
+      <k-slider v="soft md primary" label="Soft" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>5. Subtle (Subtle background)</label>
+      <k-slider v="subtle md primary" label="Subtle" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>6. Gradient (Gradient progress)</label>
+      <k-slider v="gradient md primary" label="Gradient" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>7. Glow (Glowing progress)</label>
+      <k-slider v="glow md primary" label="Glow" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>8. Minimal (Text-colored line)</label>
+      <k-slider v="minimal md primary" label="Minimal" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>9. Elevated (With shadow)</label>
+      <k-slider v="elevated md primary" label="Elevated" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>10. Destructive (Fixed red)</label>
+      <k-slider v="destructive md" label="Destructive" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>11. Icon-Only (Compact)</label>
+      <k-slider v="icon-only md primary" label="Icon-Only" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <h2>Color Variations (Filled Variant)</h2>
+
+    <div class="slider-demo">
+      <label>Primary (Accent color)</label>
+      <k-slider v="filled primary" label="Primary" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Success (Green)</label>
+      <k-slider v="filled success" label="Success" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Warning (Orange)</label>
+      <k-slider v="filled warning" label="Warning" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Error (Red)</label>
+      <k-slider v="filled error" label="Error" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Info (Blue)</label>
+      <k-slider v="filled info" label="Info" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Default (Neutral)</label>
+      <k-slider v="filled default" label="Default" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <h2>All Sizes (Filled + Primary)</h2>
+
+    <div class="slider-demo">
+      <label>Extra Small (xs)</label>
+      <k-slider v="filled xs primary" label="xs" min="0" max="100" value="30"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Small (sm)</label>
+      <k-slider v="filled sm primary" label="sm" min="0" max="100" value="40"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Medium (md - default)</label>
+      <k-slider v="filled md primary" label="md" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Large (lg)</label>
+      <k-slider v="filled lg primary" label="lg" min="0" max="100" value="60"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Extra Large (xl)</label>
+      <k-slider v="filled xl primary" label="xl" min="0" max="100" value="70"></k-slider>
+    </div>
+
+    <h2>Border Radius Tokens (Filled + Primary)</h2>
+
+    <div class="slider-demo">
+      <label>r-none (Sharp)</label>
+      <k-slider v="filled primary r-none" label="r-none" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>r-sm (Slight rounding)</label>
+      <k-slider v="filled primary r-sm" label="r-sm" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>r-md (Default)</label>
+      <k-slider v="filled primary r-md" label="r-md" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>r-lg (Prominent rounding)</label>
+      <k-slider v="filled primary r-lg" label="r-lg" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>r-full (Pill shape)</label>
+      <k-slider v="filled primary r-full" label="r-full" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <h2>States</h2>
+
+    <div class="slider-demo">
+      <label>Disabled State</label>
+      <k-slider v="filled primary disabled" label="Disabled" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Loading State</label>
+      <k-slider v="filled primary loading" label="Loading" min="0" max="100" value="50"></k-slider>
+    </div>
+
+    <div class="slider-demo">
+      <label>Error State</label>
+      <k-slider v="filled primary error" label="Error" min="0" max="100" value="50"></k-slider>
+    </div>
+
+  </div>
+</body>
+</html>

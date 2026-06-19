@@ -27,7 +27,8 @@
       "WebFetch(domain:carbon-website-git-pictograms-docs.carbon-design-system.vercel.app)",
       "WebFetch(domain:daisyui.com)",
       "WebFetch(domain:chakra-ui.com)",
-      "WebFetch(domain:v4.daisyui.com)"
+      "WebFetch(domain:v4.daisyui.com)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\kenik\\\\OneDrive\\\\Desktop\\\\kenikool_ui\\\\kenikool-docs\\\\\" | Select-Object Name, Length; Write-Host \"---\"; \\(Get-Content \"C:\\\\Users\\\\kenik\\\\OneDrive\\\\Desktop\\\\kenikool_ui\\\\kenikool-docs\\\\input.md\" | Measure-Object -Line\\).Lines)"
     ]
   }
 }

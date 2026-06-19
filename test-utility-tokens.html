@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Utility Tokens</title>
+  <link rel="stylesheet" href="./dist/styles/base.css">
+  <script type="module" src="./dist/vanilla/index.mjs"></script>
+  <style>
+    body { padding: 20px; font-family: sans-serif; }
+    .test-section { margin-bottom: 30px; padding: 20px; background: var(--k-bg-surface); border-radius: 8px; }
+    .test-section h2 { margin-top: 0; }
+    .debug { font-family: monospace; font-size: 12px; color: var(--k-text-muted); margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Utility Token Tests</h1>
+
+  <div class="test-section">
+    <h2>Height Tokens</h2>
+    <k-button v="filled h-auto" style="border: 2px solid red;">h-auto</k-button>
+    <k-button v="filled h-fit" style="border: 2px solid blue;">h-fit</k-button>
+    <k-button v="filled h-full" style="border: 2px solid green;">h-full</k-button>
+    <div class="debug" id="height-debug"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Width Tokens</h2>
+    <k-button v="filled w-full">w-full (should be 100% width)</k-button>
+    <k-button v="filled w-auto">w-auto</k-button>
+    <k-button v="filled w-fit">w-fit</k-button>
+    <div class="debug" id="width-debug"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Max/Min Width</h2>
+    <k-button v="filled mw-full">mw-full</k-button>
+    <k-button v="filled mnw-0">mnw-0</k-button>
+    <div class="debug" id="maxmin-width-debug"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Max/Min Height</h2>
+    <k-button v="filled mh-full">mh-full</k-button>
+    <k-button v="filled mnh-0">mnh-0</k-button>
+    <div class="debug" id="maxmin-height-debug"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Text Alignment</h2>
+    <k-button v="filled w-full txt-left">txt-left</k-button>
+    <k-button v="filled w-full txt-center">txt-center</k-button>
+    <k-button v="filled w-full txt-right">txt-right</k-button>
+    <div class="debug" id="text-align-debug"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>Cursor Tokens</h2>
+    <k-button v="filled cur-ptr">cur-ptr (pointer)</k-button>
+    <k-button v="filled cur-def">cur-def (default)</k-button>
+    <k-button v="filled cur-not">cur-not (not-allowed)</k-button>
+    <div class="debug" id="cursor-debug"></div>
+  </div>
+
+  <script type="module">
+    // Debug: log all data attributes
+    setTimeout(() => {
+      console.log('Debug script running...');
+      
+      // Test a specific button
+      const testBtn = document.querySelector('k-button[v="filled h-auto"]');
+      console.log('Test button:', testBtn);
+      console.log('Test button v attribute:', testBtn?.getAttribute('v'));
+      console.log('Test button data-height:', testBtn?.getAttribute('data-height'));
+      console.log('All attributes:', Array.from(testBtn?.attributes || []).map(a => `${a.name}="${a.value}"`));
+      
+      const sections = [
+        { id: 'height-debug', buttons: document.querySelectorAll('.test-section:nth-child(2) k-button') },
+        { id: 'width-debug', buttons: document.querySelectorAll('.test-section:nth-child(3) k-button') },
+        { id: 'maxmin-width-debug', buttons: document.querySelectorAll('.test-section:nth-child(4) k-button') },
+        { id: 'maxmin-height-debug', buttons: document.querySelectorAll('.test-section:nth-child(5) k-button') },
+        { id: 'text-align-debug', buttons: document.querySelectorAll('.test-section:nth-child(6) k-button') },
+        { id: 'cursor-debug', buttons: document.querySelectorAll('.test-section:nth-child(7) k-button') }
+      ];
+
+      sections.forEach(({ id, buttons }) => {
+        const debugDiv = document.getElementById(id);
+        let html = '';
+        console.log(`Section ${id}: found ${buttons.length} buttons`);
+        buttons.forEach(btn => {
+          const attrs = Array.from(btn.attributes)
+            .filter(attr => attr.name.startsWith('data-'))
+            .map(attr => `${attr.name}="${attr.value}"`)
+            .join(' ');
+          html += `<div>${btn.textContent}: ${attrs || 'NO DATA ATTRS'}</div>`;
+        });
+        debugDiv.innerHTML = html || 'No buttons found';
+      });
+    }, 500);
+  </script>
+</body>
+</html>

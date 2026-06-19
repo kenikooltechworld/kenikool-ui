@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Input Test</title>
+  <link rel="stylesheet" href="dist/styles/base.css">
+  <script type="module" src="dist/vanilla/index.mjs"></script>
+  <style>
+    body { padding: 2rem; font-family: system-ui; max-width: 600px; margin: 0 auto; }
+    .demo { background: #f0f0f0; padding: 1.5rem; margin: 1.5rem 0; border-radius: 8px; }
+    h3 { margin-top: 0; color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Number Input Component</h1>
+  
+  <div class="demo">
+    <h3>Regular Input (for comparison)</h3>
+    <k-input v="outlined md" label="Text Input" value="Compare with this"></k-input>
+  </div>
+
+  <div class="demo">
+    <h3>Basic Number Input</h3>
+    <k-number-input v="outlined md" label="Quantity" value="42"></k-number-input>
+  </div>
+
+  <div class="demo">
+    <h3>With Left Icon (icon attribute supported)</h3>
+    <k-number-input v="outlined md" label="Amount" value="100" icon="home"></k-number-input>
+  </div>
+
+  <div class="demo">
+    <h3>With Prefix & Suffix</h3>
+    <k-number-input v="outlined md" label="Price" prefix="$" value="99" ></k-number-input>
+    <k-number-input v="outlined md" label="Weight" value="75" suffix="kg"></k-number-input>
+  </div>
+
+  <div class="demo">
+    <h3>With Min/Max & Thousand Separator</h3>
+    <k-number-input v="outlined md separator" label="Population" value="1000" min="0" max="10000" step="100"></k-number-input>
+  </div>
+
+  <div class="demo">
+    <h3>Different Sizes</h3>
+    <k-number-input v="outlined sm" label="Small" value="10"></k-number-input>
+    <k-number-input v="outlined md" label="Medium" value="20"></k-number-input>
+    <k-number-input v="outlined lg" label="Large" value="30"></k-number-input>
+  </div>
+</body>
+</html>

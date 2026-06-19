@@ -10,6 +10,19 @@ inclusion: always
 
 ---
 
+## ⚡ Agent Interaction Rule: Implementation Focus Only
+
+**NO junk documentation, audit files, summaries, verification reports, or explanations.**
+
+- Execute implementations directly.
+- Do NOT create audit files, summary reports, or documentation of changes.
+- Do NOT create verification/testing checklists unless explicitly requested.
+- Report results only through code changes (file edits are self-documenting).
+- If user asks "what did you do?", reference file edits directly — don't create extra files.
+- Focus: Code that ships to users. Nothing else.
+
+---
+
 ## 1. Project Identity
 
 - Package name: `kenikool-ui` (single unscoped npm package)

@@ -1,0 +1,845 @@
+/**
+ * k-slider — Range Slider Component Styles
+ *
+ * Architecture: ALL selectors use data-* attributes on the <k-slider> host.
+ * Supports ALL 11 variants: filled, outlined, ghost, soft, subtle, gradient, glow, minimal, elevated, destructive, icon-only
+ *
+ * Color × variant behavior (per requirements):
+ *   filled / gradient / glow / soft / subtle → color changes progress bar + track styling
+ *   outlined                                 → color changes border + progress
+ *   ghost / minimal                          → color changes progress only
+ *   elevated / destructive                   → color token ignored (fixed colors)
+ *   primary (default)                        → defers to --k-accent
+ *
+ * Pattern: Use ONLY semantic tokens. NO hardcoded hex values.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STRUCTURE
+────────────────────────────────────────────────────────────────────────── */
+
+k-slider {
+  display: block;
+  width: 100%;
+  font-family: var(--k-font-sans);
+  margin-bottom: var(--k-space-4);
+}
+
+k-slider[data-full="true"] {
+  width: 100%;
+}
+
+.k-slider__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-2);
+}
+
+.k-slider__label {
+  display: block;
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-secondary);
+  user-select: none;
+}
+
+.k-slider__wrapper {
+  position: relative;
+  width: 100%;
+  padding: var(--k-space-6) var(--k-space-4);
+  display: flex;
+  align-items: center;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TRACK & PROGRESS — BASE (default/primary styling)
+────────────────────────────────────────────────────────────────────────── */
+
+.k-slider__track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--k-bg-surface);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  overflow: hidden;
+  transition: background var(--k-transition-base),
+              border-color var(--k-transition-base),
+              box-shadow var(--k-transition-base);
+}
+
+.k-slider__progress {
+  position: absolute;
+  height: 100%;
+  background: var(--k-accent);
+  left: 0;
+  right: 100%;
+  transition: all var(--k-transition-base);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   INPUT THUMBS
+────────────────────────────────────────────────────────────────────────── */
+
+.k-slider__input {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Webkit browsers */
+.k-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--k-radius-full);
+  background: var(--k-bg-surface);
+  border: 3px solid var(--k-accent);
+  cursor: pointer;
+  box-shadow: var(--k-shadow-sm);
+  transition: all var(--k-transition-base);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.k-slider__input::-webkit-slider-thumb:hover {
+  box-shadow: var(--k-shadow-md);
+  transform: scale(1.1);
+}
+
+.k-slider__input::-webkit-slider-thumb:active {
+  box-shadow: var(--k-shadow-sm);
+}
+
+/* Firefox */
+.k-slider__input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--k-radius-full);
+  background: var(--k-bg-surface);
+  border: 3px solid var(--k-accent);
+  cursor: pointer;
+  box-shadow: var(--k-shadow-sm);
+  transition: all var(--k-transition-base);
+}
+
+.k-slider__input::-moz-range-thumb:hover {
+  box-shadow: var(--k-shadow-md);
+  transform: scale(1.1);
+}
+
+.k-slider__input::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.k-slider__input::-moz-range-progress {
+  background: transparent;
+}
+
+.k-slider__input:disabled::-webkit-slider-thumb {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.k-slider__input:disabled::-moz-range-thumb {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.k-slider__input:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-slider__input:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-slider__input--second::-webkit-slider-thumb {
+  z-index: 6;
+}
+
+.k-slider__input--second::-moz-range-thumb {
+  z-index: 6;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TOOLTIP
+────────────────────────────────────────────────────────────────────────── */
+
+.k-slider__tooltip {
+  position: absolute;
+  top: -36px;
+  transform: translateX(-50%);
+  background: var(--k-accent);
+  color: var(--k-bg-surface);
+  padding: var(--k-space-1) var(--k-space-2);
+  border-radius: var(--k-radius-sm);
+  font-size: var(--k-text-xs);
+  font-weight: var(--k-font-bold);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--k-transition-base);
+  z-index: 20;
+}
+
+.k-slider__input:hover ~ .k-slider__tooltip,
+.k-slider__input:focus ~ .k-slider__tooltip {
+  opacity: 1;
+}
+
+.k-slider__tooltip--second {
+  position: absolute;
+  top: -36px;
+  transform: translateX(-50%);
+  background: var(--k-accent);
+  color: var(--k-bg-surface);
+  padding: var(--k-space-1) var(--k-space-2);
+  border-radius: var(--k-radius-sm);
+  font-size: var(--k-text-xs);
+  font-weight: var(--k-font-bold);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--k-transition-base);
+  z-index: 20;
+}
+
+.k-slider__input--second:hover ~ .k-slider__tooltip--second,
+.k-slider__input--second:focus ~ .k-slider__tooltip--second {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   VARIANTS (11: filled, outlined, ghost, soft, subtle, gradient, glow, minimal, elevated, destructive, icon-only)
+   
+   Pattern from k-input: variants use semantic tokens only, no hardcoding.
+   Color tokens apply semantic background/border/accent based on variant.
+────────────────────────────────────────────────────────────────────────── */
+
+/* FILLED: Solid background track with border. Color affects track + progress. */
+k-slider[data-variant="filled"] .k-slider__track {
+  background: var(--k-bg-elevated);
+  border: 1px solid var(--k-border);
+}
+
+k-slider[data-variant="filled"]:hover .k-slider__track {
+  background: var(--k-bg-surface);
+}
+
+/* OUTLINED: Transparent track with colored border. Color affects border + progress. */
+k-slider[data-variant="outlined"] .k-slider__track {
+  background: transparent;
+  border: 2px solid var(--k-border);
+}
+
+k-slider[data-variant="outlined"]:hover .k-slider__track {
+  border-color: var(--k-text-muted);
+}
+
+/* GHOST: Minimal style - just a bottom border line. Color affects progress only. */
+k-slider[data-variant="ghost"] .k-slider__track {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--k-border-subtle);
+}
+
+/* SOFT: Subtle colored background with blur effect. Color affects track. */
+k-slider[data-variant="soft"] .k-slider__track {
+  background: var(--k-accent-subtle);
+  border: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* SUBTLE: Soft colored background, no border. Color affects track. */
+k-slider[data-variant="subtle"] .k-slider__track {
+  background: var(--k-accent-subtle);
+  border: none;
+}
+
+/* GRADIENT: Progress bar has gradient. Color affects gradient stops. */
+k-slider[data-variant="gradient"] .k-slider__progress {
+  background: linear-gradient(135deg, var(--k-accent), var(--k-accent-hover));
+}
+
+/* GLOW: Progress bar has glow effect. Color affects progress + glow. */
+k-slider[data-variant="glow"] .k-slider__progress {
+  background: var(--k-accent);
+  box-shadow: var(--k-shadow-lg), inset 0 0 8px var(--k-accent-subtle);
+}
+
+/* MINIMAL: Just a line with text color. Color affects progress only. */
+k-slider[data-variant="minimal"] .k-slider__track {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--k-text-primary);
+}
+
+k-slider[data-variant="minimal"] .k-slider__progress {
+  background: var(--k-text-primary);
+}
+
+/* ELEVATED: Filled track with shadow elevation. Color ignored (fixed accent). */
+k-slider[data-variant="elevated"] .k-slider__track {
+  background: var(--k-bg-elevated);
+  border: 1px solid var(--k-border);
+  box-shadow: var(--k-shadow-md);
+}
+
+/* DESTRUCTIVE: Fixed error color for destructive actions. */
+k-slider[data-variant="destructive"] .k-slider__progress {
+  background: var(--k-error);
+}
+
+k-slider[data-variant="destructive"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-error);
+}
+
+k-slider[data-variant="destructive"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-error);
+}
+
+/* ICON-ONLY: Compact mode with minimal spacing. */
+k-slider[data-variant="icon-only"] .k-slider__wrapper {
+  padding: var(--k-space-3) var(--k-space-2);
+}
+
+k-slider[data-variant="icon-only"] .k-slider__track {
+  height: 4px;
+}
+
+k-slider[data-variant="icon-only"] .k-slider__input::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+}
+
+k-slider[data-variant="icon-only"] .k-slider__input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SIZES (5 tokens: xs, sm, md, lg, xl)
+────────────────────────────────────────────────────────────────────────── */
+
+k-slider[data-size="xs"] .k-slider__wrapper {
+  padding: var(--k-space-4) var(--k-space-3);
+}
+
+k-slider[data-size="xs"] .k-slider__track {
+  height: 4px;
+}
+
+k-slider[data-size="sm"] .k-slider__wrapper {
+  padding: var(--k-space-5) var(--k-space-3);
+}
+
+k-slider[data-size="sm"] .k-slider__track {
+  height: 5px;
+}
+
+k-slider[data-size="md"] .k-slider__wrapper {
+  padding: var(--k-space-6) var(--k-space-4);
+}
+
+k-slider[data-size="md"] .k-slider__track {
+  height: 6px;
+}
+
+k-slider[data-size="lg"] .k-slider__wrapper {
+  padding: var(--k-space-7) var(--k-space-4);
+}
+
+k-slider[data-size="lg"] .k-slider__track {
+  height: 8px;
+}
+
+k-slider[data-size="xl"] .k-slider__wrapper {
+  padding: var(--k-space-8) var(--k-space-6);
+}
+
+k-slider[data-size="xl"] .k-slider__track {
+  height: 10px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   COLORS (6 tokens: primary, success, warning, error, info, default)
+   
+   Pattern: Each color applies its semantic token to progress/border/track
+   based on the variant. Following k-input structure.
+   
+   - primary (default): defers to --k-accent
+   - success/warning/error/info: use specific color tokens
+   - default: neutral (text-secondary)
+────────────────────────────────────────────────────────────────────────── */
+
+/* PRIMARY (default) — uses --k-accent */
+k-slider[data-color="primary"] .k-slider__progress {
+  background-color: var(--k-accent);
+}
+
+k-slider[data-color="primary"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-accent);
+}
+
+k-slider[data-color="primary"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-accent);
+}
+
+k-slider[data-color="primary"] .k-slider__tooltip {
+  background: var(--k-accent);
+}
+
+/* PRIMARY + outlined: color affects border */
+k-slider[data-color="primary"][data-variant="outlined"] .k-slider__track {
+  border-color: var(--k-accent);
+}
+
+/* PRIMARY + soft/subtle: color affects track background */
+k-slider[data-color="primary"][data-variant="soft"] .k-slider__track {
+  background: var(--k-accent-subtle);
+}
+
+k-slider[data-color="primary"][data-variant="subtle"] .k-slider__track {
+  background: var(--k-accent-subtle);
+}
+
+/* SUCCESS */
+k-slider[data-color="success"] .k-slider__progress {
+  background-color: var(--k-success);
+}
+
+k-slider[data-color="success"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-success);
+}
+
+k-slider[data-color="success"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-success);
+}
+
+k-slider[data-color="success"] .k-slider__tooltip {
+  background: var(--k-success);
+}
+
+/* SUCCESS + outlined: color affects border */
+k-slider[data-color="success"][data-variant="outlined"] .k-slider__track {
+  border-color: var(--k-success);
+}
+
+/* SUCCESS + soft/subtle: color affects track background */
+k-slider[data-color="success"][data-variant="soft"] .k-slider__track {
+  background: var(--k-success-subtle);
+}
+
+k-slider[data-color="success"][data-variant="subtle"] .k-slider__track {
+  background: var(--k-success-subtle);
+}
+
+/* SUCCESS + gradient: color affects gradient */
+k-slider[data-color="success"][data-variant="gradient"] .k-slider__progress {
+  background: linear-gradient(135deg, var(--k-success), var(--k-success-hover));
+}
+
+/* SUCCESS + glow: color affects progress + glow */
+k-slider[data-color="success"][data-variant="glow"] .k-slider__progress {
+  background: var(--k-success);
+  box-shadow: var(--k-shadow-lg), inset 0 0 8px var(--k-success-subtle);
+}
+
+/* WARNING */
+k-slider[data-color="warning"] .k-slider__progress {
+  background-color: var(--k-warning);
+}
+
+k-slider[data-color="warning"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-warning);
+}
+
+k-slider[data-color="warning"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-warning);
+}
+
+k-slider[data-color="warning"] .k-slider__tooltip {
+  background: var(--k-warning);
+}
+
+/* WARNING + outlined: color affects border */
+k-slider[data-color="warning"][data-variant="outlined"] .k-slider__track {
+  border-color: var(--k-warning);
+}
+
+/* WARNING + soft/subtle: color affects track background */
+k-slider[data-color="warning"][data-variant="soft"] .k-slider__track {
+  background: var(--k-warning-subtle);
+}
+
+k-slider[data-color="warning"][data-variant="subtle"] .k-slider__track {
+  background: var(--k-warning-subtle);
+}
+
+/* WARNING + gradient: color affects gradient */
+k-slider[data-color="warning"][data-variant="gradient"] .k-slider__progress {
+  background: linear-gradient(135deg, var(--k-warning), var(--k-warning-hover));
+}
+
+/* WARNING + glow: color affects progress + glow */
+k-slider[data-color="warning"][data-variant="glow"] .k-slider__progress {
+  background: var(--k-warning);
+  box-shadow: var(--k-shadow-lg), inset 0 0 8px var(--k-warning-subtle);
+}
+
+/* ERROR */
+k-slider[data-color="error"] .k-slider__progress {
+  background-color: var(--k-error);
+}
+
+k-slider[data-color="error"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-error);
+}
+
+k-slider[data-color="error"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-error);
+}
+
+k-slider[data-color="error"] .k-slider__tooltip {
+  background: var(--k-error);
+}
+
+/* ERROR + outlined: color affects border */
+k-slider[data-color="error"][data-variant="outlined"] .k-slider__track {
+  border-color: var(--k-error);
+}
+
+/* ERROR + soft/subtle: color affects track background */
+k-slider[data-color="error"][data-variant="soft"] .k-slider__track {
+  background: var(--k-error-subtle);
+}
+
+k-slider[data-color="error"][data-variant="subtle"] .k-slider__track {
+  background: var(--k-error-subtle);
+}
+
+/* ERROR + gradient: color affects gradient */
+k-slider[data-color="error"][data-variant="gradient"] .k-slider__progress {
+  background: linear-gradient(135deg, var(--k-error), var(--k-error-hover));
+}
+
+/* ERROR + glow: color affects progress + glow */
+k-slider[data-color="error"][data-variant="glow"] .k-slider__progress {
+  background: var(--k-error);
+  box-shadow: var(--k-shadow-lg), inset 0 0 8px var(--k-error-subtle);
+}
+
+/* INFO */
+k-slider[data-color="info"] .k-slider__progress {
+  background-color: var(--k-info);
+}
+
+k-slider[data-color="info"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-info);
+}
+
+k-slider[data-color="info"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-info);
+}
+
+k-slider[data-color="info"] .k-slider__tooltip {
+  background: var(--k-info);
+}
+
+/* INFO + outlined: color affects border */
+k-slider[data-color="info"][data-variant="outlined"] .k-slider__track {
+  border-color: var(--k-info);
+}
+
+/* INFO + soft/subtle: color affects track background */
+k-slider[data-color="info"][data-variant="soft"] .k-slider__track {
+  background: var(--k-info-subtle);
+}
+
+k-slider[data-color="info"][data-variant="subtle"] .k-slider__track {
+  background: var(--k-info-subtle);
+}
+
+/* INFO + gradient: color affects gradient */
+k-slider[data-color="info"][data-variant="gradient"] .k-slider__progress {
+  background: linear-gradient(135deg, var(--k-info), var(--k-info-hover));
+}
+
+/* INFO + glow: color affects progress + glow */
+k-slider[data-color="info"][data-variant="glow"] .k-slider__progress {
+  background: var(--k-info);
+  box-shadow: var(--k-shadow-lg), inset 0 0 8px var(--k-info-subtle);
+}
+
+/* DEFAULT — uses neutral tokens */
+k-slider[data-color="default"] .k-slider__progress {
+  background-color: var(--k-text-secondary);
+}
+
+k-slider[data-color="default"] .k-slider__input::-webkit-slider-thumb {
+  border-color: var(--k-text-secondary);
+}
+
+k-slider[data-color="default"] .k-slider__input::-moz-range-thumb {
+  border-color: var(--k-text-secondary);
+}
+
+k-slider[data-color="default"] .k-slider__tooltip {
+  background: var(--k-text-secondary);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   RADIUS (5 tokens: r-none, r-sm, r-md, r-lg, r-full)
+   Default is r-md
+────────────────────────────────────────────────────────────────────────── */
+
+k-slider[data-radius="none"] .k-slider__track,
+k-slider[data-radius="none"] .k-slider__progress {
+  border-radius: var(--k-radius-none);
+}
+
+k-slider[data-radius="sm"] .k-slider__track,
+k-slider[data-radius="sm"] .k-slider__progress {
+  border-radius: var(--k-radius-sm);
+}
+
+k-slider[data-radius="md"] .k-slider__track,
+k-slider[data-radius="md"] .k-slider__progress {
+  border-radius: var(--k-radius-md);
+}
+
+k-slider[data-radius="lg"] .k-slider__track,
+k-slider[data-radius="lg"] .k-slider__progress {
+  border-radius: var(--k-radius-lg);
+}
+
+k-slider[data-radius="full"] .k-slider__track,
+k-slider[data-radius="full"] .k-slider__progress {
+  border-radius: var(--k-radius-full);
+}
+
+/* Default radius when no data-radius is specified */
+k-slider .k-slider__track,
+k-slider .k-slider__progress {
+  border-radius: var(--k-radius-md);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   STATES (disabled, error, loading)
+────────────────────────────────────────────────────────────────────────── */
+
+k-slider[data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+k-slider[data-error="true"] .k-slider__track {
+  border-color: var(--k-error);
+}
+
+k-slider[data-error="true"] .k-slider__hint {
+  color: var(--k-error);
+}
+
+k-slider[data-loading="true"] {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   UTILITY TOKENS
+────────────────────────────────────────────────────────────────────────── */
+
+k-slider[data-width="full"] {
+  width: 100%;
+}
+
+k-slider[data-width="auto"] {
+  width: auto;
+}
+
+k-slider[data-width="fit"] {
+  width: fit-content;
+}
+
+k-slider[data-width="screen"] {
+  width: 100vw;
+}
+
+k-slider[data-max-width="full"] {
+  max-width: 100%;
+}
+
+k-slider[data-height="full"] {
+  height: 100%;
+}
+
+k-slider[data-height="auto"] {
+  height: auto;
+}
+
+k-slider[data-height="screen"] {
+  height: 100vh;
+}
+
+k-slider[data-height="fit"] {
+  height: fit-content;
+}
+
+k-slider[data-border="true"] .k-slider__track {
+  border: 1px solid var(--k-border);
+}
+
+k-slider[data-border="none"] .k-slider__track {
+  border: none;
+}
+
+k-slider[data-shadow="sm"] .k-slider__wrapper {
+  box-shadow: var(--k-shadow-sm);
+}
+
+k-slider[data-shadow="md"] .k-slider__wrapper {
+  box-shadow: var(--k-shadow-md);
+}
+
+k-slider[data-shadow="lg"] .k-slider__wrapper {
+  box-shadow: var(--k-shadow-lg);
+}
+
+k-slider[data-shadow="xl"] .k-slider__wrapper {
+  box-shadow: var(--k-shadow-xl);
+}
+
+k-slider[data-shadow="none"] .k-slider__wrapper {
+  box-shadow: none;
+}
+
+k-slider[data-text-align="left"] .k-slider__label {
+  text-align: left;
+}
+
+k-slider[data-text-align="center"] .k-slider__label {
+  text-align: center;
+}
+
+k-slider[data-text-align="right"] .k-slider__label {
+  text-align: right;
+}
+
+k-slider[data-cursor="ptr"] .k-slider__input {
+  cursor: pointer;
+}
+
+k-slider[data-cursor="def"] .k-slider__input {
+  cursor: default;
+}
+
+k-slider[data-cursor="not"] .k-slider__input {
+  cursor: not-allowed;
+}
+
+k-slider[data-overflow="auto"] .k-slider__wrapper {
+  overflow: auto;
+}
+
+k-slider[data-overflow="hidden"] .k-slider__wrapper {
+  overflow: hidden;
+}
+
+k-slider[data-overflow="scroll"] .k-slider__wrapper {
+  overflow: scroll;
+}
+
+k-slider[data-display="block"] {
+  display: block;
+}
+
+k-slider[data-display="flex"] {
+  display: flex;
+}
+
+k-slider[data-display="none"] {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   FEEDBACK (Number display)
+────────────────────────────────────────────────────────────────────────── */
+
+.k-slider__feedback {
+  display: flex;
+  gap: var(--k-space-3);
+  margin-top: var(--k-space-3);
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-medium);
+  color: var(--k-text-secondary);
+}
+
+.k-slider__value-display {
+  display: inline-block;
+  min-width: 3ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  background: var(--k-bg-elevated);
+  padding: var(--k-space-1) var(--k-space-2);
+  border-radius: var(--k-radius-sm);
+  border: 1px solid var(--k-border-subtle);
+}
+
+.k-slider__value-display--second {
+  display: inline-block;
+  min-width: 3ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  background: var(--k-bg-elevated);
+  padding: var(--k-space-1) var(--k-space-2);
+  border-radius: var(--k-radius-sm);
+  border: 1px solid var(--k-border-subtle);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   HINT
+────────────────────────────────────────────────────────────────────────── */
+
+.k-slider__hint {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-2);
+  padding-left: var(--k-space-1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ACCESSIBILITY
+────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .k-slider__track,
+  .k-slider__progress,
+  .k-slider__input::-webkit-slider-thumb,
+  .k-slider__input::-moz-range-thumb,
+  .k-slider__tooltip {
+    transition: none;
+  }
+}

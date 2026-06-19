@@ -132,6 +132,7 @@ export abstract class KBaseElement extends HTMLElement {
     this._setOrDelete('shadow',    tokens.shadow);
     this._setOrDelete('display',   tokens.display);
     this._setOrDelete('cursor',    tokens.cursor);
+    this._setOrDelete('loader',    tokens.loader);
   }
 
   /**

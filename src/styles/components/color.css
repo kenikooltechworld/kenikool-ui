@@ -1,0 +1,355 @@
+/**
+ * k-color — Color Picker Component Styles
+ *
+ * Native color input with text input, preview, and optional swatches.
+ * Uses semantic CSS custom properties for theming.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STRUCTURE
+────────────────────────────────────────────────────────────────────────── */
+
+k-color {
+  display: block;
+  width: 100%;
+  font-family: var(--k-font-sans);
+  margin-bottom: var(--k-space-4);
+}
+
+.k-color__field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--k-space-2);
+}
+
+.k-color__label {
+  display: block;
+  font-size: var(--k-text-sm);
+  font-weight: var(--k-font-semibold);
+  color: var(--k-text-secondary);
+  user-select: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   WRAPPER & INPUTS
+────────────────────────────────────────────────────────────────────────── */
+
+.k-color__wrapper {
+  display: flex;
+  align-items: stretch;
+  gap: var(--k-space-2);
+  border-radius: var(--k-radius-md);
+  overflow: hidden;
+}
+
+.k-color__preview {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 2px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  background: var(--k-bg-surface);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: all var(--k-transition-base);
+  cursor: default;
+}
+
+.k-color__input {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0;
+  margin: 0;
+  border: 2px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  background: var(--k-bg-surface);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+}
+
+.k-color__input:hover {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 3px var(--k-accent-subtle);
+}
+
+.k-color__input:focus {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 3px var(--k-accent-subtle), 0 0 0 5px var(--k-bg-surface);
+  outline: none;
+}
+
+.k-color__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Remove default appearance for cross-browser compatibility */
+.k-color__input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.k-color__input::-webkit-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+.k-color__input::-moz-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+/* Text input for manual entry */
+.k-color__text-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--k-space-2) var(--k-space-3);
+  border: 1px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  background: var(--k-bg-surface);
+  color: var(--k-text-primary);
+  font-family: var(--k-font-mono);
+  font-size: var(--k-text-sm);
+  transition: all var(--k-transition-base);
+  outline: none;
+}
+
+.k-color__text-input::placeholder {
+  color: var(--k-text-muted);
+}
+
+.k-color__text-input:hover {
+  border-color: var(--k-accent);
+}
+
+.k-color__text-input:focus {
+  border-color: var(--k-accent);
+  box-shadow: 0 0 0 3px var(--k-accent-subtle);
+}
+
+.k-color__text-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SWATCHES
+────────────────────────────────────────────────────────────────────────── */
+
+.k-color__swatches {
+  display: flex;
+  gap: var(--k-space-2);
+  flex-wrap: wrap;
+  margin-top: var(--k-space-2);
+}
+
+.k-color__swatch {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+  margin: 0;
+  border: 2px solid var(--k-border);
+  border-radius: var(--k-radius-md);
+  cursor: pointer;
+  transition: all var(--k-transition-base);
+  outline: none;
+}
+
+.k-color__swatch:hover {
+  transform: scale(1.1);
+  border-color: var(--k-accent);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.k-color__swatch:active {
+  transform: scale(0.95);
+}
+
+.k-color__swatch:focus-visible {
+  outline: 2px solid var(--k-focus-ring);
+  outline-offset: 2px;
+}
+
+.k-color__swatch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   SIZES
+────────────────────────────────────────────────────────────────────────── */
+
+k-color[data-size="xs"] .k-color__input {
+  width: 36px;
+  height: 36px;
+}
+
+k-color[data-size="xs"] .k-color__text-input {
+  font-size: var(--k-text-xs);
+  padding: var(--k-space-1) var(--k-space-2);
+}
+
+k-color[data-size="sm"] .k-color__input {
+  width: 40px;
+  height: 40px;
+}
+
+k-color[data-size="sm"] .k-color__text-input {
+  font-size: var(--k-text-sm);
+  padding: var(--k-space-2) var(--k-space-3);
+}
+
+k-color[data-size="md"] .k-color__input {
+  width: 44px;
+  height: 44px;
+}
+
+k-color[data-size="md"] .k-color__text-input {
+  font-size: var(--k-text-base);
+  padding: var(--k-space-2) var(--k-space-3);
+}
+
+k-color[data-size="lg"] .k-color__input {
+  width: 52px;
+  height: 52px;
+}
+
+k-color[data-size="lg"] .k-color__text-input {
+  font-size: var(--k-text-lg);
+  padding: var(--k-space-3) var(--k-space-4);
+}
+
+k-color[data-size="xl"] .k-color__input {
+  width: 60px;
+  height: 60px;
+}
+
+k-color[data-size="xl"] .k-color__text-input {
+  font-size: var(--k-text-xl);
+  padding: var(--k-space-3) var(--k-space-4);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   VARIANTS
+────────────────────────────────────────────────────────────────────────── */
+
+k-color[data-variant="filled"] .k-color__input,
+k-color[data-variant="filled"] .k-color__text-input {
+  background: var(--k-bg-elevated);
+  border-color: transparent;
+}
+
+k-color[data-variant="filled"] .k-color__input:hover,
+k-color[data-variant="filled"] .k-color__text-input:hover {
+  background: var(--k-bg-surface);
+  border-color: var(--k-accent);
+}
+
+k-color[data-variant="soft"] .k-color__input,
+k-color[data-variant="soft"] .k-color__text-input {
+  background: var(--k-accent-subtle);
+  border-color: transparent;
+}
+
+k-color[data-variant="soft"] .k-color__input:focus,
+k-color[data-variant="soft"] .k-color__text-input:focus {
+  background: var(--k-accent-subtle);
+  border-color: var(--k-accent);
+}
+
+k-color[data-variant="ghost"] .k-color__input,
+k-color[data-variant="ghost"] .k-color__text-input {
+  background: transparent;
+  border-color: var(--k-border-subtle);
+}
+
+k-color[data-variant="ghost"] .k-color__input:hover,
+k-color[data-variant="ghost"] .k-color__text-input:hover {
+  background: var(--k-bg-elevated);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   STATES
+────────────────────────────────────────────────────────────────────────── */
+
+k-color[data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+k-color[data-error="true"] .k-color__input,
+k-color[data-error="true"] .k-color__text-input {
+  border-color: var(--k-error);
+}
+
+k-color[data-error="true"] .k-color__input:focus,
+k-color[data-error="true"] .k-color__text-input:focus {
+  box-shadow: 0 0 0 3px var(--k-error-subtle);
+}
+
+k-color[data-error="true"] .k-color__hint {
+  color: var(--k-error);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   RADIUS
+────────────────────────────────────────────────────────────────────────── */
+
+k-color[data-radius="none"] .k-color__input,
+k-color[data-radius="none"] .k-color__text-input,
+k-color[data-radius="none"] .k-color__preview {
+  border-radius: 0;
+}
+
+k-color[data-radius="sm"] .k-color__input,
+k-color[data-radius="sm"] .k-color__text-input,
+k-color[data-radius="sm"] .k-color__preview {
+  border-radius: var(--k-radius-sm);
+}
+
+k-color[data-radius="md"] .k-color__input,
+k-color[data-radius="md"] .k-color__text-input,
+k-color[data-radius="md"] .k-color__preview {
+  border-radius: var(--k-radius-md);
+}
+
+k-color[data-radius="lg"] .k-color__input,
+k-color[data-radius="lg"] .k-color__text-input,
+k-color[data-radius="lg"] .k-color__preview {
+  border-radius: var(--k-radius-lg);
+}
+
+k-color[data-radius="full"] .k-color__input,
+k-color[data-radius="full"] .k-color__text-input,
+k-color[data-radius="full"] .k-color__preview {
+  border-radius: var(--k-radius-full);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   HINT
+────────────────────────────────────────────────────────────────────────── */
+
+.k-color__hint {
+  display: block;
+  font-size: var(--k-text-xs);
+  color: var(--k-text-muted);
+  margin-top: var(--k-space-2);
+  padding-left: var(--k-space-1);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   ACCESSIBILITY
+────────────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .k-color__input,
+  .k-color__text-input,
+  .k-color__swatch,
+  .k-color__preview {
+    transition: none;
+  }
+
+  .k-color__swatch:hover {
+    transform: none;
+  }
+}

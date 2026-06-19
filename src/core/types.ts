@@ -34,6 +34,8 @@ export interface VTokens {
   disabled: boolean;
   /** Full width. Default: false. */
   full:     boolean;
+  /** Text truncation with ellipsis. Default: false. */
+  truncate: boolean;
   /** CSS selector for auto-mount target (e.g. '.hero', '#app'). null if none. */
   target:   string | null;
 
@@ -124,31 +126,31 @@ export interface VTokens {
 
   /**
    * Width utility.
-   * Parsed from tokens: w-full | w-auto | w-fit | w-screen.
+   * Parsed from tokens: w-full | w-auto | w-fit | w-screen | w-0 to w-24.
    * null = use component default.
    */
-  width: 'full' | 'auto' | 'fit' | 'screen' | null;
+  width: 'full' | 'auto' | 'fit' | 'screen' | string | null;
 
   /**
    * Height utility.
-   * Parsed from tokens: h-full | h-auto | h-screen | h-fit.
+   * Parsed from tokens: h-full | h-auto | h-screen | h-fit | h-0 to h-24.
    * null = use component default.
    */
-  height: 'full' | 'auto' | 'screen' | 'fit' | null;
+  height: 'full' | 'auto' | 'screen' | 'fit' | string | null;
 
   /**
    * Max width utility.
-   * Parsed from tokens: mw-full.
+   * Parsed from tokens: mw-full | mw-0 to mw-24.
    * null = no max-width constraint.
    */
-  maxWidth: 'full' | null;
+  maxWidth: 'full' | string | null;
 
   /**
    * Max height utility.
-   * Parsed from tokens: mh-full | mh-screen.
+   * Parsed from tokens: mh-full | mh-screen | mh-0 to mh-24.
    * null = no max-height constraint.
    */
-  maxHeight: 'full' | 'screen' | null;
+  maxHeight: 'full' | 'screen' | string | null;
 
   /**
    * Min width utility.
@@ -219,4 +221,11 @@ export interface VTokens {
    * null = use component default.
    */
   cursor: 'ptr' | 'def' | 'not' | null;
+
+  /**
+   * Loader variant for loading state.
+   * Parsed from tokens: loader-spinner | loader-dots | loader-pulse | loader-bars | loader-ring | loader-ripple | loader-bounce | loader-wave | loader-flip | loader-orbit | loader-squeeze | loader-beat | loader-crescent.
+   * null = use default spinner.
+   */
+  loader: 'spinner' | 'dots' | 'pulse' | 'bars' | 'ring' | 'ripple' | 'bounce' | 'wave' | 'flip' | 'orbit' | 'squeeze' | 'beat' | 'crescent' | null;
 }

@@ -24,13 +24,6 @@ import { KBaseElement }  from '../KBaseElement.js';
 import { sanitizeText }  from '../../core/utils/sanitize.js';
 import { getIcon }        from '../../core/icons.js';
 
-/** Inline spinner SVG used for the loading state. */
-const SPINNER_SVG =
-  `<svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false">` +
-  `<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor"` +
-  ` stroke-width="3" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="12"/>` +
-  `</svg>`;
-
 export class KButtonElement extends KBaseElement {
   /** Reference to the inner <button> once it has been created. */
   private _inner: HTMLButtonElement | null = null;
@@ -154,6 +147,16 @@ export class KButtonElement extends KBaseElement {
     if (!!hasIcon && label) {
       btn.setAttribute('title', label);
     }
+
+    // Handle text truncation: apply truncate class if truncate token is present
+    const contentWrap = btn.querySelector('.k-button__content-wrap') as HTMLElement | null;
+    if (contentWrap) {
+      if (tokens.truncate) {
+        contentWrap.classList.add('k-button--truncate');
+      } else {
+        contentWrap.classList.remove('k-button--truncate');
+      }
+    }
   }
 
   // ─── Event listener management ────────────────────────────────────────────
@@ -169,20 +172,31 @@ export class KButtonElement extends KBaseElement {
   // ─── Private helpers ──────────────────────────────────────────────────────
 
   /**
-   * Appends the loading spinner span to the inner button if not already present.
+   * Appends a <k-loader> element to the inner button if not already present.
+   * Uses the loader variant from the v attribute (loader-dots, loader-pulse, etc.)
    */
   private _showLoader(): void {
     if (!this._inner) return;
     if (this._inner.querySelector('.k-button__loader')) return;
-    const loader = document.createElement('span');
-    loader.className = 'k-button__loader';
-    loader.innerHTML = SPINNER_SVG;
+    
+    const tokens = this._getTokens();
+    const loaderVariant = tokens.loader || 'spinner';
+    
+    // Create a wrapper for positioning
+    const loaderWrapper = document.createElement('span');
+    loaderWrapper.className = 'k-button__loader';
+    
+    // Create the actual k-loader element with appropriate size
+    const loader = document.createElement('k-loader');
+    loader.setAttribute('v', `${loaderVariant} sm`); // Use sm size for buttons
     loader.setAttribute('aria-hidden', 'true');
-    this._inner.appendChild(loader);
+    
+    loaderWrapper.appendChild(loader);
+    this._inner.appendChild(loaderWrapper);
   }
 
   /**
-   * Removes the loading spinner span from the inner button.
+   * Removes the loading indicator from the inner button.
    */
   private _hideLoader(): void {
     this._inner?.querySelector('.k-button__loader')?.remove();
